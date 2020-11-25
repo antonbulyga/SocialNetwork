@@ -1,5 +1,5 @@
-2020-11-23 15:00:41,921 [main] INFO  com.senla.model.SocialNetworkApplication - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 1572 (C:\Users\Anton\Documents\SocialNetwork\target\classes started by Anton in C:\Users\Anton\Documents\SocialNetwork)
-2020-11-23 15:00:41,930 [main] INFO  com.senla.model.SocialNetworkApplication - No active profile set, falling back to default profiles: default
+2020-11-23 15:00:41,921 [main] INFO  com.senla.main.SocialNetworkApplication - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 1572 (C:\Users\Anton\Documents\SocialNetwork\target\classes started by Anton in C:\Users\Anton\Documents\SocialNetwork)
+2020-11-23 15:00:41,930 [main] INFO  com.senla.main.SocialNetworkApplication - No active profile set, falling back to default profiles: default
 2020-11-23 15:00:43,868 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
 2020-11-23 15:00:44,034 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 157ms. Found 10 JPA repository interfaces.
 2020-11-23 15:00:44,700 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat initialized with port(s): 8181 (http)
@@ -17,11 +17,11 @@
 2020-11-23 15:00:45,324 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2020-11-23 15:00:45,360 [task-1] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
 2020-11-23 15:00:45,475 [task-1] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Starting...
-2020-11-23 15:00:45,527 [main] INFO  o.s.s.web.DefaultSecurityFilterChain     - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5e0c4f21, org.springframework.security.web.context.SecurityContextPersistenceFilter@364b1061, org.springframework.security.web.header.HeaderWriterFilter@2c604965, org.springframework.security.web.authentication.logout.LogoutFilter@8fd91d1, com.senla.model.security.JwtTokenFilter@2c18a3ea, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@172f4514, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@41f3aaf1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@166c2c17, org.springframework.security.web.session.SessionManagementFilter@74667e6a, org.springframework.security.web.access.ExceptionTranslationFilter@7a083b96, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@66749eea]
+2020-11-23 15:00:45,527 [main] INFO  o.s.s.web.DefaultSecurityFilterChain     - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5e0c4f21, org.springframework.security.web.context.SecurityContextPersistenceFilter@364b1061, org.springframework.security.web.header.HeaderWriterFilter@2c604965, org.springframework.security.web.authentication.logout.LogoutFilter@8fd91d1, com.senla.security.JwtTokenFilter@2c18a3ea, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@172f4514, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@41f3aaf1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@166c2c17, org.springframework.security.web.session.SessionManagementFilter@74667e6a, org.springframework.security.web.access.ExceptionTranslationFilter@7a083b96, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@66749eea]
 2020-11-23 15:00:45,750 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'adminController' method 
-com.senla.model.controller.AdminController#getAllDialogsAsAdmin()
+com.senla.controller.controller.AdminController#getAllDialogsAsAdmin()
 to {GET /admin/}: There is already 'adminController' bean method
-com.senla.model.controller.AdminController#getAllLikes() mapped.
+com.senla.controller.controller.AdminController#getAllLikes() mapped.
 2020-11-23 15:00:45,751 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
 2020-11-23 15:00:46,450 [task-1] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Start completed.
 2020-11-23 15:00:46,463 [task-1] INFO  org.hibernate.dialect.Dialect            - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
@@ -36,9 +36,9 @@ com.senla.model.controller.AdminController#getAllLikes() mapped.
 Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
 2020-11-23 15:00:47,765 [main] ERROR o.springframework.boot.SpringApplication - Application run failed
 org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'adminController' method 
-com.senla.model.controller.AdminController#getAllDialogsAsAdmin()
+com.senla.controller.controller.AdminController#getAllDialogsAsAdmin()
 to {GET /admin/}: There is already 'adminController' bean method
-com.senla.model.controller.AdminController#getAllLikes() mapped.
+com.senla.controller.controller.AdminController#getAllLikes() mapped.
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1794)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:594)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:516)
@@ -56,11 +56,11 @@ com.senla.model.controller.AdminController#getAllLikes() mapped.
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1237)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
-	at com.senla.model.SocialNetworkApplication.main(SocialNetworkApplication.java:13)
+	at com.senla.main.SocialNetworkApplication.main(SocialNetworkApplication.java:13)
 Caused by: java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'adminController' method 
-com.senla.model.controller.AdminController#getAllDialogsAsAdmin()
+com.senla.controller.controller.AdminController#getAllDialogsAsAdmin()
 to {GET /admin/}: There is already 'adminController' bean method
-com.senla.model.controller.AdminController#getAllLikes() mapped.
+com.senla.controller.controller.AdminController#getAllLikes() mapped.
 	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.validateMethodMapping(AbstractHandlerMethodMapping.java:636)
 	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:603)
 	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.registerHandlerMethod(AbstractHandlerMethodMapping.java:318)
@@ -76,8 +76,8 @@ com.senla.model.controller.AdminController#getAllLikes() mapped.
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1853)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1790)
 	... 17 common frames omitted
-2020-11-23 15:04:00,491 [main] INFO  com.senla.model.SocialNetworkApplication - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 6460 (C:\Users\Anton\Documents\SocialNetwork\target\classes started by Anton in C:\Users\Anton\Documents\SocialNetwork)
-2020-11-23 15:04:00,494 [main] INFO  com.senla.model.SocialNetworkApplication - No active profile set, falling back to default profiles: default
+2020-11-23 15:04:00,491 [main] INFO  com.senla.main.SocialNetworkApplication - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 6460 (C:\Users\Anton\Documents\SocialNetwork\target\classes started by Anton in C:\Users\Anton\Documents\SocialNetwork)
+2020-11-23 15:04:00,494 [main] INFO  com.senla.main.SocialNetworkApplication - No active profile set, falling back to default profiles: default
 2020-11-23 15:04:01,424 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
 2020-11-23 15:04:01,555 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 123ms. Found 10 JPA repository interfaces.
 2020-11-23 15:04:02,036 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat initialized with port(s): 8181 (http)
@@ -95,11 +95,11 @@ com.senla.model.controller.AdminController#getAllLikes() mapped.
 2020-11-23 15:04:02,549 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2020-11-23 15:04:02,615 [task-1] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
 2020-11-23 15:04:02,704 [task-1] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Starting...
-2020-11-23 15:04:02,725 [main] INFO  o.s.s.web.DefaultSecurityFilterChain     - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@19dc0d32, org.springframework.security.web.context.SecurityContextPersistenceFilter@13d019a4, org.springframework.security.web.header.HeaderWriterFilter@88b76f2, org.springframework.security.web.authentication.logout.LogoutFilter@76437e9b, com.senla.model.security.JwtTokenFilter@70b2fa10, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@415a3f6a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@60e1d87c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7c96c85, org.springframework.security.web.session.SessionManagementFilter@172f4514, org.springframework.security.web.access.ExceptionTranslationFilter@6c17c0f8, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@42ef042a]
+2020-11-23 15:04:02,725 [main] INFO  o.s.s.web.DefaultSecurityFilterChain     - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@19dc0d32, org.springframework.security.web.context.SecurityContextPersistenceFilter@13d019a4, org.springframework.security.web.header.HeaderWriterFilter@88b76f2, org.springframework.security.web.authentication.logout.LogoutFilter@76437e9b, com.senla.security.JwtTokenFilter@70b2fa10, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@415a3f6a, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@60e1d87c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7c96c85, org.springframework.security.web.session.SessionManagementFilter@172f4514, org.springframework.security.web.access.ExceptionTranslationFilter@6c17c0f8, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@42ef042a]
 2020-11-23 15:04:02,882 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'adminController' method 
-com.senla.model.controller.AdminController#getAllDialogsAsAdmin()
+com.senla.controller.controller.AdminController#getAllDialogsAsAdmin()
 to {GET /admin/}: There is already 'adminController' bean method
-com.senla.model.controller.AdminController#getAllLikes() mapped.
+com.senla.controller.controller.AdminController#getAllLikes() mapped.
 2020-11-23 15:04:02,883 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
 2020-11-23 15:04:02,995 [task-1] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Start completed.
 2020-11-23 15:04:03,007 [task-1] INFO  org.hibernate.dialect.Dialect            - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
@@ -114,9 +114,9 @@ com.senla.model.controller.AdminController#getAllLikes() mapped.
 Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
 2020-11-23 15:04:03,954 [main] ERROR o.springframework.boot.SpringApplication - Application run failed
 org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'adminController' method 
-com.senla.model.controller.AdminController#getAllDialogsAsAdmin()
+com.senla.controller.controller.AdminController#getAllDialogsAsAdmin()
 to {GET /admin/}: There is already 'adminController' bean method
-com.senla.model.controller.AdminController#getAllLikes() mapped.
+com.senla.controller.controller.AdminController#getAllLikes() mapped.
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1794)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:594)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:516)
@@ -134,11 +134,11 @@ com.senla.model.controller.AdminController#getAllLikes() mapped.
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1237)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
-	at com.senla.model.SocialNetworkApplication.main(SocialNetworkApplication.java:13)
+	at com.senla.main.SocialNetworkApplication.main(SocialNetworkApplication.java:13)
 Caused by: java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'adminController' method 
-com.senla.model.controller.AdminController#getAllDialogsAsAdmin()
+com.senla.controller.controller.AdminController#getAllDialogsAsAdmin()
 to {GET /admin/}: There is already 'adminController' bean method
-com.senla.model.controller.AdminController#getAllLikes() mapped.
+com.senla.controller.controller.AdminController#getAllLikes() mapped.
 	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.validateMethodMapping(AbstractHandlerMethodMapping.java:636)
 	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:603)
 	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.registerHandlerMethod(AbstractHandlerMethodMapping.java:318)
@@ -154,8 +154,8 @@ com.senla.model.controller.AdminController#getAllLikes() mapped.
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1853)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1790)
 	... 17 common frames omitted
-2020-11-23 15:05:34,733 [main] INFO  com.senla.model.SocialNetworkApplication - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 12592 (C:\Users\Anton\Documents\SocialNetwork\target\classes started by Anton in C:\Users\Anton\Documents\SocialNetwork)
-2020-11-23 15:05:34,737 [main] INFO  com.senla.model.SocialNetworkApplication - No active profile set, falling back to default profiles: default
+2020-11-23 15:05:34,733 [main] INFO  com.senla.main.SocialNetworkApplication - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 12592 (C:\Users\Anton\Documents\SocialNetwork\target\classes started by Anton in C:\Users\Anton\Documents\SocialNetwork)
+2020-11-23 15:05:34,737 [main] INFO  com.senla.main.SocialNetworkApplication - No active profile set, falling back to default profiles: default
 2020-11-23 15:05:35,752 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
 2020-11-23 15:05:35,890 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 131ms. Found 10 JPA repository interfaces.
 2020-11-23 15:05:36,349 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat initialized with port(s): 8181 (http)
@@ -173,11 +173,11 @@ com.senla.model.controller.AdminController#getAllLikes() mapped.
 2020-11-23 15:05:36,917 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2020-11-23 15:05:36,995 [task-1] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
 2020-11-23 15:05:37,093 [task-1] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Starting...
-2020-11-23 15:05:37,113 [main] INFO  o.s.s.web.DefaultSecurityFilterChain     - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7f97bc14, org.springframework.security.web.context.SecurityContextPersistenceFilter@3d9f0a5, org.springframework.security.web.header.HeaderWriterFilter@d54d0f5, org.springframework.security.web.authentication.logout.LogoutFilter@1f71194d, com.senla.model.security.JwtTokenFilter@22d8f4ed, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@30aec673, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@310a7859, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3434a4f0, org.springframework.security.web.session.SessionManagementFilter@54ffa561, org.springframework.security.web.access.ExceptionTranslationFilter@7459a21e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@67d4c48d]
+2020-11-23 15:05:37,113 [main] INFO  o.s.s.web.DefaultSecurityFilterChain     - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7f97bc14, org.springframework.security.web.context.SecurityContextPersistenceFilter@3d9f0a5, org.springframework.security.web.header.HeaderWriterFilter@d54d0f5, org.springframework.security.web.authentication.logout.LogoutFilter@1f71194d, com.senla.security.JwtTokenFilter@22d8f4ed, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@30aec673, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@310a7859, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3434a4f0, org.springframework.security.web.session.SessionManagementFilter@54ffa561, org.springframework.security.web.access.ExceptionTranslationFilter@7459a21e, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@67d4c48d]
 2020-11-23 15:05:37,351 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'dialogController' method 
-com.senla.model.controller.DialogController#deleteUserFromDialog(Long, Long)
+com.senla.controller.controller.DialogController#deleteUserFromDialog(Long, Long)
 to {POST /dialogs/add/user}: There is already 'dialogController' bean method
-com.senla.model.controller.DialogController#addUserToDialog(Long, Long) mapped.
+com.senla.controller.controller.DialogController#addUserToDialog(Long, Long) mapped.
 2020-11-23 15:05:37,352 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
 2020-11-23 15:05:37,545 [task-1] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Start completed.
 2020-11-23 15:05:37,577 [task-1] INFO  org.hibernate.dialect.Dialect            - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
@@ -192,9 +192,9 @@ com.senla.model.controller.DialogController#addUserToDialog(Long, Long) mapped.
 Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
 2020-11-23 15:05:38,940 [main] ERROR o.springframework.boot.SpringApplication - Application run failed
 org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'requestMappingHandlerMapping' defined in class path resource [org/springframework/boot/autoconfigure/web/servlet/WebMvcAutoConfiguration$EnableWebMvcConfiguration.class]: Invocation of init method failed; nested exception is java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'dialogController' method 
-com.senla.model.controller.DialogController#deleteUserFromDialog(Long, Long)
+com.senla.controller.controller.DialogController#deleteUserFromDialog(Long, Long)
 to {POST /dialogs/add/user}: There is already 'dialogController' bean method
-com.senla.model.controller.DialogController#addUserToDialog(Long, Long) mapped.
+com.senla.controller.controller.DialogController#addUserToDialog(Long, Long) mapped.
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1794)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:594)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:516)
@@ -212,11 +212,11 @@ com.senla.model.controller.DialogController#addUserToDialog(Long, Long) mapped.
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1237)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
-	at com.senla.model.SocialNetworkApplication.main(SocialNetworkApplication.java:13)
+	at com.senla.main.SocialNetworkApplication.main(SocialNetworkApplication.java:13)
 Caused by: java.lang.IllegalStateException: Ambiguous mapping. Cannot map 'dialogController' method 
-com.senla.model.controller.DialogController#deleteUserFromDialog(Long, Long)
+com.senla.controller.controller.DialogController#deleteUserFromDialog(Long, Long)
 to {POST /dialogs/add/user}: There is already 'dialogController' bean method
-com.senla.model.controller.DialogController#addUserToDialog(Long, Long) mapped.
+com.senla.controller.controller.DialogController#addUserToDialog(Long, Long) mapped.
 	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.validateMethodMapping(AbstractHandlerMethodMapping.java:636)
 	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping$MappingRegistry.register(AbstractHandlerMethodMapping.java:603)
 	at org.springframework.web.servlet.handler.AbstractHandlerMethodMapping.registerHandlerMethod(AbstractHandlerMethodMapping.java:318)
@@ -232,8 +232,8 @@ com.senla.model.controller.DialogController#addUserToDialog(Long, Long) mapped.
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1853)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1790)
 	... 17 common frames omitted
-2020-11-23 15:07:01,945 [main] INFO  com.senla.model.SocialNetworkApplication - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 18680 (C:\Users\Anton\Documents\SocialNetwork\target\classes started by Anton in C:\Users\Anton\Documents\SocialNetwork)
-2020-11-23 15:07:01,948 [main] INFO  com.senla.model.SocialNetworkApplication - No active profile set, falling back to default profiles: default
+2020-11-23 15:07:01,945 [main] INFO  com.senla.main.SocialNetworkApplication - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 18680 (C:\Users\Anton\Documents\SocialNetwork\target\classes started by Anton in C:\Users\Anton\Documents\SocialNetwork)
+2020-11-23 15:07:01,948 [main] INFO  com.senla.main.SocialNetworkApplication - No active profile set, falling back to default profiles: default
 2020-11-23 15:07:02,841 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
 2020-11-23 15:07:02,971 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 124ms. Found 10 JPA repository interfaces.
 2020-11-23 15:07:03,397 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat initialized with port(s): 8181 (http)
@@ -251,7 +251,7 @@ com.senla.model.controller.DialogController#addUserToDialog(Long, Long) mapped.
 2020-11-23 15:07:03,887 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2020-11-23 15:07:03,946 [task-1] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
 2020-11-23 15:07:04,031 [task-1] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Starting...
-2020-11-23 15:07:04,050 [main] INFO  o.s.s.web.DefaultSecurityFilterChain     - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2c18a3ea, org.springframework.security.web.context.SecurityContextPersistenceFilter@50fdf44f, org.springframework.security.web.header.HeaderWriterFilter@57f8951a, org.springframework.security.web.authentication.logout.LogoutFilter@52d0f583, com.senla.model.security.JwtTokenFilter@166c2c17, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7df6d663, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@741741d0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@25953be6, org.springframework.security.web.session.SessionManagementFilter@7b222230, org.springframework.security.web.access.ExceptionTranslationFilter@6da4feeb, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7135ce0a]
+2020-11-23 15:07:04,050 [main] INFO  o.s.s.web.DefaultSecurityFilterChain     - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2c18a3ea, org.springframework.security.web.context.SecurityContextPersistenceFilter@50fdf44f, org.springframework.security.web.header.HeaderWriterFilter@57f8951a, org.springframework.security.web.authentication.logout.LogoutFilter@52d0f583, com.senla.security.JwtTokenFilter@166c2c17, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7df6d663, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@741741d0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@25953be6, org.springframework.security.web.session.SessionManagementFilter@7b222230, org.springframework.security.web.access.ExceptionTranslationFilter@6da4feeb, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7135ce0a]
 2020-11-23 15:07:04,377 [task-1] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Start completed.
 2020-11-23 15:07:04,391 [task-1] INFO  org.hibernate.dialect.Dialect            - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
 2020-11-23 15:07:04,439 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat started on port(s): 8181 (http) with context path ''
@@ -259,7 +259,7 @@ com.senla.model.controller.DialogController#addUserToDialog(Long, Long) mapped.
 2020-11-23 15:07:05,473 [task-1] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator       - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
 2020-11-23 15:07:05,480 [task-1] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
 2020-11-23 15:07:05,958 [main] INFO  o.s.d.r.c.DeferredRepositoryInitializationListener - Spring Data repositories initialized!
-2020-11-23 15:07:05,976 [main] INFO  com.senla.model.SocialNetworkApplication - Started SocialNetworkApplication in 4.426 seconds (JVM running for 5.513)
+2020-11-23 15:07:05,976 [main] INFO  com.senla.main.SocialNetworkApplication - Started SocialNetworkApplication in 4.426 seconds (JVM running for 5.513)
 2020-11-23 15:07:21,090 [http-nio-8181-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]       - Initializing Spring DispatcherServlet 'dispatcherServlet'
 2020-11-23 15:07:21,090 [http-nio-8181-exec-1] INFO  o.s.web.servlet.DispatcherServlet        - Initializing Servlet 'dispatcherServlet'
 2020-11-23 15:07:21,102 [http-nio-8181-exec-1] INFO  o.s.web.servlet.DispatcherServlet        - Completed initialization in 11 ms
@@ -301,8 +301,8 @@ com.senla.model.controller.DialogController#addUserToDialog(Long, Long) mapped.
 2020-11-23 15:14:09,988 [http-nio-8181-exec-2] INFO  c.s.model.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
 2020-11-23 15:14:09,993 [http-nio-8181-exec-2] INFO  c.s.model.service.impl.UserServiceImpl   - Finding user by user name
 2020-11-23 15:14:09,999 [http-nio-8181-exec-2] INFO  c.s.model.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
-2020-11-23 15:14:10,043 [http-nio-8181-exec-2] ERROR o.a.c.c.C.[.[.[/].[dispatcherServlet]    - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.InvalidDataAccessApiUsageException: Parameter value [MALE] did not match expected type [com.senla.model.enumeration.Gender (n/a)]; nested exception is java.lang.IllegalArgumentException: Parameter value [MALE] did not match expected type [com.senla.model.enumeration.Gender (n/a)]] with root cause
-java.lang.IllegalArgumentException: Parameter value [MALE] did not match expected type [com.senla.model.enumeration.Gender (n/a)]
+2020-11-23 15:14:10,043 [http-nio-8181-exec-2] ERROR o.a.c.c.C.[.[.[/].[dispatcherServlet]    - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.InvalidDataAccessApiUsageException: Parameter value [MALE] did not match expected type [com.senla.enumeration.Gender (n/a)]; nested exception is java.lang.IllegalArgumentException: Parameter value [MALE] did not match expected type [com.senla.enumeration.Gender (n/a)]] with root cause
+java.lang.IllegalArgumentException: Parameter value [MALE] did not match expected type [com.senla.enumeration.Gender (n/a)]
 	at org.hibernate.query.spi.QueryParameterBindingValidator.validate(QueryParameterBindingValidator.java:54)
 	at org.hibernate.query.spi.QueryParameterBindingValidator.validate(QueryParameterBindingValidator.java:27)
 	at org.hibernate.query.internal.QueryParameterBindingImpl.validate(QueryParameterBindingImpl.java:90)
@@ -350,8 +350,8 @@ java.lang.IllegalArgumentException: Parameter value [MALE] did not match expecte
 	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:344)
 	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:205)
 	at com.sun.proxy.$Proxy70.findByGender(Unknown Source)
-	at com.senla.model.service.impl.ProfileServiceImpl.findProfileByGender(ProfileServiceImpl.java:106)
-	at com.senla.model.service.impl.ProfileServiceImpl$$FastClassBySpringCGLIB$$dec56672.invoke(<generated>)
+	at com.senla.service.service.impl.ProfileServiceImpl.findProfileByGender(ProfileServiceImpl.java:106)
+	at com.senla.service.service.impl.ProfileServiceImpl$$FastClassBySpringCGLIB$$dec56672.invoke(<generated>)
 	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:771)
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
@@ -361,8 +361,8 @@ java.lang.IllegalArgumentException: Parameter value [MALE] did not match expecte
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:749)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:691)
-	at com.senla.model.service.impl.ProfileServiceImpl$$EnhancerBySpringCGLIB$$a19290a0.findProfileByGender(<generated>)
-	at com.senla.model.controller.ProfileController.findProfileByGender(ProfileController.java:118)
+	at com.senla.service.service.impl.ProfileServiceImpl$$EnhancerBySpringCGLIB$$a19290a0.findProfileByGender(<generated>)
+	at com.senla.controller.controller.ProfileController.findProfileByGender(ProfileController.java:118)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -385,7 +385,7 @@ java.lang.IllegalArgumentException: Parameter value [MALE] did not match expecte
 	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
 	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at com.senla.model.security.JwtTokenFilter.doFilter(JwtTokenFilter.java:37)
+	at com.senla.security.JwtTokenFilter.doFilter(JwtTokenFilter.java:37)
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
 	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
 	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320)
@@ -402,7 +402,7 @@ java.lang.IllegalArgumentException: Parameter value [MALE] did not match expecte
 	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
 	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
 	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-	at com.senla.model.security.JwtTokenFilter.doFilter(JwtTokenFilter.java:37)
+	at com.senla.security.JwtTokenFilter.doFilter(JwtTokenFilter.java:37)
 	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
 	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
 	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
@@ -455,8 +455,8 @@ java.lang.IllegalArgumentException: Parameter value [MALE] did not match expecte
 2020-11-23 15:15:03,233 [http-nio-8181-exec-3] INFO  c.s.model.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
 2020-11-23 15:15:03,240 [http-nio-8181-exec-3] INFO  c.s.model.service.impl.UserServiceImpl   - Finding user by user name
 2020-11-23 15:15:03,247 [http-nio-8181-exec-3] INFO  c.s.model.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
-2020-11-23 15:15:03,256 [http-nio-8181-exec-3] ERROR o.a.c.c.C.[.[.[/].[dispatcherServlet]    - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.InvalidDataAccessApiUsageException: Parameter value [FEMALE] did not match expected type [com.senla.model.enumeration.Gender (n/a)]; nested exception is java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expected type [com.senla.model.enumeration.Gender (n/a)]] with root cause
-java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expected type [com.senla.model.enumeration.Gender (n/a)]
+2020-11-23 15:15:03,256 [http-nio-8181-exec-3] ERROR o.a.c.c.C.[.[.[/].[dispatcherServlet]    - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.InvalidDataAccessApiUsageException: Parameter value [FEMALE] did not match expected type [com.senla.enumeration.Gender (n/a)]; nested exception is java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expected type [com.senla.enumeration.Gender (n/a)]] with root cause
+java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expected type [com.senla.enumeration.Gender (n/a)]
 	at org.hibernate.query.spi.QueryParameterBindingValidator.validate(QueryParameterBindingValidator.java:54)
 	at org.hibernate.query.spi.QueryParameterBindingValidator.validate(QueryParameterBindingValidator.java:27)
 	at org.hibernate.query.internal.QueryParameterBindingImpl.validate(QueryParameterBindingImpl.java:90)
@@ -504,8 +504,8 @@ java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expec
 	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:344)
 	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:205)
 	at com.sun.proxy.$Proxy70.findByGender(Unknown Source)
-	at com.senla.model.service.impl.ProfileServiceImpl.findProfileByGender(ProfileServiceImpl.java:106)
-	at com.senla.model.service.impl.ProfileServiceImpl$$FastClassBySpringCGLIB$$dec56672.invoke(<generated>)
+	at com.senla.service.service.impl.ProfileServiceImpl.findProfileByGender(ProfileServiceImpl.java:106)
+	at com.senla.service.service.impl.ProfileServiceImpl$$FastClassBySpringCGLIB$$dec56672.invoke(<generated>)
 	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:771)
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
@@ -515,8 +515,8 @@ java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expec
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:749)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:691)
-	at com.senla.model.service.impl.ProfileServiceImpl$$EnhancerBySpringCGLIB$$a19290a0.findProfileByGender(<generated>)
-	at com.senla.model.controller.ProfileController.findProfileByGender(ProfileController.java:118)
+	at com.senla.service.service.impl.ProfileServiceImpl$$EnhancerBySpringCGLIB$$a19290a0.findProfileByGender(<generated>)
+	at com.senla.controller.controller.ProfileController.findProfileByGender(ProfileController.java:118)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -539,7 +539,7 @@ java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expec
 	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
 	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at com.senla.model.security.JwtTokenFilter.doFilter(JwtTokenFilter.java:37)
+	at com.senla.security.JwtTokenFilter.doFilter(JwtTokenFilter.java:37)
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
 	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
 	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320)
@@ -556,7 +556,7 @@ java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expec
 	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
 	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
 	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-	at com.senla.model.security.JwtTokenFilter.doFilter(JwtTokenFilter.java:37)
+	at com.senla.security.JwtTokenFilter.doFilter(JwtTokenFilter.java:37)
 	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
 	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
 	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
@@ -605,8 +605,8 @@ java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expec
 	at java.base/java.lang.Thread.run(Thread.java:834)
 2020-11-23 15:15:03,263 [http-nio-8181-exec-3] INFO  c.s.model.service.impl.UserServiceImpl   - Finding user by user name
 2020-11-23 15:15:03,268 [http-nio-8181-exec-3] INFO  c.s.model.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
-2020-11-23 15:53:07,305 [main] INFO  com.senla.model.SocialNetworkApplication - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 18544 (C:\Users\Anton\Documents\SocialNetwork\target\classes started by Anton in C:\Users\Anton\Documents\SocialNetwork)
-2020-11-23 15:53:07,311 [main] INFO  com.senla.model.SocialNetworkApplication - No active profile set, falling back to default profiles: default
+2020-11-23 15:53:07,305 [main] INFO  com.senla.main.SocialNetworkApplication - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 18544 (C:\Users\Anton\Documents\SocialNetwork\target\classes started by Anton in C:\Users\Anton\Documents\SocialNetwork)
+2020-11-23 15:53:07,311 [main] INFO  com.senla.main.SocialNetworkApplication - No active profile set, falling back to default profiles: default
 2020-11-23 15:53:08,374 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
 2020-11-23 15:53:08,523 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 139ms. Found 10 JPA repository interfaces.
 2020-11-23 15:53:08,935 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat initialized with port(s): 8181 (http)
@@ -624,7 +624,7 @@ java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expec
 2020-11-23 15:53:09,439 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2020-11-23 15:53:09,508 [task-1] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
 2020-11-23 15:53:09,603 [task-1] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Starting...
-2020-11-23 15:53:09,630 [main] INFO  o.s.s.web.DefaultSecurityFilterChain     - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3b9ac754, org.springframework.security.web.context.SecurityContextPersistenceFilter@188a5fc2, org.springframework.security.web.header.HeaderWriterFilter@58eac00e, org.springframework.security.web.authentication.logout.LogoutFilter@6da4feeb, com.senla.model.security.JwtTokenFilter@5e002356, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5a622fe8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2eada095, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4f820f42, org.springframework.security.web.session.SessionManagementFilter@30aec673, org.springframework.security.web.access.ExceptionTranslationFilter@541bf968, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@798deee8]
+2020-11-23 15:53:09,630 [main] INFO  o.s.s.web.DefaultSecurityFilterChain     - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3b9ac754, org.springframework.security.web.context.SecurityContextPersistenceFilter@188a5fc2, org.springframework.security.web.header.HeaderWriterFilter@58eac00e, org.springframework.security.web.authentication.logout.LogoutFilter@6da4feeb, com.senla.security.JwtTokenFilter@5e002356, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5a622fe8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2eada095, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4f820f42, org.springframework.security.web.session.SessionManagementFilter@30aec673, org.springframework.security.web.access.ExceptionTranslationFilter@541bf968, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@798deee8]
 2020-11-23 15:53:09,944 [task-1] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Start completed.
 2020-11-23 15:53:09,958 [task-1] INFO  org.hibernate.dialect.Dialect            - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
 2020-11-23 15:53:09,971 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat started on port(s): 8181 (http) with context path ''
@@ -632,7 +632,7 @@ java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expec
 2020-11-23 15:53:11,066 [task-1] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator       - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
 2020-11-23 15:53:11,072 [task-1] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
 2020-11-23 15:53:11,457 [main] INFO  o.s.d.r.c.DeferredRepositoryInitializationListener - Spring Data repositories initialized!
-2020-11-23 15:53:11,469 [main] INFO  com.senla.model.SocialNetworkApplication - Started SocialNetworkApplication in 4.621 seconds (JVM running for 5.933)
+2020-11-23 15:53:11,469 [main] INFO  com.senla.main.SocialNetworkApplication - Started SocialNetworkApplication in 4.621 seconds (JVM running for 5.933)
 2020-11-23 15:53:18,394 [http-nio-8181-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]       - Initializing Spring DispatcherServlet 'dispatcherServlet'
 2020-11-23 15:53:18,395 [http-nio-8181-exec-2] INFO  o.s.web.servlet.DispatcherServlet        - Initializing Servlet 'dispatcherServlet'
 2020-11-23 15:53:18,404 [http-nio-8181-exec-2] INFO  o.s.web.servlet.DispatcherServlet        - Completed initialization in 9 ms
@@ -640,8 +640,8 @@ java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expec
 2020-11-23 15:53:18,682 [http-nio-8181-exec-2] INFO  c.s.model.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
 2020-11-23 15:53:18,693 [http-nio-8181-exec-2] INFO  c.s.model.service.impl.UserServiceImpl   - Finding user by user name
 2020-11-23 15:53:18,700 [http-nio-8181-exec-2] INFO  c.s.model.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
-2020-11-23 15:53:18,764 [http-nio-8181-exec-2] ERROR o.a.c.c.C.[.[.[/].[dispatcherServlet]    - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.InvalidDataAccessApiUsageException: Parameter value [FEMALE] did not match expected type [com.senla.model.enumeration.Gender (n/a)]; nested exception is java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expected type [com.senla.model.enumeration.Gender (n/a)]] with root cause
-java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expected type [com.senla.model.enumeration.Gender (n/a)]
+2020-11-23 15:53:18,764 [http-nio-8181-exec-2] ERROR o.a.c.c.C.[.[.[/].[dispatcherServlet]    - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.InvalidDataAccessApiUsageException: Parameter value [FEMALE] did not match expected type [com.senla.enumeration.Gender (n/a)]; nested exception is java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expected type [com.senla.enumeration.Gender (n/a)]] with root cause
+java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expected type [com.senla.enumeration.Gender (n/a)]
 	at org.hibernate.query.spi.QueryParameterBindingValidator.validate(QueryParameterBindingValidator.java:54)
 	at org.hibernate.query.spi.QueryParameterBindingValidator.validate(QueryParameterBindingValidator.java:27)
 	at org.hibernate.query.internal.QueryParameterBindingImpl.validate(QueryParameterBindingImpl.java:90)
@@ -689,8 +689,8 @@ java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expec
 	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:344)
 	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:205)
 	at com.sun.proxy.$Proxy70.findByGender(Unknown Source)
-	at com.senla.model.service.impl.ProfileServiceImpl.findProfileByGender(ProfileServiceImpl.java:106)
-	at com.senla.model.service.impl.ProfileServiceImpl$$FastClassBySpringCGLIB$$dec56672.invoke(<generated>)
+	at com.senla.service.service.impl.ProfileServiceImpl.findProfileByGender(ProfileServiceImpl.java:106)
+	at com.senla.service.service.impl.ProfileServiceImpl$$FastClassBySpringCGLIB$$dec56672.invoke(<generated>)
 	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:771)
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
@@ -700,8 +700,8 @@ java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expec
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:749)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:691)
-	at com.senla.model.service.impl.ProfileServiceImpl$$EnhancerBySpringCGLIB$$86d27c7d.findProfileByGender(<generated>)
-	at com.senla.model.controller.ProfileController.findProfileByGender(ProfileController.java:118)
+	at com.senla.service.service.impl.ProfileServiceImpl$$EnhancerBySpringCGLIB$$86d27c7d.findProfileByGender(<generated>)
+	at com.senla.controller.controller.ProfileController.findProfileByGender(ProfileController.java:118)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -724,7 +724,7 @@ java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expec
 	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
 	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at com.senla.model.security.JwtTokenFilter.doFilter(JwtTokenFilter.java:37)
+	at com.senla.security.JwtTokenFilter.doFilter(JwtTokenFilter.java:37)
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
 	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
 	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320)
@@ -741,7 +741,7 @@ java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expec
 	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
 	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
 	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-	at com.senla.model.security.JwtTokenFilter.doFilter(JwtTokenFilter.java:37)
+	at com.senla.security.JwtTokenFilter.doFilter(JwtTokenFilter.java:37)
 	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
 	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
 	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
@@ -790,8 +790,8 @@ java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expec
 	at java.base/java.lang.Thread.run(Thread.java:834)
 2020-11-23 15:53:18,773 [http-nio-8181-exec-2] INFO  c.s.model.service.impl.UserServiceImpl   - Finding user by user name
 2020-11-23 15:53:18,780 [http-nio-8181-exec-2] INFO  c.s.model.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
-2020-11-23 15:54:35,253 [main] INFO  com.senla.model.SocialNetworkApplication - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 17288 (C:\Users\Anton\Documents\SocialNetwork\target\classes started by Anton in C:\Users\Anton\Documents\SocialNetwork)
-2020-11-23 15:54:35,257 [main] INFO  com.senla.model.SocialNetworkApplication - No active profile set, falling back to default profiles: default
+2020-11-23 15:54:35,253 [main] INFO  com.senla.main.SocialNetworkApplication - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 17288 (C:\Users\Anton\Documents\SocialNetwork\target\classes started by Anton in C:\Users\Anton\Documents\SocialNetwork)
+2020-11-23 15:54:35,257 [main] INFO  com.senla.main.SocialNetworkApplication - No active profile set, falling back to default profiles: default
 2020-11-23 15:54:36,487 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
 2020-11-23 15:54:36,647 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 151ms. Found 10 JPA repository interfaces.
 2020-11-23 15:54:37,308 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat initialized with port(s): 8181 (http)
@@ -809,7 +809,7 @@ java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expec
 2020-11-23 15:54:37,836 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2020-11-23 15:54:37,909 [task-1] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
 2020-11-23 15:54:38,009 [task-1] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Starting...
-2020-11-23 15:54:38,049 [main] INFO  o.s.s.web.DefaultSecurityFilterChain     - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@25953be6, org.springframework.security.web.context.SecurityContextPersistenceFilter@7df6d663, org.springframework.security.web.header.HeaderWriterFilter@260e3837, org.springframework.security.web.authentication.logout.LogoutFilter@12d40609, com.senla.model.security.JwtTokenFilter@19dc0d32, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2c30c81d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3c19592c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@70b2fa10, org.springframework.security.web.session.SessionManagementFilter@50fdf44f, org.springframework.security.web.access.ExceptionTranslationFilter@57f8951a, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2e590b]
+2020-11-23 15:54:38,049 [main] INFO  o.s.s.web.DefaultSecurityFilterChain     - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@25953be6, org.springframework.security.web.context.SecurityContextPersistenceFilter@7df6d663, org.springframework.security.web.header.HeaderWriterFilter@260e3837, org.springframework.security.web.authentication.logout.LogoutFilter@12d40609, com.senla.security.JwtTokenFilter@19dc0d32, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2c30c81d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3c19592c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@70b2fa10, org.springframework.security.web.session.SessionManagementFilter@50fdf44f, org.springframework.security.web.access.ExceptionTranslationFilter@57f8951a, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2e590b]
 2020-11-23 15:54:38,403 [task-1] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Start completed.
 2020-11-23 15:54:38,421 [task-1] INFO  org.hibernate.dialect.Dialect            - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
 2020-11-23 15:54:38,499 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat started on port(s): 8181 (http) with context path ''
@@ -817,7 +817,7 @@ java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expec
 2020-11-23 15:54:39,653 [task-1] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator       - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
 2020-11-23 15:54:39,660 [task-1] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
 2020-11-23 15:54:40,043 [main] INFO  o.s.d.r.c.DeferredRepositoryInitializationListener - Spring Data repositories initialized!
-2020-11-23 15:54:40,053 [main] INFO  com.senla.model.SocialNetworkApplication - Started SocialNetworkApplication in 5.305 seconds (JVM running for 6.446)
+2020-11-23 15:54:40,053 [main] INFO  com.senla.main.SocialNetworkApplication - Started SocialNetworkApplication in 5.305 seconds (JVM running for 6.446)
 2020-11-23 15:54:50,822 [http-nio-8181-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]       - Initializing Spring DispatcherServlet 'dispatcherServlet'
 2020-11-23 15:54:50,823 [http-nio-8181-exec-2] INFO  o.s.web.servlet.DispatcherServlet        - Initializing Servlet 'dispatcherServlet'
 2020-11-23 15:54:50,833 [http-nio-8181-exec-2] INFO  o.s.web.servlet.DispatcherServlet        - Completed initialization in 10 ms
@@ -825,8 +825,8 @@ java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expec
 2020-11-23 15:54:51,083 [http-nio-8181-exec-2] INFO  c.s.model.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
 2020-11-23 15:54:51,097 [http-nio-8181-exec-2] INFO  c.s.model.service.impl.UserServiceImpl   - Finding user by user name
 2020-11-23 15:54:51,104 [http-nio-8181-exec-2] INFO  c.s.model.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
-2020-11-23 15:54:51,170 [http-nio-8181-exec-2] ERROR o.a.c.c.C.[.[.[/].[dispatcherServlet]    - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.InvalidDataAccessApiUsageException: Parameter value [FEMALE] did not match expected type [com.senla.model.enumeration.Gender (n/a)]; nested exception is java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expected type [com.senla.model.enumeration.Gender (n/a)]] with root cause
-java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expected type [com.senla.model.enumeration.Gender (n/a)]
+2020-11-23 15:54:51,170 [http-nio-8181-exec-2] ERROR o.a.c.c.C.[.[.[/].[dispatcherServlet]    - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.InvalidDataAccessApiUsageException: Parameter value [FEMALE] did not match expected type [com.senla.enumeration.Gender (n/a)]; nested exception is java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expected type [com.senla.enumeration.Gender (n/a)]] with root cause
+java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expected type [com.senla.enumeration.Gender (n/a)]
 	at org.hibernate.query.spi.QueryParameterBindingValidator.validate(QueryParameterBindingValidator.java:54)
 	at org.hibernate.query.spi.QueryParameterBindingValidator.validate(QueryParameterBindingValidator.java:27)
 	at org.hibernate.query.internal.QueryParameterBindingImpl.validate(QueryParameterBindingImpl.java:90)
@@ -874,8 +874,8 @@ java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expec
 	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:344)
 	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:205)
 	at com.sun.proxy.$Proxy70.findByGender(Unknown Source)
-	at com.senla.model.service.impl.ProfileServiceImpl.findProfileByGender(ProfileServiceImpl.java:106)
-	at com.senla.model.service.impl.ProfileServiceImpl$$FastClassBySpringCGLIB$$dec56672.invoke(<generated>)
+	at com.senla.service.service.impl.ProfileServiceImpl.findProfileByGender(ProfileServiceImpl.java:106)
+	at com.senla.service.service.impl.ProfileServiceImpl$$FastClassBySpringCGLIB$$dec56672.invoke(<generated>)
 	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:771)
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
@@ -885,8 +885,8 @@ java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expec
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:749)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:691)
-	at com.senla.model.service.impl.ProfileServiceImpl$$EnhancerBySpringCGLIB$$92283aec.findProfileByGender(<generated>)
-	at com.senla.model.controller.ProfileController.findProfileByGender(ProfileController.java:118)
+	at com.senla.service.service.impl.ProfileServiceImpl$$EnhancerBySpringCGLIB$$92283aec.findProfileByGender(<generated>)
+	at com.senla.controller.controller.ProfileController.findProfileByGender(ProfileController.java:118)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -909,7 +909,7 @@ java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expec
 	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
 	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at com.senla.model.security.JwtTokenFilter.doFilter(JwtTokenFilter.java:37)
+	at com.senla.security.JwtTokenFilter.doFilter(JwtTokenFilter.java:37)
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
 	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
 	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320)
@@ -926,7 +926,7 @@ java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expec
 	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
 	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
 	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-	at com.senla.model.security.JwtTokenFilter.doFilter(JwtTokenFilter.java:37)
+	at com.senla.security.JwtTokenFilter.doFilter(JwtTokenFilter.java:37)
 	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
 	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
 	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
@@ -975,8 +975,8 @@ java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expec
 	at java.base/java.lang.Thread.run(Thread.java:834)
 2020-11-23 15:54:51,179 [http-nio-8181-exec-2] INFO  c.s.model.service.impl.UserServiceImpl   - Finding user by user name
 2020-11-23 15:54:51,187 [http-nio-8181-exec-2] INFO  c.s.model.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
-2020-11-23 15:56:59,732 [main] INFO  com.senla.model.SocialNetworkApplication - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 17760 (C:\Users\Anton\Documents\SocialNetwork\target\classes started by Anton in C:\Users\Anton\Documents\SocialNetwork)
-2020-11-23 15:56:59,737 [main] INFO  com.senla.model.SocialNetworkApplication - No active profile set, falling back to default profiles: default
+2020-11-23 15:56:59,732 [main] INFO  com.senla.main.SocialNetworkApplication - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 17760 (C:\Users\Anton\Documents\SocialNetwork\target\classes started by Anton in C:\Users\Anton\Documents\SocialNetwork)
+2020-11-23 15:56:59,737 [main] INFO  com.senla.main.SocialNetworkApplication - No active profile set, falling back to default profiles: default
 2020-11-23 15:57:00,861 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
 2020-11-23 15:57:01,016 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 146ms. Found 10 JPA repository interfaces.
 2020-11-23 15:57:01,484 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat initialized with port(s): 8181 (http)
@@ -994,7 +994,7 @@ java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expec
 2020-11-23 15:57:01,972 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2020-11-23 15:57:02,057 [task-1] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
 2020-11-23 15:57:02,153 [task-1] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Starting...
-2020-11-23 15:57:02,174 [main] INFO  o.s.s.web.DefaultSecurityFilterChain     - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2c18a3ea, org.springframework.security.web.context.SecurityContextPersistenceFilter@50fdf44f, org.springframework.security.web.header.HeaderWriterFilter@57f8951a, org.springframework.security.web.authentication.logout.LogoutFilter@52d0f583, com.senla.model.security.JwtTokenFilter@166c2c17, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7df6d663, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@741741d0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@25953be6, org.springframework.security.web.session.SessionManagementFilter@7b222230, org.springframework.security.web.access.ExceptionTranslationFilter@6da4feeb, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7135ce0a]
+2020-11-23 15:57:02,174 [main] INFO  o.s.s.web.DefaultSecurityFilterChain     - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2c18a3ea, org.springframework.security.web.context.SecurityContextPersistenceFilter@50fdf44f, org.springframework.security.web.header.HeaderWriterFilter@57f8951a, org.springframework.security.web.authentication.logout.LogoutFilter@52d0f583, com.senla.security.JwtTokenFilter@166c2c17, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@7df6d663, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@741741d0, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@25953be6, org.springframework.security.web.session.SessionManagementFilter@7b222230, org.springframework.security.web.access.ExceptionTranslationFilter@6da4feeb, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7135ce0a]
 2020-11-23 15:57:02,595 [task-1] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Start completed.
 2020-11-23 15:57:02,611 [task-1] INFO  org.hibernate.dialect.Dialect            - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
 2020-11-23 15:57:02,612 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat started on port(s): 8181 (http) with context path ''
@@ -1002,7 +1002,7 @@ java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expec
 2020-11-23 15:57:03,691 [task-1] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator       - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
 2020-11-23 15:57:03,701 [task-1] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
 2020-11-23 15:57:04,137 [main] INFO  o.s.d.r.c.DeferredRepositoryInitializationListener - Spring Data repositories initialized!
-2020-11-23 15:57:04,146 [main] INFO  com.senla.model.SocialNetworkApplication - Started SocialNetworkApplication in 4.916 seconds (JVM running for 6.066)
+2020-11-23 15:57:04,146 [main] INFO  com.senla.main.SocialNetworkApplication - Started SocialNetworkApplication in 4.916 seconds (JVM running for 6.066)
 2020-11-23 15:57:21,120 [http-nio-8181-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]       - Initializing Spring DispatcherServlet 'dispatcherServlet'
 2020-11-23 15:57:21,120 [http-nio-8181-exec-2] INFO  o.s.web.servlet.DispatcherServlet        - Initializing Servlet 'dispatcherServlet'
 2020-11-23 15:57:21,132 [http-nio-8181-exec-2] INFO  o.s.web.servlet.DispatcherServlet        - Completed initialization in 12 ms
@@ -1010,8 +1010,8 @@ java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expec
 2020-11-23 15:57:21,415 [http-nio-8181-exec-2] INFO  c.s.model.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
 2020-11-23 15:57:21,429 [http-nio-8181-exec-2] INFO  c.s.model.service.impl.UserServiceImpl   - Finding user by user name
 2020-11-23 15:57:21,438 [http-nio-8181-exec-2] INFO  c.s.model.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
-2020-11-23 15:57:21,517 [http-nio-8181-exec-2] ERROR o.a.c.c.C.[.[.[/].[dispatcherServlet]    - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.InvalidDataAccessApiUsageException: Parameter value [FEMALE] did not match expected type [com.senla.model.enumeration.Gender (n/a)]; nested exception is java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expected type [com.senla.model.enumeration.Gender (n/a)]] with root cause
-java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expected type [com.senla.model.enumeration.Gender (n/a)]
+2020-11-23 15:57:21,517 [http-nio-8181-exec-2] ERROR o.a.c.c.C.[.[.[/].[dispatcherServlet]    - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.InvalidDataAccessApiUsageException: Parameter value [FEMALE] did not match expected type [com.senla.enumeration.Gender (n/a)]; nested exception is java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expected type [com.senla.enumeration.Gender (n/a)]] with root cause
+java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expected type [com.senla.enumeration.Gender (n/a)]
 	at org.hibernate.query.spi.QueryParameterBindingValidator.validate(QueryParameterBindingValidator.java:54)
 	at org.hibernate.query.spi.QueryParameterBindingValidator.validate(QueryParameterBindingValidator.java:27)
 	at org.hibernate.query.internal.QueryParameterBindingImpl.validate(QueryParameterBindingImpl.java:90)
@@ -1059,8 +1059,8 @@ java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expec
 	at org.springframework.aop.support.AopUtils.invokeJoinpointUsingReflection(AopUtils.java:344)
 	at org.springframework.aop.framework.JdkDynamicAopProxy.invoke(JdkDynamicAopProxy.java:205)
 	at com.sun.proxy.$Proxy70.findByGender(Unknown Source)
-	at com.senla.model.service.impl.ProfileServiceImpl.findProfileByGender(ProfileServiceImpl.java:106)
-	at com.senla.model.service.impl.ProfileServiceImpl$$FastClassBySpringCGLIB$$dec56672.invoke(<generated>)
+	at com.senla.service.service.impl.ProfileServiceImpl.findProfileByGender(ProfileServiceImpl.java:106)
+	at com.senla.service.service.impl.ProfileServiceImpl$$FastClassBySpringCGLIB$$dec56672.invoke(<generated>)
 	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.invokeJoinpoint(CglibAopProxy.java:771)
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:163)
@@ -1070,8 +1070,8 @@ java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expec
 	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
 	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:749)
 	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:691)
-	at com.senla.model.service.impl.ProfileServiceImpl$$EnhancerBySpringCGLIB$$a19290a0.findProfileByGender(<generated>)
-	at com.senla.model.controller.ProfileController.findProfileByGender(ProfileController.java:118)
+	at com.senla.service.service.impl.ProfileServiceImpl$$EnhancerBySpringCGLIB$$a19290a0.findProfileByGender(<generated>)
+	at com.senla.controller.controller.ProfileController.findProfileByGender(ProfileController.java:118)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
 	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
 	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
@@ -1094,7 +1094,7 @@ java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expec
 	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
 	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at com.senla.model.security.JwtTokenFilter.doFilter(JwtTokenFilter.java:37)
+	at com.senla.security.JwtTokenFilter.doFilter(JwtTokenFilter.java:37)
 	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
 	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
 	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320)
@@ -1111,7 +1111,7 @@ java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expec
 	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
 	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
 	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-	at com.senla.model.security.JwtTokenFilter.doFilter(JwtTokenFilter.java:37)
+	at com.senla.security.JwtTokenFilter.doFilter(JwtTokenFilter.java:37)
 	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
 	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
 	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
@@ -1160,8 +1160,8 @@ java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expec
 	at java.base/java.lang.Thread.run(Thread.java:834)
 2020-11-23 15:57:21,530 [http-nio-8181-exec-2] INFO  c.s.model.service.impl.UserServiceImpl   - Finding user by user name
 2020-11-23 15:57:21,536 [http-nio-8181-exec-2] INFO  c.s.model.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
-2020-11-23 16:05:13,573 [main] INFO  com.senla.model.SocialNetworkApplication - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 2168 (C:\Users\Anton\Documents\SocialNetwork\target\classes started by Anton in C:\Users\Anton\Documents\SocialNetwork)
-2020-11-23 16:05:13,577 [main] INFO  com.senla.model.SocialNetworkApplication - No active profile set, falling back to default profiles: default
+2020-11-23 16:05:13,573 [main] INFO  com.senla.main.SocialNetworkApplication - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 2168 (C:\Users\Anton\Documents\SocialNetwork\target\classes started by Anton in C:\Users\Anton\Documents\SocialNetwork)
+2020-11-23 16:05:13,577 [main] INFO  com.senla.main.SocialNetworkApplication - No active profile set, falling back to default profiles: default
 2020-11-23 16:05:14,675 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
 2020-11-23 16:05:14,833 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 150ms. Found 10 JPA repository interfaces.
 2020-11-23 16:05:15,333 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat initialized with port(s): 8181 (http)
@@ -1179,7 +1179,7 @@ java.lang.IllegalArgumentException: Parameter value [FEMALE] did not match expec
 2020-11-23 16:05:16,149 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2020-11-23 16:05:16,227 [task-1] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
 2020-11-23 16:05:16,340 [task-1] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Starting...
-2020-11-23 16:05:16,379 [main] INFO  o.s.s.web.DefaultSecurityFilterChain     - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@25953be6, org.springframework.security.web.context.SecurityContextPersistenceFilter@7df6d663, org.springframework.security.web.header.HeaderWriterFilter@260e3837, org.springframework.security.web.authentication.logout.LogoutFilter@12d40609, com.senla.model.security.JwtTokenFilter@19dc0d32, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2c30c81d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3c19592c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@70b2fa10, org.springframework.security.web.session.SessionManagementFilter@50fdf44f, org.springframework.security.web.access.ExceptionTranslationFilter@57f8951a, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2e590b]
+2020-11-23 16:05:16,379 [main] INFO  o.s.s.web.DefaultSecurityFilterChain     - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@25953be6, org.springframework.security.web.context.SecurityContextPersistenceFilter@7df6d663, org.springframework.security.web.header.HeaderWriterFilter@260e3837, org.springframework.security.web.authentication.logout.LogoutFilter@12d40609, com.senla.security.JwtTokenFilter@19dc0d32, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2c30c81d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3c19592c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@70b2fa10, org.springframework.security.web.session.SessionManagementFilter@50fdf44f, org.springframework.security.web.access.ExceptionTranslationFilter@57f8951a, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2e590b]
 2020-11-23 16:05:16,708 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat started on port(s): 8181 (http) with context path ''
 2020-11-23 16:05:16,709 [main] INFO  o.s.d.r.c.DeferredRepositoryInitializationListener - Triggering deferred initialization of Spring Data repositories…
 2020-11-23 16:05:17,690 [task-1] ERROR com.zaxxer.hikari.pool.HikariPool        - HikariPool-1 - Exception during pool initialization.
@@ -1264,7 +1264,7 @@ java.sql.SQLSyntaxErrorException: Unknown database 'social_network'
 	at java.base/java.lang.Thread.run(Thread.java:834)
 2020-11-23 16:05:19,400 [task-1] WARN  o.h.engine.jdbc.spi.SqlExceptionHelper   - SQL Error: 1049, SQLState: 42000
 2020-11-23 16:05:19,400 [task-1] ERROR o.h.engine.jdbc.spi.SqlExceptionHelper   - Unknown database 'social_network'
-2020-11-23 16:05:19,407 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'friendshipRepository' defined in com.senla.model.repository.FriendshipRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot resolve reference to bean 'jpaMappingContext' while setting bean property 'mappingContext'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jpaMappingContext': Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.SQLGrammarException: Unable to open JDBC Connection for DDL execution
+2020-11-23 16:05:19,407 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'friendshipRepository' defined in com.senla.repository.FriendshipRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot resolve reference to bean 'jpaMappingContext' while setting bean property 'mappingContext'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jpaMappingContext': Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.SQLGrammarException: Unable to open JDBC Connection for DDL execution
 2020-11-23 16:05:19,409 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
 2020-11-23 16:05:19,409 [main] WARN  o.s.b.f.support.DisposableBeanAdapter    - Invocation of destroy method failed on bean with name 'entityManagerFactory': javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.SQLGrammarException: Unable to open JDBC Connection for DDL execution
 2020-11-23 16:05:19,410 [main] INFO  o.s.s.concurrent.ThreadPoolTaskExecutor  - Shutting down ExecutorService 'applicationTaskExecutor'
@@ -1273,7 +1273,7 @@ java.sql.SQLSyntaxErrorException: Unknown database 'social_network'
 
 Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
 2020-11-23 16:05:19,691 [main] ERROR o.springframework.boot.SpringApplication - Application run failed
-org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'friendshipRepository' defined in com.senla.model.repository.FriendshipRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot resolve reference to bean 'jpaMappingContext' while setting bean property 'mappingContext'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jpaMappingContext': Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.SQLGrammarException: Unable to open JDBC Connection for DDL execution
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'friendshipRepository' defined in com.senla.repository.FriendshipRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Cannot resolve reference to bean 'jpaMappingContext' while setting bean property 'mappingContext'; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jpaMappingContext': Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.SQLGrammarException: Unable to open JDBC Connection for DDL execution
 	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveReference(BeanDefinitionValueResolver.java:342)
 	at org.springframework.beans.factory.support.BeanDefinitionValueResolver.resolveValueIfNecessary(BeanDefinitionValueResolver.java:113)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.applyPropertyValues(AbstractAutowireCapableBeanFactory.java:1697)
@@ -1302,7 +1302,7 @@ org.springframework.beans.factory.BeanCreationException: Error creating bean wit
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:315)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1237)
 	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1226)
-	at com.senla.model.SocialNetworkApplication.main(SocialNetworkApplication.java:13)
+	at com.senla.main.SocialNetworkApplication.main(SocialNetworkApplication.java:13)
 Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'jpaMappingContext': Invocation of init method failed; nested exception is javax.persistence.PersistenceException: [PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.SQLGrammarException: Unable to open JDBC Connection for DDL execution
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1794)
 	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:594)
@@ -1360,8 +1360,8 @@ Caused by: java.sql.SQLSyntaxErrorException: Unknown database 'social_network'
 	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentInitiator$ConnectionProviderJdbcConnectionAccess.obtainConnection(JdbcEnvironmentInitiator.java:180)
 	at org.hibernate.resource.transaction.backend.jdbc.internal.DdlTransactionIsolatorNonJtaImpl.getIsolatedConnection(DdlTransactionIsolatorNonJtaImpl.java:43)
 	... 19 common frames omitted
-2020-11-23 16:08:23,884 [main] INFO  com.senla.model.SocialNetworkApplication - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 16528 (C:\Users\Anton\Documents\SocialNetwork\target\classes started by Anton in C:\Users\Anton\Documents\SocialNetwork)
-2020-11-23 16:08:23,890 [main] INFO  com.senla.model.SocialNetworkApplication - No active profile set, falling back to default profiles: default
+2020-11-23 16:08:23,884 [main] INFO  com.senla.main.SocialNetworkApplication - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 16528 (C:\Users\Anton\Documents\SocialNetwork\target\classes started by Anton in C:\Users\Anton\Documents\SocialNetwork)
+2020-11-23 16:08:23,890 [main] INFO  com.senla.main.SocialNetworkApplication - No active profile set, falling back to default profiles: default
 2020-11-23 16:08:24,890 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
 2020-11-23 16:08:25,050 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 152ms. Found 10 JPA repository interfaces.
 2020-11-23 16:08:25,576 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat initialized with port(s): 8181 (http)
@@ -1379,7 +1379,7 @@ Caused by: java.sql.SQLSyntaxErrorException: Unknown database 'social_network'
 2020-11-23 16:08:26,082 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2020-11-23 16:08:26,153 [task-1] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
 2020-11-23 16:08:26,257 [task-1] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Starting...
-2020-11-23 16:08:26,278 [main] INFO  o.s.s.web.DefaultSecurityFilterChain     - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3b9ac754, org.springframework.security.web.context.SecurityContextPersistenceFilter@188a5fc2, org.springframework.security.web.header.HeaderWriterFilter@58eac00e, org.springframework.security.web.authentication.logout.LogoutFilter@6da4feeb, com.senla.model.security.JwtTokenFilter@5e002356, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5a622fe8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2eada095, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4f820f42, org.springframework.security.web.session.SessionManagementFilter@30aec673, org.springframework.security.web.access.ExceptionTranslationFilter@541bf968, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@798deee8]
+2020-11-23 16:08:26,278 [main] INFO  o.s.s.web.DefaultSecurityFilterChain     - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3b9ac754, org.springframework.security.web.context.SecurityContextPersistenceFilter@188a5fc2, org.springframework.security.web.header.HeaderWriterFilter@58eac00e, org.springframework.security.web.authentication.logout.LogoutFilter@6da4feeb, com.senla.security.JwtTokenFilter@5e002356, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5a622fe8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2eada095, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4f820f42, org.springframework.security.web.session.SessionManagementFilter@30aec673, org.springframework.security.web.access.ExceptionTranslationFilter@541bf968, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@798deee8]
 2020-11-23 16:08:26,583 [task-1] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Start completed.
 2020-11-23 16:08:26,596 [task-1] INFO  org.hibernate.dialect.Dialect            - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
 2020-11-23 16:08:26,612 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat started on port(s): 8181 (http) with context path ''
@@ -1387,7 +1387,7 @@ Caused by: java.sql.SQLSyntaxErrorException: Unknown database 'social_network'
 2020-11-23 16:08:27,649 [task-1] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator       - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
 2020-11-23 16:08:27,655 [task-1] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
 2020-11-23 16:08:28,026 [main] INFO  o.s.d.r.c.DeferredRepositoryInitializationListener - Spring Data repositories initialized!
-2020-11-23 16:08:28,035 [main] INFO  com.senla.model.SocialNetworkApplication - Started SocialNetworkApplication in 4.547 seconds (JVM running for 5.975)
+2020-11-23 16:08:28,035 [main] INFO  com.senla.main.SocialNetworkApplication - Started SocialNetworkApplication in 4.547 seconds (JVM running for 5.975)
 2020-11-23 16:08:33,475 [http-nio-8181-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]       - Initializing Spring DispatcherServlet 'dispatcherServlet'
 2020-11-23 16:08:33,475 [http-nio-8181-exec-1] INFO  o.s.web.servlet.DispatcherServlet        - Initializing Servlet 'dispatcherServlet'
 2020-11-23 16:08:33,484 [http-nio-8181-exec-1] INFO  o.s.web.servlet.DispatcherServlet        - Completed initialization in 9 ms
@@ -1411,8 +1411,8 @@ Caused by: java.sql.SQLSyntaxErrorException: Unknown database 'social_network'
 2020-11-23 16:09:51,755 [http-nio-8181-exec-6] INFO  c.s.model.service.impl.UserServiceImpl   - Finding user by user name
 2020-11-23 16:09:51,762 [http-nio-8181-exec-6] INFO  c.s.model.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
 2020-11-23 16:09:51,794 [http-nio-8181-exec-6] INFO  c.s.m.service.impl.ProfileServiceImpl    - Finding profile by gender
-2020-11-23 18:15:04,034 [main] INFO  com.senla.model.SocialNetworkApplication - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 2484 (C:\Users\Anton\Documents\SocialNetwork\target\classes started by Anton in C:\Users\Anton\Documents\SocialNetwork)
-2020-11-23 18:15:04,038 [main] INFO  com.senla.model.SocialNetworkApplication - No active profile set, falling back to default profiles: default
+2020-11-23 18:15:04,034 [main] INFO  com.senla.main.SocialNetworkApplication - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 2484 (C:\Users\Anton\Documents\SocialNetwork\target\classes started by Anton in C:\Users\Anton\Documents\SocialNetwork)
+2020-11-23 18:15:04,038 [main] INFO  com.senla.main.SocialNetworkApplication - No active profile set, falling back to default profiles: default
 2020-11-23 18:15:05,044 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
 2020-11-23 18:15:05,175 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 124ms. Found 10 JPA repository interfaces.
 2020-11-23 18:15:05,599 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat initialized with port(s): 8181 (http)
@@ -1430,7 +1430,7 @@ Caused by: java.sql.SQLSyntaxErrorException: Unknown database 'social_network'
 2020-11-23 18:15:06,055 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
 2020-11-23 18:15:06,124 [task-1] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
 2020-11-23 18:15:06,210 [task-1] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Starting...
-2020-11-23 18:15:06,232 [main] INFO  o.s.s.web.DefaultSecurityFilterChain     - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6f7a2a5, org.springframework.security.web.context.SecurityContextPersistenceFilter@2c604965, org.springframework.security.web.header.HeaderWriterFilter@236fdf, org.springframework.security.web.authentication.logout.LogoutFilter@e5c2463, com.senla.model.security.JwtTokenFilter@42ed89da, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6c17c0f8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@226de93c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@c3719e5, org.springframework.security.web.session.SessionManagementFilter@7a083b96, org.springframework.security.web.access.ExceptionTranslationFilter@5ac53c06, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@43da0955]
+2020-11-23 18:15:06,232 [main] INFO  o.s.s.web.DefaultSecurityFilterChain     - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6f7a2a5, org.springframework.security.web.context.SecurityContextPersistenceFilter@2c604965, org.springframework.security.web.header.HeaderWriterFilter@236fdf, org.springframework.security.web.authentication.logout.LogoutFilter@e5c2463, com.senla.security.JwtTokenFilter@42ed89da, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6c17c0f8, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@226de93c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@c3719e5, org.springframework.security.web.session.SessionManagementFilter@7a083b96, org.springframework.security.web.access.ExceptionTranslationFilter@5ac53c06, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@43da0955]
 2020-11-23 18:15:06,532 [task-1] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Start completed.
 2020-11-23 18:15:06,547 [task-1] INFO  org.hibernate.dialect.Dialect            - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
 2020-11-23 18:15:06,564 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat started on port(s): 8181 (http) with context path ''
@@ -1438,4 +1438,299 @@ Caused by: java.sql.SQLSyntaxErrorException: Unknown database 'social_network'
 2020-11-23 18:15:07,485 [task-1] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator       - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
 2020-11-23 18:15:07,490 [task-1] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
 2020-11-23 18:15:07,884 [main] INFO  o.s.d.r.c.DeferredRepositoryInitializationListener - Spring Data repositories initialized!
-2020-11-23 18:15:07,892 [main] INFO  com.senla.model.SocialNetworkApplication - Started SocialNetworkApplication in 4.326 seconds (JVM running for 5.548)
+2020-11-23 18:15:07,892 [main] INFO  com.senla.main.SocialNetworkApplication - Started SocialNetworkApplication in 4.326 seconds (JVM running for 5.548)
+2020-11-23 21:20:52,338 [main] INFO  com.senla.main.SocialNetworkApplication - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 20112 (C:\Users\Anton\Documents\SocialNetwork\target\classes started by Anton in C:\Users\Anton\Documents\SocialNetwork)
+2020-11-23 21:20:52,342 [main] INFO  com.senla.main.SocialNetworkApplication - No active profile set, falling back to default profiles: default
+2020-11-23 21:20:53,514 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-11-23 21:20:53,680 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 158ms. Found 10 JPA repository interfaces.
+2020-11-23 21:20:54,173 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat initialized with port(s): 8181 (http)
+2020-11-23 21:20:54,181 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-11-23 21:20:54,181 [main] INFO  org.apache.catalina.core.StandardEngine  - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-11-23 21:20:54,183 [main] INFO  o.a.catalina.core.AprLifecycleListener   - Loaded Apache Tomcat Native library [1.2.25] using APR version [1.7.0].
+2020-11-23 21:20:54,183 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2020-11-23 21:20:54,183 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2020-11-23 21:20:54,187 [main] INFO  o.a.catalina.core.AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 1.1.1g  21 Apr 2020]
+2020-11-23 21:20:54,337 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]       - Initializing Spring embedded WebApplicationContext
+2020-11-23 21:20:54,338 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1918 ms
+2020-11-23 21:20:54,711 [main] INFO  o.s.s.concurrent.ThreadPoolTaskExecutor  - Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-23 21:20:54,787 [task-1] INFO  o.hibernate.jpa.internal.util.LogHelper  - HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-11-23 21:20:54,835 [task-1] INFO  org.hibernate.Version                    - HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-11-23 21:20:54,889 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-11-23 21:20:54,973 [task-1] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-23 21:20:55,078 [task-1] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Starting...
+2020-11-23 21:20:55,099 [main] INFO  o.s.s.web.DefaultSecurityFilterChain     - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@30bbcf91, org.springframework.security.web.context.SecurityContextPersistenceFilter@60e1d87c, org.springframework.security.web.header.HeaderWriterFilter@364b1061, org.springframework.security.web.authentication.logout.LogoutFilter@23e3f5cd, com.senla.security.JwtTokenFilter@3ca14cf4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@87d9a01, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@61e86192, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1f4f0fcc, org.springframework.security.web.session.SessionManagementFilter@5f9f3e58, org.springframework.security.web.access.ExceptionTranslationFilter@74667e6a, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@5927f904]
+2020-11-23 21:20:55,452 [task-1] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Start completed.
+2020-11-23 21:20:55,468 [task-1] INFO  org.hibernate.dialect.Dialect            - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2020-11-23 21:20:55,498 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is org.springframework.boot.web.server.PortInUseException: Port 8181 is already in use
+2020-11-23 21:20:55,501 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-11-23 21:20:56,666 [task-1] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator       - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-11-23 21:20:56,673 [task-1] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-11-23 21:20:56,678 [main] INFO  o.s.s.concurrent.ThreadPoolTaskExecutor  - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-11-23 21:20:56,679 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Shutdown initiated...
+2020-11-23 21:20:56,698 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Shutdown completed.
+2020-11-23 21:20:56,700 [main] INFO  org.apache.catalina.core.StandardService - Stopping service [Tomcat]
+2020-11-23 21:20:56,711 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-11-23 21:20:56,715 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter   - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8181 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8181 or configure this application to listen on another port.
+
+2020-11-23 21:22:06,521 [main] INFO  com.senla.main.SocialNetworkApplication - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 15344 (C:\Users\Anton\Documents\SocialNetwork\target\classes started by Anton in C:\Users\Anton\Documents\SocialNetwork)
+2020-11-23 21:22:06,527 [main] INFO  com.senla.main.SocialNetworkApplication - No active profile set, falling back to default profiles: default
+2020-11-23 21:22:07,562 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-11-23 21:22:07,726 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 154ms. Found 10 JPA repository interfaces.
+2020-11-23 21:22:08,242 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat initialized with port(s): 8181 (http)
+2020-11-23 21:22:08,251 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-11-23 21:22:08,252 [main] INFO  org.apache.catalina.core.StandardEngine  - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-11-23 21:22:08,253 [main] INFO  o.a.catalina.core.AprLifecycleListener   - Loaded Apache Tomcat Native library [1.2.25] using APR version [1.7.0].
+2020-11-23 21:22:08,254 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2020-11-23 21:22:08,254 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2020-11-23 21:22:08,258 [main] INFO  o.a.catalina.core.AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 1.1.1g  21 Apr 2020]
+2020-11-23 21:22:08,385 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]       - Initializing Spring embedded WebApplicationContext
+2020-11-23 21:22:08,386 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1806 ms
+2020-11-23 21:22:08,646 [main] INFO  o.s.s.concurrent.ThreadPoolTaskExecutor  - Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-23 21:22:08,715 [task-1] INFO  o.hibernate.jpa.internal.util.LogHelper  - HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-11-23 21:22:08,763 [task-1] INFO  org.hibernate.Version                    - HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-11-23 21:22:08,815 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-11-23 21:22:08,899 [task-1] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-23 21:22:08,997 [task-1] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Starting...
+2020-11-23 21:22:09,019 [main] INFO  o.s.s.web.DefaultSecurityFilterChain     - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@678a9516, org.springframework.security.web.context.SecurityContextPersistenceFilter@2506e949, org.springframework.security.web.header.HeaderWriterFilter@188a5fc2, org.springframework.security.web.authentication.logout.LogoutFilter@7b222230, com.senla.security.JwtTokenFilter@5bf9ea6b, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@4c531172, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@11d4d979, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@b950f82, org.springframework.security.web.session.SessionManagementFilter@1416ff46, org.springframework.security.web.access.ExceptionTranslationFilter@30aec673, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@4525e9e8]
+2020-11-23 21:22:09,380 [task-1] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Start completed.
+2020-11-23 21:22:09,400 [task-1] INFO  org.hibernate.dialect.Dialect            - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2020-11-23 21:22:09,417 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is org.springframework.boot.web.server.PortInUseException: Port 8181 is already in use
+2020-11-23 21:22:09,419 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-11-23 21:22:10,573 [task-1] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator       - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-11-23 21:22:10,582 [task-1] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-11-23 21:22:10,588 [main] INFO  o.s.s.concurrent.ThreadPoolTaskExecutor  - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-11-23 21:22:10,588 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Shutdown initiated...
+2020-11-23 21:22:10,607 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Shutdown completed.
+2020-11-23 21:22:10,609 [main] INFO  org.apache.catalina.core.StandardService - Stopping service [Tomcat]
+2020-11-23 21:22:10,621 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-11-23 21:22:10,625 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter   - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8181 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8181 or configure this application to listen on another port.
+
+2020-11-23 21:24:38,486 [main] INFO  com.senla.main.SocialNetworkApplication - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 19140 (C:\Users\Anton\Documents\SocialNetwork\target\classes started by Anton in C:\Users\Anton\Documents\SocialNetwork)
+2020-11-23 21:24:38,490 [main] INFO  com.senla.main.SocialNetworkApplication - No active profile set, falling back to default profiles: default
+2020-11-23 21:24:39,627 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-11-23 21:24:39,789 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 154ms. Found 10 JPA repository interfaces.
+2020-11-23 21:24:40,282 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat initialized with port(s): 8181 (http)
+2020-11-23 21:24:40,291 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-11-23 21:24:40,291 [main] INFO  org.apache.catalina.core.StandardEngine  - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-11-23 21:24:40,293 [main] INFO  o.a.catalina.core.AprLifecycleListener   - Loaded Apache Tomcat Native library [1.2.25] using APR version [1.7.0].
+2020-11-23 21:24:40,293 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2020-11-23 21:24:40,293 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2020-11-23 21:24:40,297 [main] INFO  o.a.catalina.core.AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 1.1.1g  21 Apr 2020]
+2020-11-23 21:24:40,446 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]       - Initializing Spring embedded WebApplicationContext
+2020-11-23 21:24:40,446 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1889 ms
+2020-11-23 21:24:40,728 [main] INFO  o.s.s.concurrent.ThreadPoolTaskExecutor  - Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-23 21:24:40,792 [task-1] INFO  o.hibernate.jpa.internal.util.LogHelper  - HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-11-23 21:24:40,858 [task-1] INFO  org.hibernate.Version                    - HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-11-23 21:24:40,917 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-11-23 21:24:41,016 [task-1] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-23 21:24:41,134 [task-1] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Starting...
+2020-11-23 21:24:41,169 [main] INFO  o.s.s.web.DefaultSecurityFilterChain     - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@113ee1ce, org.springframework.security.web.context.SecurityContextPersistenceFilter@3c25cfe1, org.springframework.security.web.header.HeaderWriterFilter@1416ff46, org.springframework.security.web.authentication.logout.LogoutFilter@741741d0, com.senla.security.JwtTokenFilter@4d0cc83e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2a140ce5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@88b76f2, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@43da0955, org.springframework.security.web.session.SessionManagementFilter@11d4d979, org.springframework.security.web.access.ExceptionTranslationFilter@2eada095, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@629e8212]
+2020-11-23 21:24:41,489 [task-1] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Start completed.
+2020-11-23 21:24:41,505 [task-1] INFO  org.hibernate.dialect.Dialect            - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2020-11-23 21:24:41,542 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is org.springframework.boot.web.server.PortInUseException: Port 8181 is already in use
+2020-11-23 21:24:41,544 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-11-23 21:24:42,642 [task-1] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator       - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-11-23 21:24:42,650 [task-1] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-11-23 21:24:42,654 [main] INFO  o.s.s.concurrent.ThreadPoolTaskExecutor  - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-11-23 21:24:42,655 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Shutdown initiated...
+2020-11-23 21:24:42,673 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Shutdown completed.
+2020-11-23 21:24:42,674 [main] INFO  org.apache.catalina.core.StandardService - Stopping service [Tomcat]
+2020-11-23 21:24:42,686 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-11-23 21:24:42,691 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter   - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8181 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8181 or configure this application to listen on another port.
+
+2020-11-23 21:25:06,683 [main] INFO  com.senla.main.SocialNetworkApplication - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 8212 (C:\Users\Anton\Documents\SocialNetwork\target\classes started by Anton in C:\Users\Anton\Documents\SocialNetwork)
+2020-11-23 21:25:06,689 [main] INFO  com.senla.main.SocialNetworkApplication - No active profile set, falling back to default profiles: default
+2020-11-23 21:25:07,833 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-11-23 21:25:07,979 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 137ms. Found 10 JPA repository interfaces.
+2020-11-23 21:25:08,470 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat initialized with port(s): 8180 (http)
+2020-11-23 21:25:08,479 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-11-23 21:25:08,479 [main] INFO  org.apache.catalina.core.StandardEngine  - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-11-23 21:25:08,480 [main] INFO  o.a.catalina.core.AprLifecycleListener   - Loaded Apache Tomcat Native library [1.2.25] using APR version [1.7.0].
+2020-11-23 21:25:08,481 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2020-11-23 21:25:08,481 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2020-11-23 21:25:08,484 [main] INFO  o.a.catalina.core.AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 1.1.1g  21 Apr 2020]
+2020-11-23 21:25:08,628 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]       - Initializing Spring embedded WebApplicationContext
+2020-11-23 21:25:08,628 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1877 ms
+2020-11-23 21:25:08,881 [main] INFO  o.s.s.concurrent.ThreadPoolTaskExecutor  - Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-23 21:25:08,948 [task-1] INFO  o.hibernate.jpa.internal.util.LogHelper  - HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-11-23 21:25:09,008 [task-1] INFO  org.hibernate.Version                    - HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-11-23 21:25:09,072 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-11-23 21:25:09,160 [task-1] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-23 21:25:09,276 [task-1] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Starting...
+2020-11-23 21:25:09,310 [main] INFO  o.s.s.web.DefaultSecurityFilterChain     - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2443135, org.springframework.security.web.context.SecurityContextPersistenceFilter@5f9f3e58, org.springframework.security.web.header.HeaderWriterFilter@74667e6a, org.springframework.security.web.authentication.logout.LogoutFilter@71560f51, com.senla.security.JwtTokenFilter@184823ed, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@60e1d87c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@49edcb30, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@30bbcf91, org.springframework.security.web.session.SessionManagementFilter@41f3aaf1, org.springframework.security.web.access.ExceptionTranslationFilter@226de93c, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7243145f]
+2020-11-23 21:25:09,689 [task-1] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Start completed.
+2020-11-23 21:25:09,706 [task-1] INFO  org.hibernate.dialect.Dialect            - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2020-11-23 21:25:09,739 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat started on port(s): 8180 (http) with context path ''
+2020-11-23 21:25:09,741 [main] INFO  o.s.d.r.c.DeferredRepositoryInitializationListener - Triggering deferred initialization of Spring Data repositories…
+2020-11-23 21:25:10,852 [task-1] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator       - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-11-23 21:25:10,864 [task-1] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-11-23 21:25:11,295 [main] INFO  o.s.d.r.c.DeferredRepositoryInitializationListener - Spring Data repositories initialized!
+2020-11-23 21:25:11,304 [main] INFO  com.senla.main.SocialNetworkApplication - Started SocialNetworkApplication in 5.113 seconds (JVM running for 6.223)
+2020-11-24 11:27:32,222 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool        - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=12h4m50s527ms58µs300ns).
+2020-11-24 11:27:34,334 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool        - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=12h4m52s639ms755µs100ns).
+2020-11-24 17:08:45,652 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool        - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4h37m11s252ms118µs300ns).
+2020-11-24 17:08:46,631 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool        - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4h37m11s255ms775µs901ns).
+2020-11-24 21:58:29,956 [main] INFO  com.senla.main.SocialNetworkApplication - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 22020 (C:\Users\Anton\Documents\task-11\SocialNetwork\target\classes started by Anton in C:\Users\Anton\Documents\task-11\SocialNetwork)
+2020-11-24 21:58:29,992 [main] INFO  com.senla.main.SocialNetworkApplication - No active profile set, falling back to default profiles: default
+2020-11-24 21:58:31,015 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-11-24 21:58:31,156 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 131ms. Found 10 JPA repository interfaces.
+2020-11-24 21:58:31,618 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat initialized with port(s): 8180 (http)
+2020-11-24 21:58:31,626 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-11-24 21:58:31,627 [main] INFO  org.apache.catalina.core.StandardEngine  - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-11-24 21:58:31,628 [main] INFO  o.a.catalina.core.AprLifecycleListener   - Loaded Apache Tomcat Native library [1.2.25] using APR version [1.7.0].
+2020-11-24 21:58:31,629 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2020-11-24 21:58:31,629 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2020-11-24 21:58:31,632 [main] INFO  o.a.catalina.core.AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 1.1.1g  21 Apr 2020]
+2020-11-24 21:58:31,777 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]       - Initializing Spring embedded WebApplicationContext
+2020-11-24 21:58:31,778 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1731 ms
+2020-11-24 21:58:32,023 [main] INFO  o.s.s.concurrent.ThreadPoolTaskExecutor  - Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-24 21:58:32,087 [task-1] INFO  o.hibernate.jpa.internal.util.LogHelper  - HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-11-24 21:58:32,138 [task-1] INFO  org.hibernate.Version                    - HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-11-24 21:58:32,180 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-11-24 21:58:32,250 [task-1] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-24 21:58:32,352 [task-1] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Starting...
+2020-11-24 21:58:32,375 [main] INFO  o.s.s.web.DefaultSecurityFilterChain     - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1f4f0fcc, org.springframework.security.web.context.SecurityContextPersistenceFilter@87d9a01, org.springframework.security.web.header.HeaderWriterFilter@172f4514, org.springframework.security.web.authentication.logout.LogoutFilter@1d7eb170, com.senla.security.JwtTokenFilter@46c10083, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@10177794, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1320e68a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@28e8888d, org.springframework.security.web.session.SessionManagementFilter@60e1d87c, org.springframework.security.web.access.ExceptionTranslationFilter@364b1061, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@413d2cd1]
+2020-11-24 21:58:32,675 [task-1] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Start completed.
+2020-11-24 21:58:32,689 [task-1] INFO  org.hibernate.dialect.Dialect            - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2020-11-24 21:58:32,702 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is org.springframework.boot.web.server.PortInUseException: Port 8180 is already in use
+2020-11-24 21:58:32,705 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-11-24 21:58:33,731 [task-1] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator       - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-11-24 21:58:33,741 [task-1] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-11-24 21:58:33,745 [main] INFO  o.s.s.concurrent.ThreadPoolTaskExecutor  - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-11-24 21:58:33,745 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Shutdown initiated...
+2020-11-24 21:58:33,760 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Shutdown completed.
+2020-11-24 21:58:33,762 [main] INFO  org.apache.catalina.core.StandardService - Stopping service [Tomcat]
+2020-11-24 21:58:33,773 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-11-24 21:58:33,777 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter   - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8180 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8180 or configure this application to listen on another port.
+
+2020-11-24 21:58:50,367 [main] INFO  com.senla.main.SocialNetworkApplication - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 18928 (C:\Users\Anton\Documents\task-11\SocialNetwork\target\classes started by Anton in C:\Users\Anton\Documents\task-11\SocialNetwork)
+2020-11-24 21:58:50,373 [main] INFO  com.senla.main.SocialNetworkApplication - No active profile set, falling back to default profiles: default
+2020-11-24 21:58:51,279 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-11-24 21:58:51,410 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 123ms. Found 10 JPA repository interfaces.
+2020-11-24 21:58:51,847 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat initialized with port(s): 8181 (http)
+2020-11-24 21:58:51,854 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-11-24 21:58:51,854 [main] INFO  org.apache.catalina.core.StandardEngine  - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-11-24 21:58:51,855 [main] INFO  o.a.catalina.core.AprLifecycleListener   - Loaded Apache Tomcat Native library [1.2.25] using APR version [1.7.0].
+2020-11-24 21:58:51,856 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2020-11-24 21:58:51,856 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2020-11-24 21:58:51,859 [main] INFO  o.a.catalina.core.AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 1.1.1g  21 Apr 2020]
+2020-11-24 21:58:51,980 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]       - Initializing Spring embedded WebApplicationContext
+2020-11-24 21:58:51,980 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1562 ms
+2020-11-24 21:58:52,242 [main] INFO  o.s.s.concurrent.ThreadPoolTaskExecutor  - Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-24 21:58:52,311 [task-1] INFO  o.hibernate.jpa.internal.util.LogHelper  - HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-11-24 21:58:52,360 [task-1] INFO  org.hibernate.Version                    - HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-11-24 21:58:52,409 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-11-24 21:58:52,493 [task-1] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-24 21:58:52,579 [task-1] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Starting...
+2020-11-24 21:58:52,602 [main] INFO  o.s.s.web.DefaultSecurityFilterChain     - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2443135, org.springframework.security.web.context.SecurityContextPersistenceFilter@5f9f3e58, org.springframework.security.web.header.HeaderWriterFilter@74667e6a, org.springframework.security.web.authentication.logout.LogoutFilter@71560f51, com.senla.security.JwtTokenFilter@184823ed, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@60e1d87c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@49edcb30, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@30bbcf91, org.springframework.security.web.session.SessionManagementFilter@41f3aaf1, org.springframework.security.web.access.ExceptionTranslationFilter@226de93c, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@7243145f]
+2020-11-24 21:58:52,899 [task-1] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Start completed.
+2020-11-24 21:58:52,913 [task-1] INFO  org.hibernate.dialect.Dialect            - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2020-11-24 21:58:52,916 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is org.springframework.boot.web.server.PortInUseException: Port 8181 is already in use
+2020-11-24 21:58:52,918 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2020-11-24 21:58:53,889 [task-1] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator       - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-11-24 21:58:53,896 [task-1] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-11-24 21:58:53,901 [main] INFO  o.s.s.concurrent.ThreadPoolTaskExecutor  - Shutting down ExecutorService 'applicationTaskExecutor'
+2020-11-24 21:58:53,903 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Shutdown initiated...
+2020-11-24 21:58:53,916 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Shutdown completed.
+2020-11-24 21:58:53,918 [main] INFO  org.apache.catalina.core.StandardService - Stopping service [Tomcat]
+2020-11-24 21:58:53,928 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2020-11-24 21:58:53,933 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter   - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Web server failed to start. Port 8181 was already in use.
+
+Action:
+
+Identify and stop the process that's listening on port 8181 or configure this application to listen on another port.
+
+2020-11-24 21:59:03,826 [main] INFO  com.senla.main.SocialNetworkApplication - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 22932 (C:\Users\Anton\Documents\task-11\SocialNetwork\target\classes started by Anton in C:\Users\Anton\Documents\task-11\SocialNetwork)
+2020-11-24 21:59:03,831 [main] INFO  com.senla.main.SocialNetworkApplication - No active profile set, falling back to default profiles: default
+2020-11-24 21:59:04,834 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFERRED mode.
+2020-11-24 21:59:04,969 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 128ms. Found 10 JPA repository interfaces.
+2020-11-24 21:59:05,412 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat initialized with port(s): 8182 (http)
+2020-11-24 21:59:05,420 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-11-24 21:59:05,421 [main] INFO  org.apache.catalina.core.StandardEngine  - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-11-24 21:59:05,422 [main] INFO  o.a.catalina.core.AprLifecycleListener   - Loaded Apache Tomcat Native library [1.2.25] using APR version [1.7.0].
+2020-11-24 21:59:05,423 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2020-11-24 21:59:05,423 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2020-11-24 21:59:05,427 [main] INFO  o.a.catalina.core.AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 1.1.1g  21 Apr 2020]
+2020-11-24 21:59:05,560 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]       - Initializing Spring embedded WebApplicationContext
+2020-11-24 21:59:05,560 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1682 ms
+2020-11-24 21:59:05,775 [main] INFO  o.s.s.concurrent.ThreadPoolTaskExecutor  - Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-24 21:59:05,833 [task-1] INFO  o.hibernate.jpa.internal.util.LogHelper  - HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-11-24 21:59:05,890 [task-1] INFO  org.hibernate.Version                    - HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-11-24 21:59:05,954 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-11-24 21:59:06,032 [task-1] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-24 21:59:06,137 [task-1] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Starting...
+2020-11-24 21:59:06,174 [main] INFO  o.s.s.web.DefaultSecurityFilterChain     - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1f4f0fcc, org.springframework.security.web.context.SecurityContextPersistenceFilter@87d9a01, org.springframework.security.web.header.HeaderWriterFilter@172f4514, org.springframework.security.web.authentication.logout.LogoutFilter@1d7eb170, com.senla.security.JwtTokenFilter@46c10083, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@10177794, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1320e68a, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@28e8888d, org.springframework.security.web.session.SessionManagementFilter@60e1d87c, org.springframework.security.web.access.ExceptionTranslationFilter@364b1061, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@413d2cd1]
+2020-11-24 21:59:06,503 [task-1] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Start completed.
+2020-11-24 21:59:06,521 [task-1] INFO  org.hibernate.dialect.Dialect            - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2020-11-24 21:59:06,561 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat started on port(s): 8182 (http) with context path ''
+2020-11-24 21:59:06,563 [main] INFO  o.s.d.r.c.DeferredRepositoryInitializationListener - Triggering deferred initialization of Spring Data repositories…
+2020-11-24 21:59:07,590 [task-1] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator       - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-11-24 21:59:07,599 [task-1] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-11-24 21:59:08,049 [main] INFO  o.s.d.r.c.DeferredRepositoryInitializationListener - Spring Data repositories initialized!
+2020-11-24 21:59:08,058 [main] INFO  com.senla.main.SocialNetworkApplication - Started SocialNetworkApplication in 4.756 seconds (JVM running for 5.823)
