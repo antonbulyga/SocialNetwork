@@ -34,13 +34,8 @@ public class MessageController {
     @GetMapping(value = "")
     public ResponseEntity<List<MessageDto>> getAllMessagesForUserFromAllDialogs(){
         List<MessageDto> fullMessageDtoList = new ArrayList<>();
-        User user = userFacade.getUserFromSecurityContext();
-        List<Dialog> dialogs = user.getDialogs();
-
-        for (Dialog d : dialogs) {
-            List<MessageDto> messageDtoList = messageFacade.getMessagesByDialog_Id(d.getId());
-            fullMessageDtoList.addAll(messageDtoList);
-        }
+        userFacade.getUserFromSecurityContext().getDialogs().forEach(d ->
+                fullMessageDtoList.addAll(messageFacade.getMessagesByDialog_Id(d.getId())));
         return new ResponseEntity<>(fullMessageDtoList, HttpStatus.OK);
     }
 

@@ -48,8 +48,7 @@ public class DialogServiceImpl implements DialogService {
 
     @Override
     public Dialog getDialogByName(String name) {
-       Dialog dialog = dialogRepository.getDialogByName(name);
-        return dialog;
+        return dialogRepository.getDialogByName(name);
     }
 
 
@@ -61,8 +60,7 @@ public class DialogServiceImpl implements DialogService {
 
     @Override
     public List<Dialog> getAll() {
-        List<Dialog> dialogs = dialogRepository.findAll();
-        return dialogs;
+        return dialogRepository.findAll();
     }
 
     @Override

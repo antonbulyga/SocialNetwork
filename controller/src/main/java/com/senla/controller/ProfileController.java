@@ -90,9 +90,9 @@ public class ProfileController {
     }
 
     @GetMapping(value = "search/fullname")
-    public ResponseEntity<List<ProfileDto>> findProfileByLastName(@RequestParam(name = "name") String firstName, @PathVariable(name = "surname") String lastName){
-        List<ProfileDto> profileDtoList = (List<ProfileDto>) profileFacade.findProfileByFirstNameAndLastName(firstName, lastName);
-        return new ResponseEntity<>(profileDtoList, HttpStatus.OK);
+    public ResponseEntity<ProfileDto> findProfileByLastName(@RequestParam(name = "name") String firstName, @PathVariable(name = "surname") String lastName){
+        ProfileDto profileDto = profileFacade.findProfileByFirstNameAndLastName(firstName, lastName);
+        return new ResponseEntity<>(profileDto, HttpStatus.OK);
     }
 
     @GetMapping(value = "search/gender")

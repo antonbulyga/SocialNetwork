@@ -69,6 +69,6 @@ public class DialogFacade {
     }
 
     public List<DialogDto> convertDialogListToLikeDto(List<Dialog> dialogs){
-        return dialogs.stream().map(d -> dialogToDialogDto.convert(d)).collect(Collectors.toList());
+        return dialogs.stream().map(dialogToDialogDto::convert).collect(Collectors.toList());
     }
 }

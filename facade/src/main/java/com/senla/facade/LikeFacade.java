@@ -36,7 +36,7 @@ public class LikeFacade {
 
     public List<LikeDto> getAllLikes(){
         List<Like> likes = likeService.getAll();
-        return likes.stream().map(l -> likeToLikeDto.convert(l)).collect(Collectors.toList());
+        return likes.stream().map(likeToLikeDto::convert).collect(Collectors.toList());
     }
 
     public LikeDto getLikeDto(Long id){
@@ -49,10 +49,10 @@ public class LikeFacade {
 
     public List<LikeDto> getLikesByPost_Id(Long postId){
         List<Like> likes = likeService.getLikesByPost_Id(postId);
-        return likes.stream().map(l -> likeToLikeDto.convert(l)).collect(Collectors.toList());
+        return likes.stream().map(likeToLikeDto::convert).collect(Collectors.toList());
     }
 
     public List<LikeDto> convertListLikesToLikeDto(List<Like> likes){
-        return likes.stream().map(l -> likeToLikeDto.convert(l)).collect(Collectors.toList());
+        return likes.stream().map(likeToLikeDto::convert).collect(Collectors.toList());
     }
 }

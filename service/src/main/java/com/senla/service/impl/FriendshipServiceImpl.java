@@ -29,61 +29,59 @@ public class FriendshipServiceImpl implements FriendshipService {
         this.userService = userService;
     }
 
-
-
+    public boolean validate(Long userOneId, Long userTwoId, Long actionId) {
+        if (userOneId > userTwoId & (userOneId == actionId || userTwoId == actionId)) {
+            throw new IncorrectRequest("Your request is incorrect. User one id should be less than user two id");
+        } else {
+            return true;
+        }
+    }
 
     @Override
     public Friendship sentNewFriendRequest(Long userOneId, Long userTwoId, Long actionId) {
         Friendship friendship = new Friendship();
-        if (userOneId > userTwoId & (userOneId == actionId || userTwoId == actionId)) {
-            throw new IncorrectRequest("Your request is incorrect. User one id should be less than user two id");
-        } else {
-            User actionUser = userService.getUser(actionId);
-            User userOne = userService.getUser(userOneId);
-            User userTwo = userService.getUser(userTwoId);
-            friendshipRepository.sentNewFriendRequest(userOne, userTwo, actionUser);
-            friendship.setUserOne(userOne);
-            friendship.setUserTwo(userTwo);
-            friendship.setActionUser(actionUser);
-            friendship.setFriendshipStatus(FriendshipStatus.REQUEST);
-        }
+        validate(userOneId, userTwoId, actionId);
+        User actionUser = userService.getUser(actionId);
+        User userOne = userService.getUser(userOneId);
+        User userTwo = userService.getUser(userTwoId);
+        friendshipRepository.sentNewFriendRequest(userOne, userTwo, actionUser);
+        friendship.setUserOne(userOne);
+        friendship.setUserTwo(userTwo);
+        friendship.setActionUser(actionUser);
+        friendship.setFriendshipStatus(FriendshipStatus.REQUEST);
+
         return friendship;
     }
 
     @Override
     public Friendship sentFriendRequest(Long userOneId, Long userTwoId, Long actionId) {
         Friendship friendship = new Friendship();
-        if (userOneId > userTwoId & (userOneId == actionId || userTwoId == actionId)) {
-            throw new IncorrectRequest("Your request is incorrect. User one id should be less than user two id");
-        } else {
-            User actionUser = userService.getUser(actionId);
-            User userOne = userService.getUser(userOneId);
-            User userTwo = userService.getUser(userTwoId);
-            friendshipRepository.sentFriendRequest(userOne, userTwo, actionUser);
-            friendshipRepository.sentNewFriendRequest(userOne, userTwo, actionUser);
-            friendship.setUserOne(userOne);
-            friendship.setUserTwo(userTwo);
-            friendship.setActionUser(actionUser);
-            friendship.setFriendshipStatus(FriendshipStatus.REQUEST);
-        }
+        validate(userOneId, userTwoId, actionId);
+        User actionUser = userService.getUser(actionId);
+        User userOne = userService.getUser(userOneId);
+        User userTwo = userService.getUser(userTwoId);
+        friendshipRepository.sentFriendRequest(userOne, userTwo, actionUser);
+        friendshipRepository.sentNewFriendRequest(userOne, userTwo, actionUser);
+        friendship.setUserOne(userOne);
+        friendship.setUserTwo(userTwo);
+        friendship.setActionUser(actionUser);
+        friendship.setFriendshipStatus(FriendshipStatus.REQUEST);
+
         return friendship;
     }
 
     @Override
     public Friendship addToFriends(Long userOneId, Long userTwoId, Long actionId) {
         Friendship friendship = new Friendship();
-        if (userOneId > userTwoId & (userOneId == actionId || userTwoId == actionId)) {
-            throw new IncorrectRequest("Your request is incorrect. User one id should be less than user two id");
-        } else {
-            User actionUser = userService.getUser(actionId);
-            User userOne = userService.getUser(userOneId);
-            User userTwo = userService.getUser(userTwoId);
-            friendshipRepository.addToFriends(userOne, userTwo, actionUser);
-            friendship.setUserOne(userOne);
-            friendship.setUserTwo(userTwo);
-            friendship.setActionUser(actionUser);
-            friendship.setFriendshipStatus(FriendshipStatus.FRIEND);
-        }
+        validate(userOneId, userTwoId, actionId);
+        User actionUser = userService.getUser(actionId);
+        User userOne = userService.getUser(userOneId);
+        User userTwo = userService.getUser(userTwoId);
+        friendshipRepository.addToFriends(userOne, userTwo, actionUser);
+        friendship.setUserOne(userOne);
+        friendship.setUserTwo(userTwo);
+        friendship.setActionUser(actionUser);
+        friendship.setFriendshipStatus(FriendshipStatus.FRIEND);
         return friendship;
     }
 
@@ -91,75 +89,60 @@ public class FriendshipServiceImpl implements FriendshipService {
     public List<User> getFriendsListOfUser(Long userId) {
         User user = userService.getUser(userId);
         List<Friendship> friendships = friendshipRepository.getFriendsListOfUser(user);
-        List<User> users = friendships.stream()
+        return friendships.stream()
                 .map(Friendship::getUserOne)
                 .collect(Collectors.toList());
-        return users;
     }
 
 
     @Override
     public Friendship deleteFriendship(Long userOneId, Long userTwoId, Long actionId) {
         Friendship friendship = new Friendship();
-        if (userOneId > userTwoId & (userOneId == actionId || userTwoId == actionId)) {
-            throw new IncorrectRequest("Your request is incorrect. User one id should be less than user two id or" +
-                    " neither the first nor second user is an action user");
-        } else {
-            User actionUser = userService.getUser(actionId);
-            User userOne = userService.getUser(userOneId);
-            User userTwo = userService.getUser(userTwoId);
-            friendshipRepository.deleteFriendship(userOne, userTwo, actionUser);
-            friendship.setUserOne(userOne);
-            friendship.setUserTwo(userTwo);
-            friendship.setActionUser(actionUser);
-            friendship.setFriendshipStatus(FriendshipStatus.DECLINED);
-        }
+        validate(userOneId, userTwoId, actionId);
+        User actionUser = userService.getUser(actionId);
+        User userOne = userService.getUser(userOneId);
+        User userTwo = userService.getUser(userTwoId);
+        friendshipRepository.deleteFriendship(userOne, userTwo, actionUser);
+        friendship.setUserOne(userOne);
+        friendship.setUserTwo(userTwo);
+        friendship.setActionUser(actionUser);
+        friendship.setFriendshipStatus(FriendshipStatus.DECLINED);
         return friendship;
     }
 
     @Override
     public Friendship blockUser(Long userOneId, Long userTwoId, Long actionId) {
         Friendship friendship = new Friendship();
-        if (userOneId > userTwoId & (userOneId == actionId || userTwoId == actionId)) {
-            throw new IncorrectRequest("Your request is incorrect. User one id should be less than user two id or" +
-                    " neither the first nor second user is an action user");
-        } else {
-            User actionUser = userService.getUser(actionId);
-            friendship.setActionUser(actionUser);
-            User userOne = userService.getUser(userOneId);
-            friendship.setUserOne(userOne);
-            User userTwo = userService.getUser(userTwoId);
-            friendship.setUserTwo(userTwo);
-            friendship.setFriendshipStatus(FriendshipStatus.BLOCKED);
-            friendshipRepository.blockUser(userOne, userTwo, actionUser);
-
-        }
+        validate(userOneId, userTwoId, actionId);
+        User actionUser = userService.getUser(actionId);
+        friendship.setActionUser(actionUser);
+        User userOne = userService.getUser(userOneId);
+        friendship.setUserOne(userOne);
+        User userTwo = userService.getUser(userTwoId);
+        friendship.setUserTwo(userTwo);
+        friendship.setFriendshipStatus(FriendshipStatus.BLOCKED);
+        friendshipRepository.blockUser(userOne, userTwo, actionUser);
         return friendship;
     }
 
     @Override
     public Friendship unblockUser(Long userOneId, Long userTwoId, Long actionId) {
         Friendship friendship = new Friendship();
-        if (userOneId > userTwoId & (userOneId == actionId || userTwoId == actionId)) {
-            throw new IncorrectRequest("Your request is incorrect. User one id should be less than user two id or" +
-                    " neither the first nor second user is an action user");
-        } else {
-            User actionUser = userService.getUser(actionId);
-            friendship.setActionUser(actionUser);
-            User userOne = userService.getUser(userOneId);
-            friendship.setUserOne(userOne);
-            User userTwo = userService.getUser(userTwoId);
-            friendship.setUserTwo(userTwo);
-            friendship.setFriendshipStatus(FriendshipStatus.DECLINED);
-            friendshipRepository.unblockUser(userOne, userTwo, actionUser);
-        }
+        validate(userOneId, userTwoId, actionId);
+        User actionUser = userService.getUser(actionId);
+        friendship.setActionUser(actionUser);
+        User userOne = userService.getUser(userOneId);
+        friendship.setUserOne(userOne);
+        User userTwo = userService.getUser(userTwoId);
+        friendship.setUserTwo(userTwo);
+        friendship.setFriendshipStatus(FriendshipStatus.DECLINED);
+        friendshipRepository.unblockUser(userOne, userTwo, actionUser);
         return friendship;
     }
 
     @Override
     public List<Friendship> getRequest(Long userId) {
         User user = userService.getUser(userId);
-        List<Friendship> friendships = friendshipRepository.getRequests(user);
-        return friendships;
+        return friendshipRepository.getRequests(user);
     }
 }

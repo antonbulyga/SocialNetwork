@@ -37,8 +37,7 @@ public class CommunityServiceImpl implements CommunityService {
 
     @Override
     public Community getCommunitiesByName(String name) {
-       Community community = communityRepository.getCommunitiesByName(name);
-        return community;
+        return communityRepository.getCommunitiesByName(name);
     }
 
     @Override
@@ -49,8 +48,7 @@ public class CommunityServiceImpl implements CommunityService {
 
     @Override
     public List<Community> getAllCommunities() {
-         List<Community> communities = communityRepository.findAll();
-        return communities;
+        return communityRepository.findAll();
     }
 
     @Override
@@ -62,8 +60,7 @@ public class CommunityServiceImpl implements CommunityService {
 
     @Override
     public List<Community> getCommunitiesByAdminUserId(Long adminId) {
-        List<Community> communities = communityRepository.getCommunitiesByAdminUser_Id(adminId);
-        return communities;
+        return communityRepository.getCommunitiesByAdminUser_Id(adminId);
     }
 
 

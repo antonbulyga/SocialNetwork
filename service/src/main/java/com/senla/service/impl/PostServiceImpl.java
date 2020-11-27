@@ -44,8 +44,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<Post> getPostsByUser_Id(Long userId) {
-        List<Post> posts = postRepository.getPostByUser_Id(userId);
-        return posts;
+        return postRepository.getPostByUser_Id(userId);
     }
 
     @Override
@@ -56,7 +55,6 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<Post> getAllPosts() {
-        List<Post> posts = postRepository.findAll();
-        return posts;
+        return postRepository.findAll();
     }
 }

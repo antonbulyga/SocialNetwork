@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -42,32 +43,17 @@ public class LikeServiceImpl implements LikeService {
         getLike(id);
         Like like = getLike(id);
         User user = like.getUser();
-        List<Like> userLikeList = user.getLikes();
-        for (Iterator<Like> iter = userLikeList.iterator(); iter.hasNext();) {
-            Like currentLike = iter.next();
-            if(currentLike.getId() == like.getId()){
-                iter.remove();
-            }
-        }
-        user.setLikes(userLikeList);
+        user.setLikes(user.getLikes().stream().filter(l -> !l.getId().equals(id)).collect(Collectors.toList()));
         userService.updateUser(user);
         Post post = like.getPost();
-        List<Like> likeListInPost = post.getLikes();
-        for (Iterator<Like> iter = likeListInPost.iterator(); iter.hasNext();) {
-            Like currentLike = iter.next();
-            if(currentLike.getId() == like.getId()){
-                iter.remove();
-            }
-        }
-        post.setLikes(likeListInPost);
+        post.setLikes(post.getLikes().stream().filter(l -> !l.getId().equals(id)).collect(Collectors.toList()));
         postService.updatePost(post);
         likeRepository.deleteById(id);
     }
 
     @Override
     public List<Like> getAll() {
-        List<Like> likes = likeRepository.findAll();
-        return likes;
+        return likeRepository.findAll();
     }
 
 
@@ -80,7 +66,6 @@ public class LikeServiceImpl implements LikeService {
 
     @Override
     public List<Like> getLikesByPost_Id(Long postId) {
-        List<Like> likes = likeRepository.getLikesByPost_Id(postId);
-        return likes;
+        return likeRepository.getLikesByPost_Id(postId);
     }
 }

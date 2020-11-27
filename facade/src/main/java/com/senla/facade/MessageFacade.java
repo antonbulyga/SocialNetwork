@@ -42,7 +42,7 @@ public class MessageFacade {
 
     public List<MessageDto> getAllMessages(){
         List<Message> messages = messageService.getAllMessages();
-        return messages.stream().map(p -> messageToMessageDto.convert(p)).collect(Collectors.toList());
+        return messages.stream().map(messageToMessageDto::convert).collect(Collectors.toList());
     }
 
     public MessageDto getMessageDto(Long id){
@@ -55,7 +55,7 @@ public class MessageFacade {
 
     public List<MessageDto> getMessagesByDialog_Id(Long dialogId){
         List<Message> messages = messageService.getMessagesByDialog_Id(dialogId);
-        return messages.stream().map(m -> messageToMessageDto.convert(m)).collect(Collectors.toList());
+        return messages.stream().map(messageToMessageDto::convert).collect(Collectors.toList());
     }
 
 }

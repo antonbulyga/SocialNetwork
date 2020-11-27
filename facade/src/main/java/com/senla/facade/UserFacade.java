@@ -31,7 +31,7 @@ public class UserFacade {
 
     public List<UserDto> getAllUsers(){
         List<User> users = userService.getAllUsers();
-        return users.stream().map(u -> userToUserDto.convert(u)).collect(Collectors.toList());
+        return users.stream().map(userToUserDto::convert).collect(Collectors.toList());
     }
 
     public UserDto addUser(UserDto userDto){

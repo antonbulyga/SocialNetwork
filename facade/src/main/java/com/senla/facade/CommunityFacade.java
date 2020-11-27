@@ -43,7 +43,7 @@ public class CommunityFacade {
 
     public List<CommunityDto> getAllCommunities(){
         List<Community> communities = communityService.getAllCommunities();
-        return communities.stream().map(p -> communityToCommunityDto.convert(p)).collect(Collectors.toList());
+        return communities.stream().map(communityToCommunityDto::convert).collect(Collectors.toList());
     }
 
     public CommunityDto getDtoCommunity(Long id){
@@ -62,7 +62,7 @@ public class CommunityFacade {
 
     public List<CommunityDto> getCommunitiesByAdminUserId(Long adminId){
         List<Community> communities = communityService.getCommunitiesByAdminUserId(adminId);
-        return communities.stream().map(c -> communityToCommunityDto.convert(c)).collect(Collectors.toList());
+        return communities.stream().map(communityToCommunityDto::convert).collect(Collectors.toList());
     }
 
     public Community convertCommunityDtoToCommunity(CommunityDto communityDto){

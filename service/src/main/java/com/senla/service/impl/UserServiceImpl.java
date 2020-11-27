@@ -47,8 +47,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findUserByUserName(String userName) {
         log.info("Finding user by user name");
-        User user = userRepository.findByUserName(userName);
-        return user;
+        return userRepository.findByUserName(userName);
     }
 
     @Override
@@ -101,8 +100,7 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findUserByEmail(String email) {
         log.info("Finding user by email");
-        User user = userRepository.findByEmail(email);
-        return user;
+        return userRepository.findByEmail(email);
     }
 
 
@@ -118,19 +116,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public List<User> getAllUsers() {
         log.info("Get all users");
-        List<User> userList = userRepository.findAll();
-        return userList;
+        return userRepository.findAll();
     }
 
     public User getUserById(long userId){
-       User user = getUser(userId);
-       return user;
+        return getUser(userId);
     }
 
     public User getUserFromSecurityContext(){
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String userName = userDetails.getUsername();
-        User user = findUserByUserName(userName);
-        return user;
+        return findUserByUserName(userName);
     }
 }

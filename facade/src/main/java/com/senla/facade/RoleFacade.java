@@ -42,7 +42,7 @@ public class RoleFacade {
 
     public List<RoleDto> getAllRoles(){
         List<Role> roles = roleService.getAllRoles();
-        return roles.stream().map(p -> roleToRoleDto.convert(p)).collect(Collectors.toList());
+        return roles.stream().map(roleToRoleDto::convert).collect(Collectors.toList());
     }
 
     public RoleDto getRoleDto(Long id){

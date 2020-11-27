@@ -42,7 +42,7 @@ public class PostFacade {
 
     public List<PostDto> getAllPosts(){
         List<Post> posts = postService.getAllPosts();
-        return posts.stream().map(p -> postToPostDto.convert(p)).collect(Collectors.toList());
+        return posts.stream().map(postToPostDto::convert).collect(Collectors.toList());
     }
 
     public PostDto getPost(Long id){
@@ -51,11 +51,10 @@ public class PostFacade {
 
     public List<PostDto> getPostsDtoByUser_Id(Long userId){
         List<Post> posts = postService.getPostsByUser_Id(userId);
-        return posts.stream().map(p -> postToPostDto.convert(p)).collect(Collectors.toList());
+        return posts.stream().map(postToPostDto::convert).collect(Collectors.toList());
     }
 
     public List<Post> getPostsByUser_Id(Long userId){
-        List<Post> posts = postService.getPostsByUser_Id(userId);
-        return posts;
+        return postService.getPostsByUser_Id(userId);
     }
 }

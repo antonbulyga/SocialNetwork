@@ -54,7 +54,7 @@ public class LikeController {
     }
 
     @DeleteMapping(value = "delete")
-    public ResponseEntity<String> deleteLike(@RequestParam (name = "id") long id) throws RestError {
+    public ResponseEntity<String> deleteLike(@RequestParam (name = "id") long id){
         Like like = likeFacade.getLike(id);
         User user = userFacade.getUserFromSecurityContext();
         List<Like> userLikes = user.getLikes();

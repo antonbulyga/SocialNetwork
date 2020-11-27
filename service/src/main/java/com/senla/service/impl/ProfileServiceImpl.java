@@ -33,8 +33,7 @@ public class ProfileServiceImpl implements ProfileService {
 
     @Override
     public Profile findProfileByUser_Id(Long userId) {
-        Profile profile = profileRepository.findByUser_Id(userId);
-        return profile;
+        return profileRepository.findByUser_Id(userId);
     }
 
     @Override

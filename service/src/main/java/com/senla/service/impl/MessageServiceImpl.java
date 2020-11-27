@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @Transactional
@@ -43,41 +44,26 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public void deleteMessage(long id) {
-        getMessage(id);
         Message message = getMessage(id);
         User user = message.getUser();
-        List<Message> userMessageList = user.getMessages();
-        for (Iterator<Message> iter = userMessageList.iterator(); iter.hasNext();) {
-            Message currentMessage = iter.next();
-            if(currentMessage.getId() == message.getId()){
-                iter.remove();
-            }
-        }
-        user.setMessages(userMessageList);
+        user.setMessages(user.getMessages().stream().filter(mess -> !mess.getId().equals(id))
+                .collect(Collectors.toList()));
         userService.updateUser(user);
         Dialog dialog = message.getDialog();
-        List<Message> messageListInDialog = dialog.getMessages();
-        for (Iterator<Message> iter = messageListInDialog.iterator(); iter.hasNext();) {
-            Message currentMessage = iter.next();
-            if(currentMessage.getId() == message.getId()){
-                iter.remove();
-            }
-        }
-        dialog.setMessages(messageListInDialog);
+        dialog.setMessages(dialog.getMessages().stream().filter(mess -> !mess.getId().equals(id))
+                .collect(Collectors.toList()));
         dialogService.updateDialog(dialog);
         messageRepository.deleteById(id);
     }
 
     @Override
     public List<Message> getAllMessages() {
-        List<Message> messages = messageRepository.findAll();
-        return messages;
+        return messageRepository.findAll();
     }
 
      @Override
     public List<Message> getMessagesByDialog_Id(Long dialogId) {
-        List<Message> messages = messageRepository.getMessagesByDialog_Id(dialogId);
-        return messages;
+         return messageRepository.getMessagesByDialog_Id(dialogId);
     }
 
     @Override

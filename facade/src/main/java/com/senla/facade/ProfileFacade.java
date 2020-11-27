@@ -42,27 +42,27 @@ public class ProfileFacade {
 
     public List<ProfileDto> getAllProfiles(){
         List<Profile> profiles = profileService.getAllProfiles();
-        return profiles.stream().map(p -> profileToProfileDto.convert(p)).collect(Collectors.toList());
+        return profiles.stream().map(profileToProfileDto::convert).collect(Collectors.toList());
     }
 
     public List<ProfileDto> findProfilesByCity(String city){
         List<Profile> profiles = profileService.findProfilesByCity(city);
-        return profiles.stream().map(p -> profileToProfileDto.convert(p)).collect(Collectors.toList());
+        return profiles.stream().map(profileToProfileDto::convert).collect(Collectors.toList());
     }
 
     public List<ProfileDto> findProfilesByCountry(String country){
         List<Profile> profiles = profileService.findProfilesByCountry(country);
-        return profiles.stream().map(p -> profileToProfileDto.convert(p)).collect(Collectors.toList());
+        return profiles.stream().map(profileToProfileDto::convert).collect(Collectors.toList());
     }
 
     public List<ProfileDto> findProfilesByFirstName(String firstName){
         List<Profile> profiles = profileService.findProfilesByFirstName(firstName);
-        return profiles.stream().map(p -> profileToProfileDto.convert(p)).collect(Collectors.toList());
+        return profiles.stream().map(profileToProfileDto::convert).collect(Collectors.toList());
     }
 
     public List<ProfileDto> findProfilesByLastName(String lastName){
         List<Profile> profiles = profileService.findProfilesByLastName(lastName);
-        return profiles.stream().map(p -> profileToProfileDto.convert(p)).collect(Collectors.toList());
+        return profiles.stream().map(profileToProfileDto::convert).collect(Collectors.toList());
     }
 
     public ProfileDto findProfileByFirstNameAndLastName(String firstName, String LastName){
@@ -72,7 +72,7 @@ public class ProfileFacade {
 
     public List<ProfileDto> findProfileByGender(Enum gender){
         List<Profile> profiles = profileService.findProfileByGender(gender);
-        return profiles.stream().map(p -> profileToProfileDto.convert(p)).collect(Collectors.toList());
+        return profiles.stream().map(profileToProfileDto::convert).collect(Collectors.toList());
     }
 
     public ProfileDto getProfile(Long id){
