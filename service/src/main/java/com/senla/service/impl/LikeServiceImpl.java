@@ -20,9 +20,9 @@ import java.util.List;
 @Slf4j
 public class LikeServiceImpl implements LikeService {
 
-    private LikeRepository likeRepository;
-    private UserService userService;
-    private PostService postService;
+    private final LikeRepository likeRepository;
+    private final UserService userService;
+    private final PostService postService;
 
     @Autowired
     public LikeServiceImpl(LikeRepository likeRepository, UserService userService, PostService postService) {
@@ -38,7 +38,7 @@ public class LikeServiceImpl implements LikeService {
     }
 
     @Override
-    public void delete(long id) {
+    public void deleteLike(long id) {
         Like like = getLike(id);
         User user = like.getUser();
         List<Like> userLikeList = user.getLikes();
@@ -49,7 +49,7 @@ public class LikeServiceImpl implements LikeService {
             }
         }
         user.setLikes(userLikeList);
-        userService.editUser(user);
+        userService.updateUser(user);
         Post post = like.getPost();
         List<Like> likeListInPost = post.getLikes();
         for (Iterator<Like> iter = likeListInPost.iterator(); iter.hasNext();) {
@@ -59,7 +59,7 @@ public class LikeServiceImpl implements LikeService {
             }
         }
         post.setLikes(likeListInPost);
-        postService.editPost(post);
+        postService.updatePost(post);
         likeRepository.deleteById(id);
     }
 

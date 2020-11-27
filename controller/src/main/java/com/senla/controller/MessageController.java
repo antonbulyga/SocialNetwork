@@ -1,15 +1,13 @@
 package com.senla.controller;
 
-import com.senla.converters.MessageDtoToMessage;
-import com.senla.converters.MessageToMessageDto;
 import com.senla.dto.MessageDto;
 import com.senla.entity.Dialog;
 import com.senla.entity.Message;
 import com.senla.entity.User;
 import com.senla.exception.EntityNotFoundException;
 import com.senla.exception.RestError;
-import com.senla.service.MessageService;
-import com.senla.service.UserService;
+import com.senla.facade.MessageFacade;
+import com.senla.facade.UserFacade;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,49 +16,38 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/messages/")
 @Slf4j
 public class MessageController {
 
-    private MessageService messageService;
-    private MessageToMessageDto messageToMessageDto;
-    private MessageDtoToMessage messageDtoToMessage;
-    private UserService userService;
+    private final UserFacade userFacade;
+    private final MessageFacade messageFacade;
 
     @Autowired
-    public MessageController(MessageService messageService, MessageToMessageDto messageToMessageDto, MessageDtoToMessage messageDtoToMessage, UserService userService) {
-        this.messageService = messageService;
-        this.messageToMessageDto = messageToMessageDto;
-        this.messageDtoToMessage = messageDtoToMessage;
-        this.userService = userService;
+    public MessageController(UserFacade userFacade, MessageFacade messageFacade) {
+        this.userFacade = userFacade;
+        this.messageFacade = messageFacade;
     }
 
     @GetMapping(value = "")
     public ResponseEntity<List<MessageDto>> getAllMessagesForUserFromAllDialogs(){
-        List<Message> fullMessageList = new ArrayList<>();
-        List<MessageDto> messageDtoList = new ArrayList<>();
-        User user = userService.getUserFromSecurityContext();
+        List<MessageDto> fullMessageDtoList = new ArrayList<>();
+        User user = userFacade.getUserFromSecurityContext();
         List<Dialog> dialogs = user.getDialogs();
 
         for (Dialog d : dialogs) {
-            List<Message> messageList = messageService.getMessagesByDialog_Id(d.getId());
-            fullMessageList.addAll(messageList);
+            List<MessageDto> messageDtoList = messageFacade.getMessagesByDialog_Id(d.getId());
+            fullMessageDtoList.addAll(messageDtoList);
         }
-
-        for (int i = 0; i < fullMessageList.size(); i++) {
-            MessageDto result = messageToMessageDto.convert(fullMessageList.get(i));
-            messageDtoList.add(result);
-        }
-        return new ResponseEntity<>(messageDtoList, HttpStatus.OK);
+        return new ResponseEntity<>(fullMessageDtoList, HttpStatus.OK);
     }
 
     @PostMapping(value = "add")
     public ResponseEntity<MessageDto> addMessageToDialog(@RequestBody MessageDto messageDto) {
-        Message message = messageDtoToMessage.convert(messageDto);
-        User user = userService.getUserFromSecurityContext();
+        Message message = messageFacade.getLike(messageDto.getId());
+        User user = userFacade.getUserFromSecurityContext();
         List<Dialog> dialogs = user.getDialogs();
         Dialog dialog = message.getDialog();
         if(dialog == null){
@@ -69,81 +56,84 @@ public class MessageController {
         }
         for (Dialog d : dialogs){
             if(d.getId() == dialog.getId()){
-                messageService.addMessage(message);
+                messageFacade.addMessage(messageDto);
                 log.info("Adding message to the dialog");
+                return new ResponseEntity<>(messageDto, HttpStatus.OK);
             }
         }
 
-        return new ResponseEntity<>(messageDto, HttpStatus.OK);
+        log.error("User can not add message to someone else dialog");
+        throw new RestError("User can not add message to someone else dialog");
     }
 
     @DeleteMapping(value = "delete")
     public ResponseEntity<String> deleteMessage(@RequestParam (name = "id") long id) {
-        messageService.getMessage(id);
-        User user = userService.getUserFromSecurityContext();
+        messageFacade.getLike(id);
+        User user = userFacade.getUserFromSecurityContext();
         List<Message> messages = user.getMessages();
         for(Message m : messages){
             if(m.getId() == id){
-                messageService.deleteMessage(id);
+                messageFacade.deleteMessage(id);
                 return ResponseEntity.ok()
                         .body("You have deleted message successfully");
             }
         }
 
-        return ResponseEntity.ok()
-                .body("User has no message with this id");
+        log.error("User has no message with this id");
+        throw new RestError("User has no message with this id");
     }
 
     @PostMapping(value = "update")
     public ResponseEntity<MessageDto> updateMessage(@RequestBody MessageDto messageDto) {
-        Message message = messageDtoToMessage.convert(messageDto);
-        User user = userService.getUserFromSecurityContext();
+        User user = userFacade.getUserFromSecurityContext();
         List<Message> messages = user.getMessages();
-        messageService.getMessage(message.getId());
+        messageFacade.getLike(messageDto.getId());
         for(Message m : messages){
-            if(m.getId() == message.getId()){
-                messageService.editMessage(message);
+            if(m.getId() == messageDto.getId()){
+                messageFacade.updateMessage(messageDto);
+                log.info("You have updated message successfully");
+                return new ResponseEntity<>(messageDto, HttpStatus.OK);
             }
-        }
 
-        messageService.editMessage(message);
-        return new ResponseEntity<>(messageDto, HttpStatus.OK);
+        }
+        log.error("You can't edit someone else message");
+        throw new RestError("You can't edit someone else message");
     }
 
     @GetMapping(value = "search/dialog/{id}")
     public ResponseEntity<List<MessageDto>> getMessagesByDialog_Id(@PathVariable (name = "id") long id) {
-        List<Message> messages = null;
-        User user = userService.getUserFromSecurityContext();
+        List<MessageDto> messageDtoList = null;
+        User user = userFacade.getUserFromSecurityContext();
         List<Dialog> dialogs = user.getDialogs();
-        List<Message> messageList = messageService.getMessagesByDialog_Id(id);
-        if(messageList.size() == 0){
+        List<MessageDto> messageListDto = messageFacade.getMessagesByDialog_Id(id);
+        if(messageListDto.size() == 0){
             throw new EntityNotFoundException("Dialog does not exist");
         }
         for(Dialog d : dialogs){
             if(d.getId() == id){
-                 messages = messageService.getMessagesByDialog_Id(id);
-                 List<MessageDto> messageDtoList = messages.stream().map(message -> messageToMessageDto.convert(message)).collect(Collectors.toList());
+                messageDtoList = messageFacade.getMessagesByDialog_Id(id);
                  return new ResponseEntity<>(messageDtoList, HttpStatus.OK);
             }
-            else {
-                log.error("You are trying to get messages from someone else dialog");
-                throw new RestError("You are trying to get messages from someone else dialog");
-            }
+
         }
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        log.error("You are trying to get messages from someone else dialog");
+        throw new RestError("You are trying to get messages from someone else dialog");
+
     }
 
     @GetMapping(value = "{id}")
     public ResponseEntity<MessageDto> getMessageById(@PathVariable(name = "id") Long messageId) {
         MessageDto messageDto = null;
-        Message message = messageService.getMessage(messageId);
-        User user = userService.getUserFromSecurityContext();
+        Message message = messageFacade.getLike(messageId);
+        User user = userFacade.getUserFromSecurityContext();
         List<Message> messages = user.getMessages();
         for(Message m : messages){
             if(m.getId() == message.getId()){
-                messageDto = messageToMessageDto.convert(message);
+               messageDto = messageFacade.getMessageDto(m.getId());
+                return new ResponseEntity<>(messageDto, HttpStatus.OK);
             }
         }
-        return new ResponseEntity<>(messageDto, HttpStatus.OK);
+        log.error("You are trying to get someone else message");
+        throw new RestError("You are trying to get someone else message");
     }
 }

@@ -12,17 +12,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
 @Transactional
 @Slf4j
 public class FriendshipServiceImpl implements FriendshipService {
-    private FriendshipRepository friendshipRepository;
-    private UserService userService;
+    private final FriendshipRepository friendshipRepository;
+    private final UserService userService;
 
     @Autowired
     public FriendshipServiceImpl(FriendshipRepository friendshipRepository,

@@ -1,6 +1,5 @@
 package com.senla.entity;
 
-
 import lombok.*;
 
 import javax.persistence.*;

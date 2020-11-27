@@ -10,6 +10,7 @@
         <module>security</module>
         <module>model</module>
         <module>main</module>
+        <module>facade</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

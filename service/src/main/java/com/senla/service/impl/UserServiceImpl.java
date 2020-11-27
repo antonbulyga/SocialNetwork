@@ -24,10 +24,10 @@ import java.util.List;
 @Slf4j
 public class UserServiceImpl implements UserService {
 
-    private UserRepository userRepository;
-    private CommunityService communityService;
-    private ProfileService profileService;
-    private BCryptPasswordEncoder passwordEncoder;
+    private final UserRepository userRepository;
+    private final CommunityService communityService;
+    private final ProfileService profileService;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
     public UserServiceImpl(UserRepository userRepository, CommunityService communityService, ProfileService profileService, BCryptPasswordEncoder passwordEncoder) {
@@ -58,7 +58,7 @@ public class UserServiceImpl implements UserService {
          String codePassword = passwordEncoder.encode(newPassword);
          user.setPassword(codePassword);
          try {
-             editUser(user);
+             updateUser(user);
          }
          catch (SQLErrors e){
              log.error("Error when trying to change password");
@@ -86,7 +86,7 @@ public class UserServiceImpl implements UserService {
             for (int i = 0; i < communities.size(); i++) {
                 communities.get(i).getUsers().removeAll(communities.get(i).getUsers());
                 communities.get(i).getPosts().removeAll(communities.get(i).getPosts());
-                communityService.delete(communities.get(i).getId());
+                communityService.deleteCommunity(communities.get(i).getId());
                 profileService.deleteProfiles(user.getProfile().getId());
             }
 
@@ -106,7 +106,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    public User editUser(User user) {
+    public User updateUser(User user) {
         log.info("Updating user");
         String codePassword = passwordEncoder.encode(user.getPassword());
         user.setPassword(codePassword);

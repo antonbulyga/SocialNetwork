@@ -10,5 +10,5 @@ public interface MessageService {
     List<Message> getAllMessages();
     List<Message> getMessagesByDialog_Id(Long dialogId);
     Message getMessage(Long id);
-    Message editMessage(Message message);
+    Message updateMessage(Message message);
 }

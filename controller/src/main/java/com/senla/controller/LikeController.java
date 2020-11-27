@@ -6,6 +6,8 @@ import com.senla.dto.LikeDto;
 import com.senla.entity.Like;
 import com.senla.entity.User;
 import com.senla.exception.RestError;
+import com.senla.facade.LikeFacade;
+import com.senla.facade.UserFacade;
 import com.senla.service.LikeService;
 import com.senla.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -22,60 +24,52 @@ import java.util.stream.Collectors;
 @RequestMapping(value = "/likes/")
 @Slf4j
 public class LikeController {
-    private LikeService likeService;
-    private LikeToLikeDto likeToLikeDto;
-    private LikeDtoToLike likeDtoToLike;
-    private UserService userService;
+
+    private final LikeFacade likeFacade;
+    private final UserFacade userFacade;
 
     @Autowired
-    public LikeController(LikeService likeService, LikeToLikeDto likeToLikeDto, LikeDtoToLike likeDtoToLike, UserService userService) {
-        this.likeService = likeService;
-        this.likeToLikeDto = likeToLikeDto;
-        this.likeDtoToLike = likeDtoToLike;
-        this.userService = userService;
+    public LikeController(LikeFacade likeFacade, UserFacade userFacade) {
+        this.likeFacade = likeFacade;
+        this.userFacade = userFacade;
     }
 
     @GetMapping(value = "")
     public ResponseEntity<List<LikeDto>> getAllUserLikes(){
-        User user = userService.getUserFromSecurityContext();
-        List<Like> userLikeList = user.getLikes();
-        List<LikeDto> likeDtoList = new ArrayList<>();
-        if(userLikeList == null){
+        User user = userFacade.getUserFromSecurityContext();
+        List<Like> likeList = user.getLikes();
+        if(likeList == null){
+            log.error("The user has no likes");
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        for (int i = 0; i < userLikeList.size(); i++) {
-            LikeDto result = likeToLikeDto.convert(userLikeList.get(i));
-            likeDtoList.add(result);
-        }
+        List<LikeDto> likeDtoList = likeFacade.convertListLikesToLikeDto(likeList);
         return new ResponseEntity<>(likeDtoList, HttpStatus.OK);
     }
 
     @PostMapping(value = "add")
     public ResponseEntity<LikeDto> addLike(@RequestBody LikeDto likeDto) {
-        Like like = likeDtoToLike.convert(likeDto);
-        likeService.addLike(like);
+        likeFacade.addLike(likeDto);
+        log.error("Adding like");
         return new ResponseEntity<>(likeDto, HttpStatus.OK);
     }
 
     @DeleteMapping(value = "delete")
-    public ResponseEntity<String> deleteLike(@RequestParam (name = "id") long id) {
-        Like like = likeService.getLike(id);
-        User user = userService.getUserFromSecurityContext();
+    public ResponseEntity<String> deleteLike(@RequestParam (name = "id") long id) throws RestError {
+        Like like = likeFacade.getLike(id);
+        User user = userFacade.getUserFromSecurityContext();
         List<Like> userLikes = user.getLikes();
         for(Like l : userLikes){
             if(l.getId() == like.getId()){
-                likeService.delete(id);
+                likeFacade.deleteLike(id);
+                log.error("Deleting like");
                 return ResponseEntity.ok()
                         .body("You have deleted like successfully");
             }
-            else {
-                log.error("You are trying to get messages from someone else like");
-                throw new RestError("You are trying to get messages from someone else like");
-            }
+
 
         }
-
-        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        log.error("You are trying to get messages from someone else like");
+        throw new RestError("You are trying to get messages from someone else like");
 
     }
 
@@ -88,9 +82,8 @@ public class LikeController {
 
     @GetMapping(value = "post/id")
     public ResponseEntity<List<LikeDto>> getLikesByPost_Id(@RequestParam (name = "postId") Long postId) {
-        List<Like> likes = likeService.getLikesByPost_Id(postId);
-        List<LikeDto> dtoList = likes.stream().map(like -> likeToLikeDto.convert(like)).collect(Collectors.toList());
-
+        List<LikeDto> dtoList = likeFacade.getLikesByPost_Id(postId);
+        log.info("Getting like by post id");
         return new ResponseEntity<>(dtoList, HttpStatus.OK);
     }
 }

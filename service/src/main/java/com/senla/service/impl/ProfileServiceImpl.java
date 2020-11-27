@@ -17,7 +17,7 @@ import java.util.List;
 @Slf4j
 public class ProfileServiceImpl implements ProfileService {
 
-    private ProfileRepository profileRepository;
+    private final ProfileRepository profileRepository;
 
     @Autowired
     public ProfileServiceImpl(ProfileRepository profileRepository) {
@@ -67,28 +67,28 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
-    public List<Profile> findProfileByCity(String city) {
+    public List<Profile> findProfilesByCity(String city) {
        List<Profile> profiles = profileRepository.findByCity(city);
         log.info("Finding profile by city");
         return profiles;
     }
 
     @Override
-    public List<Profile> findProfileByCountry(String country) {
+    public List<Profile> findProfilesByCountry(String country) {
         List<Profile> profiles = profileRepository.findByCountry(country);
         log.info("Finding profile by country");
         return profiles;
     }
 
     @Override
-    public List<Profile> findProfileByFirstName(String firstName) {
+    public List<Profile> findProfilesByFirstName(String firstName) {
         List<Profile> profiles = profileRepository.findByFirstName(firstName);
         log.info("Finding profile by first name");
         return profiles;
     }
 
     @Override
-    public List<Profile> findProfileByLastName(String lastName) {
+    public List<Profile> findProfilesByLastName(String lastName) {
         List<Profile> profiles = profileRepository.findByLastName(lastName);
         log.info("Finding profile by last name");
         return profiles;

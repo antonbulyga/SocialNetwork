@@ -7,10 +7,10 @@ import java.util.List;
 
 public interface CommunityService {
     Community addCommunity(Community community);
-    void delete(long id);
+    void deleteCommunity(long id);
     Community getCommunitiesByName(String name);
-    Community editCommunity(Community community);
-    List<Community> getAll();
+    Community updateCommunity(Community community);
+    List<Community> getAllCommunities();
     Community getCommunity(Long id);
     List<Community> getCommunitiesByAdminUserId(Long adminId);
 }

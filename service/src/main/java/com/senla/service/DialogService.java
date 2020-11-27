@@ -7,9 +7,9 @@ import java.util.List;
 
 public interface DialogService {
     Dialog addDialog(Dialog dialog);
-    void delete(long id);
+    void deleteDialog(long id);
     Dialog getDialogByName(String name);
-    Dialog editDialog(Dialog dialog);
+    Dialog updateDialog(Dialog dialog);
     List<Dialog> getAll();
     Dialog addUserToDialog(Long dialogId,Long userId);
     Dialog getDialog(Long id);

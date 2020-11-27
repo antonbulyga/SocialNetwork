@@ -18,8 +18,8 @@ import java.util.List;
 @Transactional
 @Slf4j
 public class DialogServiceImpl implements DialogService {
-    private DialogRepository dialogRepository;
-    private UserService userService;
+    private final DialogRepository dialogRepository;
+    private final UserService userService;
 
     @Autowired
     public DialogServiceImpl(DialogRepository dialogRepository, UserService userService) {
@@ -40,7 +40,7 @@ public class DialogServiceImpl implements DialogService {
     }
 
     @Override
-    public void delete(long id) {
+    public void deleteDialog(long id) {
         dialogRepository.deleteById(id);
     }
 
@@ -52,7 +52,7 @@ public class DialogServiceImpl implements DialogService {
 
 
     @Override
-    public Dialog editDialog(Dialog dialog) {
+    public Dialog updateDialog(Dialog dialog) {
         dialogRepository.save(dialog);
         return dialog;
     }
@@ -69,7 +69,7 @@ public class DialogServiceImpl implements DialogService {
        User user = userService.getUser(userId);
        List<User> users = dialog.getUserList();
        users.add(user);
-       editDialog(dialog);
+       updateDialog(dialog);
        return dialog;
     }
 
@@ -79,7 +79,7 @@ public class DialogServiceImpl implements DialogService {
         User user = userService.getUser(userId);
         List<User> users = dialog.getUserList();
         users.remove(user);
-        editDialog(dialog);
+        updateDialog(dialog);
         return dialog;
     }
 

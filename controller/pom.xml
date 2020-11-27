@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <packaging>war</packaging>
+    <packaging>jar</packaging>
 
     <artifactId>controller</artifactId>
     <dependencies>
@@ -28,6 +28,12 @@
         <dependency>
             <groupId>com.senla</groupId>
             <artifactId>model</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.senla</groupId>
+            <artifactId>facade</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

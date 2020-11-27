@@ -21,9 +21,9 @@ import java.util.List;
 @Slf4j
 public class MessageServiceImpl implements MessageService {
 
-    private MessageRepository messageRepository;
-    private DialogService dialogService;
-    private UserService userService;
+    private final MessageRepository messageRepository;
+    private final DialogService dialogService;
+    private final UserService userService;
 
     @Autowired
     public MessageServiceImpl(MessageRepository messageRepository, DialogService dialogService, UserService userService) {
@@ -53,7 +53,7 @@ public class MessageServiceImpl implements MessageService {
             }
         }
         user.setMessages(userMessageList);
-        userService.editUser(user);
+        userService.updateUser(user);
         Dialog dialog = message.getDialog();
         List<Message> messageListInDialog = dialog.getMessages();
         for (Iterator<Message> iter = messageListInDialog.iterator(); iter.hasNext();) {
@@ -63,7 +63,7 @@ public class MessageServiceImpl implements MessageService {
             }
         }
         dialog.setMessages(messageListInDialog);
-        dialogService.editDialog(dialog);
+        dialogService.updateDialog(dialog);
         messageRepository.deleteById(id);
     }
 
@@ -87,7 +87,7 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
-    public Message editMessage(Message message) {
+    public Message updateMessage(Message message) {
         messageRepository.save(message);
         return message;
     }

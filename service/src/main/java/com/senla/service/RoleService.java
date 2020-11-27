@@ -8,6 +8,7 @@ public interface RoleService {
     Role addRole(Role role);
     void deleteRole(long id);
     Role getRoleByName(String name);
-    Role editRole(Role role);
+    Role updateRole(Role role);
     List<Role> getAllRoles();
+    Role getRole(Long id);
 }

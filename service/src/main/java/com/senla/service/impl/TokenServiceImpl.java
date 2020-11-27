@@ -14,7 +14,7 @@ import javax.transaction.Transactional;
 @Slf4j
 public class TokenServiceImpl implements TokenService {
 
-    private TokenRepository tokenRepository;
+    private final TokenRepository tokenRepository;
 
     @Autowired
     public TokenServiceImpl(TokenRepository tokenRepository) {

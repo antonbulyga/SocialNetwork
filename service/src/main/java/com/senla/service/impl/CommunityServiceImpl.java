@@ -16,7 +16,7 @@ import java.util.List;
 @Slf4j
 public class CommunityServiceImpl implements CommunityService {
 
-    private CommunityRepository communityRepository;
+    private final CommunityRepository communityRepository;
 
     @Autowired
     public CommunityServiceImpl(CommunityRepository communityRepository) {
@@ -30,7 +30,7 @@ public class CommunityServiceImpl implements CommunityService {
     }
 
     @Override
-    public void delete(long id) {
+    public void deleteCommunity(long id) {
          communityRepository.deleteById(id);
     }
 
@@ -41,13 +41,13 @@ public class CommunityServiceImpl implements CommunityService {
     }
 
     @Override
-    public Community editCommunity(Community community) {
+    public Community updateCommunity(Community community) {
         communityRepository.save(community);
         return community;
     }
 
     @Override
-    public List<Community> getAll() {
+    public List<Community> getAllCommunities() {
          List<Community> communities = communityRepository.findAll();
         return communities;
     }

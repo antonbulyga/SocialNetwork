@@ -1,7 +1,5 @@
 package com.senla.controller;
 
-
-
 import com.senla.dto.AuthenticationRequestDto;
 import com.senla.entity.User;
 import com.senla.security.JwtTokenProvider;

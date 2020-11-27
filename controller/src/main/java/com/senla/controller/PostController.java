@@ -1,105 +1,93 @@
 package com.senla.controller;
 
-import com.senla.converters.PostDtoToPost;
-import com.senla.converters.PostToPostDto;
 import com.senla.dto.PostDto;
 import com.senla.entity.Post;
 import com.senla.entity.User;
-import com.senla.exception.EntityNotFoundException;
-import com.senla.service.PostService;
-import com.senla.service.UserService;
+import com.senla.exception.RestError;
+import com.senla.facade.PostFacade;
+import com.senla.facade.UserFacade;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/posts/")
+@Slf4j
 public class PostController {
-    private PostService postService;
-    private PostToPostDto postToPostDto;
-    private PostDtoToPost postDtoToPost;
-    private UserService userService;
+
+    private final PostFacade postFacade;
+    private final UserFacade userFacade;
 
     @Autowired
-    public PostController(PostService postService, PostToPostDto postToPostDto, PostDtoToPost postDtoToPost, UserService userService) {
-        this.postService = postService;
-        this.postToPostDto = postToPostDto;
-        this.postDtoToPost = postDtoToPost;
-        this.userService = userService;
+    public PostController(PostFacade postFacade, UserFacade userFacade) {
+        this.postFacade = postFacade;
+        this.userFacade = userFacade;
     }
 
     @GetMapping(value = "")
     public ResponseEntity<List<PostDto>> getAllPosts() {
-        List<Post> posts = postService.getAllPosts();
-        List<PostDto> postDtoList = new ArrayList<>();
-        if (posts == null) {
+        List<PostDto> postDtoList = postFacade.getAllPosts();
+        log.info("no posts");
+        if (postDtoList == null) {
+            log.info("You have got all posts successfully");
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        for (int i = 0; i < posts.size(); i++) {
-            PostDto result = postToPostDto.convert(posts.get(i));
-            postDtoList.add(result);
-        }
+
         return new ResponseEntity<>(postDtoList, HttpStatus.OK);
     }
 
     @PostMapping(value = "add")
     public ResponseEntity<PostDto> addPost(@RequestBody PostDto postDto) {
-        Post post = postDtoToPost.convert(postDto);
-        postService.addPost(post);
+        postFacade.addPost(postDto);
+        log.info("You have added post successfully");
         return new ResponseEntity<>(postDto, HttpStatus.OK);
     }
 
     @DeleteMapping(value = "delete/{id}")
     public ResponseEntity<String> deletePost(@PathVariable(name = "id") long id) {
-        try {
-            postService.getPost(id);
-        } catch (EntityNotFoundException e) {
-            return ResponseEntity.ok()
-                    .body("Post does not exist");
-        }
-        List<Post> posts = postService.getPostsByUser_Id(id);
+        postFacade.getPost(id);
+        List<Post> posts = postFacade.getPostsByUser_Id(id);
         for (Post p : posts) {
             if (p.getId() == id) {
-                postService.deletePost(id);
+                postFacade.deletePost(id);
                 return ResponseEntity.ok()
                         .body("You have deleted the post successfully");
 
             }
         }
-               return ResponseEntity.ok()
-                    .body("You can't delete someone else's post");
+
+        throw new RestError("You can't delete someone else's post");
 
         }
 
         @PostMapping(value = "update")
         public ResponseEntity<PostDto> updatePost(@RequestBody PostDto postDto){
-            Post post = postDtoToPost.convert(postDto);
-            User user = userService.getUserFromSecurityContext();
-            List<Post> posts = postService.getPostsByUser_Id(user.getId());
+            User user = userFacade.getUserFromSecurityContext();
+            List<Post> posts = postFacade.getPostsByUser_Id(user.getId());
             for (Post p : posts) {
-                if (p.getId() == post.getId()) {
-                    postService.editPost(post);
+                if (p.getId() == postDto.getId()) {
+                    postFacade.updatePost(postDto);
+                    log.info("You have updated post successfully");
                 }
             }
-            return new ResponseEntity<>(postDto, HttpStatus.OK);
+           throw new RestError("You are trying to update someone else post");
         }
 
         @GetMapping(value = "search/user/{id}")
-        public ResponseEntity<List<PostDto>> getPostByUser_Id ( @PathVariable(name = "id") long id){
-            List<Post> posts = postService.getPostsByUser_Id(id);
-            List<PostDto> postDtoList = posts.stream().map(post -> postToPostDto.convert(post)).collect(Collectors.toList());
+        public ResponseEntity<List<PostDto>> getPostByUser_Id (@PathVariable(name = "id") long id){
+            List<PostDto> postDtoList = postFacade.getPostsDtoByUser_Id(id);
+            log.info("You received the post by user id");
             return new ResponseEntity<>(postDtoList, HttpStatus.OK);
         }
 
         @GetMapping(value = "{id}")
         public ResponseEntity<PostDto> getPostById (@PathVariable(name = "id") Long postId){
-            Post post = postService.getPost(postId);
-            PostDto postDto = postToPostDto.convert(post);
+            PostDto postDto = postFacade.getPost(postId);
+            log.info("You you got a post by id");
             return new ResponseEntity<>(postDto, HttpStatus.OK);
         }
 

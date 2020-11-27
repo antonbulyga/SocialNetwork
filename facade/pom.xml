@@ -3,7 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>model</artifactId>
+        <artifactId>modell</artifactId>
         <groupId>com.senla</groupId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
@@ -11,20 +11,19 @@
 
     <packaging>jar</packaging>
 
-    <artifactId>security</artifactId>
+    <artifactId>facade</artifactId>
     <dependencies>
-        <dependency>
-            <groupId>com.senla</groupId>
-            <artifactId>model</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-            <scope>compile</scope>
-        </dependency>
         <dependency>
             <groupId>com.senla</groupId>
             <artifactId>service</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>com.senla</groupId>
+            <artifactId>model</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
-
 </project>

@@ -6,8 +6,11 @@ import com.senla.dto.CommunityDto;
 import com.senla.entity.Community;
 import com.senla.entity.User;
 import com.senla.exception.RestError;
+import com.senla.facade.CommunityFacade;
+import com.senla.facade.UserFacade;
 import com.senla.service.CommunityService;
 import com.senla.service.UserService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,52 +22,48 @@ import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping(value = "/communities/")
+@Slf4j
 public class CommunityController {
 
-    private CommunityService communityService;
-    private CommunityToCommunityDto communityToCommunityDto;
-    private CommunityDtoToCommunity communityDtoToCommunity;
-    private UserService userService;
+   private final CommunityFacade communityFacade;
+   private final UserFacade userFacade;
 
-    @Autowired
-    public CommunityController(CommunityService communityService, CommunityToCommunityDto communityToCommunityDto,
-                               CommunityDtoToCommunity communityDtoToCommunity, UserService userService) {
-        this.communityService = communityService;
-        this.communityToCommunityDto = communityToCommunityDto;
-        this.communityDtoToCommunity = communityDtoToCommunity;
-        this.userService = userService;
+   @Autowired
+    public CommunityController(CommunityFacade communityFacade, UserFacade userFacade) {
+        this.communityFacade = communityFacade;
+        this.userFacade = userFacade;
     }
-
 
     @GetMapping(value = "")
     public ResponseEntity<List<CommunityDto>> getAllCommunities(){
-        List<Community> communityList = communityService.getAll();
-        List<CommunityDto> communityDtoList = new ArrayList<>();
-        for (int i = 0; i < communityList.size(); i++) {
-            CommunityDto result = communityToCommunityDto.convert(communityList.get(i));
-            communityDtoList.add(result);
+        List<CommunityDto> communityDtoList = communityFacade.getAllCommunities();
+        if(communityDtoList == null){
+            log.info("No communities");
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(communityDtoList, HttpStatus.OK);
     }
 
     @PostMapping(value = "add")
     public ResponseEntity<CommunityDto> addCommunity(@RequestBody CommunityDto communityDto) {
-        Community community = communityDtoToCommunity.convert(communityDto);
-        communityService.addCommunity(community);
+        communityFacade.addCommunity(communityDto);
+        log.info("Adding community");
         return new ResponseEntity<>(communityDto, HttpStatus.OK);
     }
 
     @DeleteMapping(value = "delete")
-    public ResponseEntity<String> deleteCommunity(@RequestParam (name = "id") long id) {
-        User user = userService.getUserFromSecurityContext();
-        Community community = communityService.getCommunity(id);
+    public ResponseEntity<String> deleteCommunity(@RequestParam (name = "id") long id) throws RestError {
+        User user = userFacade.getUserFromSecurityContext();
+        Community community = communityFacade.getCommunity(id);
         User adminUser = community.getAdminUser();
         if(user.equals(adminUser)){
-            communityService.delete(id);
+            communityFacade.deleteCommunity(id);
+            log.info("Deleting community");
             return ResponseEntity.ok()
                     .body("You have deleted community successfully");
         }
         else {
+            log.error("You are trying to delete a group that you do not represent as an administrator");
             throw new RestError("You are trying to delete a group that you do not represent as an administrator");
         }
 
@@ -72,21 +71,23 @@ public class CommunityController {
 
     @GetMapping(value = "{id}")
     public ResponseEntity<CommunityDto> getCommunityById(@PathVariable(name = "id") Long id) {
-        Community community = communityService.getCommunity(id);
-        CommunityDto communityDto = communityToCommunityDto.convert(community);
+        CommunityDto communityDto = communityFacade.getDtoCommunity(id);
+        log.info("Getting community by id");
         return new ResponseEntity<>(communityDto, HttpStatus.OK);
     }
 
     @PutMapping(value = "update")
-    public ResponseEntity<CommunityDto> updateCommunity(@RequestBody CommunityDto communityDto) {
-        User user = userService.getUserFromSecurityContext();
-        Community community = communityDtoToCommunity.convert(communityDto);
+    public ResponseEntity<CommunityDto> updateCommunity(@RequestBody CommunityDto communityDto) throws RestError {
+        User user = userFacade.getUserFromSecurityContext();
+        Community community = communityFacade.convertCommunityDtoToCommunity(communityDto);
         User adminUser = community.getAdminUser();
         if(user.equals(adminUser)){
-            communityService.editCommunity(community);
+            communityFacade.updateCommunity(communityDto);
+            log.info("Updating community");
             return new ResponseEntity<>(communityDto, HttpStatus.OK);
         }
         else {
+            log.error("Getting community by id");
             throw new RestError("You are trying to update a group that you do not represent as an administrator");
         }
 
@@ -94,15 +95,15 @@ public class CommunityController {
 
     @GetMapping(value = "search/name")
     public ResponseEntity<CommunityDto> getCommunityByName(@PathVariable(name = "name") String name) {
-        Community community = communityService.getCommunitiesByName(name);
-        CommunityDto communityDto = communityToCommunityDto.convert(community);
+        CommunityDto communityDto = communityFacade.getCommunityByName(name);
+        log.info("Getting community by name");
         return new ResponseEntity<>(communityDto, HttpStatus.OK);
     }
 
     @GetMapping(value = "search/admin")
     public ResponseEntity<List<CommunityDto>> getCommunitiesByAdminUser_Id(@PathVariable(name = "adminId") Long adminId) {
-        List<Community> communities = communityService.getCommunitiesByAdminUserId(adminId);
-        List<CommunityDto> communityDtoList = communities.stream().map(community -> communityToCommunityDto.convert(community)).collect(Collectors.toList());
+        List<CommunityDto> communityDtoList = communityFacade.getCommunitiesByAdminUserId(adminId);
+        log.info("Getting community by admin user");
         return new ResponseEntity<>(communityDtoList, HttpStatus.OK);
     }
 }

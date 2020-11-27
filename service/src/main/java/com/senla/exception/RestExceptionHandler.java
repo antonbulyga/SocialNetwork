@@ -4,26 +4,27 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @ControllerAdvice
-public class ExceptionHandler extends ResponseEntityExceptionHandler {
+public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @org.springframework.web.bind.annotation.ExceptionHandler(EntityNotFoundException.class)
+    @ExceptionHandler(EntityNotFoundException.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.NOT_FOUND)
     protected String handleEntityNotFoundException(EntityNotFoundException e){
         return e.getMessage();
     }
 
-    @org.springframework.web.bind.annotation.ExceptionHandler(RestError.class)
+    @ExceptionHandler(RestError.class)
     @ResponseBody
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    protected String handleRestError(Exception e){
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected String handleRestError(RestError e){
         return e.getMessage();
     }
 
-    @org.springframework.web.bind.annotation.ExceptionHandler(IncorrectRequest.class)
+    @ExceptionHandler(IncorrectRequest.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     protected String handleIncorrectRequest(IncorrectRequest e){

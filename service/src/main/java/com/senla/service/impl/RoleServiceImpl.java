@@ -1,6 +1,7 @@
 package com.senla.service.impl;
 
 import com.senla.entity.Role;
+import com.senla.exception.EntityNotFoundException;
 import com.senla.repository.RoleRepository;
 import com.senla.service.RoleService;
 import lombok.extern.slf4j.Slf4j;
@@ -16,11 +17,18 @@ import java.util.List;
 @Slf4j
 public class RoleServiceImpl implements RoleService {
 
-    private RoleRepository roleRepository;
+    private final RoleRepository roleRepository;
 
     @Autowired
     public RoleServiceImpl(RoleRepository roleRepository) {
         this.roleRepository = roleRepository;
+    }
+
+    public Role getRole(Long id) {
+        log.info("Getting role by id");
+        return roleRepository.findById(id)
+                .orElseThrow(() ->
+                        new EntityNotFoundException(String.format("Role with id = %s is not found", id)));
     }
 
     @Override
@@ -43,7 +51,7 @@ public class RoleServiceImpl implements RoleService {
     }
 
     @Override
-    public Role editRole(Role role) {
+    public Role updateRole(Role role) {
         roleRepository.save(role);
         log.info("Updating role");
         return role;

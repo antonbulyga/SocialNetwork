@@ -17,7 +17,7 @@ import java.util.List;
 @Slf4j
 public class PostServiceImpl implements PostService {
 
-    private PostRepository postRepository;
+    private final PostRepository postRepository;
 
     @Autowired
     public PostServiceImpl(PostRepository postRepository) {
@@ -48,7 +48,7 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public Post editPost(Post post) {
+    public Post updatePost(Post post) {
         postRepository.save(post);
         return post;
     }
