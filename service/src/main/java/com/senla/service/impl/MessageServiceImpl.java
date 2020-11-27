@@ -43,6 +43,7 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public void deleteMessage(long id) {
+        getMessage(id);
         Message message = getMessage(id);
         User user = message.getUser();
         List<Message> userMessageList = user.getMessages();

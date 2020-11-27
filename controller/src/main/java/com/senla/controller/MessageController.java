@@ -68,7 +68,6 @@ public class MessageController {
 
     @DeleteMapping(value = "delete")
     public ResponseEntity<String> deleteMessage(@RequestParam (name = "id") long id) {
-        messageFacade.getLike(id);
         User user = userFacade.getUserFromSecurityContext();
         List<Message> messages = user.getMessages();
         for(Message m : messages){
@@ -102,7 +101,7 @@ public class MessageController {
 
     @GetMapping(value = "search/dialog/{id}")
     public ResponseEntity<List<MessageDto>> getMessagesByDialog_Id(@PathVariable (name = "id") long id) {
-        List<MessageDto> messageDtoList = null;
+        List<MessageDto> messageDtoList;
         User user = userFacade.getUserFromSecurityContext();
         List<Dialog> dialogs = user.getDialogs();
         List<MessageDto> messageListDto = messageFacade.getMessagesByDialog_Id(id);
@@ -123,7 +122,7 @@ public class MessageController {
 
     @GetMapping(value = "{id}")
     public ResponseEntity<MessageDto> getMessageById(@PathVariable(name = "id") Long messageId) {
-        MessageDto messageDto = null;
+        MessageDto messageDto;
         Message message = messageFacade.getLike(messageId);
         User user = userFacade.getUserFromSecurityContext();
         List<Message> messages = user.getMessages();

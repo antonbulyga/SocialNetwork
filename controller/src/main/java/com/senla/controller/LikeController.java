@@ -38,7 +38,7 @@ public class LikeController {
     public ResponseEntity<List<LikeDto>> getAllUserLikes(){
         User user = userFacade.getUserFromSecurityContext();
         List<Like> likeList = user.getLikes();
-        if(likeList == null){
+        if(likeList.isEmpty()){
             log.error("The user has no likes");
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -73,12 +73,11 @@ public class LikeController {
 
     }
 
-  /*  @GetMapping(value = "{id}")
+    @GetMapping(value = "{id}")
     public ResponseEntity<LikeDto> getLikeById(@PathVariable(name = "id") Long likeId) {
-        Like like = likeService.getLike(likeId);
-        LikeDto likeDto = likeToLikeDto.convert(like);
+        LikeDto likeDto = likeFacade.getLikeDto(likeId);
         return new ResponseEntity<>(likeDto, HttpStatus.OK);
-    }*/   // что с ним делать????
+    }
 
     @GetMapping(value = "post/id")
     public ResponseEntity<List<LikeDto>> getLikesByPost_Id(@RequestParam (name = "postId") Long postId) {

@@ -18,6 +18,7 @@ import java.util.List;
 @Transactional
 @Slf4j
 public class DialogServiceImpl implements DialogService {
+
     private final DialogRepository dialogRepository;
     private final UserService userService;
 
@@ -41,6 +42,7 @@ public class DialogServiceImpl implements DialogService {
 
     @Override
     public void deleteDialog(long id) {
+        getDialog(id);
         dialogRepository.deleteById(id);
     }
 

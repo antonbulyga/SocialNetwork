@@ -46,7 +46,8 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
-    public void deleteProfiles(long id) {
+    public void deleteProfile(long id) {
+        getProfile(id);
         log.info("Deleting profile");
        profileRepository.deleteById(id);
     }

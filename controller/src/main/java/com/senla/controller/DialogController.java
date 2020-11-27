@@ -1,22 +1,17 @@
 package com.senla.controller;
 
-import com.senla.converters.DialogDtoToDialog;
-import com.senla.converters.DialogToDialogDto;
 import com.senla.dto.DialogDto;
 import com.senla.entity.Dialog;
 import com.senla.entity.User;
 import com.senla.exception.RestError;
 import com.senla.facade.DialogFacade;
 import com.senla.facade.UserFacade;
-import com.senla.service.DialogService;
-import com.senla.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -51,7 +46,6 @@ public class DialogController {
 
         @DeleteMapping(value = "delete")
         public ResponseEntity<String> deleteDialog(@RequestParam (name = "id") long id) {
-            dialogFacade.getDialog(id);
             User user = userFacade.getUserFromSecurityContext();
             List<Dialog> dialogs = user.getDialogs();
             for(Dialog d : dialogs){

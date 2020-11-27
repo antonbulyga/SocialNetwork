@@ -31,7 +31,7 @@ public class ProfileFacade {
     }
 
     public void deleteProfiles(long id){
-        profileService.deleteProfiles(id);
+        profileService.deleteProfile(id);
     }
 
     public ProfileDto updateProfile(ProfileDto profileDto){

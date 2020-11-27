@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface ProfileService {
     Profile addProfile(Profile profile);
-    void deleteProfiles(long id);
+    void deleteProfile(long id);
     Profile updateProfile(Profile profile);
     List<Profile> getAllProfiles();
     List<Profile> findProfilesByCity(String city);

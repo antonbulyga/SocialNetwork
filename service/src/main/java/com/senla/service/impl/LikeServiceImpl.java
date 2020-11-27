@@ -39,6 +39,7 @@ public class LikeServiceImpl implements LikeService {
 
     @Override
     public void deleteLike(long id) {
+        getLike(id);
         Like like = getLike(id);
         User user = like.getUser();
         List<Like> userLikeList = user.getLikes();

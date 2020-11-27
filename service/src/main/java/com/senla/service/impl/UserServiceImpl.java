@@ -78,6 +78,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void deleteUser(long userId) {
+        getUser(userId);
         log.info("Deleting user by id");
         User user = getUser(userId);
         List<Community> communities = communityService.getCommunitiesByAdminUserId(userId);
@@ -87,13 +88,13 @@ public class UserServiceImpl implements UserService {
                 communities.get(i).getUsers().removeAll(communities.get(i).getUsers());
                 communities.get(i).getPosts().removeAll(communities.get(i).getPosts());
                 communityService.deleteCommunity(communities.get(i).getId());
-                profileService.deleteProfiles(user.getProfile().getId());
+                profileService.deleteProfile(user.getProfile().getId());
             }
 
         }
         else {
             userRepository.deleteById(userId);
-            profileService.deleteProfiles(user.getProfile().getId());
+            profileService.deleteProfile(user.getProfile().getId());
         }
     }
 

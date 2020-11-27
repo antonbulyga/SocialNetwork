@@ -43,8 +43,8 @@ public class AdminController {
     public ResponseEntity<List<UserDto>> getAllUsersAsAdmin(){
         List<UserDto> usersDtoList = userFacade.getAllUsers();
         log.info("Getting all users as admin");
-        if (usersDtoList == null) {
-            log.error("No users");
+        if (usersDtoList.isEmpty()) {
+            log.warn("No users");
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<>(usersDtoList, HttpStatus.OK);
@@ -59,7 +59,6 @@ public class AdminController {
 
     @DeleteMapping("users/delete")
     public ResponseEntity<String> deleteUserAsAdmin(@RequestParam (name = "id") Long userId) {
-        userFacade.getUser(userId);
         userFacade.deleteUser(userId);
         log.info("Deleting user by id as admin");
         return ResponseEntity.ok()
@@ -224,7 +223,6 @@ public class AdminController {
 
     @DeleteMapping(value = "delete")
     public ResponseEntity<String> deleteCommunity(@RequestParam (name = "id") long id) {
-        communityFacade.getCommunity(id);
         communityFacade.deleteCommunity(id);
         log.info("Deleting community as admin");
         return ResponseEntity.ok()

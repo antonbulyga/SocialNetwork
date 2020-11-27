@@ -31,9 +31,9 @@ public class PostController {
     @GetMapping(value = "")
     public ResponseEntity<List<PostDto>> getAllPosts() {
         List<PostDto> postDtoList = postFacade.getAllPosts();
-        log.info("no posts");
-        if (postDtoList == null) {
-            log.info("You have got all posts successfully");
+        log.info("You have got all posts successfully");
+        if (postDtoList.isEmpty()) {
+            log.info("no posts");
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
 
@@ -49,7 +49,6 @@ public class PostController {
 
     @DeleteMapping(value = "delete/{id}")
     public ResponseEntity<String> deletePost(@PathVariable(name = "id") long id) {
-        postFacade.getPost(id);
         List<Post> posts = postFacade.getPostsByUser_Id(id);
         for (Post p : posts) {
             if (p.getId() == id) {

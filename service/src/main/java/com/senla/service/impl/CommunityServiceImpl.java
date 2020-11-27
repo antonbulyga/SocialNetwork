@@ -31,6 +31,7 @@ public class CommunityServiceImpl implements CommunityService {
 
     @Override
     public void deleteCommunity(long id) {
+        getCommunity(id);
          communityRepository.deleteById(id);
     }
 
