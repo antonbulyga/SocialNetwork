@@ -39,50 +39,29 @@ public class FriendshipServiceImpl implements FriendshipService {
 
     @Override
     public Friendship sentNewFriendRequest(Long userOneId, Long userTwoId, Long actionId) {
-        Friendship friendship = new Friendship();
-        validate(userOneId, userTwoId, actionId);
         User actionUser = userService.getUser(actionId);
         User userOne = userService.getUser(userOneId);
         User userTwo = userService.getUser(userTwoId);
         friendshipRepository.sentNewFriendRequest(userOne, userTwo, actionUser);
-        friendship.setUserOne(userOne);
-        friendship.setUserTwo(userTwo);
-        friendship.setActionUser(actionUser);
-        friendship.setFriendshipStatus(FriendshipStatus.REQUEST);
-
-        return friendship;
+        return createFriendship(userOne, userTwo, actionUser, FriendshipStatus.REQUEST);
     }
 
     @Override
     public Friendship sentFriendRequest(Long userOneId, Long userTwoId, Long actionId) {
-        Friendship friendship = new Friendship();
-        validate(userOneId, userTwoId, actionId);
         User actionUser = userService.getUser(actionId);
         User userOne = userService.getUser(userOneId);
         User userTwo = userService.getUser(userTwoId);
         friendshipRepository.sentFriendRequest(userOne, userTwo, actionUser);
-        friendshipRepository.sentNewFriendRequest(userOne, userTwo, actionUser);
-        friendship.setUserOne(userOne);
-        friendship.setUserTwo(userTwo);
-        friendship.setActionUser(actionUser);
-        friendship.setFriendshipStatus(FriendshipStatus.REQUEST);
-
-        return friendship;
+        return createFriendship(userOne, userTwo, actionUser, FriendshipStatus.REQUEST);
     }
 
     @Override
     public Friendship addToFriends(Long userOneId, Long userTwoId, Long actionId) {
-        Friendship friendship = new Friendship();
-        validate(userOneId, userTwoId, actionId);
         User actionUser = userService.getUser(actionId);
         User userOne = userService.getUser(userOneId);
         User userTwo = userService.getUser(userTwoId);
         friendshipRepository.addToFriends(userOne, userTwo, actionUser);
-        friendship.setUserOne(userOne);
-        friendship.setUserTwo(userTwo);
-        friendship.setActionUser(actionUser);
-        friendship.setFriendshipStatus(FriendshipStatus.FRIEND);
-        return friendship;
+        return createFriendship(userOne, userTwo, actionUser, FriendshipStatus.FRIEND);
     }
 
     @Override
@@ -97,45 +76,30 @@ public class FriendshipServiceImpl implements FriendshipService {
 
     @Override
     public Friendship deleteFriendship(Long userOneId, Long userTwoId, Long actionId) {
-        Friendship friendship = new Friendship();
-        validate(userOneId, userTwoId, actionId);
         User actionUser = userService.getUser(actionId);
         User userOne = userService.getUser(userOneId);
         User userTwo = userService.getUser(userTwoId);
         friendshipRepository.deleteFriendship(userOne, userTwo, actionUser);
-        friendship.setUserOne(userOne);
-        friendship.setUserTwo(userTwo);
-        friendship.setActionUser(actionUser);
-        friendship.setFriendshipStatus(FriendshipStatus.DECLINED);
-        return friendship;
+        return createFriendship(userOne, userTwo, actionUser, FriendshipStatus.DECLINED);
     }
 
     @Override
     public Friendship blockUser(Long userOneId, Long userTwoId, Long actionId) {
-        Friendship friendship = new Friendship();
-        validate(userOneId, userTwoId, actionId);
         User actionUser = userService.getUser(actionId);
-        friendship.setActionUser(actionUser);
         User userOne = userService.getUser(userOneId);
-        friendship.setUserOne(userOne);
         User userTwo = userService.getUser(userTwoId);
-        friendship.setUserTwo(userTwo);
-        friendship.setFriendshipStatus(FriendshipStatus.BLOCKED);
+        Friendship friendship = createFriendship(userOne, userTwo, actionUser, FriendshipStatus.BLOCKED);
         friendshipRepository.blockUser(userOne, userTwo, actionUser);
         return friendship;
     }
 
+
     @Override
     public Friendship unblockUser(Long userOneId, Long userTwoId, Long actionId) {
-        Friendship friendship = new Friendship();
-        validate(userOneId, userTwoId, actionId);
         User actionUser = userService.getUser(actionId);
-        friendship.setActionUser(actionUser);
         User userOne = userService.getUser(userOneId);
-        friendship.setUserOne(userOne);
         User userTwo = userService.getUser(userTwoId);
-        friendship.setUserTwo(userTwo);
-        friendship.setFriendshipStatus(FriendshipStatus.DECLINED);
+        Friendship friendship = createFriendship(userOne, userTwo, actionUser, FriendshipStatus.DECLINED);
         friendshipRepository.unblockUser(userOne, userTwo, actionUser);
         return friendship;
     }
@@ -144,5 +108,15 @@ public class FriendshipServiceImpl implements FriendshipService {
     public List<Friendship> getRequest(Long userId) {
         User user = userService.getUser(userId);
         return friendshipRepository.getRequests(user);
+    }
+
+    private Friendship createFriendship(User userOne, User userTwo, User actionUser, FriendshipStatus status) {
+        validate(userOne.getId(), userTwo.getId(), actionUser.getId());
+        Friendship friendship = new Friendship();
+        friendship.setActionUser(actionUser);
+        friendship.setUserOne(userOne);
+        friendship.setUserTwo(userTwo);
+        friendship.setFriendshipStatus(status);
+        return friendship;
     }
 }

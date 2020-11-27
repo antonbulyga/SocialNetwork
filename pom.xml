@@ -19,9 +19,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.senla</groupId>
-    <artifactId>modell</artifactId>
+    <artifactId>socialNetwork</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>model</name>
+    <name>socialNetwork</name>
     <description>Social network project</description>
 
     <dependencies>
