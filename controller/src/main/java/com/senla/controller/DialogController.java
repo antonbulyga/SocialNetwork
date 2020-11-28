@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -38,7 +39,7 @@ public class DialogController {
     }
 
     @PostMapping(value = "add")
-    public ResponseEntity<DialogDto> addDialog(@RequestBody DialogDto dialogDto) {
+    public ResponseEntity<DialogDto> addDialog(@Valid @RequestBody DialogDto dialogDto) {
         dialogFacade.addDialog(dialogDto);
         log.info("Adding a new dialog");
         return new ResponseEntity<>(dialogDto, HttpStatus.OK);
@@ -77,7 +78,7 @@ public class DialogController {
     }
 
     @PutMapping(value = "update")
-    public ResponseEntity<DialogDto> updateDialog(@RequestBody DialogDto dialogDto) {
+    public ResponseEntity<DialogDto> updateDialog(@Valid @RequestBody DialogDto dialogDto) {
         User user = userFacade.getUserFromSecurityContext();
         List<Dialog> dialogs = user.getDialogs();
         for (Dialog d : dialogs) {

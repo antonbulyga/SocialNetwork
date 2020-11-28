@@ -4,6 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class Post {
     @OneToMany(mappedBy = "post", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Like> likes;
 
-    @NotBlank
+    @NotBlank(message = "Text of the post is mandatory")
     @Column(name = "text")
     private String text;
 
@@ -30,7 +31,7 @@ public class Post {
     @JoinColumn(name = "users_id")
     private User user;
 
-    @NotBlank
+    @NotNull(message = "Date of creation is mandatory")
     @Column(name = "date_of_creation")
     private LocalDateTime dateOfCreation;
 

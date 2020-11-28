@@ -4,6 +4,7 @@ import com.senla.dto.ProfileDto;
 import com.senla.entity.Profile;
 import com.senla.entity.User;
 import com.senla.enumeration.Gender;
+import com.senla.exception.RestError;
 import com.senla.facade.ProfileFacade;
 import com.senla.facade.UserFacade;
 import lombok.extern.slf4j.Slf4j;
@@ -12,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -29,7 +31,7 @@ public class ProfileController {
     }
 
     @PostMapping(value = "add")
-    public ResponseEntity<ProfileDto> addProfile(@RequestBody ProfileDto profileDto) {
+    public ResponseEntity<ProfileDto> addProfile(@Valid @RequestBody ProfileDto profileDto) {
         profileFacade.addProfile(profileDto);
         return new ResponseEntity<>(profileDto, HttpStatus.OK);
     }
@@ -44,17 +46,20 @@ public class ProfileController {
     }
 
     @PutMapping(value = "update")
-    public ResponseEntity<ProfileDto> updateProfile(@RequestBody ProfileDto profileDto) {
+    public ResponseEntity<ProfileDto> updateProfile(@Valid @RequestBody ProfileDto profileDto) {
         User user = userFacade.getUserFromSecurityContext();
+        Profile profileFromSecurityContext = user.getProfile();
         Profile profile = profileFacade.convertProfileFromProfileDto(profileDto);
-        if (user.getProfile().equals(profile)) {
+        if (profileFromSecurityContext.getId() == profile.getId()) {
             profileFacade.updateProfile(profileDto);
+            log.info("You have updated profile successfully");
+            return new ResponseEntity<>(profileDto, HttpStatus.OK);
+
         } else {
-            log.error("You are trying to update someone else's profile");
-            return null;
+            log.warn("You are trying to update someone else's profile");
+            throw new RestError("You are trying to update someone else's profile");
         }
 
-        return new ResponseEntity<>(profileDto, HttpStatus.OK);
     }
 
     @GetMapping(value = "search/user")

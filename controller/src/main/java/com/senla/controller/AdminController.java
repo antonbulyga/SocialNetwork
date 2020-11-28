@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -67,7 +68,7 @@ public class AdminController {
     }
 
     @GetMapping(value = "users/search/email")
-    public ResponseEntity<UserDto> findByEmailAsAdmin(@RequestParam(name = "email") String email) {
+    public ResponseEntity<UserDto> findByEmailAsAdmin (@RequestParam(name = "email") String email) {
         UserDto userDto = userFacade.findUserByEmail(email);
         log.info("Finding user by email as admin");
         return new ResponseEntity<>(userDto, HttpStatus.OK);
@@ -89,14 +90,14 @@ public class AdminController {
     }
 
     @PostMapping(value = "role/add")
-    public ResponseEntity<RoleDto> addRole(@RequestBody RoleDto roleDto) {
+    public ResponseEntity<RoleDto> addRole(@Valid @RequestBody RoleDto roleDto) {
         roleFacade.addRole(roleDto);
         log.info("Adding role as admin");
         return new ResponseEntity<>(roleDto, HttpStatus.OK);
     }
 
     @DeleteMapping(value = "role/delete")
-    public ResponseEntity<String> deleteRole(@RequestBody RoleDto roleDto) {
+    public ResponseEntity<String> deleteRole(@Valid @RequestBody RoleDto roleDto) {
         roleFacade.deleteRole(roleDto.getId());
         log.info("Deleting role as admin");
         return ResponseEntity.ok()
@@ -104,7 +105,7 @@ public class AdminController {
     }
 
     @PutMapping(value = "role/update")
-    public ResponseEntity<RoleDto> update(@RequestBody RoleDto roleDto) {
+    public ResponseEntity<RoleDto> update(@Valid @RequestBody RoleDto roleDto) {
         roleFacade.updateRole(roleDto);
         log.info("Updating role as admin");
         return new ResponseEntity<>(roleDto, HttpStatus.OK);
@@ -142,7 +143,7 @@ public class AdminController {
     }
 
     @PutMapping(value = "profiles/update")
-    public ResponseEntity<ProfileDto> updateProfileAsAdmin(@RequestBody ProfileDto profileDto) {
+    public ResponseEntity<ProfileDto> updateProfileAsAdmin(@Valid @RequestBody ProfileDto profileDto) {
         profileFacade.updateProfile(profileDto);
         log.info("Updating profile as admin");
         return new ResponseEntity<>(profileDto, HttpStatus.OK);

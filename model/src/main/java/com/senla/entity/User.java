@@ -4,6 +4,8 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -22,21 +24,23 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    @NotBlank(message = "Email is mandatory")
     @Email
     @Column(name = "email")
     private String email;
 
-    @NotBlank
+    @NotBlank(message = "User name is mandatory")
     @Column(name = "user_name")
     private String userName;
 
-    @NotBlank
+    @Min(value = 6, message = "Password should be not less than 6 characters")
+    @Max(value = 20, message = "Password should be not greater than 20 characters")
+    @NotBlank(message = "Password is mandatory")
     @Column(name = "password")
     private String password;
 
 
-    @OneToOne(fetch = FetchType.LAZY)
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_profile_id", referencedColumnName = "id")
     private Profile profile;
 
@@ -66,7 +70,7 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
     private List<Like> likes;
-
+    @NotBlank(message = "Creation time field is is mandatory")
     @Column(name = "creation_time", nullable = false)
     private LocalDateTime creationTime;
 

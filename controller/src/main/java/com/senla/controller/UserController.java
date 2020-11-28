@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping(value = "/users/")
 public class UserController {
@@ -36,13 +38,13 @@ public class UserController {
     }
 
     @PostMapping("add")
-    public UserDto register(@RequestBody UserDto userDto) {
+    public UserDto register(@Valid @RequestBody UserDto userDto) {
         userFacade.addUser(userDto);
         return userDto;
     }
 
     @PutMapping("update")
-    public UserDto update(@RequestBody UserDto userDto) {
+    public UserDto update(@Valid @RequestBody UserDto userDto) {
         userFacade.updateUser(userDto);
         return userDto;
     }

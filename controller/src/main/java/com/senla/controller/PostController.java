@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -41,7 +42,7 @@ public class PostController {
     }
 
     @PostMapping(value = "add")
-    public ResponseEntity<PostDto> addPost(@RequestBody PostDto postDto) {
+    public ResponseEntity<PostDto> addPost(@Valid @RequestBody PostDto postDto) {
         postFacade.addPost(postDto);
         log.info("You have added post successfully");
         return new ResponseEntity<>(postDto, HttpStatus.OK);
@@ -64,7 +65,7 @@ public class PostController {
     }
 
     @PutMapping(value = "update")
-    public ResponseEntity<PostDto> updatePost(@RequestBody PostDto postDto) {
+    public ResponseEntity<PostDto> updatePost(@Valid @RequestBody PostDto postDto) {
         User user = userFacade.getUserFromSecurityContext();
         List<Post> posts = postFacade.getPostsByUser_Id(user.getId());
         for (Post p : posts) {

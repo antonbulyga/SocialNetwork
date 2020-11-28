@@ -17,7 +17,7 @@ public class Token {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    @NotBlank(message = "Token number is mandatory")
     @Column(name = "token_number", nullable = false)
     private String tokenNumber;
 

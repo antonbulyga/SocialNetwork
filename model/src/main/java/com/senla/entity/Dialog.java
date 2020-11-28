@@ -4,7 +4,9 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Getter
@@ -19,13 +21,13 @@ public class Dialog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    @NotBlank(message = "Name is mandatory")
     @Column(name = "name")
     private String name;
 
-    @NotBlank
+    @NotNull(message = "Time creation is mandatory")
     @Column(name = "time_creation")
-    private LocalDate timeCreation;
+    private LocalDateTime timeCreation;
 
     @OneToMany(mappedBy = "dialog", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Message> messages;

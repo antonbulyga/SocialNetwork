@@ -2,7 +2,10 @@ package com.senla.dto;
 
 import lombok.*;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -10,7 +13,12 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DialogShortDto {
+    @NotNull(message = "Id of the dialog is mandatory")
     private Long id;
+
+    @NotBlank(message = "Name of the dialog is mandatory")
     private String name;
-    private LocalDate timeCreation;
+
+    @NotNull(message = "Time creation field is mandatory")
+    private LocalDateTime timeCreation;
 }

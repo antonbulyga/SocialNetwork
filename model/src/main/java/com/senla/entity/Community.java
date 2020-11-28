@@ -25,7 +25,7 @@ public class Community {
     })
     private Set<User> users;
 
-    @NotBlank
+    @NotBlank(message = "Name is mandatory")
     @Column(name = "name")
     private String name;
     @OneToOne(fetch = FetchType.LAZY, cascade = {

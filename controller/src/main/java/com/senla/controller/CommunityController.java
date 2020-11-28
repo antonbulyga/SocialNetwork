@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -45,14 +46,14 @@ public class CommunityController {
     }
 
     @PostMapping(value = "add")
-    public ResponseEntity<CommunityDto> addCommunity(@RequestBody CommunityDto communityDto) {
+    public ResponseEntity<CommunityDto> addCommunity(@Valid @RequestBody CommunityDto communityDto) {
         communityFacade.addCommunity(communityDto);
         log.info("Adding community");
         return new ResponseEntity<>(communityDto, HttpStatus.OK);
     }
 
     @DeleteMapping(value = "delete")
-    public ResponseEntity<String> deleteCommunity(@RequestParam(name = "id") long id) throws RestError {
+    public ResponseEntity<String> deleteCommunity(@RequestParam(name = "id") long id){
         User user = userFacade.getUserFromSecurityContext();
         Community community = communityFacade.getCommunity(id);
         User adminUser = community.getAdminUser();
@@ -76,7 +77,7 @@ public class CommunityController {
     }
 
     @PutMapping(value = "update")
-    public ResponseEntity<CommunityDto> updateCommunity(@RequestBody CommunityDto communityDto) throws RestError {
+    public ResponseEntity<CommunityDto> updateCommunity(@Valid @RequestBody CommunityDto communityDto) throws RestError {
         User user = userFacade.getUserFromSecurityContext();
         Community community = communityFacade.convertCommunityDtoToCommunity(communityDto);
         User adminUser = community.getAdminUser();

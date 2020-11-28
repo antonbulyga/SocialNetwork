@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -47,7 +48,7 @@ public class LikeController {
     }
 
     @PostMapping(value = "add")
-    public ResponseEntity<LikeDto> addLike(@RequestBody LikeDto likeDto) {
+    public ResponseEntity<LikeDto> addLike(@Valid @RequestBody LikeDto likeDto) {
         likeFacade.addLike(likeDto);
         log.error("Adding like");
         return new ResponseEntity<>(likeDto, HttpStatus.OK);

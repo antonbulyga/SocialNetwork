@@ -4,7 +4,9 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -22,7 +24,7 @@ public class Message {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @NotBlank
+    @NotBlank(message = "Message is mandatory")
     @Column(name = "message")
     private String message;
 
@@ -30,8 +32,8 @@ public class Message {
     @JoinColumn(name = "dialog_id")
     private Dialog dialog;
 
-    @NotBlank
+    @NotNull(message = "Creation time is mandatory")
     @Column(name = "creation_time")
-    private LocalDate creationTime;
+    private LocalDateTime creationTime;
 
 }

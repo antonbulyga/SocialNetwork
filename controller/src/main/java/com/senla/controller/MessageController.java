@@ -14,6 +14,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +41,7 @@ public class MessageController {
     }
 
     @PostMapping(value = "add")
-    public ResponseEntity<MessageDto> addMessageToDialog(@RequestBody MessageDto messageDto) {
+    public ResponseEntity<MessageDto> addMessageToDialog(@Valid @RequestBody MessageDto messageDto) {
         Message message = messageFacade.getLike(messageDto.getId());
         User user = userFacade.getUserFromSecurityContext();
         List<Dialog> dialogs = user.getDialogs();
@@ -78,7 +79,7 @@ public class MessageController {
     }
 
     @PutMapping(value = "update")
-    public ResponseEntity<MessageDto> updateMessage(@RequestBody MessageDto messageDto) {
+    public ResponseEntity<MessageDto> updateMessage(@Valid @RequestBody MessageDto messageDto) {
         User user = userFacade.getUserFromSecurityContext();
         List<Message> messages = user.getMessages();
         messageFacade.getLike(messageDto.getId());

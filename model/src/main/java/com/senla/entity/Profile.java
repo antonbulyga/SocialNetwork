@@ -5,7 +5,8 @@ import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.time.LocalDate;
+import javax.validation.constraints.NotNull;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -19,35 +20,36 @@ public class Profile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank
+    @NotNull(message = "Date of birth is mandatory")
     @Column(name = "date_of_birth")
-    private LocalDate dateOfBirth;
+    private LocalDateTime dateOfBirth;
 
+    @NotNull(message = "Field gender is mandatory")
     @Column(name = "gender")
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    @NotBlank
+    @NotBlank(message = "Field phone is mandatory")
     @Column(name = "phone")
     private String phoneNumber;
 
-    @NotBlank
+    @NotBlank(message = "Field first name is mandatory")
     @Column(name = "first_name")
     private String firstName;
 
-    @NotBlank
+    @NotBlank(message = "Field last name is mandatory")
     @Column(name = "last_name")
     private String lastName;
 
     @OneToOne(mappedBy = "profile",
-            fetch = FetchType.LAZY)
+            fetch = FetchType.EAGER)
     private User user;
 
-    @NotBlank
+    @NotBlank(message = "Field country is mandatory")
     @Column(name = "country")
     private String country;
 
-    @NotBlank
+    @NotBlank(message = "Field city is mandatory")
     @Column(name = "city")
     private String city;
 }

@@ -19,6 +19,7 @@ public class FriendshipToFriendshipDto implements Converter<Friendship, Friendsh
     @Override
     public FriendshipDto convert(Friendship friendship) {
         return FriendshipDto.builder()
+                .id(friendship.getId())
                 .friendshipStatus(friendship.getFriendshipStatus())
                 .actionUser(userToUserShortDto.convert(friendship.getActionUser()))
                 .userOne(userToUserShortDto.convert(friendship.getUserOne()))

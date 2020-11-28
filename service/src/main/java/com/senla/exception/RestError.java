@@ -1,5 +1,9 @@
 package com.senla.exception;
 
+import org.springframework.http.HttpStatus;
+
+import java.util.List;
+
 public class RestError extends RuntimeException {
     public RestError() {
     }
@@ -18,5 +22,8 @@ public class RestError extends RuntimeException {
 
     public RestError(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(message, cause, enableSuppression, writableStackTrace);
+    }
+
+    public RestError(HttpStatus badRequest, String localizedMessage, List<String> errorList) {
     }
 }

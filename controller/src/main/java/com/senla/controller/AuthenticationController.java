@@ -15,6 +15,7 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,7 +38,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("login")
-    public ResponseEntity login(@RequestBody AuthenticationRequestDto requestDto) {
+    public ResponseEntity login(@Valid @RequestBody AuthenticationRequestDto requestDto) {
         try {
             String username = requestDto.getUsername();
             User user = userService.findUserByUserName(username);
