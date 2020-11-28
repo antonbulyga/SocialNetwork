@@ -61,33 +61,33 @@ public class PostController {
 
         throw new RestError("You can't delete someone else's post");
 
-        }
-
-        @PostMapping(value = "update")
-        public ResponseEntity<PostDto> updatePost(@RequestBody PostDto postDto){
-            User user = userFacade.getUserFromSecurityContext();
-            List<Post> posts = postFacade.getPostsByUser_Id(user.getId());
-            for (Post p : posts) {
-                if (p.getId() == postDto.getId()) {
-                    postFacade.updatePost(postDto);
-                    log.info("You have updated post successfully");
-                }
-            }
-           throw new RestError("You are trying to update someone else post");
-        }
-
-        @GetMapping(value = "search/user/{id}")
-        public ResponseEntity<List<PostDto>> getPostByUser_Id (@PathVariable(name = "id") long id){
-            List<PostDto> postDtoList = postFacade.getPostsDtoByUser_Id(id);
-            log.info("You received the post by user id");
-            return new ResponseEntity<>(postDtoList, HttpStatus.OK);
-        }
-
-        @GetMapping(value = "{id}")
-        public ResponseEntity<PostDto> getPostById (@PathVariable(name = "id") Long postId){
-            PostDto postDto = postFacade.getPost(postId);
-            log.info("You you got a post by id");
-            return new ResponseEntity<>(postDto, HttpStatus.OK);
-        }
-
     }
+
+    @PutMapping(value = "update")
+    public ResponseEntity<PostDto> updatePost(@RequestBody PostDto postDto) {
+        User user = userFacade.getUserFromSecurityContext();
+        List<Post> posts = postFacade.getPostsByUser_Id(user.getId());
+        for (Post p : posts) {
+            if (p.getId() == postDto.getId()) {
+                postFacade.updatePost(postDto);
+                log.info("You have updated post successfully");
+            }
+        }
+        throw new RestError("You are trying to update someone else post");
+    }
+
+    @GetMapping(value = "search/user/{id}")
+    public ResponseEntity<List<PostDto>> getPostByUser_Id(@PathVariable(name = "id") long id) {
+        List<PostDto> postDtoList = postFacade.getPostsDtoByUser_Id(id);
+        log.info("You received the post by user id");
+        return new ResponseEntity<>(postDtoList, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "{id}")
+    public ResponseEntity<PostDto> getPostById(@PathVariable(name = "id") Long postId) {
+        PostDto postDto = postFacade.getPost(postId);
+        log.info("You you got a post by id");
+        return new ResponseEntity<>(postDto, HttpStatus.OK);
+    }
+
+}

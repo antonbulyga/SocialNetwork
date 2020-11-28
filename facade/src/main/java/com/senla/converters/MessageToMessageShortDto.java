@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MessageToMessageShortDto implements Converter<Message, MessageShortDto> {
+
     @Override
     public MessageShortDto convert(Message message) {
         return MessageShortDto.builder()

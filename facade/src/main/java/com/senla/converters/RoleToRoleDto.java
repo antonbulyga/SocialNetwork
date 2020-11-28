@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 @Component
 public class RoleToRoleDto implements Converter<Role, RoleDto> {
+
     private UserToUserShortDto userToUserShortDto;
 
     @Autowired

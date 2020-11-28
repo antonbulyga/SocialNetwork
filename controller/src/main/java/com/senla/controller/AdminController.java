@@ -40,7 +40,7 @@ public class AdminController {
     }
 
     @GetMapping(value = "users")
-    public ResponseEntity<List<UserDto>> getAllUsersAsAdmin(){
+    public ResponseEntity<List<UserDto>> getAllUsersAsAdmin() {
         List<UserDto> usersDtoList = userFacade.getAllUsers();
         log.info("Getting all users as admin");
         if (usersDtoList.isEmpty()) {
@@ -51,14 +51,14 @@ public class AdminController {
     }
 
     @GetMapping(value = "users/{id}")
-    public ResponseEntity<UserDto> getUserByIdAsAdmin(@PathVariable(name = "id") Long id){
+    public ResponseEntity<UserDto> getUserByIdAsAdmin(@PathVariable(name = "id") Long id) {
         UserDto userDto = userFacade.getUser(id);
         log.info("Getting user by id as admin");
         return new ResponseEntity<>(userDto, HttpStatus.OK);
     }
 
     @DeleteMapping("users/delete")
-    public ResponseEntity<String> deleteUserAsAdmin(@RequestParam (name = "id") Long userId) {
+    public ResponseEntity<String> deleteUserAsAdmin(@RequestParam(name = "id") Long userId) {
         userFacade.deleteUser(userId);
         log.info("Deleting user by id as admin");
         return ResponseEntity.ok()
@@ -74,7 +74,7 @@ public class AdminController {
     }
 
     @GetMapping(value = "users/edit/password")
-    public ResponseEntity<UserDto> changePasswordAsAdmin(@RequestParam(name = "newPassword") String newPassword,@PathVariable(name = "id") long userId) {
+    public ResponseEntity<UserDto> changePasswordAsAdmin(@RequestParam(name = "newPassword") String newPassword, @PathVariable(name = "id") long userId) {
         UserDto userDto = userFacade.changeUserPassword(newPassword, userId);
         log.info("You have changed password successfully");
         return new ResponseEntity<>(userDto, HttpStatus.OK);
@@ -82,7 +82,7 @@ public class AdminController {
 
 
     @GetMapping(value = "roles")
-    public ResponseEntity<List<RoleDto>> getAllRolesAsAdmin(){
+    public ResponseEntity<List<RoleDto>> getAllRolesAsAdmin() {
         List<RoleDto> roleDtoList = roleFacade.getAllRoles();
         log.info("Getting all roles as admin");
         return new ResponseEntity<>(roleDtoList, HttpStatus.OK);
@@ -103,7 +103,7 @@ public class AdminController {
                 .body("You have deleted the role successfully");
     }
 
-    @PostMapping(value = "role/update")
+    @PutMapping(value = "role/update")
     public ResponseEntity<RoleDto> update(@RequestBody RoleDto roleDto) {
         roleFacade.updateRole(roleDto);
         log.info("Updating role as admin");
@@ -118,7 +118,7 @@ public class AdminController {
     }
 
     @GetMapping(value = "profiles")
-    public ResponseEntity<List<ProfileDto>> getAllProfilesAsAdmin(){
+    public ResponseEntity<List<ProfileDto>> getAllProfilesAsAdmin() {
         List<ProfileDto> dtoList = profileFacade.getAllProfiles();
         log.info("Getting all profiles as admin");
         return new ResponseEntity<>(dtoList, HttpStatus.OK);
@@ -141,7 +141,7 @@ public class AdminController {
         return new ResponseEntity<>(profileDto, HttpStatus.OK);
     }
 
-    @PostMapping(value = "profiles/update")
+    @PutMapping(value = "profiles/update")
     public ResponseEntity<ProfileDto> updateProfileAsAdmin(@RequestBody ProfileDto profileDto) {
         profileFacade.updateProfile(profileDto);
         log.info("Updating profile as admin");
@@ -156,7 +156,7 @@ public class AdminController {
     }
 
     @DeleteMapping(value = "posts/delete/{id}")
-    public ResponseEntity<String> deletePost(@PathVariable (name = "id") long id) {
+    public ResponseEntity<String> deletePost(@PathVariable(name = "id") long id) {
         postFacade.getPost(id);
         postFacade.deletePost(id);
         log.info("Deleting post by id as admin");
@@ -164,15 +164,15 @@ public class AdminController {
                 .body("You have deleted the post successfully");
     }
 
-    @PostMapping(value = "posts/update")
-    public ResponseEntity<PostDto> updatePostAsAdmin (@RequestBody PostDto postDto){
+    @PutMapping(value = "posts/update")
+    public ResponseEntity<PostDto> updatePostAsAdmin(@RequestBody PostDto postDto) {
         postFacade.updatePost(postDto);
         log.info("Updating post by id as admin");
         return new ResponseEntity<>(postDto, HttpStatus.OK);
     }
 
     @GetMapping(value = "messages")
-    public ResponseEntity<List<MessageDto>> getAllMessagesAsAdmin(){
+    public ResponseEntity<List<MessageDto>> getAllMessagesAsAdmin() {
         List<MessageDto> messageDtoList = messageFacade.getAllMessages();
         log.info("Getting all messages as admin");
         return new ResponseEntity<>(messageDtoList, HttpStatus.OK);
@@ -186,7 +186,7 @@ public class AdminController {
     }
 
     @DeleteMapping(value = "messages/delete")
-    public ResponseEntity<String> deleteMessageAsAdmin(@RequestParam (name = "id") long id) {
+    public ResponseEntity<String> deleteMessageAsAdmin(@RequestParam(name = "id") long id) {
         messageFacade.deleteMessage(id);
         log.info("Deleting message as admin");
         return ResponseEntity.ok()
@@ -194,7 +194,7 @@ public class AdminController {
     }
 
     @GetMapping(value = "messages/search/dialog/{id}")
-    public ResponseEntity<List<MessageDto>> getMessagesByDialog_Id(@PathVariable (name = "id") long id) {
+    public ResponseEntity<List<MessageDto>> getMessagesByDialog_Id(@PathVariable(name = "id") long id) {
         List<MessageDto> messageDtoList = messageFacade.getMessagesByDialog_Id(id);
         log.info("Getting messages by dialog id as admin");
         return new ResponseEntity<>(messageDtoList, HttpStatus.OK);
@@ -208,21 +208,21 @@ public class AdminController {
     }
 
     @GetMapping(value = "likes")
-    public ResponseEntity<List<LikeDto>> getAllLikes(){
+    public ResponseEntity<List<LikeDto>> getAllLikes() {
         List<LikeDto> likeDtoList = likeFacade.getAllLikes();
         log.info("Getting all likes as admin");
         return new ResponseEntity<>(likeDtoList, HttpStatus.OK);
     }
 
     @GetMapping(value = "dialogs")
-    public ResponseEntity<List<DialogDto>> getAllDialogsAsAdmin(){
+    public ResponseEntity<List<DialogDto>> getAllDialogsAsAdmin() {
         List<DialogDto> dialogDtoList = dialogFacade.getAllDialogs();
         log.info("Getting all dialogs as admin");
         return new ResponseEntity<>(dialogDtoList, HttpStatus.OK);
     }
 
     @DeleteMapping(value = "delete")
-    public ResponseEntity<String> deleteCommunity(@RequestParam (name = "id") long id) {
+    public ResponseEntity<String> deleteCommunity(@RequestParam(name = "id") long id) {
         communityFacade.deleteCommunity(id);
         log.info("Deleting community as admin");
         return ResponseEntity.ok()

@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 
 @Component
 public class UserToUserDto implements Converter<User, UserDto> {
+
     private PostToPostShortDto postToPostShortDto;
     private CommunityToCommunityShortDto communityToCommunityShortDto;
     private MessageToMessageShortDto messageToMessageShortDto;
@@ -36,7 +37,7 @@ public class UserToUserDto implements Converter<User, UserDto> {
 
     @Override
     public UserDto convert(User user) {
-        if(user == null){
+        if (user == null) {
             return null;
         }
         CommunityShortDto community = null;
@@ -46,7 +47,7 @@ public class UserToUserDto implements Converter<User, UserDto> {
                 .email(user.getUserName())
                 .userName(user.getUserName())
                 .password(user.getPassword())
-                .profile(user.getProfile() == null ? profile :  profileToProfileShortDto.convert(user.getProfile()))
+                .profile(user.getProfile() == null ? profile : profileToProfileShortDto.convert(user.getProfile()))
                 .communities(user.getCommunities().stream().map(c -> communityToCommunityShortDto.convert(c)).collect(Collectors.toList()))
                 .roles(user.getRoles().stream().map(r -> roleToRoleShortDto.convert(r)).collect(Collectors.toList()))
                 .posts(user.getPosts().stream().map(p -> postToPostShortDto.convert(p)).collect(Collectors.toList()))

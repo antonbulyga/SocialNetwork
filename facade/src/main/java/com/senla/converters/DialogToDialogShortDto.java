@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class DialogToDialogShortDto implements Converter<Dialog, DialogShortDto> {
+
     @Override
     public DialogShortDto convert(Dialog dialog) {
         return DialogShortDto.builder()

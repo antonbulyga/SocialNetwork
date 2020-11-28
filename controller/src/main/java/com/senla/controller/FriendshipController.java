@@ -32,8 +32,8 @@ public class FriendshipController {
 
     @PostMapping(value = "request/new")
     public ResponseEntity<FriendshipDto> sentNewFriendRequest(@RequestParam(name = "idOne") Long userOneId,
-                                                       @RequestParam(name = "idTwo") Long userTwoId,
-                                                       @RequestParam(name = "idAction") Long actionUserId ) {
+                                                              @RequestParam(name = "idTwo") Long userTwoId,
+                                                              @RequestParam(name = "idAction") Long actionUserId) {
 
         FriendshipDto friendshipDto = friendshipFacade.sentNewFriendRequest(userOneId, userTwoId, actionUserId);
         log.info("Sending a new friend request");
@@ -43,8 +43,8 @@ public class FriendshipController {
 
     @PostMapping(value = "request")
     public ResponseEntity<FriendshipDto> sentFriendRequest(@RequestParam(name = "idOne") Long userOneId,
-                                                    @RequestParam(name = "idTwo") Long userTwoId,
-                                                    @RequestParam(name = "idAction") Long actionUserId ) {
+                                                           @RequestParam(name = "idTwo") Long userTwoId,
+                                                           @RequestParam(name = "idAction") Long actionUserId) {
         FriendshipDto friendshipDto = friendshipFacade.sentFriendRequest(userOneId, userTwoId, actionUserId);
         log.info("Sending a friend request");
         return ResponseEntity.ok()
@@ -53,8 +53,8 @@ public class FriendshipController {
 
     @PostMapping(value = "add")
     public ResponseEntity<FriendshipDto> addToFriends(@RequestParam(name = "idOne") Long userOneId,
-                                               @RequestParam(name = "idTwo") Long userTwoId,
-                                               @RequestParam(name = "idAction") Long actionUserId)  {
+                                                      @RequestParam(name = "idTwo") Long userTwoId,
+                                                      @RequestParam(name = "idAction") Long actionUserId) {
         FriendshipDto friendshipDto = friendshipFacade.addToFriends(userOneId, userTwoId, actionUserId);
         log.info("Adding to friend user");
         return ResponseEntity.ok()
@@ -70,8 +70,8 @@ public class FriendshipController {
 
     @PostMapping(value = "delete")
     public ResponseEntity<FriendshipDto> deleteFriendship(@RequestParam(name = "idOne") Long userOneId,
-                                                   @RequestParam(name = "idTwo") Long userTwoId,
-                                                   @RequestParam(name = "idAction") Long actionUserId){
+                                                          @RequestParam(name = "idTwo") Long userTwoId,
+                                                          @RequestParam(name = "idAction") Long actionUserId) {
         FriendshipDto friendshipDto = friendshipFacade.deleteFriendship(userOneId, userTwoId, actionUserId);
         log.info("Deleting the user from the friends");
         return ResponseEntity.ok()
@@ -90,8 +90,8 @@ public class FriendshipController {
 
     @PostMapping(value = "unblock")
     public ResponseEntity<FriendshipDto> unblockUser(@RequestParam(name = "idOne") Long userOneId,
-                                              @RequestParam(name = "idTwo") Long userTwoId,
-                                              @RequestParam(name = "idAction") Long actionUserId) {
+                                                     @RequestParam(name = "idTwo") Long userTwoId,
+                                                     @RequestParam(name = "idAction") Long actionUserId) {
 
         FriendshipDto friendshipDto = friendshipFacade.unblockUser(userOneId, userTwoId, actionUserId);
         log.info("Unlocking user");

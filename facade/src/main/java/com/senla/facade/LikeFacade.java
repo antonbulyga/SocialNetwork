@@ -25,34 +25,34 @@ public class LikeFacade {
         this.likeDtoToLike = likeDtoToLike;
     }
 
-    public LikeDto addLike(LikeDto likeDto){
+    public LikeDto addLike(LikeDto likeDto) {
         likeService.addLike(likeDtoToLike.convert(likeDto));
         return likeDto;
     }
 
-    public void deleteLike(long id){
+    public void deleteLike(long id) {
         likeService.deleteLike(id);
     }
 
-    public List<LikeDto> getAllLikes(){
+    public List<LikeDto> getAllLikes() {
         List<Like> likes = likeService.getAll();
         return likes.stream().map(likeToLikeDto::convert).collect(Collectors.toList());
     }
 
-    public LikeDto getLikeDto(Long id){
+    public LikeDto getLikeDto(Long id) {
         return likeToLikeDto.convert(likeService.getLike(id));
     }
 
-    public Like getLike(Long id){
+    public Like getLike(Long id) {
         return likeService.getLike(id);
     }
 
-    public List<LikeDto> getLikesByPost_Id(Long postId){
+    public List<LikeDto> getLikesByPost_Id(Long postId) {
         List<Like> likes = likeService.getLikesByPost_Id(postId);
         return likes.stream().map(likeToLikeDto::convert).collect(Collectors.toList());
     }
 
-    public List<LikeDto> convertListLikesToLikeDto(List<Like> likes){
+    public List<LikeDto> convertListLikesToLikeDto(List<Like> likes) {
         return likes.stream().map(likeToLikeDto::convert).collect(Collectors.toList());
     }
 }

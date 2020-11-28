@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class FriendshipToFriendshipDto implements Converter<Friendship, FriendshipDto> {
+
     private UserToUserShortDto userToUserShortDto;
 
     @Autowired
@@ -17,7 +18,7 @@ public class FriendshipToFriendshipDto implements Converter<Friendship, Friendsh
 
     @Override
     public FriendshipDto convert(Friendship friendship) {
-       return FriendshipDto.builder()
+        return FriendshipDto.builder()
                 .friendshipStatus(friendship.getFriendshipStatus())
                 .actionUser(userToUserShortDto.convert(friendship.getActionUser()))
                 .userOne(userToUserShortDto.convert(friendship.getUserOne()))

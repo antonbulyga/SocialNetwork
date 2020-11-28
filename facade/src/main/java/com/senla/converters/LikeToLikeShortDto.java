@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class LikeToLikeShortDto implements Converter<Like, LikeShortDto> {
+
     @Override
     public LikeShortDto convert(Like like) {
         return LikeShortDto.builder()

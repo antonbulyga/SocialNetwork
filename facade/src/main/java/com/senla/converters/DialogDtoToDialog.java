@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 
 @Component
 public class DialogDtoToDialog implements Converter<DialogDto, Dialog> {
+
     private MessageService messageService;
     private UserService userService;
 

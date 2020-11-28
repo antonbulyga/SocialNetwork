@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 
 @Component
 public class PostToPostDto implements Converter<Post, PostDto> {
+
     private CommunityToCommunityShortDto communityToCommunityShortDto;
     private UserToUserShortDto userToUserShortDto;
     private LikeToLikeShortDto likeToLikeShortDto;

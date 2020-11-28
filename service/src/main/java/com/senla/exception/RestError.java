@@ -1,6 +1,6 @@
 package com.senla.exception;
 
-public class RestError extends RuntimeException{
+public class RestError extends RuntimeException {
     public RestError() {
     }
 

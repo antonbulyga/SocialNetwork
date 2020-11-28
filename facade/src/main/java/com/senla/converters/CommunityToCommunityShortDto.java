@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CommunityToCommunityShortDto implements Converter<Community, CommunityShortDto> {
+
     @Override
     public CommunityShortDto convert(Community community) {
         return CommunityShortDto.builder()

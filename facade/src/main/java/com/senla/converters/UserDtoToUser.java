@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 
 @Component
 public class UserDtoToUser implements Converter<UserDto, User> {
+
     private CommunityService communityService;
     private PostService postService;
     private ProfileService profileService;

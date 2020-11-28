@@ -36,7 +36,7 @@ public interface FriendshipRepository extends JpaRepository<Friendship, Long> {
     @Modifying(clearAutomatically = true)
     @Query(value = "update friendship set status = 'DECLINED', action_user_id = :actionUser where user_one_id = :userOne and user_two_id = :userTwo",
             nativeQuery = true)
-    void deleteFriendship(@Param("userOne") User userOne, @Param("userTwo") User userTwo, @Param("actionUser") User actionUser );
+    void deleteFriendship(@Param("userOne") User userOne, @Param("userTwo") User userTwo, @Param("actionUser") User actionUser);
 
     @Modifying(clearAutomatically = true)
     @Query(value = "update friendship set status = 'BLOCKED', action_user_id = :actionUser where user_one_id = :userOne and user_two_id = :userTwo",

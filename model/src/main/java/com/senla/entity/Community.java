@@ -21,7 +21,7 @@ public class Community {
     private Long id;
 
     @ManyToMany(mappedBy = "communities", fetch = FetchType.LAZY, cascade = {
-            CascadeType.PERSIST, CascadeType.MERGE,CascadeType.REFRESH, CascadeType.DETACH
+            CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH
     })
     private Set<User> users;
 
@@ -29,7 +29,7 @@ public class Community {
     @Column(name = "name")
     private String name;
     @OneToOne(fetch = FetchType.LAZY, cascade = {
-            CascadeType.PERSIST, CascadeType.MERGE,CascadeType.REFRESH, CascadeType.DETACH
+            CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH
     })
     @JoinColumn(name = "admin_id", referencedColumnName = "id")
     private User adminUser;

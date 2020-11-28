@@ -27,41 +27,41 @@ public class FriendshipFacade {
         this.userToUserDto = userToUserDto;
     }
 
-    public FriendshipDto sentNewFriendRequest(Long userOneId, Long userTwoId, Long actionUserId){
-       Friendship friendship = friendshipService.sentNewFriendRequest(userOneId, userTwoId, actionUserId);
+    public FriendshipDto sentNewFriendRequest(Long userOneId, Long userTwoId, Long actionUserId) {
+        Friendship friendship = friendshipService.sentNewFriendRequest(userOneId, userTwoId, actionUserId);
         return friendshipToFriendshipDto.convert(friendship);
     }
 
-    public FriendshipDto sentFriendRequest(Long userOneId,Long userTwoId,Long actionUserId){
+    public FriendshipDto sentFriendRequest(Long userOneId, Long userTwoId, Long actionUserId) {
         Friendship friendship = friendshipService.sentFriendRequest(userOneId, userTwoId, actionUserId);
         return friendshipToFriendshipDto.convert(friendship);
     }
 
-    public FriendshipDto addToFriends(Long userOneId,Long userTwoId,Long actionUserId){
+    public FriendshipDto addToFriends(Long userOneId, Long userTwoId, Long actionUserId) {
         Friendship friendship = friendshipService.addToFriends(userOneId, userTwoId, actionUserId);
         return friendshipToFriendshipDto.convert(friendship);
     }
 
-    public FriendshipDto deleteFriendship(Long userOneId,Long userTwoId,Long actionUserId){
+    public FriendshipDto deleteFriendship(Long userOneId, Long userTwoId, Long actionUserId) {
         Friendship friendship = friendshipService.deleteFriendship(userOneId, userTwoId, actionUserId);
         return friendshipToFriendshipDto.convert(friendship);
     }
 
-    public FriendshipDto blockUser(Long userOneId, Long userTwoId, Long actionUserId){
+    public FriendshipDto blockUser(Long userOneId, Long userTwoId, Long actionUserId) {
         Friendship friendship = friendshipService.blockUser(userOneId, userTwoId, actionUserId);
         return friendshipToFriendshipDto.convert(friendship);
     }
 
-    public FriendshipDto unblockUser(Long userOneId,Long userTwoId,Long actionUserId){
+    public FriendshipDto unblockUser(Long userOneId, Long userTwoId, Long actionUserId) {
         Friendship friendship = friendshipService.unblockUser(userOneId, userTwoId, actionUserId);
         return friendshipToFriendshipDto.convert(friendship);
     }
 
-    public List<Friendship> getRequests(Long userId){
-       return friendshipService.getRequest(userId);
+    public List<Friendship> getRequests(Long userId) {
+        return friendshipService.getRequest(userId);
     }
 
-    public List<UserDto> getFriendsListOfUser(Long userId){
+    public List<UserDto> getFriendsListOfUser(Long userId) {
         List<User> users = friendshipService.getFriendsListOfUser(userId);
         return users.stream().map(userToUserDto::convert).collect(Collectors.toList());
     }

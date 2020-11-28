@@ -35,10 +35,10 @@ public class LikeController {
     }
 
     @GetMapping(value = "")
-    public ResponseEntity<List<LikeDto>> getAllUserLikes(){
+    public ResponseEntity<List<LikeDto>> getAllUserLikes() {
         User user = userFacade.getUserFromSecurityContext();
         List<Like> likeList = user.getLikes();
-        if(likeList.isEmpty()){
+        if (likeList.isEmpty()) {
             log.error("The user has no likes");
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -54,12 +54,12 @@ public class LikeController {
     }
 
     @DeleteMapping(value = "delete")
-    public ResponseEntity<String> deleteLike(@RequestParam (name = "id") long id){
+    public ResponseEntity<String> deleteLike(@RequestParam(name = "id") long id) {
         Like like = likeFacade.getLike(id);
         User user = userFacade.getUserFromSecurityContext();
         List<Like> userLikes = user.getLikes();
-        for(Like l : userLikes){
-            if(l.getId() == like.getId()){
+        for (Like l : userLikes) {
+            if (l.getId() == like.getId()) {
                 likeFacade.deleteLike(id);
                 log.error("Deleting like");
                 return ResponseEntity.ok()
@@ -80,7 +80,7 @@ public class LikeController {
     }
 
     @GetMapping(value = "post/id")
-    public ResponseEntity<List<LikeDto>> getLikesByPost_Id(@RequestParam (name = "postId") Long postId) {
+    public ResponseEntity<List<LikeDto>> getLikesByPost_Id(@RequestParam(name = "postId") Long postId) {
         List<LikeDto> dtoList = likeFacade.getLikesByPost_Id(postId);
         log.info("Getting like by post id");
         return new ResponseEntity<>(dtoList, HttpStatus.OK);

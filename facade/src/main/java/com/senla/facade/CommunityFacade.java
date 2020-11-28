@@ -26,46 +26,46 @@ public class CommunityFacade {
         this.communityDtoToCommunity = communityDtoToCommunity;
     }
 
-    public CommunityDto addCommunity(CommunityDto communityDto){
+    public CommunityDto addCommunity(CommunityDto communityDto) {
         communityService.addCommunity(communityDtoToCommunity.convert(communityDto));
         return communityDto;
     }
 
-    public void deleteCommunity(long id){
+    public void deleteCommunity(long id) {
         communityService.deleteCommunity(id);
     }
 
-    public CommunityDto updateCommunity(CommunityDto communityDto){
+    public CommunityDto updateCommunity(CommunityDto communityDto) {
         Community community = communityDtoToCommunity.convert(communityDto);
         communityService.updateCommunity(community);
         return communityDto;
     }
 
-    public List<CommunityDto> getAllCommunities(){
+    public List<CommunityDto> getAllCommunities() {
         List<Community> communities = communityService.getAllCommunities();
         return communities.stream().map(communityToCommunityDto::convert).collect(Collectors.toList());
     }
 
-    public CommunityDto getDtoCommunity(Long id){
+    public CommunityDto getDtoCommunity(Long id) {
         return communityToCommunityDto.convert(communityService.getCommunity(id));
     }
 
-    public Community getCommunity(Long id){
+    public Community getCommunity(Long id) {
         return communityService.getCommunity(id);
     }
 
 
-    public CommunityDto getCommunityByName(String name){
+    public CommunityDto getCommunityByName(String name) {
         Community community = communityService.getCommunitiesByName(name);
         return communityToCommunityDto.convert(community);
     }
 
-    public List<CommunityDto> getCommunitiesByAdminUserId(Long adminId){
+    public List<CommunityDto> getCommunitiesByAdminUserId(Long adminId) {
         List<Community> communities = communityService.getCommunitiesByAdminUserId(adminId);
         return communities.stream().map(communityToCommunityDto::convert).collect(Collectors.toList());
     }
 
-    public Community convertCommunityDtoToCommunity(CommunityDto communityDto){
+    public Community convertCommunityDtoToCommunity(CommunityDto communityDto) {
         return communityDtoToCommunity.convert(communityDto);
     }
 }

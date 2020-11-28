@@ -25,35 +25,35 @@ public class RoleFacade {
         this.roleDtoToRole = roleDtoToRole;
     }
 
-    public RoleDto addRole(RoleDto roleDto){
+    public RoleDto addRole(RoleDto roleDto) {
         roleService.addRole(roleDtoToRole.convert(roleDto));
         return roleDto;
     }
 
-    public void deleteRole(long id){
+    public void deleteRole(long id) {
         roleService.deleteRole(id);
     }
 
-    public RoleDto updateRole(RoleDto roleDto){
+    public RoleDto updateRole(RoleDto roleDto) {
         Role role = roleDtoToRole.convert(roleDto);
         roleService.updateRole(role);
         return roleDto;
     }
 
-    public List<RoleDto> getAllRoles(){
+    public List<RoleDto> getAllRoles() {
         List<Role> roles = roleService.getAllRoles();
         return roles.stream().map(roleToRoleDto::convert).collect(Collectors.toList());
     }
 
-    public RoleDto getRoleDto(Long id){
+    public RoleDto getRoleDto(Long id) {
         return roleToRoleDto.convert(roleService.getRole(id));
     }
 
-    public Role getRole(Long id){
+    public Role getRole(Long id) {
         return roleService.getRole(id);
     }
 
-    public RoleDto getRoleByName(String name){
+    public RoleDto getRoleByName(String name) {
         Role role = roleService.getRoleByName(name);
         return roleToRoleDto.convert(role);
     }

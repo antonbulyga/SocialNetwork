@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class LikeToLikeDto implements Converter<Like, LikeDto> {
+
     private PostToPostShortDto postToPostShortDto;
     private UserToUserShortDto userToUserShortDto;
 

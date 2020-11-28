@@ -32,7 +32,7 @@ public class MessageController {
     }
 
     @GetMapping(value = "")
-    public ResponseEntity<List<MessageDto>> getAllMessagesForUserFromAllDialogs(){
+    public ResponseEntity<List<MessageDto>> getAllMessagesForUserFromAllDialogs() {
         List<MessageDto> fullMessageDtoList = new ArrayList<>();
         userFacade.getUserFromSecurityContext().getDialogs().forEach(d ->
                 fullMessageDtoList.addAll(messageFacade.getMessagesByDialog_Id(d.getId())));
@@ -45,12 +45,12 @@ public class MessageController {
         User user = userFacade.getUserFromSecurityContext();
         List<Dialog> dialogs = user.getDialogs();
         Dialog dialog = message.getDialog();
-        if(dialog == null){
+        if (dialog == null) {
             log.error("Trying to add message with null dialog");
             throw new RestError("Trying to add message with null dialog");
         }
-        for (Dialog d : dialogs){
-            if(d.getId() == dialog.getId()){
+        for (Dialog d : dialogs) {
+            if (d.getId() == dialog.getId()) {
                 messageFacade.addMessage(messageDto);
                 log.info("Adding message to the dialog");
                 return new ResponseEntity<>(messageDto, HttpStatus.OK);
@@ -62,11 +62,11 @@ public class MessageController {
     }
 
     @DeleteMapping(value = "delete")
-    public ResponseEntity<String> deleteMessage(@RequestParam (name = "id") long id) {
+    public ResponseEntity<String> deleteMessage(@RequestParam(name = "id") long id) {
         User user = userFacade.getUserFromSecurityContext();
         List<Message> messages = user.getMessages();
-        for(Message m : messages){
-            if(m.getId() == id){
+        for (Message m : messages) {
+            if (m.getId() == id) {
                 messageFacade.deleteMessage(id);
                 return ResponseEntity.ok()
                         .body("You have deleted message successfully");
@@ -77,13 +77,13 @@ public class MessageController {
         throw new RestError("User has no message with this id");
     }
 
-    @PostMapping(value = "update")
+    @PutMapping(value = "update")
     public ResponseEntity<MessageDto> updateMessage(@RequestBody MessageDto messageDto) {
         User user = userFacade.getUserFromSecurityContext();
         List<Message> messages = user.getMessages();
         messageFacade.getLike(messageDto.getId());
-        for(Message m : messages){
-            if(m.getId() == messageDto.getId()){
+        for (Message m : messages) {
+            if (m.getId() == messageDto.getId()) {
                 messageFacade.updateMessage(messageDto);
                 log.info("You have updated message successfully");
                 return new ResponseEntity<>(messageDto, HttpStatus.OK);
@@ -95,18 +95,18 @@ public class MessageController {
     }
 
     @GetMapping(value = "search/dialog/{id}")
-    public ResponseEntity<List<MessageDto>> getMessagesByDialog_Id(@PathVariable (name = "id") long id) {
+    public ResponseEntity<List<MessageDto>> getMessagesByDialog_Id(@PathVariable(name = "id") long id) {
         List<MessageDto> messageDtoList;
         User user = userFacade.getUserFromSecurityContext();
         List<Dialog> dialogs = user.getDialogs();
         List<MessageDto> messageListDto = messageFacade.getMessagesByDialog_Id(id);
-        if(messageListDto.size() == 0){
+        if (messageListDto.size() == 0) {
             throw new EntityNotFoundException("Dialog does not exist");
         }
-        for(Dialog d : dialogs){
-            if(d.getId() == id){
+        for (Dialog d : dialogs) {
+            if (d.getId() == id) {
                 messageDtoList = messageFacade.getMessagesByDialog_Id(id);
-                 return new ResponseEntity<>(messageDtoList, HttpStatus.OK);
+                return new ResponseEntity<>(messageDtoList, HttpStatus.OK);
             }
 
         }
@@ -121,9 +121,9 @@ public class MessageController {
         Message message = messageFacade.getLike(messageId);
         User user = userFacade.getUserFromSecurityContext();
         List<Message> messages = user.getMessages();
-        for(Message m : messages){
-            if(m.getId() == message.getId()){
-               messageDto = messageFacade.getMessageDto(m.getId());
+        for (Message m : messages) {
+            if (m.getId() == message.getId()) {
+                messageDto = messageFacade.getMessageDto(m.getId());
                 return new ResponseEntity<>(messageDto, HttpStatus.OK);
             }
         }

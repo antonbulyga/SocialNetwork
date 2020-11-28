@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 @Component
 public class CommunityToCommunityDto implements Converter<Community, CommunityDto> {
+
     private UserToUserShortDto userToUserShortDto;
     private PostToPostShortDto postToPostShortDto;
 

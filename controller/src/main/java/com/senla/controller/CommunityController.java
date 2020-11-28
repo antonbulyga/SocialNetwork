@@ -25,19 +25,19 @@ import java.util.stream.Collectors;
 @Slf4j
 public class CommunityController {
 
-   private final CommunityFacade communityFacade;
-   private final UserFacade userFacade;
+    private final CommunityFacade communityFacade;
+    private final UserFacade userFacade;
 
-   @Autowired
+    @Autowired
     public CommunityController(CommunityFacade communityFacade, UserFacade userFacade) {
         this.communityFacade = communityFacade;
         this.userFacade = userFacade;
     }
 
     @GetMapping(value = "")
-    public ResponseEntity<List<CommunityDto>> getAllCommunities(){
+    public ResponseEntity<List<CommunityDto>> getAllCommunities() {
         List<CommunityDto> communityDtoList = communityFacade.getAllCommunities();
-        if(communityDtoList == null){
+        if (communityDtoList == null) {
             log.info("No communities");
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
@@ -52,17 +52,16 @@ public class CommunityController {
     }
 
     @DeleteMapping(value = "delete")
-    public ResponseEntity<String> deleteCommunity(@RequestParam (name = "id") long id) throws RestError {
+    public ResponseEntity<String> deleteCommunity(@RequestParam(name = "id") long id) throws RestError {
         User user = userFacade.getUserFromSecurityContext();
         Community community = communityFacade.getCommunity(id);
         User adminUser = community.getAdminUser();
-        if(user.equals(adminUser)){
+        if (user.equals(adminUser)) {
             communityFacade.deleteCommunity(id);
             log.info("Deleting community");
             return ResponseEntity.ok()
                     .body("You have deleted community successfully");
-        }
-        else {
+        } else {
             log.error("You are trying to delete a group that you do not represent as an administrator");
             throw new RestError("You are trying to delete a group that you do not represent as an administrator");
         }
@@ -81,12 +80,11 @@ public class CommunityController {
         User user = userFacade.getUserFromSecurityContext();
         Community community = communityFacade.convertCommunityDtoToCommunity(communityDto);
         User adminUser = community.getAdminUser();
-        if(user.equals(adminUser)){
+        if (user.equals(adminUser)) {
             communityFacade.updateCommunity(communityDto);
             log.info("Updating community");
             return new ResponseEntity<>(communityDto, HttpStatus.OK);
-        }
-        else {
+        } else {
             log.error("Getting community by id");
             throw new RestError("You are trying to update a group that you do not represent as an administrator");
         }

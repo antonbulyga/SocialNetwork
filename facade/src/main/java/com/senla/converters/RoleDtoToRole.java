@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 
 @Component
 public class RoleDtoToRole implements Converter<RoleDto, Role> {
+
     private UserService userService;
 
     @Autowired

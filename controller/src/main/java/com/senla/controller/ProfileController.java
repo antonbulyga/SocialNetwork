@@ -43,14 +43,13 @@ public class ProfileController {
                 .body("You have deleted the profile successfully");
     }
 
-    @PostMapping(value = "update")
+    @PutMapping(value = "update")
     public ResponseEntity<ProfileDto> updateProfile(@RequestBody ProfileDto profileDto) {
         User user = userFacade.getUserFromSecurityContext();
         Profile profile = profileFacade.convertProfileFromProfileDto(profileDto);
-        if(user.getProfile().equals(profile)){
+        if (user.getProfile().equals(profile)) {
             profileFacade.updateProfile(profileDto);
-        }
-        else {
+        } else {
             log.error("You are trying to update someone else's profile");
             return null;
         }
@@ -66,37 +65,37 @@ public class ProfileController {
     }
 
     @GetMapping(value = "search/city")
-    public ResponseEntity<List<ProfileDto>> findProfileByCity(@RequestParam(name = "city") String city){
+    public ResponseEntity<List<ProfileDto>> findProfileByCity(@RequestParam(name = "city") String city) {
         List<ProfileDto> profileDtoList = profileFacade.findProfilesByCity(city);
-        return  new ResponseEntity<>(profileDtoList, HttpStatus.OK);
+        return new ResponseEntity<>(profileDtoList, HttpStatus.OK);
     }
 
     @GetMapping(value = "search/country")
-    public ResponseEntity<List<ProfileDto>> findProfileByCountry(@RequestParam(name = "country") String country){
+    public ResponseEntity<List<ProfileDto>> findProfileByCountry(@RequestParam(name = "country") String country) {
         List<ProfileDto> profileDtoList = profileFacade.findProfilesByCountry(country);
-        return  new ResponseEntity<>(profileDtoList, HttpStatus.OK);
+        return new ResponseEntity<>(profileDtoList, HttpStatus.OK);
     }
 
     @GetMapping(value = "search/name")
-    public ResponseEntity<List<ProfileDto>> findProfileByFirstName(@RequestParam(name = "name") String firstName){
+    public ResponseEntity<List<ProfileDto>> findProfileByFirstName(@RequestParam(name = "name") String firstName) {
         List<ProfileDto> profileDtoList = profileFacade.findProfilesByFirstName(firstName);
-        return  new ResponseEntity<>(profileDtoList, HttpStatus.OK);
+        return new ResponseEntity<>(profileDtoList, HttpStatus.OK);
     }
 
     @GetMapping(value = "search/surname")
-    public ResponseEntity<List<ProfileDto>> findProfileByLastName(@RequestParam(name = "surname") String lastName){
+    public ResponseEntity<List<ProfileDto>> findProfileByLastName(@RequestParam(name = "surname") String lastName) {
         List<ProfileDto> profileDtoList = profileFacade.findProfilesByLastName(lastName);
-        return  new ResponseEntity<>(profileDtoList, HttpStatus.OK);
+        return new ResponseEntity<>(profileDtoList, HttpStatus.OK);
     }
 
     @GetMapping(value = "search/fullname")
-    public ResponseEntity<ProfileDto> findProfileByLastName(@RequestParam(name = "name") String firstName, @PathVariable(name = "surname") String lastName){
+    public ResponseEntity<ProfileDto> findProfileByLastName(@RequestParam(name = "name") String firstName, @PathVariable(name = "surname") String lastName) {
         ProfileDto profileDto = profileFacade.findProfileByFirstNameAndLastName(firstName, lastName);
         return new ResponseEntity<>(profileDto, HttpStatus.OK);
     }
 
     @GetMapping(value = "search/gender")
-    public ResponseEntity<List<ProfileDto>> findProfileByGender(@RequestParam(name = "gender") String genderString){
+    public ResponseEntity<List<ProfileDto>> findProfileByGender(@RequestParam(name = "gender") String genderString) {
         Enum gender = Gender.valueOf(genderString);
         List<ProfileDto> profileDtoList = profileFacade.findProfileByGender(gender);
         return new ResponseEntity<>(profileDtoList, HttpStatus.OK);

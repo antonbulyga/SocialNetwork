@@ -25,36 +25,36 @@ public class PostFacade {
         this.postDtoToPost = postDtoToPost;
     }
 
-    public PostDto addPost(PostDto postDto){
+    public PostDto addPost(PostDto postDto) {
         postService.addPost(postDtoToPost.convert(postDto));
         return postDto;
     }
 
-    public void deletePost(long id){
+    public void deletePost(long id) {
         postService.deletePost(id);
     }
 
-    public PostDto updatePost(PostDto postDto){
+    public PostDto updatePost(PostDto postDto) {
         Post post = postDtoToPost.convert(postDto);
         postService.updatePost(post);
         return postDto;
     }
 
-    public List<PostDto> getAllPosts(){
+    public List<PostDto> getAllPosts() {
         List<Post> posts = postService.getAllPosts();
         return posts.stream().map(postToPostDto::convert).collect(Collectors.toList());
     }
 
-    public PostDto getPost(Long id){
+    public PostDto getPost(Long id) {
         return postToPostDto.convert(postService.getPost(id));
     }
 
-    public List<PostDto> getPostsDtoByUser_Id(Long userId){
+    public List<PostDto> getPostsDtoByUser_Id(Long userId) {
         List<Post> posts = postService.getPostsByUser_Id(userId);
         return posts.stream().map(postToPostDto::convert).collect(Collectors.toList());
     }
 
-    public List<Post> getPostsByUser_Id(Long userId){
+    public List<Post> getPostsByUser_Id(Long userId) {
         return postService.getPostsByUser_Id(userId);
     }
 }

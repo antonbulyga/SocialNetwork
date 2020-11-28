@@ -13,21 +13,21 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(EntityNotFoundException.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    protected String handleEntityNotFoundException(EntityNotFoundException e){
+    protected String handleEntityNotFoundException(EntityNotFoundException e) {
         return e.getMessage();
     }
 
     @ExceptionHandler(RestError.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    protected String handleRestError(RestError e){
+    protected String handleRestError(RestError e) {
         return e.getMessage();
     }
 
     @ExceptionHandler(IncorrectRequest.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    protected String handleIncorrectRequest(IncorrectRequest e){
+    protected String handleIncorrectRequest(IncorrectRequest e) {
         return e.getMessage();
     }
 

@@ -25,35 +25,35 @@ public class MessageFacade {
         this.messageDtoToMessage = messageDtoToMessage;
     }
 
-    public MessageDto addMessage(MessageDto messageDto){
+    public MessageDto addMessage(MessageDto messageDto) {
         messageService.addMessage(messageDtoToMessage.convert(messageDto));
         return messageDto;
     }
 
-    public void deleteMessage(long id){
+    public void deleteMessage(long id) {
         messageService.deleteMessage(id);
     }
 
-    public MessageDto updateMessage(MessageDto messageDto){
+    public MessageDto updateMessage(MessageDto messageDto) {
         Message message = messageDtoToMessage.convert(messageDto);
         messageService.updateMessage(message);
         return messageDto;
     }
 
-    public List<MessageDto> getAllMessages(){
+    public List<MessageDto> getAllMessages() {
         List<Message> messages = messageService.getAllMessages();
         return messages.stream().map(messageToMessageDto::convert).collect(Collectors.toList());
     }
 
-    public MessageDto getMessageDto(Long id){
+    public MessageDto getMessageDto(Long id) {
         return messageToMessageDto.convert(messageService.getMessage(id));
     }
 
-    public Message getLike(Long id){
+    public Message getLike(Long id) {
         return messageService.getMessage(id);
     }
 
-    public List<MessageDto> getMessagesByDialog_Id(Long dialogId){
+    public List<MessageDto> getMessagesByDialog_Id(Long dialogId) {
         List<Message> messages = messageService.getMessagesByDialog_Id(dialogId);
         return messages.stream().map(messageToMessageDto::convert).collect(Collectors.toList());
     }

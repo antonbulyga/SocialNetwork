@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MessageDtoToMessage implements Converter<MessageDto, Message> {
+
     private UserService userService;
     private DialogService dialogService;
 

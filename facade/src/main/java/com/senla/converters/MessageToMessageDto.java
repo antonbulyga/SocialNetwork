@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class MessageToMessageDto implements Converter<Message, MessageDto> {
+
     private UserToUserShortDto userToUserShortDto;
     private DialogToDialogShortDto dialogToDialogShortDto;
 

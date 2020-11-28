@@ -48,7 +48,7 @@ public class ProfileServiceImpl implements ProfileService {
     public void deleteProfile(long id) {
         getProfile(id);
         log.info("Deleting profile");
-       profileRepository.deleteById(id);
+        profileRepository.deleteById(id);
     }
 
     @Override
@@ -68,7 +68,7 @@ public class ProfileServiceImpl implements ProfileService {
 
     @Override
     public List<Profile> findProfilesByCity(String city) {
-       List<Profile> profiles = profileRepository.findByCity(city);
+        List<Profile> profiles = profileRepository.findByCity(city);
         log.info("Finding profile by city");
         return profiles;
     }

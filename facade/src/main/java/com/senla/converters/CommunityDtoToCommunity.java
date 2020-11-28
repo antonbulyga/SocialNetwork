@@ -12,6 +12,7 @@ import java.util.stream.Collectors;
 
 @Component
 public class CommunityDtoToCommunity implements Converter<CommunityDto, Community> {
+
     private UserService userService;
     private PostService postService;
 

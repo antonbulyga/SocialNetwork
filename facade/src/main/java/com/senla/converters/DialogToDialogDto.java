@@ -10,6 +10,7 @@ import java.util.stream.Collectors;
 
 @Component
 public class DialogToDialogDto implements Converter<Dialog, DialogDto> {
+
     private MessageToMessageShortDto messageToMessageShortDto;
     private UserToUserShortDto userToUserShortDto;
 

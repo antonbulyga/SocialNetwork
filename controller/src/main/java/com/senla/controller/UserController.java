@@ -21,7 +21,7 @@ public class UserController {
 
 
     @GetMapping(value = "id")
-    public ResponseEntity<UserDto> getUserById(){
+    public ResponseEntity<UserDto> getUserById() {
         UserDto userDto = userFacade.getUserDtoFromSecurityContext();
         return new ResponseEntity<>(userDto, HttpStatus.OK);
     }

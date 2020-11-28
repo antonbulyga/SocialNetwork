@@ -25,50 +25,50 @@ public class DialogFacade {
         this.dialogDtoToDialog = dialogDtoToDialog;
     }
 
-    public DialogDto addDialog(DialogDto dialogDto){
+    public DialogDto addDialog(DialogDto dialogDto) {
         dialogService.addDialog(dialogDtoToDialog.convert(dialogDto));
         return dialogDto;
     }
 
-    public void deleteDialog(long id){
+    public void deleteDialog(long id) {
         dialogService.deleteDialog(id);
     }
 
-    public DialogDto updateDialog(DialogDto dialogDto){
+    public DialogDto updateDialog(DialogDto dialogDto) {
         Dialog dialog = dialogDtoToDialog.convert(dialogDto);
         dialogService.updateDialog(dialog);
         return dialogDto;
     }
 
-    public List<DialogDto> getAllDialogs(){
+    public List<DialogDto> getAllDialogs() {
         List<Dialog> messages = dialogService.getAll();
         return messages.stream().map(p -> dialogToDialogDto.convert(p)).collect(Collectors.toList());
     }
 
-    public DialogDto getDialogDto(Long id){
+    public DialogDto getDialogDto(Long id) {
         return dialogToDialogDto.convert(dialogService.getDialog(id));
     }
 
-    public Dialog getDialog(Long id){
+    public Dialog getDialog(Long id) {
         return dialogService.getDialog(id);
     }
 
-    public DialogDto getDialogByName(String name){
+    public DialogDto getDialogByName(String name) {
         Dialog dialog = dialogService.getDialogByName(name);
         return dialogToDialogDto.convert(dialog);
     }
 
-    public DialogDto addUserToDialog(Long dialogId,Long userId){
-       Dialog dialog = dialogService.addUserToDialog(dialogId, userId);
-       return dialogToDialogDto.convert(dialog);
+    public DialogDto addUserToDialog(Long dialogId, Long userId) {
+        Dialog dialog = dialogService.addUserToDialog(dialogId, userId);
+        return dialogToDialogDto.convert(dialog);
     }
 
-    public DialogDto deleteUserFromDialog(Long dialogId,Long userId){
+    public DialogDto deleteUserFromDialog(Long dialogId, Long userId) {
         Dialog dialog = dialogService.deleteUserFromDialog(dialogId, userId);
         return dialogToDialogDto.convert(dialog);
     }
 
-    public List<DialogDto> convertDialogListToLikeDto(List<Dialog> dialogs){
+    public List<DialogDto> convertDialogListToLikeDto(List<Dialog> dialogs) {
         return dialogs.stream().map(dialogToDialogDto::convert).collect(Collectors.toList());
     }
 }

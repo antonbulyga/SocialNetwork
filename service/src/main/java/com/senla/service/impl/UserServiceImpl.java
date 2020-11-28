@@ -53,17 +53,16 @@ public class UserServiceImpl implements UserService {
     @Override
     public User changeUserPassword(String newPassword, long userId) {
         log.info("Changing user password");
-         User user = getUser(userId);
-         String codePassword = passwordEncoder.encode(newPassword);
-         user.setPassword(codePassword);
-         try {
-             updateUser(user);
-         }
-         catch (SQLErrors e){
-             log.error("Error when trying to change password");
-             throw new SQLErrors("Error when trying to change password");
-         }
-         return user;
+        User user = getUser(userId);
+        String codePassword = passwordEncoder.encode(newPassword);
+        user.setPassword(codePassword);
+        try {
+            updateUser(user);
+        } catch (SQLErrors e) {
+            log.error("Error when trying to change password");
+            throw new SQLErrors("Error when trying to change password");
+        }
+        return user;
     }
 
     @Override
@@ -82,7 +81,7 @@ public class UserServiceImpl implements UserService {
         User user = getUser(userId);
         List<Community> communities = communityService.getCommunitiesByAdminUserId(userId);
 
-        if(communities.size() != 0){
+        if (communities.size() != 0) {
             for (int i = 0; i < communities.size(); i++) {
                 communities.get(i).getUsers().removeAll(communities.get(i).getUsers());
                 communities.get(i).getPosts().removeAll(communities.get(i).getPosts());
@@ -90,8 +89,7 @@ public class UserServiceImpl implements UserService {
                 profileService.deleteProfile(user.getProfile().getId());
             }
 
-        }
-        else {
+        } else {
             userRepository.deleteById(userId);
             profileService.deleteProfile(user.getProfile().getId());
         }
@@ -119,11 +117,11 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll();
     }
 
-    public User getUserById(long userId){
+    public User getUserById(long userId) {
         return getUser(userId);
     }
 
-    public User getUserFromSecurityContext(){
+    public User getUserFromSecurityContext() {
         UserDetails userDetails = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String userName = userDetails.getUsername();
         return findUserByUserName(userName);

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ProfileToProfileDto implements Converter<Profile, ProfileDto> {
+
     private UserToUserShortDto userToUserShortDto;
 
     @Autowired
@@ -19,7 +20,7 @@ public class ProfileToProfileDto implements Converter<Profile, ProfileDto> {
 
     @Override
     public ProfileDto convert(Profile profile) {
-        if(profile == null) {
+        if (profile == null) {
             return null;
         }
 
@@ -33,7 +34,7 @@ public class ProfileToProfileDto implements Converter<Profile, ProfileDto> {
                 .lastName(profile.getLastName())
                 .city(profile.getCity())
                 .country(profile.getCountry())
-                .user(profile.getUser() == null ? user :  userToUserShortDto.convert(profile.getUser()))
+                .user(profile.getUser() == null ? user : userToUserShortDto.convert(profile.getUser()))
                 .build();
     }
 }

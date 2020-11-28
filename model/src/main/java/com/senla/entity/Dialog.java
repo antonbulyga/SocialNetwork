@@ -31,7 +31,7 @@ public class Dialog {
     private List<Message> messages;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {
-            CascadeType.PERSIST, CascadeType.MERGE,CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE
+            CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE
     })
     @JoinTable(name = "dialogs_has_users",
             joinColumns = {@JoinColumn(name = "dialogs_id", referencedColumnName = "id")},

@@ -65,12 +65,12 @@ public class DialogServiceImpl implements DialogService {
 
     @Override
     public Dialog addUserToDialog(Long dialogId, Long userId) {
-       Dialog dialog = getDialog(dialogId);
-       User user = userService.getUser(userId);
-       List<User> users = dialog.getUserList();
-       users.add(user);
-       updateDialog(dialog);
-       return dialog;
+        Dialog dialog = getDialog(dialogId);
+        User user = userService.getUser(userId);
+        List<User> users = dialog.getUserList();
+        users.add(user);
+        updateDialog(dialog);
+        return dialog;
     }
 
     @Override

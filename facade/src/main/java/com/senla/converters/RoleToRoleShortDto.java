@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class RoleToRoleShortDto implements Converter<Role, RoleShortDto> {
+
     @Override
     public RoleShortDto convert(Role role) {
         return RoleShortDto.builder()

@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.awt.*;
 
 @Repository
-public interface DialogRepository extends JpaRepository<Dialog,Long> {
+public interface DialogRepository extends JpaRepository<Dialog, Long> {
     Dialog getDialogByName(String name);
 }

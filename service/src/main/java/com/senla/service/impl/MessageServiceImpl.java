@@ -61,9 +61,9 @@ public class MessageServiceImpl implements MessageService {
         return messageRepository.findAll();
     }
 
-     @Override
+    @Override
     public List<Message> getMessagesByDialog_Id(Long dialogId) {
-         return messageRepository.getMessagesByDialog_Id(dialogId);
+        return messageRepository.getMessagesByDialog_Id(dialogId);
     }
 
     @Override

@@ -89,9 +89,9 @@ public class JwtTokenProvider {
             if (claims.getBody().getExpiration().before(new Date())) {
                 return false;
             }
-                if (!tokenService.findTokenByTokenNumber(token)) {
-                    return true;
-                }
+            if (!tokenService.findTokenByTokenNumber(token)) {
+                return true;
+            }
 
             return false;
         } catch (JwtException | IllegalArgumentException e) {

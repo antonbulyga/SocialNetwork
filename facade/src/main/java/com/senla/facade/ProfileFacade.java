@@ -25,73 +25,73 @@ public class ProfileFacade {
         this.profileDtoToProfile = profileDtoToProfile;
     }
 
-    public ProfileDto addProfile(ProfileDto profileDto){
+    public ProfileDto addProfile(ProfileDto profileDto) {
         profileService.addProfile(profileDtoToProfile.convert(profileDto));
         return profileDto;
     }
 
-    public void deleteProfiles(long id){
+    public void deleteProfiles(long id) {
         profileService.deleteProfile(id);
     }
 
-    public ProfileDto updateProfile(ProfileDto profileDto){
+    public ProfileDto updateProfile(ProfileDto profileDto) {
         Profile profile = profileDtoToProfile.convert(profileDto);
         profileService.updateProfile(profile);
         return profileDto;
     }
 
-    public List<ProfileDto> getAllProfiles(){
+    public List<ProfileDto> getAllProfiles() {
         List<Profile> profiles = profileService.getAllProfiles();
         return profiles.stream().map(profileToProfileDto::convert).collect(Collectors.toList());
     }
 
-    public List<ProfileDto> findProfilesByCity(String city){
+    public List<ProfileDto> findProfilesByCity(String city) {
         List<Profile> profiles = profileService.findProfilesByCity(city);
         return profiles.stream().map(profileToProfileDto::convert).collect(Collectors.toList());
     }
 
-    public List<ProfileDto> findProfilesByCountry(String country){
+    public List<ProfileDto> findProfilesByCountry(String country) {
         List<Profile> profiles = profileService.findProfilesByCountry(country);
         return profiles.stream().map(profileToProfileDto::convert).collect(Collectors.toList());
     }
 
-    public List<ProfileDto> findProfilesByFirstName(String firstName){
+    public List<ProfileDto> findProfilesByFirstName(String firstName) {
         List<Profile> profiles = profileService.findProfilesByFirstName(firstName);
         return profiles.stream().map(profileToProfileDto::convert).collect(Collectors.toList());
     }
 
-    public List<ProfileDto> findProfilesByLastName(String lastName){
+    public List<ProfileDto> findProfilesByLastName(String lastName) {
         List<Profile> profiles = profileService.findProfilesByLastName(lastName);
         return profiles.stream().map(profileToProfileDto::convert).collect(Collectors.toList());
     }
 
-    public ProfileDto findProfileByFirstNameAndLastName(String firstName, String LastName){
+    public ProfileDto findProfileByFirstNameAndLastName(String firstName, String LastName) {
         return profileToProfileDto.convert(profileService.findProfileByFirstNameAndLastName(firstName, LastName));
     }
 
 
-    public List<ProfileDto> findProfileByGender(Enum gender){
+    public List<ProfileDto> findProfileByGender(Enum gender) {
         List<Profile> profiles = profileService.findProfileByGender(gender);
         return profiles.stream().map(profileToProfileDto::convert).collect(Collectors.toList());
     }
 
-    public ProfileDto getProfile(Long id){
+    public ProfileDto getProfile(Long id) {
         return profileToProfileDto.convert(profileService.getProfile(id));
     }
 
-    public ProfileDto findProfileDtoByUser_Id(Long userId){
+    public ProfileDto findProfileDtoByUser_Id(Long userId) {
         return profileToProfileDto.convert(profileService.findProfileByUser_Id(userId));
     }
 
-    public Profile findProfileByUser_Id(Long userId){
+    public Profile findProfileByUser_Id(Long userId) {
         return profileService.findProfileByUser_Id(userId);
     }
 
-    public Profile convertProfileFromProfileDto(ProfileDto profileDto){
+    public Profile convertProfileFromProfileDto(ProfileDto profileDto) {
         return profileDtoToProfile.convert(profileDto);
     }
 
-    public ProfileDto convertProfileDtoFromProfile(Profile profile){
+    public ProfileDto convertProfileDtoFromProfile(Profile profile) {
         return profileToProfileDto.convert(profile);
     }
 }

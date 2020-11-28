@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UserToUserShortDto implements Converter<User, UserShortDto> {
+
     @Override
     public UserShortDto convert(User user) {
         return UserShortDto.builder()

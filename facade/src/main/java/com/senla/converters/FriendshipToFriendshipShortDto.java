@@ -7,6 +7,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class FriendshipToFriendshipShortDto implements Converter<Friendship, FriendshipShortDto> {
+
     @Override
     public FriendshipShortDto convert(Friendship friendship) {
         return FriendshipShortDto.builder()
