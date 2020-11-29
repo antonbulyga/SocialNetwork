@@ -3,6 +3,8 @@ package com.senla.controller;
 import com.senla.dto.FriendshipDto;
 import com.senla.dto.UserDto;
 import com.senla.entity.Friendship;
+import com.senla.entity.User;
+import com.senla.exception.RestError;
 import com.senla.facade.FriendshipFacade;
 import com.senla.facade.UserFacade;
 import lombok.extern.slf4j.Slf4j;
@@ -34,92 +36,138 @@ public class FriendshipController {
     public ResponseEntity<FriendshipDto> sentNewFriendRequest(@RequestParam(name = "idOne") Long userOneId,
                                                               @RequestParam(name = "idTwo") Long userTwoId,
                                                               @RequestParam(name = "idAction") Long actionUserId) {
-
-        FriendshipDto friendshipDto = friendshipFacade.sentNewFriendRequest(userOneId, userTwoId, actionUserId);
-        log.info("Sending a new friend request");
-        return ResponseEntity.ok()
-                .body(friendshipDto);
+        User user = userFacade.getUserFromSecurityContext();
+        if (user.getId() == actionUserId) {
+            FriendshipDto friendshipDto = friendshipFacade.sentNewFriendRequest(userOneId, userTwoId, actionUserId);
+            log.info("Sending a new friend request");
+            return ResponseEntity.ok()
+                    .body(friendshipDto);
+        } else {
+            log.warn("You are trying to send a friend request from another user");
+            throw new RestError("You are trying to send a friend request from another user");
+        }
     }
 
     @PostMapping(value = "request")
     public ResponseEntity<FriendshipDto> sentFriendRequest(@RequestParam(name = "idOne") Long userOneId,
                                                            @RequestParam(name = "idTwo") Long userTwoId,
                                                            @RequestParam(name = "idAction") Long actionUserId) {
-        FriendshipDto friendshipDto = friendshipFacade.sentFriendRequest(userOneId, userTwoId, actionUserId);
-        log.info("Sending a friend request");
-        return ResponseEntity.ok()
-                .body(friendshipDto);
+        User user = userFacade.getUserFromSecurityContext();
+        if (user.getId() == actionUserId) {
+            FriendshipDto friendshipDto = friendshipFacade.sentFriendRequest(userOneId, userTwoId, actionUserId);
+            log.info("Sending a friend request");
+            return ResponseEntity.ok()
+                    .body(friendshipDto);
+        } else {
+            log.warn("You are trying to send a friend request from another user");
+            throw new RestError("You are trying to send a friend request from another user");
+        }
     }
 
     @PostMapping(value = "add")
     public ResponseEntity<FriendshipDto> addToFriends(@RequestParam(name = "idOne") Long userOneId,
                                                       @RequestParam(name = "idTwo") Long userTwoId,
                                                       @RequestParam(name = "idAction") Long actionUserId) {
-        FriendshipDto friendshipDto = friendshipFacade.addToFriends(userOneId, userTwoId, actionUserId);
-        log.info("Adding to friend user");
-        return ResponseEntity.ok()
-                .body(friendshipDto);
+        User user = userFacade.getUserFromSecurityContext();
+        if (user.getId() == actionUserId) {
+            FriendshipDto friendshipDto = friendshipFacade.addToFriends(userOneId, userTwoId, actionUserId);
+            log.info("Adding to friend user");
+            return ResponseEntity.ok()
+                    .body(friendshipDto);
+        } else {
+            log.warn("You are trying to add to the friends list from another user");
+            throw new RestError("You are trying to add to the friends list from another user");
+        }
     }
 
     @GetMapping(value = "friends")
     public ResponseEntity<List<UserDto>> getFriendsListOfUser(@RequestParam(name = "id") Long userId) {
-        List<UserDto> userDto = friendshipFacade.getFriendsListOfUser(userId);
-        log.info("Getting a friend list of the user");
-        return new ResponseEntity<>(userDto, HttpStatus.OK);
+        User user = userFacade.getUserFromSecurityContext();
+        if (user.getId() == userId) {
+            List<UserDto> userDto = friendshipFacade.getFriendsListOfUser(userId);
+            log.info("Getting a friend list of the user");
+            return new ResponseEntity<>(userDto, HttpStatus.OK);
+        } else {
+            log.warn("You are trying to get a friends list of another user");
+            throw new RestError("You are trying to get a friends list of another user");
+        }
     }
 
     @PostMapping(value = "delete")
     public ResponseEntity<FriendshipDto> deleteFriendship(@RequestParam(name = "idOne") Long userOneId,
                                                           @RequestParam(name = "idTwo") Long userTwoId,
                                                           @RequestParam(name = "idAction") Long actionUserId) {
-        FriendshipDto friendshipDto = friendshipFacade.deleteFriendship(userOneId, userTwoId, actionUserId);
-        log.info("Deleting the user from the friends");
-        return ResponseEntity.ok()
-                .body(friendshipDto);
+        User user = userFacade.getUserFromSecurityContext();
+        if (user.getId() == actionUserId) {
+            FriendshipDto friendshipDto = friendshipFacade.deleteFriendship(userOneId, userTwoId, actionUserId);
+            log.info("Deleting the user from the friends");
+            return ResponseEntity.ok()
+                    .body(friendshipDto);
+        } else {
+            log.warn("You are trying to delete a friendship of another user");
+            throw new RestError("You are trying to delete a friendship of another user");
+        }
     }
 
     @PostMapping(value = "block")
     public ResponseEntity<FriendshipDto> blockUser(@RequestParam(name = "idOne") Long userOneId,
                                                    @RequestParam(name = "idTwo") Long userTwoId,
                                                    @RequestParam(name = "idAction") Long actionUserId) {
-        FriendshipDto friendshipDto = friendshipFacade.blockUser(userOneId, userTwoId, actionUserId);
-        log.info("Blocking user");
-        return ResponseEntity.ok()
-                .body(friendshipDto);
+        User user = userFacade.getUserFromSecurityContext();
+        if (user.getId() == actionUserId) {
+            FriendshipDto friendshipDto = friendshipFacade.blockUser(userOneId, userTwoId, actionUserId);
+            log.info("Blocking user");
+            return ResponseEntity.ok()
+                    .body(friendshipDto);
+        } else {
+            log.warn("You are trying to block user from another user");
+            throw new RestError("You are trying to block user from another user");
+        }
     }
 
     @PostMapping(value = "unblock")
     public ResponseEntity<FriendshipDto> unblockUser(@RequestParam(name = "idOne") Long userOneId,
                                                      @RequestParam(name = "idTwo") Long userTwoId,
                                                      @RequestParam(name = "idAction") Long actionUserId) {
-
-        FriendshipDto friendshipDto = friendshipFacade.unblockUser(userOneId, userTwoId, actionUserId);
-        log.info("Unlocking user");
-        return ResponseEntity.ok()
-                .body(friendshipDto);
+        User user = userFacade.getUserFromSecurityContext();
+        if (user.getId() == actionUserId) {
+            FriendshipDto friendshipDto = friendshipFacade.unblockUser(userOneId, userTwoId, actionUserId);
+            log.info("Unlocking user");
+            return ResponseEntity.ok()
+                    .body(friendshipDto);
+        } else {
+            log.warn("You are trying to unblock user from another user");
+            throw new RestError("You are trying to unblock user from another user");
+        }
     }
 
     @GetMapping(value = "requests")
     public ResponseEntity<Map<String, List<UserDto>>> getRequests(@RequestParam(name = "id") Long userId) {
-        List<Friendship> requests = friendshipFacade.getRequests(userId);
-        Map<Boolean, List<Friendship>> requestMap = requests.stream()
-                .collect(Collectors.partitioningBy((f) -> f.getActionUser().getId() == userId));
+        User user = userFacade.getUserFromSecurityContext();
+        if (user.getId() == userId) {
+            List<Friendship> requests = friendshipFacade.getRequests(userId);
+            Map<Boolean, List<Friendship>> requestMap = requests.stream()
+                    .collect(Collectors.partitioningBy((f) -> f.getActionUser().getId() == userId));
 
-        List<UserDto> outgoingFriendRequests = requestMap.get(true).stream()
-                .map(Friendship::getActionUser)
-                .map(userFacade::convertUserToUserDto)
-                .collect(Collectors.toList());
+            List<UserDto> outgoingFriendRequests = requestMap.get(true).stream()
+                    .map(Friendship::getActionUser)
+                    .map(userFacade::convertUserToUserDto)
+                    .collect(Collectors.toList());
 
-        List<UserDto> incomingFriendRequests = requestMap.get(false).stream()
-                .map(Friendship::getActionUser)
-                .map(userFacade::convertUserToUserDto)
-                .collect(Collectors.toList());
+            List<UserDto> incomingFriendRequests = requestMap.get(false).stream()
+                    .map(Friendship::getActionUser)
+                    .map(userFacade::convertUserToUserDto)
+                    .collect(Collectors.toList());
 
-        Map<String, List<UserDto>> map = new HashMap<>();
-        map.put("outgoingFriendRequests", outgoingFriendRequests);
-        map.put("incomingFriendRequests", incomingFriendRequests);
-        log.info("Getting user requests");
-        return new ResponseEntity<>(map, HttpStatus.OK);
+            Map<String, List<UserDto>> map = new HashMap<>();
+            map.put("outgoingFriendRequests", outgoingFriendRequests);
+            map.put("incomingFriendRequests", incomingFriendRequests);
+            log.info("Getting user requests");
+            return new ResponseEntity<>(map, HttpStatus.OK);
+        } else {
+            log.warn("You are trying to get the requests list from another user");
+            throw new RestError("You are trying to get the requests list from another user");
+        }
     }
 
 }

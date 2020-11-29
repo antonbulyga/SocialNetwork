@@ -60,6 +60,7 @@ public class PostController {
             }
         }
 
+        log.warn("You can't delete someone else's post");
         throw new RestError("You can't delete someone else's post");
 
     }
@@ -74,6 +75,7 @@ public class PostController {
                 log.info("You have updated post successfully");
             }
         }
+        log.warn("You are trying to update someone else post");
         throw new RestError("You are trying to update someone else post");
     }
 
