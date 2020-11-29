@@ -77,6 +77,7 @@ public class LikeController {
     @GetMapping(value = "{id}")
     public ResponseEntity<LikeDto> getLikeById(@PathVariable(name = "id") Long likeId) {
         LikeDto likeDto = likeFacade.getLikeDto(likeId);
+        log.info("You are getting like by id");
         return new ResponseEntity<>(likeDto, HttpStatus.OK);
     }
 
