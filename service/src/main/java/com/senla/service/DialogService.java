@@ -14,7 +14,7 @@ public interface DialogService {
 
     Dialog updateDialog(Dialog dialog);
 
-    List<Dialog> getAll();
+    List<Dialog> getAllDialogs();
 
     Dialog addUserToDialog(Long dialogId, Long userId);
 

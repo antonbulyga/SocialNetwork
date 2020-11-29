@@ -1,2 +1,76 @@
 2020-11-29 05:20:35,870 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool        - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=4h38m2s737ms183µs999ns).
 2020-11-29 11:58:59,468 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool        - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=3h32m17s762ms25µs).
+2020-11-29 15:18:59,920 [main] INFO  com.senla.main.SocialNetworkApplication  - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 13844 (C:\Users\Anton\Documents\task-11\SocialNetwork\main\target\classes started by Anton in C:\Users\Anton\Documents\task-11\SocialNetwork)
+2020-11-29 15:18:59,926 [main] INFO  com.senla.main.SocialNetworkApplication  - No active profile set, falling back to default profiles: default
+2020-11-29 15:19:01,082 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-11-29 15:19:01,223 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 125ms. Found 10 JPA repository interfaces.
+2020-11-29 15:19:02,165 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat initialized with port(s): 8182 (http)
+2020-11-29 15:19:02,179 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-11-29 15:19:02,179 [main] INFO  org.apache.catalina.core.StandardEngine  - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-11-29 15:19:02,181 [main] INFO  o.a.catalina.core.AprLifecycleListener   - Loaded Apache Tomcat Native library [1.2.25] using APR version [1.7.0].
+2020-11-29 15:19:02,182 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2020-11-29 15:19:02,182 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2020-11-29 15:19:02,186 [main] INFO  o.a.catalina.core.AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 1.1.1g  21 Apr 2020]
+2020-11-29 15:19:02,361 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]       - Initializing Spring embedded WebApplicationContext
+2020-11-29 15:19:02,362 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2347 ms
+2020-11-29 15:19:02,593 [main] INFO  o.hibernate.jpa.internal.util.LogHelper  - HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-11-29 15:19:02,662 [main] INFO  org.hibernate.Version                    - HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-11-29 15:19:02,840 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-29 15:19:02,996 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Starting...
+2020-11-29 15:19:03,592 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Start completed.
+2020-11-29 15:19:03,616 [main] INFO  org.hibernate.dialect.Dialect            - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2020-11-29 15:19:05,299 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator       - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-11-29 15:19:05,309 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-11-29 15:19:06,165 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-11-29 15:19:06,430 [main] INFO  o.s.s.web.DefaultSecurityFilterChain     - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1018f702, org.springframework.security.web.context.SecurityContextPersistenceFilter@322eb1a, org.springframework.security.web.header.HeaderWriterFilter@73230721, org.springframework.security.web.authentication.logout.LogoutFilter@6b03c35c, com.senla.security.JwtTokenFilter@5400db7e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@69f24965, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2202c92f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@a84b6de, org.springframework.security.web.session.SessionManagementFilter@4ed19540, org.springframework.security.web.access.ExceptionTranslationFilter@4abfa2ff, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@257d3968]
+2020-11-29 15:19:06,588 [main] INFO  o.s.s.concurrent.ThreadPoolTaskExecutor  - Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-29 15:19:06,832 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat started on port(s): 8182 (http) with context path ''
+2020-11-29 15:19:06,842 [main] INFO  com.senla.main.SocialNetworkApplication  - Started SocialNetworkApplication in 7.659 seconds (JVM running for 10.431)
+2020-11-29 16:00:33,422 [main] INFO  com.senla.main.SocialNetworkApplication  - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 23616 (C:\Users\Anton\Documents\task-11\SocialNetwork\main\target\classes started by Anton in C:\Users\Anton\Documents\task-11\SocialNetwork)
+2020-11-29 16:00:33,427 [main] INFO  com.senla.main.SocialNetworkApplication  - No active profile set, falling back to default profiles: default
+2020-11-29 16:00:34,564 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-11-29 16:00:34,677 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 101ms. Found 10 JPA repository interfaces.
+2020-11-29 16:00:35,529 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat initialized with port(s): 8182 (http)
+2020-11-29 16:00:35,541 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-11-29 16:00:35,542 [main] INFO  org.apache.catalina.core.StandardEngine  - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-11-29 16:00:35,546 [main] INFO  o.a.catalina.core.AprLifecycleListener   - Loaded Apache Tomcat Native library [1.2.25] using APR version [1.7.0].
+2020-11-29 16:00:35,546 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2020-11-29 16:00:35,546 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2020-11-29 16:00:35,551 [main] INFO  o.a.catalina.core.AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 1.1.1g  21 Apr 2020]
+2020-11-29 16:00:35,680 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]       - Initializing Spring embedded WebApplicationContext
+2020-11-29 16:00:35,681 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2141 ms
+2020-11-29 16:00:35,922 [main] INFO  o.hibernate.jpa.internal.util.LogHelper  - HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-11-29 16:00:36,007 [main] INFO  org.hibernate.Version                    - HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-11-29 16:00:36,186 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-29 16:00:36,340 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Starting...
+2020-11-29 16:00:36,767 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Start completed.
+2020-11-29 16:00:36,792 [main] INFO  org.hibernate.dialect.Dialect            - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2020-11-29 16:00:38,396 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator       - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-11-29 16:00:38,408 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-11-29 16:00:39,213 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-11-29 16:00:39,472 [main] INFO  o.s.s.web.DefaultSecurityFilterChain     - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@31cddb11, org.springframework.security.web.context.SecurityContextPersistenceFilter@44e7c06b, org.springframework.security.web.header.HeaderWriterFilter@6f5288c5, org.springframework.security.web.authentication.logout.LogoutFilter@5b86f4cb, com.senla.security.JwtTokenFilter@510bd87a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@aca594d, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@79ae3fb1, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3d213a2b, org.springframework.security.web.session.SessionManagementFilter@573f2e67, org.springframework.security.web.access.ExceptionTranslationFilter@251e2f4a, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@b791e6e]
+2020-11-29 16:00:39,614 [main] INFO  o.s.s.concurrent.ThreadPoolTaskExecutor  - Initializing ExecutorService 'applicationTaskExecutor'
+2020-11-29 16:00:39,898 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat started on port(s): 8182 (http) with context path ''
+2020-11-29 16:00:39,915 [main] INFO  com.senla.main.SocialNetworkApplication  - Started SocialNetworkApplication in 7.171 seconds (JVM running for 8.253)
+2020-11-29 16:06:05,471 [main] INFO  com.senla.main.SocialNetworkApplication  - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 27104 (C:\Users\Anton\Documents\task-11\SocialNetwork\main\target\classes started by Anton in C:\Users\Anton\Documents\task-11\SocialNetwork)
+2020-11-29 16:06:05,477 [main] INFO  com.senla.main.SocialNetworkApplication  - No active profile set, falling back to default profiles: default
+2020-11-29 16:06:06,870 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-11-29 16:06:06,988 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 104ms. Found 10 JPA repository interfaces.
+2020-11-29 16:06:07,844 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat initialized with port(s): 8182 (http)
+2020-11-29 16:06:07,856 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-11-29 16:06:07,857 [main] INFO  org.apache.catalina.core.StandardEngine  - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-11-29 16:06:07,859 [main] INFO  o.a.catalina.core.AprLifecycleListener   - Loaded Apache Tomcat Native library [1.2.25] using APR version [1.7.0].
+2020-11-29 16:06:07,859 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2020-11-29 16:06:07,859 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2020-11-29 16:06:07,863 [main] INFO  o.a.catalina.core.AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 1.1.1g  21 Apr 2020]
+2020-11-29 16:06:08,005 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]       - Initializing Spring embedded WebApplicationContext
+2020-11-29 16:06:08,006 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2380 ms
+2020-11-29 16:06:08,214 [main] INFO  o.hibernate.jpa.internal.util.LogHelper  - HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-11-29 16:06:08,286 [main] INFO  org.hibernate.Version                    - HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-11-29 16:06:08,476 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-11-29 16:06:08,640 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Starting...
+2020-11-29 16:06:09,003 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Start completed.
+2020-11-29 16:06:09,023 [main] INFO  org.hibernate.dialect.Dialect            - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2020-11-29 16:06:10,769 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator       - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-11-29 16:06:10,779 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-11-29 16:06:11,717 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning

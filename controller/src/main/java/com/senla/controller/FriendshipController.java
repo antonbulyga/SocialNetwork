@@ -43,7 +43,7 @@ public class FriendshipController {
             return ResponseEntity.ok()
                     .body(friendshipDto);
         } else {
-            log.warn("You are trying to send a friend request from another user");
+            log.error("You are trying to send a friend request from another user");
             throw new RestError("You are trying to send a friend request from another user");
         }
     }
@@ -59,7 +59,7 @@ public class FriendshipController {
             return ResponseEntity.ok()
                     .body(friendshipDto);
         } else {
-            log.warn("You are trying to send a friend request from another user");
+            log.error("You are trying to send a friend request from another user");
             throw new RestError("You are trying to send a friend request from another user");
         }
     }
@@ -75,7 +75,7 @@ public class FriendshipController {
             return ResponseEntity.ok()
                     .body(friendshipDto);
         } else {
-            log.warn("You are trying to add to the friends list from another user");
+            log.error("You are trying to add to the friends list from another user");
             throw new RestError("You are trying to add to the friends list from another user");
         }
     }
@@ -88,7 +88,7 @@ public class FriendshipController {
             log.info("Getting a friend list of the user");
             return new ResponseEntity<>(userDto, HttpStatus.OK);
         } else {
-            log.warn("You are trying to get a friends list of another user");
+            log.error("You are trying to get a friends list of another user");
             throw new RestError("You are trying to get a friends list of another user");
         }
     }
@@ -104,7 +104,7 @@ public class FriendshipController {
             return ResponseEntity.ok()
                     .body(friendshipDto);
         } else {
-            log.warn("You are trying to delete a friendship of another user");
+            log.error("You are trying to delete a friendship of another user");
             throw new RestError("You are trying to delete a friendship of another user");
         }
     }
@@ -120,7 +120,7 @@ public class FriendshipController {
             return ResponseEntity.ok()
                     .body(friendshipDto);
         } else {
-            log.warn("You are trying to block user from another user");
+            log.error("You are trying to block user from another user");
             throw new RestError("You are trying to block user from another user");
         }
     }
@@ -136,7 +136,7 @@ public class FriendshipController {
             return ResponseEntity.ok()
                     .body(friendshipDto);
         } else {
-            log.warn("You are trying to unblock user from another user");
+            log.error("You are trying to unblock user from another user");
             throw new RestError("You are trying to unblock user from another user");
         }
     }
@@ -165,7 +165,7 @@ public class FriendshipController {
             log.info("Getting user requests");
             return new ResponseEntity<>(map, HttpStatus.OK);
         } else {
-            log.warn("You are trying to get the requests list from another user");
+            log.error("You are trying to get the requests list from another user");
             throw new RestError("You are trying to get the requests list from another user");
         }
     }

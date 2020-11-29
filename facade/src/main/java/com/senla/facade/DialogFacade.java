@@ -41,7 +41,7 @@ public class DialogFacade {
     }
 
     public List<DialogDto> getAllDialogs() {
-        List<Dialog> messages = dialogService.getAll();
+        List<Dialog> messages = dialogService.getAllDialogs();
         return messages.stream().map(p -> dialogToDialogDto.convert(p)).collect(Collectors.toList());
     }
 

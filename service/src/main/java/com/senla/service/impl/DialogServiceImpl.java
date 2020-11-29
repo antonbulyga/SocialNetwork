@@ -59,7 +59,7 @@ public class DialogServiceImpl implements DialogService {
     }
 
     @Override
-    public List<Dialog> getAll() {
+    public List<Dialog> getAllDialogs() {
         return dialogRepository.findAll();
     }
 

@@ -69,8 +69,8 @@ public class LikeController {
 
 
         }
-        log.error("You are trying to get messages from someone else like");
-        throw new RestError("You are trying to get messages from someone else like");
+        log.error("You are trying to delete like from someone else user");
+        throw new RestError("You are trying to delete like from someone else user");
 
     }
 

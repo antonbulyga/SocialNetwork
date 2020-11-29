@@ -1,16 +1,16 @@
 package com.senla.service;
 
 import com.senla.entity.Community;
-import com.senla.entity.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CommunityService {
     Community addCommunity(Community community);
 
     void deleteCommunity(long id);
 
-    Community getCommunitiesByName(String name);
+    Community getCommunityByName(String name);
 
     Community updateCommunity(Community community);
 
@@ -19,5 +19,7 @@ public interface CommunityService {
     Community getCommunity(Long id);
 
     List<Community> getCommunitiesByAdminUserId(Long adminId);
+
+    Optional<Community> getCommunityById(Long id);
 }
 

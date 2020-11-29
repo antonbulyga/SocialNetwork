@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -36,8 +37,8 @@ public class CommunityServiceImpl implements CommunityService {
     }
 
     @Override
-    public Community getCommunitiesByName(String name) {
-        return communityRepository.getCommunitiesByName(name);
+    public Community getCommunityByName(String name) {
+        return communityRepository.getCommunityByName(name);
     }
 
     @Override
@@ -61,6 +62,11 @@ public class CommunityServiceImpl implements CommunityService {
     @Override
     public List<Community> getCommunitiesByAdminUserId(Long adminId) {
         return communityRepository.getCommunitiesByAdminUser_Id(adminId);
+    }
+
+    @Override
+    public Optional<Community> getCommunityById(Long id) {
+        return communityRepository.findById(id);
     }
 
 

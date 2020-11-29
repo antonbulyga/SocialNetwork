@@ -56,7 +56,7 @@ public class CommunityFacade {
 
 
     public CommunityDto getCommunityByName(String name) {
-        Community community = communityService.getCommunitiesByName(name);
+        Community community = communityService.getCommunityByName(name);
         return communityToCommunityDto.convert(community);
     }
 
