@@ -37,6 +37,8 @@ public class Community {
     @OneToMany(mappedBy = "community", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Post> posts;
 
-    public Community(Long id, String name, Long adminUserId ) {
+    public Community(Long id, @NotBlank(message = "Name is mandatory") String name) {
+        this.id = id;
+        this.name = name;
     }
 }

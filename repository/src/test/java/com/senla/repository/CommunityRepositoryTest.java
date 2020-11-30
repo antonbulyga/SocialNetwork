@@ -28,14 +28,14 @@ public class CommunityRepositoryTest {
 
        @Test
         public void findByCommunityName_Success() {
-            entityManager.merge(new Community(1L, "Любители математики" , 1L));
+            entityManager.merge(new Community(1L, "Любители математики"));
             Community community = this.communityRepository.getCommunityByName("Любители математики");
             assertEquals(community.getName(),"Любители математики");
         }
 
         @Test
         public void getCommunitiesByAdminUser_Id_Success() {
-            entityManager.merge(new Community(1L, "Любители математики" , 1L));
+            entityManager.merge(new Community(1L, "Любители математики"));
             List<Community> communities = this.communityRepository.getCommunitiesByAdminUser_Id(1L);
             assertEquals(1,communities.size());
         }
