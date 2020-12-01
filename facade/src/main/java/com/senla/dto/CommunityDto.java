@@ -6,6 +6,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -14,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 public class CommunityDto {
     @NotNull(message = "Id of the community is mandatory")
-    private Long id;
+    private long id;
 
     private List<UserShortDto> users;
 

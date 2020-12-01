@@ -14,7 +14,7 @@ import java.util.List;
 @AllArgsConstructor
 public class PostDto {
     @NotNull(message = "Post id is mandatory")
-    private Long id;
+    private long id;
 
     private List<LikeShortDto> likes;
 

@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class UserShortDto {
     @NotNull(message = "Field id is mandatory")
-    private Long id;
+    private long id;
 
    /* @NotBlank(message = "Email is mandatory")
     private String email;

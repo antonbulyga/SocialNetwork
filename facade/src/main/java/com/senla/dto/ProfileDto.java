@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class ProfileDto {
     @NotNull(message = "Profile id field is mandatory")
-    private Long id;
+    private long id;
 
     @NotNull(message = "Date of birth is mandatory")
     private LocalDateTime dateOfBirth;

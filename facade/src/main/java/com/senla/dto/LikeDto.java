@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class LikeDto {
     @NotNull(message = "Like id is mandatory")
-    private Long id;
+    private long id;
 
     private PostShortDto post;
 

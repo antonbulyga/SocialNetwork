@@ -11,7 +11,6 @@ public class FriendshipToFriendshipShortDto implements Converter<Friendship, Fri
     @Override
     public FriendshipShortDto convert(Friendship friendship) {
         return FriendshipShortDto.builder()
-                .id(friendship.getId())
                 .friendshipStatus(friendship.getFriendshipStatus())
                 .build();
     }

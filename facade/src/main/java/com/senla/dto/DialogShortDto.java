@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class DialogShortDto {
     @NotNull(message = "Id of the dialog is mandatory")
-    private Long id;
+    private long id;
 
     @NotBlank(message = "Name of the dialog is mandatory")
     private String name;

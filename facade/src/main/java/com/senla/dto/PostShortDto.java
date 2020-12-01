@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class PostShortDto {
     @NotNull(message = "Post id is mandatory")
-    private Long id;
+    private long id;
 
     @NotBlank(message = "Field text mandatory")
     private String text;

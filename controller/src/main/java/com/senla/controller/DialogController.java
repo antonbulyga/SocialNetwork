@@ -67,7 +67,7 @@ public class DialogController {
         User user = userFacade.getUserFromSecurityContext();
         List<Dialog> dialogs = user.getDialogs();
         for (Dialog d : dialogs) {
-            if (d.getId() == id) {
+            if (d.getId().equals(id)) {
                 DialogDto dialogDto = dialogFacade.getDialogDto(id);
                 return new ResponseEntity<>(dialogDto, HttpStatus.OK);
             }
@@ -103,7 +103,6 @@ public class DialogController {
                 log.error("You are getting dialog by name");
                 return new ResponseEntity<>(dialogDto, HttpStatus.OK);
             }
-
         }
         log.error("You are trying to get someone else dialog");
         throw new RestError("You are trying to get someone else dialog");
@@ -115,7 +114,7 @@ public class DialogController {
         User user = userFacade.getUserFromSecurityContext();
         List<Dialog> dialogs = user.getDialogs();
         for (Dialog d : dialogs) {
-            if (d.getId() == dialogId) {
+            if (d.getId().equals(dialogId)) {
                 log.error("You are adding user to the dialog");
                 DialogDto dialogDto = dialogFacade.addUserToDialog(dialogId, userId);
                 return new ResponseEntity<>(dialogDto, HttpStatus.OK);
@@ -127,12 +126,12 @@ public class DialogController {
 
     }
 
-    @PostMapping(value = "delete/user")
+    @DeleteMapping(value = "delete/user")
     public ResponseEntity<DialogDto> deleteUserFromDialog(@RequestParam(name = "dialogId") Long dialogId, @RequestParam(name = "userId") Long userId) {
         User user = userFacade.getUserFromSecurityContext();
         List<Dialog> dialogs = user.getDialogs();
         for (Dialog d : dialogs) {
-            if (d.getId() == dialogId) {
+            if (d.getId().equals(dialogId)) {
                 log.error("You are deleting user from the dialog");
                 DialogDto dialogDto = dialogFacade.deleteUserFromDialog(dialogId, userId);
                 return new ResponseEntity<>(dialogDto, HttpStatus.OK);

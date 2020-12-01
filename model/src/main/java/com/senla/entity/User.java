@@ -33,7 +33,7 @@ public class User {
     @Column(name = "user_name")
     private String userName;
 
-    @Min(value = 6, message = "Password should be not less than 6 characters")
+    @Min(value = 4, message = "Password should be not less than 4 characters")
     @Max(value = 20, message = "Password should be not greater than 20 characters")
     @NotBlank(message = "Password is mandatory")
     @Column(name = "password")
@@ -44,17 +44,11 @@ public class User {
     @JoinColumn(name = "user_profile_id", referencedColumnName = "id")
     private Profile profile;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {
-            CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE
-    })
-
-    @JoinTable(name = "community_has_users",
-            joinColumns = {@JoinColumn(name = "users_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "community_id", referencedColumnName = "id")})
+    @ManyToMany(mappedBy = "users", fetch = FetchType.LAZY)
     private List<Community> communities;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = {
-            CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE
+            CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH
     })
     @JoinTable(name = "users_has_roles",
             joinColumns = {@JoinColumn(name = "users_id", referencedColumnName = "id")},

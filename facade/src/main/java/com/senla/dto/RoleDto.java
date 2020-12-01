@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 public class RoleDto {
     @NotNull(message = "Role id field is mandatory")
-    private Long id;
+    private long id;
 
     @NotBlank(message = "Name is mandatory")
     private String name;

@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class MessageDto {
     @NotNull(message = "Message id is mandatory")
-    private Long id;
+    private long id;
 
     private UserShortDto user;
 

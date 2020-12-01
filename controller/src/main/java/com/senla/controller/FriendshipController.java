@@ -32,22 +32,6 @@ public class FriendshipController {
         this.userFacade = userFacade;
     }
 
-    @PostMapping(value = "request/new")
-    public ResponseEntity<FriendshipDto> sentNewFriendRequest(@RequestParam(name = "idOne") Long userOneId,
-                                                              @RequestParam(name = "idTwo") Long userTwoId,
-                                                              @RequestParam(name = "idAction") Long actionUserId) {
-        User user = userFacade.getUserFromSecurityContext();
-        if (user.getId() == actionUserId) {
-            FriendshipDto friendshipDto = friendshipFacade.sentNewFriendRequest(userOneId, userTwoId, actionUserId);
-            log.info("Sending a new friend request");
-            return ResponseEntity.ok()
-                    .body(friendshipDto);
-        } else {
-            log.error("You are trying to send a friend request from another user");
-            throw new RestError("You are trying to send a friend request from another user");
-        }
-    }
-
     @PostMapping(value = "request")
     public ResponseEntity<FriendshipDto> sentFriendRequest(@RequestParam(name = "idOne") Long userOneId,
                                                            @RequestParam(name = "idTwo") Long userTwoId,

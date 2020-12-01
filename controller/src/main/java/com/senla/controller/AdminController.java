@@ -1,8 +1,11 @@
 package com.senla.controller;
 
 import com.senla.dto.*;
+import com.senla.entity.Dialog;
 import com.senla.entity.Friendship;
 import com.senla.entity.Profile;
+import com.senla.entity.User;
+import com.senla.exception.RestError;
 import com.senla.facade.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -74,7 +77,7 @@ public class AdminController {
     }
 
     @GetMapping(value = "users/search/email")
-    public ResponseEntity<UserDto> findByEmailAsAdmin (@RequestParam(name = "email") String email) {
+    public ResponseEntity<UserDto> findByEmailAsAdmin(@RequestParam(name = "email") String email) {
         UserDto userDto = userFacade.findUserByEmail(email);
         log.info("Finding user by email as admin");
         return new ResponseEntity<>(userDto, HttpStatus.OK);
@@ -207,7 +210,7 @@ public class AdminController {
         return new ResponseEntity<>(messageDtoList, HttpStatus.OK);
     }
 
-    @GetMapping(value = "{id}")
+    @GetMapping(value = "messages/{id}")
     public ResponseEntity<MessageDto> getMessageByIdAsAdmin(@PathVariable(name = "id") Long messageId) {
         MessageDto messageDto = messageFacade.getMessageDto(messageId);
         log.info("Getting messages by id as admin");
@@ -228,6 +231,59 @@ public class AdminController {
         return new ResponseEntity<>(dialogDtoList, HttpStatus.OK);
     }
 
+    @PostMapping(value = "dialogs/add")
+    public ResponseEntity<DialogDto> addDialogAsAdmin(@Valid @RequestBody DialogDto dialogDto) {
+        dialogFacade.addDialog(dialogDto);
+        log.info("Adding a new dialog");
+        return new ResponseEntity<>(dialogDto, HttpStatus.OK);
+    }
+
+    @DeleteMapping(value = "dialogs/delete")
+    public ResponseEntity<String> deleteDialog(@RequestParam(name = "id") Long id) {
+        dialogFacade.deleteDialog(id);
+        log.info("Deleting the dialog as admin");
+        return ResponseEntity.ok()
+                .body("You have deleted dialog successfully");
+
+    }
+
+    @GetMapping(value = "dialogs/{id}")
+    public ResponseEntity<DialogDto> getDialogById(@PathVariable(name = "id") Long id) {
+        DialogDto dialogDto = dialogFacade.getDialogDto(id);
+        log.info("Getting the dialog by id as admin");
+        return new ResponseEntity<>(dialogDto, HttpStatus.OK);
+    }
+
+    @PutMapping(value = "dialogs/update")
+    public ResponseEntity<DialogDto> updateDialog(@Valid @RequestBody DialogDto dialogDto) {
+        dialogFacade.updateDialog(dialogDto);
+        log.error("You are updating dialog");
+        return new ResponseEntity<>(dialogDto, HttpStatus.OK);
+    }
+
+    @GetMapping(value = "dialogs/search/name")
+    public ResponseEntity<DialogDto> getDialogByName(@RequestParam(name = "name") String name) {
+        DialogDto dialogDto = dialogFacade.getDialogByName(name);
+        log.error("You are getting dialog by name as admin");
+        return new ResponseEntity<>(dialogDto, HttpStatus.OK);
+    }
+
+
+    @PostMapping(value = "dialogs/add/user")
+    public ResponseEntity<DialogDto> addUserToDialog(@RequestParam(name = "dialogId") Long dialogId, @RequestParam(name = "userId") Long userId) {
+        log.error("You are adding user to the dialog");
+        DialogDto dialogDto = dialogFacade.addUserToDialog(dialogId, userId);
+        return new ResponseEntity<>(dialogDto, HttpStatus.OK);
+    }
+
+
+    @DeleteMapping(value = "dialogs/delete/user")
+    public ResponseEntity<DialogDto> deleteUserFromDialog(@RequestParam(name = "dialogId") Long dialogId, @RequestParam(name = "userId") Long userId) {
+        log.error("You are deleting user from the dialog");
+        DialogDto dialogDto = dialogFacade.deleteUserFromDialog(dialogId, userId);
+        return new ResponseEntity<>(dialogDto, HttpStatus.OK);
+    }
+
     @DeleteMapping(value = "community/delete")
     public ResponseEntity<String> deleteCommunityAsAdmin(@RequestParam(name = "id") long id) {
         communityFacade.deleteCommunity(id);
@@ -236,21 +292,11 @@ public class AdminController {
                 .body("You have deleted community successfully");
     }
 
-    @PostMapping(value = "friendship/request/new")
-    public ResponseEntity<FriendshipDto> sentNewFriendRequestAsAdmin(@RequestParam(name = "idOne") Long userOneId,
-                                                              @RequestParam(name = "idTwo") Long userTwoId,
-                                                              @RequestParam(name = "idAction") Long actionUserId) {
-
-        FriendshipDto friendshipDto = friendshipFacade.sentNewFriendRequest(userOneId, userTwoId, actionUserId);
-        log.info("Sending a new friend request");
-        return ResponseEntity.ok()
-                .body(friendshipDto);
-    }
 
     @PostMapping(value = "friendship/request")
     public ResponseEntity<FriendshipDto> sentFriendRequestAsAdmin(@RequestParam(name = "idOne") Long userOneId,
-                                                           @RequestParam(name = "idTwo") Long userTwoId,
-                                                           @RequestParam(name = "idAction") Long actionUserId) {
+                                                                  @RequestParam(name = "idTwo") Long userTwoId,
+                                                                  @RequestParam(name = "idAction") Long actionUserId) {
         FriendshipDto friendshipDto = friendshipFacade.sentFriendRequest(userOneId, userTwoId, actionUserId);
         log.info("Sending a friend request");
         return ResponseEntity.ok()
@@ -259,8 +305,8 @@ public class AdminController {
 
     @PostMapping(value = "friendship/add")
     public ResponseEntity<FriendshipDto> addToFriendsAsAdmin(@RequestParam(name = "idOne") Long userOneId,
-                                                      @RequestParam(name = "idTwo") Long userTwoId,
-                                                      @RequestParam(name = "idAction") Long actionUserId) {
+                                                             @RequestParam(name = "idTwo") Long userTwoId,
+                                                             @RequestParam(name = "idAction") Long actionUserId) {
         FriendshipDto friendshipDto = friendshipFacade.addToFriends(userOneId, userTwoId, actionUserId);
         log.info("Adding to friend user");
         return ResponseEntity.ok()
@@ -276,8 +322,8 @@ public class AdminController {
 
     @PostMapping(value = "friendship/delete")
     public ResponseEntity<FriendshipDto> deleteFriendshipAsAdmin(@RequestParam(name = "idOne") Long userOneId,
-                                                          @RequestParam(name = "idTwo") Long userTwoId,
-                                                          @RequestParam(name = "idAction") Long actionUserId) {
+                                                                 @RequestParam(name = "idTwo") Long userTwoId,
+                                                                 @RequestParam(name = "idAction") Long actionUserId) {
         FriendshipDto friendshipDto = friendshipFacade.deleteFriendship(userOneId, userTwoId, actionUserId);
         log.info("Deleting the user from the friends");
         return ResponseEntity.ok()
@@ -286,8 +332,8 @@ public class AdminController {
 
     @PostMapping(value = "friendship/block")
     public ResponseEntity<FriendshipDto> blockUserAsAdmin(@RequestParam(name = "idOne") Long userOneId,
-                                                   @RequestParam(name = "idTwo") Long userTwoId,
-                                                   @RequestParam(name = "idAction") Long actionUserId) {
+                                                          @RequestParam(name = "idTwo") Long userTwoId,
+                                                          @RequestParam(name = "idAction") Long actionUserId) {
         FriendshipDto friendshipDto = friendshipFacade.blockUser(userOneId, userTwoId, actionUserId);
         log.info("Blocking user");
         return ResponseEntity.ok()
@@ -296,8 +342,8 @@ public class AdminController {
 
     @PostMapping(value = "friendship/unblock")
     public ResponseEntity<FriendshipDto> unblockUserAsAdmin(@RequestParam(name = "idOne") Long userOneId,
-                                                     @RequestParam(name = "idTwo") Long userTwoId,
-                                                     @RequestParam(name = "idAction") Long actionUserId) {
+                                                            @RequestParam(name = "idTwo") Long userTwoId,
+                                                            @RequestParam(name = "idAction") Long actionUserId) {
 
         FriendshipDto friendshipDto = friendshipFacade.unblockUser(userOneId, userTwoId, actionUserId);
         log.info("Unlocking user");

@@ -30,38 +30,61 @@ public class FriendshipServiceImpl implements FriendshipService {
     }
 
     public boolean validate(Long userOneId, Long userTwoId, Long actionId) {
-        if (userOneId > userTwoId & (userOneId == actionId || userTwoId == actionId)) {
-            throw new IncorrectRequest("Your request is incorrect. User one id should be less than user two id");
+        if (userOneId < userTwoId) {
+            if ((userOneId.equals(actionId) || userTwoId.equals(actionId))) {
+                log.info("Parameters is correct");
+                return true;
+            } else {
+                log.error("Your request is incorrect action id should be one of the users");
+                throw new IncorrectRequest("Your request is incorrect action id should be one of the users");
+            }
+
         } else {
-            return true;
+            log.error("Your request is incorrect. User one id should be less than user two id");
+            throw new IncorrectRequest("Your request is incorrect. User one id should be less than user two id");
         }
+
     }
 
+
     @Override
-    public Friendship sentNewFriendRequest(Long userOneId, Long userTwoId, Long actionId) {
+    public Friendship createFriendRequest(Long userOneId, Long userTwoId, Long actionId) {
+        validate(userOneId, userTwoId, actionId);
         User actionUser = userService.getUser(actionId);
         User userOne = userService.getUser(userOneId);
         User userTwo = userService.getUser(userTwoId);
-        friendshipRepository.sentNewFriendRequest(userOne, userTwo, actionUser);
-        return createFriendship(userOne, userTwo, actionUser, FriendshipStatus.REQUEST);
-    }
-
-    @Override
-    public Friendship sentFriendRequest(Long userOneId, Long userTwoId, Long actionId) {
-        User actionUser = userService.getUser(actionId);
-        User userOne = userService.getUser(userOneId);
-        User userTwo = userService.getUser(userTwoId);
-        friendshipRepository.sentFriendRequest(userOne, userTwo, actionUser);
-        return createFriendship(userOne, userTwo, actionUser, FriendshipStatus.REQUEST);
+        List<Friendship> friendships = friendshipRepository.getAllFriendshipsForUserOneAndUserTwo(userOne, userTwo);
+        if (friendships.isEmpty()) {
+            friendshipRepository.createNewFriendRequest(userOne, userTwo, actionUser);
+            return createFriendship(userOne, userTwo, actionUser, FriendshipStatus.REQUEST);
+        } else {
+            for (Friendship f : friendships) {
+                if (f.getActionUser().equals(actionUser) & f.getUserOne().equals(userOne)
+                        & f.getUserTwo().equals(userTwo) & f.getFriendshipStatus().equals(FriendshipStatus.DECLINED)) {
+                    friendshipRepository.sentFriendRequest(userOne, userTwo, actionUser);
+                    return createFriendship(userOne, userTwo, actionUser, FriendshipStatus.REQUEST);
+                }
+            }
+        }
+        log.error("Relationship of that users already exists");
+        throw new IncorrectRequest("Relationship of that users already exists");
     }
 
     @Override
     public Friendship addToFriends(Long userOneId, Long userTwoId, Long actionId) {
-        User actionUser = userService.getUser(actionId);
+        validate(userOneId, userTwoId, actionId);
         User userOne = userService.getUser(userOneId);
         User userTwo = userService.getUser(userTwoId);
-        friendshipRepository.addToFriends(userOne, userTwo, actionUser);
-        return createFriendship(userOne, userTwo, actionUser, FriendshipStatus.FRIEND);
+        List<Friendship> friendships = getRequestFriendships(actionId);
+        for (Friendship f : friendships) {
+            if (f.getActionUser().equals(userOne) & f.getUserOne().equals(userOne)
+                    & f.getUserTwo().equals(userTwo)) {
+                friendshipRepository.addToFriends(userOne, userTwo, userTwo);
+                return createFriendship(userOne, userTwo, userTwo, FriendshipStatus.FRIEND);
+            }
+        }
+        log.error("Relationship of that users already exists");
+        throw new IncorrectRequest("Relationship of that users already exists");
     }
 
     @Override
@@ -76,38 +99,97 @@ public class FriendshipServiceImpl implements FriendshipService {
 
     @Override
     public Friendship deleteFriendship(Long userOneId, Long userTwoId, Long actionId) {
+        validate(userOneId, userTwoId, actionId);
         User actionUser = userService.getUser(actionId);
         User userOne = userService.getUser(userOneId);
         User userTwo = userService.getUser(userTwoId);
-        friendshipRepository.deleteFriendship(userOne, userTwo, actionUser);
-        return createFriendship(userOne, userTwo, actionUser, FriendshipStatus.DECLINED);
+        List<Friendship> friendships = getFriendFriendshipsForUser(actionId);
+        for (Friendship f : friendships) {
+            if (f.getUserOne().equals(userOne) & f.getUserTwo().equals(userTwo)) {
+                friendshipRepository.deleteFriendship(userOne, userTwo, actionUser);
+                return createFriendship(userOne, userTwo, actionUser, FriendshipStatus.DECLINED);
+            }
+        }
+        log.error("Relationship of that users already exists");
+        throw new IncorrectRequest("Relationship of that users already exists");
     }
 
     @Override
     public Friendship blockUser(Long userOneId, Long userTwoId, Long actionId) {
+        validate(userOneId, userTwoId, actionId);
         User actionUser = userService.getUser(actionId);
         User userOne = userService.getUser(userOneId);
         User userTwo = userService.getUser(userTwoId);
-        Friendship friendship = createFriendship(userOne, userTwo, actionUser, FriendshipStatus.BLOCKED);
-        friendshipRepository.blockUser(userOne, userTwo, actionUser);
-        return friendship;
+        List<Friendship> friendships = getAllFriendshipsForUser(actionId);
+        for (Friendship f : friendships) {
+            if (f.getActionUser().equals(actionUser) & f.getUserOne().equals(userOne)
+                    & f.getUserTwo().equals(userTwo) & !f.getFriendshipStatus().equals(FriendshipStatus.BLOCKED) ) {
+                friendshipRepository.blockUser(userOne, userTwo, actionUser);
+                return createFriendship(userOne, userTwo, actionUser, FriendshipStatus.BLOCKED);
+            }
+        }
+        log.error("Relationship of that users already exists");
+        throw new IncorrectRequest("Relationship of that users already exists");
     }
 
 
     @Override
     public Friendship unblockUser(Long userOneId, Long userTwoId, Long actionId) {
+        validate(userOneId, userTwoId, actionId);
         User actionUser = userService.getUser(actionId);
         User userOne = userService.getUser(userOneId);
         User userTwo = userService.getUser(userTwoId);
-        Friendship friendship = createFriendship(userOne, userTwo, actionUser, FriendshipStatus.DECLINED);
-        friendshipRepository.unblockUser(userOne, userTwo, actionUser);
-        return friendship;
+        List<Friendship> friendships = getBlockedFriendshipsForUser(actionId);
+        for (Friendship f : friendships) {
+            if (f.getActionUser().equals(actionUser) & f.getUserOne().equals(userOne)
+                    & f.getUserTwo().equals(userTwo)) {
+                friendshipRepository.unblockUser(userOne, userTwo, actionUser);
+                return createFriendship(userOne, userTwo, actionUser, FriendshipStatus.DECLINED);
+            }
+        }
+        log.error("Relationship of that users already exists");
+        throw new IncorrectRequest("Relationship of that users already exists");
     }
 
     @Override
-    public List<Friendship> getRequest(Long userId) {
+    public List<Friendship> getRequestFriendships(Long userId) {
         User user = userService.getUser(userId);
-        return friendshipRepository.getRequests(user);
+        List<Friendship> friendships = friendshipRepository.getRequestFriendshipsForUser(user);
+        if (friendships.isEmpty()) {
+            log.error("No users with that relationship. Incorrect request, try again");
+            throw new IncorrectRequest("No users with that relationship. Incorrect request, try again");
+        }
+        return friendships;
+    }
+
+    public List<Friendship> getFriendFriendshipsForUser(Long userId) {
+        User user = userService.getUser(userId);
+        List<Friendship> friendships = friendshipRepository.getFriendFriendshipsForUser(user);
+        if (friendships.isEmpty()) {
+            log.error("No users with that relationship. Incorrect request, try again");
+            throw new IncorrectRequest("No users with that relationship. Incorrect request, try again");
+        }
+        return friendships;
+    }
+
+    public List<Friendship> getBlockedFriendshipsForUser(Long userId) {
+        User user = userService.getUser(userId);
+        List<Friendship> friendships = friendshipRepository.getBlockedFriendshipsForUser(user);
+        if (friendships.isEmpty()) {
+            log.error("No users with that relationship. Incorrect request, try again");
+            throw new IncorrectRequest("No users with that relationship. Incorrect request, try again");
+        }
+        return friendships;
+    }
+
+    public List<Friendship> getAllFriendshipsForUser(Long userId) {
+        User user = userService.getUser(userId);
+        List<Friendship> friendships = friendshipRepository.getAllFriendshipsForUser(user);
+        if (friendships.isEmpty()) {
+            log.error("No users with that relationship. Incorrect request, try again");
+            throw new IncorrectRequest("No users with that relationship. Incorrect request, try again");
+        }
+        return friendships;
     }
 
     private Friendship createFriendship(User userOne, User userTwo, User actionUser, FriendshipStatus status) {

@@ -13,17 +13,19 @@ import java.util.Set;
 @AllArgsConstructor
 @Builder
 @Entity
-@EqualsAndHashCode
 @Table(name = "community")
 public class Community {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToMany(mappedBy = "communities", fetch = FetchType.LAZY, cascade = {
-            CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {
+            CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE
     })
-    private Set<User> users;
+    @JoinTable(name = "community_has_users",
+            joinColumns = {@JoinColumn(name = "community_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "users_id", referencedColumnName = "id")})
+    private List<User> users;
 
     @NotBlank(message = "Name is mandatory")
     @Column(name = "name")

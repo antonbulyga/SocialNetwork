@@ -29,7 +29,7 @@ public class CommunityDtoToCommunity implements Converter<CommunityDto, Communit
                 .adminUser(userService.getUser(communityDto.getAdminUser().getId()))
                 .name(communityDto.getName())
                 .posts(communityDto.getPosts().stream().map(p -> postService.getPost(p.getId())).collect(Collectors.toList()))
-                .users(communityDto.getUsers().stream().map(u -> userService.getUser(u.getId())).collect(Collectors.toSet()))
+                .users(communityDto.getUsers().stream().map(u -> userService.getUser(u.getId())).collect(Collectors.toList()))
                 .build();
     }
 }

@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class CommunityShortDto {
     @NotNull(message = "Id of the community is mandatory")
-    private Long id;
+    private long id;
 
     @NotBlank(message = "Name of the community is mandatory")
     private String name;

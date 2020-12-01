@@ -3,6 +3,7 @@ package com.senla.dto;
 import lombok.*;
 
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -15,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 public class DialogDto {
     @NotNull(message = "Id of the dialog is mandatory")
-    private Long id;
+    private long id;
 
     @NotBlank(message = "Name of the dialog is mandatory")
     private String name;
@@ -25,6 +26,7 @@ public class DialogDto {
 
     private List<MessageShortDto> messages;
 
+    @NotEmpty(message = "At least one user must participate in the dialog")
     private List<UserShortDto> userList;
 
 }

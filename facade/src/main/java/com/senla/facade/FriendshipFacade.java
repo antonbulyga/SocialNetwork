@@ -28,12 +28,12 @@ public class FriendshipFacade {
     }
 
     public FriendshipDto sentNewFriendRequest(Long userOneId, Long userTwoId, Long actionUserId) {
-        Friendship friendship = friendshipService.sentNewFriendRequest(userOneId, userTwoId, actionUserId);
+        Friendship friendship = friendshipService.createFriendRequest(userOneId, userTwoId, actionUserId);
         return friendshipToFriendshipDto.convert(friendship);
     }
 
     public FriendshipDto sentFriendRequest(Long userOneId, Long userTwoId, Long actionUserId) {
-        Friendship friendship = friendshipService.sentFriendRequest(userOneId, userTwoId, actionUserId);
+        Friendship friendship = friendshipService.createFriendRequest(userOneId, userTwoId, actionUserId);
         return friendshipToFriendshipDto.convert(friendship);
     }
 
@@ -58,7 +58,7 @@ public class FriendshipFacade {
     }
 
     public List<Friendship> getRequests(Long userId) {
-        return friendshipService.getRequest(userId);
+        return friendshipService.getRequestFriendships(userId);
     }
 
     public List<UserDto> getFriendsListOfUser(Long userId) {

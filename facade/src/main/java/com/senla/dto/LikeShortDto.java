@@ -11,5 +11,5 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class LikeShortDto {
     @NotNull(message = "Like id is mandatory")
-    private Long id;
+    private long id;
 }

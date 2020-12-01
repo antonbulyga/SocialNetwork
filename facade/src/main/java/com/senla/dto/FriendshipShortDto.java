@@ -12,9 +12,6 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @AllArgsConstructor
 public class FriendshipShortDto {
-    @NotNull(message = "Id of the friendship is mandatory")
-    private Long id;
-
     @NotNull(message = "Friendship status is mandatory")
     private FriendshipStatus friendshipStatus;
 

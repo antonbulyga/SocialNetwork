@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 @AllArgsConstructor
 public class RoleShortDto {
     @NotNull(message = "Role id field is mandatory")
-    private Long id;
+    private long id;
 
     @NotBlank(message = "Name is mandatory")
     private String name;
