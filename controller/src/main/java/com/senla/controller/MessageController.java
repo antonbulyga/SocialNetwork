@@ -6,6 +6,7 @@ import com.senla.entity.Message;
 import com.senla.entity.User;
 import com.senla.exception.EntityNotFoundException;
 import com.senla.exception.RestError;
+import com.senla.facade.DialogFacade;
 import com.senla.facade.MessageFacade;
 import com.senla.facade.UserFacade;
 import lombok.extern.slf4j.Slf4j;
@@ -25,49 +26,51 @@ public class MessageController {
 
     private final UserFacade userFacade;
     private final MessageFacade messageFacade;
+    private final DialogFacade dialogFacade;
 
     @Autowired
-    public MessageController(UserFacade userFacade, MessageFacade messageFacade) {
+    public MessageController(UserFacade userFacade, MessageFacade messageFacade, DialogFacade dialogFacade) {
         this.userFacade = userFacade;
         this.messageFacade = messageFacade;
+        this.dialogFacade = dialogFacade;
     }
 
     @GetMapping(value = "")
     public ResponseEntity<List<MessageDto>> getAllMessagesForUserFromAllDialogs() {
         List<MessageDto> fullMessageDtoList = new ArrayList<>();
-        userFacade.getUserFromSecurityContext().getDialogs().forEach(d ->
-                fullMessageDtoList.addAll(messageFacade.getMessagesByDialog_Id(d.getId())));
+        userFacade.getUserFromSecurityContext().getDialogs().forEach(d -> fullMessageDtoList.addAll(messageFacade.getMessagesByDialog_Id(d.getId())));
         return new ResponseEntity<>(fullMessageDtoList, HttpStatus.OK);
     }
 
     @PostMapping(value = "add")
     public ResponseEntity<MessageDto> addMessageToDialog(@Valid @RequestBody MessageDto messageDto) {
-        Message message = messageFacade.getLike(messageDto.getId());
         User user = userFacade.getUserFromSecurityContext();
         List<Dialog> dialogs = user.getDialogs();
-        Dialog dialog = message.getDialog();
+        Dialog dialog = dialogFacade.getDialog(messageDto.getDialog().getId());
         if (dialog == null) {
             log.error("Trying to add message with null dialog");
             throw new RestError("Trying to add message with null dialog");
         }
-        for (Dialog d : dialogs) {
-            if (d.getId().equals(dialog.getId())) {
-                messageFacade.addMessage(messageDto);
-                log.info("Adding message to the dialog");
-                return new ResponseEntity<>(messageDto, HttpStatus.OK);
+        if (user.getId().equals(messageDto.getUser().getId())) {
+            for (Dialog d : dialogs) {
+                if (d.getId().equals(dialog.getId())) {
+                    MessageDto messageDtoWithTime = messageFacade.addMessage(messageDto);
+                    log.info("Adding message to the dialog");
+                    return new ResponseEntity<>(messageDtoWithTime, HttpStatus.OK);
+                }
             }
         }
 
-        log.error("User can not add message to someone else dialog");
-        throw new RestError("User can not add message to someone else dialog");
+        log.error("User can not add message to someone else dialog or user");
+        throw new RestError("User can not add message to someone else dialog or user");
     }
 
     @DeleteMapping(value = "delete")
-    public ResponseEntity<String> deleteMessage(@RequestParam(name = "id") long id) {
+    public ResponseEntity<String> deleteMessage(@RequestParam(name = "id") Long id) {
         User user = userFacade.getUserFromSecurityContext();
         List<Message> messages = user.getMessages();
         for (Message m : messages) {
-            if (m.getId() == id) {
+            if (m.getId().equals(id)) {
                 messageFacade.deleteMessage(id);
                 return ResponseEntity.ok()
                         .body("You have deleted message successfully");
@@ -82,12 +85,12 @@ public class MessageController {
     public ResponseEntity<MessageDto> updateMessage(@Valid @RequestBody MessageDto messageDto) {
         User user = userFacade.getUserFromSecurityContext();
         List<Message> messages = user.getMessages();
-        messageFacade.getLike(messageDto.getId());
+        messageFacade.getMessage(messageDto.getId());
         for (Message m : messages) {
             if (m.getId() == messageDto.getId()) {
-                messageFacade.updateMessage(messageDto);
+                MessageDto messageDtoWithTime = messageFacade.updateMessage(messageDto);
                 log.info("You have updated message successfully");
-                return new ResponseEntity<>(messageDto, HttpStatus.OK);
+                return new ResponseEntity<>(messageDtoWithTime, HttpStatus.OK);
             }
 
         }
@@ -102,7 +105,7 @@ public class MessageController {
         List<Dialog> dialogs = user.getDialogs();
         List<MessageDto> messageListDto = messageFacade.getMessagesByDialog_Id(id);
         if (messageListDto.size() == 0) {
-            throw new EntityNotFoundException("Dialog does not exist");
+            throw new EntityNotFoundException("Dialog does not exist or no message in the dialog");
         }
         for (Dialog d : dialogs) {
             if (d.getId() == id) {
@@ -119,7 +122,7 @@ public class MessageController {
     @GetMapping(value = "{id}")
     public ResponseEntity<MessageDto> getMessageById(@PathVariable(name = "id") Long messageId) {
         MessageDto messageDto;
-        Message message = messageFacade.getLike(messageId);
+        Message message = messageFacade.getMessage(messageId);
         User user = userFacade.getUserFromSecurityContext();
         List<Message> messages = user.getMessages();
         for (Message m : messages) {

@@ -25,6 +25,5 @@ public class PostDto {
 
     private CommunityShortDto community;
 
-    @NotNull(message = "Creation time field is mandatory")
     private LocalDateTime dateOfCreation;
 }

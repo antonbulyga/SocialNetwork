@@ -21,7 +21,6 @@ public class DialogDto {
     @NotBlank(message = "Name of the dialog is mandatory")
     private String name;
 
-    @NotNull(message = "Time creation field is mandatory")
     private LocalDateTime timeCreation;
 
     private List<MessageShortDto> messages;

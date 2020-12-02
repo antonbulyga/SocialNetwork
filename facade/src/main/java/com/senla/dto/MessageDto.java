@@ -22,7 +22,6 @@ public class MessageDto {
 
     private DialogShortDto dialog;
 
-    @NotNull(message = "Creation time field is mandatory")
     private LocalDateTime creationTime;
 
 }

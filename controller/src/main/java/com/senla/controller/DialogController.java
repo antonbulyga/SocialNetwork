@@ -40,9 +40,9 @@ public class DialogController {
 
     @PostMapping(value = "add")
     public ResponseEntity<DialogDto> addDialog(@Valid @RequestBody DialogDto dialogDto) {
-        dialogFacade.addDialog(dialogDto);
+        DialogDto dialogDtoWithData = dialogFacade.addDialog(dialogDto);
         log.info("Adding a new dialog");
-        return new ResponseEntity<>(dialogDto, HttpStatus.OK);
+        return new ResponseEntity<>(dialogDtoWithData, HttpStatus.OK);
     }
 
     @DeleteMapping(value = "delete")
@@ -83,9 +83,9 @@ public class DialogController {
         List<Dialog> dialogs = user.getDialogs();
         for (Dialog d : dialogs) {
             if (d.getId() == dialogDto.getId()) {
-                dialogFacade.updateDialog(dialogDto);
+                DialogDto dialogDtoWithData = dialogFacade.updateDialog(dialogDto);
                 log.error("You are updating dialog");
-                return new ResponseEntity<>(dialogDto, HttpStatus.OK);
+                return new ResponseEntity<>(dialogDtoWithData, HttpStatus.OK);
             }
 
         }
@@ -116,8 +116,8 @@ public class DialogController {
         for (Dialog d : dialogs) {
             if (d.getId().equals(dialogId)) {
                 log.error("You are adding user to the dialog");
-                DialogDto dialogDto = dialogFacade.addUserToDialog(dialogId, userId);
-                return new ResponseEntity<>(dialogDto, HttpStatus.OK);
+                DialogDto dialogDtoWithTime = dialogFacade.addUserToDialog(dialogId, userId);
+                return new ResponseEntity<>(dialogDtoWithTime, HttpStatus.OK);
             }
 
         }
@@ -133,8 +133,8 @@ public class DialogController {
         for (Dialog d : dialogs) {
             if (d.getId().equals(dialogId)) {
                 log.error("You are deleting user from the dialog");
-                DialogDto dialogDto = dialogFacade.deleteUserFromDialog(dialogId, userId);
-                return new ResponseEntity<>(dialogDto, HttpStatus.OK);
+                DialogDto dialogDtoWithTime = dialogFacade.deleteUserFromDialog(dialogId, userId);
+                return new ResponseEntity<>(dialogDtoWithTime, HttpStatus.OK);
             }
 
         }

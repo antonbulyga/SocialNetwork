@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -42,7 +43,7 @@ public class UserDtoToUser implements Converter<UserDto, User> {
         Community community = null;
         return User.builder()
                 .id(userDto.getId())
-                .creationTime(userDto.getCreationTime())
+                .creationTime(LocalDateTime.now())
                 .email(userDto.getEmail())
                 .password(userDto.getPassword())
                 .userName(userDto.getUserName())

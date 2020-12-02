@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.stream.Collectors;
 
 @Component
@@ -27,7 +28,7 @@ public class DialogDtoToDialog implements Converter<DialogDto, Dialog> {
         return Dialog.builder()
                 .id(dialogDto.getId())
                 .name(dialogDto.getName())
-                .timeCreation(dialogDto.getTimeCreation())
+                .timeCreation(LocalDateTime.now())
                 .messages(dialogDto.getMessages().stream().map(p -> messageService.getMessage(p.getId())).collect(Collectors.toList()))
                 .userList(dialogDto.getUserList().stream().map(u -> userService.getUserById(u.getId())).collect(Collectors.toList()))
                 .build();

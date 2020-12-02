@@ -35,8 +35,9 @@ public class UserFacade {
     }
 
     public UserDto addUser(UserDto userDto) {
-        userService.addUser(userDtoToUser.convert(userDto));
-        return userDto;
+        User user =  userService.addUser(userDtoToUser.convert(userDto));
+        UserDto userDtoWithDate = convertUserToUserDto(user);
+        return userDtoWithDate;
     }
 
     public void deleteUser(Long userId) {
@@ -48,9 +49,9 @@ public class UserFacade {
     }
 
     public UserDto updateUser(UserDto userDto) {
-        User user = userDtoToUser.convert(userDto);
-        userService.updateUser(user);
-        return userDto;
+        User user =  userService.updateUser(userDtoToUser.convert(userDto));
+        UserDto userDtoWithDate = convertUserToUserDto(user);
+        return userDtoWithDate;
     }
 
     public UserDto findUserByUserName(String userName) {

@@ -6,7 +6,6 @@ import lombok.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -18,7 +17,7 @@ public class ProfileDto {
     private long id;
 
     @NotNull(message = "Date of birth is mandatory")
-    private LocalDateTime dateOfBirth;
+    private LocalDate dateOfBirth;
 
     @NotNull(message = "Field gender is mandatory")
     private Gender gender;

@@ -30,13 +30,12 @@ public class ProfileFacade {
         return profileDto;
     }
 
-    public void deleteProfiles(long id) {
+    public void deleteProfiles(Long id) {
         profileService.deleteProfile(id);
     }
 
     public ProfileDto updateProfile(ProfileDto profileDto) {
-        Profile profile = profileDtoToProfile.convert(profileDto);
-        profileService.updateProfile(profile);
+        profileService.updateProfile(profileDtoToProfile.convert(profileDto));
         return profileDto;
     }
 

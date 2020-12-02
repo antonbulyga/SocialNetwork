@@ -26,8 +26,9 @@ public class MessageFacade {
     }
 
     public MessageDto addMessage(MessageDto messageDto) {
-        messageService.addMessage(messageDtoToMessage.convert(messageDto));
-        return messageDto;
+        Message message = messageService.addMessage(messageDtoToMessage.convert(messageDto));
+        MessageDto messageDtoWithDate = messageToMessageDto.convert(message);
+        return messageDtoWithDate;
     }
 
     public void deleteMessage(long id) {
@@ -35,9 +36,9 @@ public class MessageFacade {
     }
 
     public MessageDto updateMessage(MessageDto messageDto) {
-        Message message = messageDtoToMessage.convert(messageDto);
-        messageService.updateMessage(message);
-        return messageDto;
+        Message message = messageService.updateMessage(messageDtoToMessage.convert(messageDto));
+        MessageDto messageDtoWithDate = messageToMessageDto.convert(message);
+        return messageDtoWithDate;
     }
 
     public List<MessageDto> getAllMessages() {
@@ -49,7 +50,7 @@ public class MessageFacade {
         return messageToMessageDto.convert(messageService.getMessage(id));
     }
 
-    public Message getLike(Long id) {
+    public Message getMessage(Long id) {
         return messageService.getMessage(id);
     }
 

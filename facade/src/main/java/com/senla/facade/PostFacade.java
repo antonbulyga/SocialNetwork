@@ -26,8 +26,9 @@ public class PostFacade {
     }
 
     public PostDto addPost(PostDto postDto) {
-        postService.addPost(postDtoToPost.convert(postDto));
-        return postDto;
+        Post postWithDate = postService.addPost(postDtoToPost.convert(postDto));
+        PostDto postDtoWithDate = postToPostDto.convert(postWithDate);
+        return postDtoWithDate;
     }
 
     public void deletePost(long id) {
@@ -35,9 +36,9 @@ public class PostFacade {
     }
 
     public PostDto updatePost(PostDto postDto) {
-        Post post = postDtoToPost.convert(postDto);
-        postService.updatePost(post);
-        return postDto;
+        Post postWithDate = postService.updatePost(postDtoToPost.convert(postDto));
+        PostDto postDtoWithDate = postToPostDto.convert(postWithDate);
+        return postDtoWithDate;
     }
 
     public List<PostDto> getAllPosts() {
@@ -54,7 +55,4 @@ public class PostFacade {
         return posts.stream().map(postToPostDto::convert).collect(Collectors.toList());
     }
 
-    public List<Post> getPostsByUser_Id(Long userId) {
-        return postService.getPostsByUser_Id(userId);
-    }
 }

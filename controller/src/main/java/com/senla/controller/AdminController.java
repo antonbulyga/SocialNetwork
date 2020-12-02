@@ -2,7 +2,6 @@ package com.senla.controller;
 
 import com.senla.dto.*;
 import com.senla.entity.*;
-import com.senla.exception.RestError;
 import com.senla.facade.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,7 +80,7 @@ public class AdminController {
     }
 
     @GetMapping(value = "users/edit/password")
-    public ResponseEntity<UserDto> changePasswordAsAdmin(@RequestParam(name = "newPassword") String newPassword, @PathVariable(name = "id") long userId) {
+    public ResponseEntity<UserDto> changePasswordAsAdmin(@RequestParam(name = "newPassword") String newPassword, @RequestParam(name = "id") long userId) {
         UserDto userDto = userFacade.changeUserPassword(newPassword, userId);
         log.info("You have changed password successfully");
         return new ResponseEntity<>(userDto, HttpStatus.OK);
@@ -131,8 +130,8 @@ public class AdminController {
         return new ResponseEntity<>(dtoList, HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "profiles/delete/{id}")
-    public ResponseEntity<String> deleteProfileAsAdmin(@PathVariable(name = "id") long id) {
+    @DeleteMapping(value = "profiles/delete")
+    public ResponseEntity<String> deleteProfileAsAdmin(@RequestParam(name = "id") long id) {
         profileFacade.getProfile(id);
         profileFacade.deleteProfiles(id);
         log.info("Deleting profile as admin");
@@ -155,13 +154,6 @@ public class AdminController {
         return new ResponseEntity<>(profileDto, HttpStatus.OK);
     }
 
-    @GetMapping(value = "posts/{id}")
-    public ResponseEntity<ProfileDto> getProfileByIdAsAdmin(@PathVariable(name = "id") Long profileId) {
-        ProfileDto profileDto = profileFacade.getProfile(profileId);
-        log.info("Getting profile by id as admin");
-        return new ResponseEntity<>(profileDto, HttpStatus.OK);
-    }
-
     @DeleteMapping(value = "posts/delete")
     public ResponseEntity<String> deletePost(@RequestParam(name = "id") long id) {
         postFacade.getPost(id);
@@ -172,10 +164,10 @@ public class AdminController {
     }
 
     @PutMapping(value = "posts/update")
-    public ResponseEntity<PostDto> updatePostAsAdmin(@RequestBody PostDto postDto) {
-        postFacade.updatePost(postDto);
+    public ResponseEntity<PostDto> updatePostAsAdmin(@Valid @RequestBody PostDto postDto) {
+        PostDto postDtoWithDate =  postFacade.updatePost(postDto);
         log.info("Updating post by id as admin");
-        return new ResponseEntity<>(postDto, HttpStatus.OK);
+        return new ResponseEntity<>(postDtoWithDate, HttpStatus.OK);
     }
 
     @GetMapping(value = "messages")
@@ -186,8 +178,7 @@ public class AdminController {
     }
 
     @PostMapping(value = "messages/add")
-    public ResponseEntity<MessageDto> addMessageAsAdmin(@RequestBody MessageDto messageDto) {
-        messageFacade.addMessage(messageDto);
+    public ResponseEntity<MessageDto> addMessageAsAdmin(@Valid @RequestBody MessageDto messageDto) {
         log.info("Adding message as admin");
         return new ResponseEntity<>(messageDto, HttpStatus.OK);
     }
@@ -201,7 +192,7 @@ public class AdminController {
     }
 
     @GetMapping(value = "messages/search/dialog/{id}")
-    public ResponseEntity<List<MessageDto>> getMessagesByDialog_Id(@PathVariable(name = "id") long id) {
+    public ResponseEntity<List<MessageDto>> getMessagesByDialog_Id(@PathVariable(name = "id") Long id) {
         List<MessageDto> messageDtoList = messageFacade.getMessagesByDialog_Id(id);
         log.info("Getting messages by dialog id as admin");
         return new ResponseEntity<>(messageDtoList, HttpStatus.OK);
@@ -229,7 +220,7 @@ public class AdminController {
     }
 
     @DeleteMapping(value = "likes/delete")
-    public ResponseEntity<String> deleteLike(@RequestParam(name = "id") long id) {
+    public ResponseEntity<String> deleteLike(@RequestParam(name = "id") Long id) {
         likeFacade.deleteLike(id);
         log.error("Deleting like");
         return ResponseEntity.ok()
@@ -246,9 +237,9 @@ public class AdminController {
 
     @PostMapping(value = "dialogs/add")
     public ResponseEntity<DialogDto> addDialogAsAdmin(@Valid @RequestBody DialogDto dialogDto) {
-        dialogFacade.addDialog(dialogDto);
+        DialogDto dialogDtoWithData = dialogFacade.addDialog(dialogDto);
         log.info("Adding a new dialog");
-        return new ResponseEntity<>(dialogDto, HttpStatus.OK);
+        return new ResponseEntity<>(dialogDtoWithData, HttpStatus.OK);
     }
 
     @DeleteMapping(value = "dialogs/delete")
@@ -269,32 +260,32 @@ public class AdminController {
 
     @PutMapping(value = "dialogs/update")
     public ResponseEntity<DialogDto> updateDialog(@Valid @RequestBody DialogDto dialogDto) {
-        dialogFacade.updateDialog(dialogDto);
+        DialogDto dialogDtoWithData =  dialogFacade.updateDialog(dialogDto);
         log.error("You are updating dialog");
-        return new ResponseEntity<>(dialogDto, HttpStatus.OK);
+        return new ResponseEntity<>(dialogDtoWithData, HttpStatus.OK);
     }
 
     @GetMapping(value = "dialogs/search/name")
     public ResponseEntity<DialogDto> getDialogByName(@RequestParam(name = "name") String name) {
-        DialogDto dialogDto = dialogFacade.getDialogByName(name);
+        DialogDto dialogDtoWithTime = dialogFacade.getDialogByName(name);
         log.error("You are getting dialog by name as admin");
-        return new ResponseEntity<>(dialogDto, HttpStatus.OK);
+        return new ResponseEntity<>(dialogDtoWithTime, HttpStatus.OK);
     }
 
 
     @PostMapping(value = "dialogs/add/user")
     public ResponseEntity<DialogDto> addUserToDialog(@RequestParam(name = "dialogId") Long dialogId, @RequestParam(name = "userId") Long userId) {
         log.error("You are adding user to the dialog");
-        DialogDto dialogDto = dialogFacade.addUserToDialog(dialogId, userId);
-        return new ResponseEntity<>(dialogDto, HttpStatus.OK);
+        DialogDto dialogDtoWithTime = dialogFacade.addUserToDialog(dialogId, userId);
+        return new ResponseEntity<>(dialogDtoWithTime, HttpStatus.OK);
     }
 
 
     @DeleteMapping(value = "dialogs/delete/user")
     public ResponseEntity<DialogDto> deleteUserFromDialog(@RequestParam(name = "dialogId") Long dialogId, @RequestParam(name = "userId") Long userId) {
         log.error("You are deleting user from the dialog");
-        DialogDto dialogDto = dialogFacade.deleteUserFromDialog(dialogId, userId);
-        return new ResponseEntity<>(dialogDto, HttpStatus.OK);
+        DialogDto dialogDtoWithTime = dialogFacade.deleteUserFromDialog(dialogId, userId);
+        return new ResponseEntity<>(dialogDtoWithTime, HttpStatus.OK);
     }
 
     @PostMapping(value = "community/add")

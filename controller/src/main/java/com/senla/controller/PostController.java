@@ -38,15 +38,14 @@ public class PostController {
             log.info("No posts");
             throw new RestError("No posts");
         }
-
         return new ResponseEntity<>(postDtoList, HttpStatus.OK);
     }
 
     @PostMapping(value = "add")
     public ResponseEntity<PostDto> addPost(@Valid @RequestBody PostDto postDto) {
-        postFacade.addPost(postDto);
+        PostDto postDtoWithDate = postFacade.addPost(postDto);
         log.info("You have added post successfully");
-        return new ResponseEntity<>(postDto, HttpStatus.OK);
+        return new ResponseEntity<>(postDtoWithDate, HttpStatus.OK);
     }
 
     @DeleteMapping(value = "delete")
@@ -73,9 +72,9 @@ public class PostController {
         List<Post> posts = user.getPosts();
         for (Post p : posts) {
             if (p.getId() == postDto.getId()) {
-                postFacade.updatePost(postDto);
+                PostDto postDtoWithDate =  postFacade.updatePost(postDto);
                 log.info("You have updated post successfully");
-                return new ResponseEntity<>(postDto, HttpStatus.OK);
+                return new ResponseEntity<>(postDtoWithDate, HttpStatus.OK);
             }
         }
         log.warn("You are trying to update someone else post");
@@ -92,7 +91,7 @@ public class PostController {
     @GetMapping(value = "{id}")
     public ResponseEntity<PostDto> getPostById(@PathVariable(name = "id") Long postId) {
         PostDto postDto = postFacade.getPost(postId);
-        log.info("You you got a post by id");
+        log.info("You got a post by id");
         return new ResponseEntity<>(postDto, HttpStatus.OK);
     }
 

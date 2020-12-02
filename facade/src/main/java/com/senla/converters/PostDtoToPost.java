@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.stream.Collectors;
 
 @Component
@@ -35,7 +36,7 @@ public class PostDtoToPost implements Converter<PostDto, Post> {
                 .community(postDto.getCommunity() == null ? community :communityService.getCommunity(postDto.getCommunity().getId()))
                 .likes(postDto.getLikes().stream().map(l -> likeService.getLike(l.getId())).collect(Collectors.toList()))
                 .user(userService.getUser(postDto.getUser().getId()))
-                .dateOfCreation(postDto.getDateOfCreation())
+                .dateOfCreation(LocalDateTime.now())
                 .build();
     }
 }

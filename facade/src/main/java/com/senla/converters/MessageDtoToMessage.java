@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
+
 @Component
 public class MessageDtoToMessage implements Converter<MessageDto, Message> {
 
@@ -27,7 +29,7 @@ public class MessageDtoToMessage implements Converter<MessageDto, Message> {
                 .user(userService.getUser(messageDto.getUser().getId()))
                 .message(messageDto.getMessage())
                 .dialog(dialogService.getDialog(messageDto.getDialog().getId()))
-                .creationTime(messageDto.getCreationTime())
+                .creationTime(LocalDateTime.now())
                 .build();
     }
 }

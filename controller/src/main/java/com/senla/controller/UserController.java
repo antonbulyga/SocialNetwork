@@ -39,14 +39,14 @@ public class UserController {
 
     @PostMapping("add")
     public UserDto register(@Valid @RequestBody UserDto userDto) {
-        userFacade.addUser(userDto);
-        return userDto;
+        UserDto userDtoWithDate = userFacade.addUser(userDto);
+        return userDtoWithDate;
     }
 
     @PutMapping("update")
     public UserDto update(@Valid @RequestBody UserDto userDto) {
-        userFacade.updateUser(userDto);
-        return userDto;
+        UserDto userDtoWithDate = userFacade.updateUser(userDto);
+        return userDtoWithDate;
     }
 
     @GetMapping(value = "edit/password")

@@ -18,6 +18,5 @@ public class PostShortDto {
     @NotBlank(message = "Field text mandatory")
     private String text;
 
-    @NotNull(message = "Creation time field is mandatory")
     private LocalDateTime dateOfCreation;
 }

@@ -37,7 +37,6 @@ public class UserDto {
 
     private List<LikeShortDto> likes;
 
-    @NotNull(message = "Creation time field is is mandatory")
     private LocalDateTime creationTime;
 
     private CommunityShortDto community;

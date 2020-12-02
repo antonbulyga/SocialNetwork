@@ -26,8 +26,9 @@ public class DialogFacade {
     }
 
     public DialogDto addDialog(DialogDto dialogDto) {
-        dialogService.addDialog(dialogDtoToDialog.convert(dialogDto));
-        return dialogDto;
+        Dialog dialog = dialogService.addDialog(dialogDtoToDialog.convert(dialogDto));
+        DialogDto dialogDtoWithData = dialogToDialogDto.convert(dialog);
+        return dialogDtoWithData;
     }
 
     public void deleteDialog(long id) {
@@ -37,7 +38,8 @@ public class DialogFacade {
     public DialogDto updateDialog(DialogDto dialogDto) {
         Dialog dialog = dialogDtoToDialog.convert(dialogDto);
         dialogService.updateDialog(dialog);
-        return dialogDto;
+        DialogDto dialogDtoWithData = dialogToDialogDto.convert(dialog);
+        return dialogDtoWithData;
     }
 
     public List<DialogDto> getAllDialogs() {

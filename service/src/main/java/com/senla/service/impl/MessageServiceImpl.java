@@ -35,15 +35,12 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public Message addMessage(Message message) {
-        Dialog dialog = message.getDialog();
-        User user = message.getUser();
-        dialogService.addUserToDialog(dialog.getId(), user.getId());
         messageRepository.save(message);
         return message;
     }
 
     @Override
-    public void deleteMessage(long id) {
+    public void deleteMessage(Long id) {
         Message message = getMessage(id);
         User user = message.getUser();
         user.setMessages(user.getMessages().stream().filter(mess -> !mess.getId().equals(id))
