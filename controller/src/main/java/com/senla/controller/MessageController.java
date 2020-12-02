@@ -51,7 +51,7 @@ public class MessageController {
             throw new RestError("Trying to add message with null dialog");
         }
         for (Dialog d : dialogs) {
-            if (d.getId() == dialog.getId()) {
+            if (d.getId().equals(dialog.getId())) {
                 messageFacade.addMessage(messageDto);
                 log.info("Adding message to the dialog");
                 return new ResponseEntity<>(messageDto, HttpStatus.OK);
@@ -123,7 +123,7 @@ public class MessageController {
         User user = userFacade.getUserFromSecurityContext();
         List<Message> messages = user.getMessages();
         for (Message m : messages) {
-            if (m.getId() == message.getId()) {
+            if (m.getId().equals(message.getId())) {
                 messageDto = messageFacade.getMessageDto(m.getId());
                 return new ResponseEntity<>(messageDto, HttpStatus.OK);
             }

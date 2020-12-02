@@ -3,6 +3,7 @@ package com.senla.controller;
 import com.senla.dto.PostDto;
 import com.senla.entity.Post;
 import com.senla.entity.User;
+import com.senla.exception.EntityNotFoundException;
 import com.senla.exception.RestError;
 import com.senla.facade.PostFacade;
 import com.senla.facade.UserFacade;
@@ -34,8 +35,8 @@ public class PostController {
         List<PostDto> postDtoList = postFacade.getAllPosts();
         log.info("You have got all posts successfully");
         if (postDtoList.isEmpty()) {
-            log.info("no posts");
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            log.info("No posts");
+            throw new RestError("No posts");
         }
 
         return new ResponseEntity<>(postDtoList, HttpStatus.OK);
@@ -48,11 +49,12 @@ public class PostController {
         return new ResponseEntity<>(postDto, HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "delete/{id}")
-    public ResponseEntity<String> deletePost(@PathVariable(name = "id") long id) {
-        List<Post> posts = postFacade.getPostsByUser_Id(id);
+    @DeleteMapping(value = "delete")
+    public ResponseEntity<String> deletePost(@RequestParam(name = "id") Long id) {
+        User user = userFacade.getUserFromSecurityContext();
+        List<Post> posts = user.getPosts();
         for (Post p : posts) {
-            if (p.getId() == id) {
+            if (p.getId().equals(id)) {
                 postFacade.deletePost(id);
                 return ResponseEntity.ok()
                         .body("You have deleted the post successfully");
@@ -68,11 +70,12 @@ public class PostController {
     @PutMapping(value = "update")
     public ResponseEntity<PostDto> updatePost(@Valid @RequestBody PostDto postDto) {
         User user = userFacade.getUserFromSecurityContext();
-        List<Post> posts = postFacade.getPostsByUser_Id(user.getId());
+        List<Post> posts = user.getPosts();
         for (Post p : posts) {
             if (p.getId() == postDto.getId()) {
                 postFacade.updatePost(postDto);
                 log.info("You have updated post successfully");
+                return new ResponseEntity<>(postDto, HttpStatus.OK);
             }
         }
         log.warn("You are trying to update someone else post");
@@ -80,7 +83,7 @@ public class PostController {
     }
 
     @GetMapping(value = "search/user/{id}")
-    public ResponseEntity<List<PostDto>> getPostByUser_Id(@PathVariable(name = "id") long id) {
+    public ResponseEntity<List<PostDto>> getPostByUser_Id(@PathVariable(name = "id") Long id) {
         List<PostDto> postDtoList = postFacade.getPostsDtoByUser_Id(id);
         log.info("You received the post by user id");
         return new ResponseEntity<>(postDtoList, HttpStatus.OK);

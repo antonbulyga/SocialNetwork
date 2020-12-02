@@ -1,6 +1,7 @@
 package com.senla.converters;
 
 import com.senla.dto.PostDto;
+import com.senla.entity.Community;
 import com.senla.entity.Post;
 import com.senla.service.CommunityService;
 import com.senla.service.LikeService;
@@ -27,10 +28,11 @@ public class PostDtoToPost implements Converter<PostDto, Post> {
 
     @Override
     public Post convert(PostDto postDto) {
+        Community community = null;
         return Post.builder()
                 .id(postDto.getId())
                 .text(postDto.getText())
-                .community(communityService.getCommunity(postDto.getCommunity().getId()))
+                .community(postDto.getCommunity() == null ? community :communityService.getCommunity(postDto.getCommunity().getId()))
                 .likes(postDto.getLikes().stream().map(l -> likeService.getLike(l.getId())).collect(Collectors.toList()))
                 .user(userService.getUser(postDto.getUser().getId()))
                 .dateOfCreation(postDto.getDateOfCreation())

@@ -41,7 +41,7 @@ public class LikeController {
         List<Like> likeList = user.getLikes();
         if (likeList.isEmpty()) {
             log.error("The user has no likes");
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            throw new RestError("The user has no likes");
         }
         List<LikeDto> likeDtoList = likeFacade.convertListLikesToLikeDto(likeList);
         return new ResponseEntity<>(likeDtoList, HttpStatus.OK);
@@ -49,9 +49,18 @@ public class LikeController {
 
     @PostMapping(value = "add")
     public ResponseEntity<LikeDto> addLike(@Valid @RequestBody LikeDto likeDto) {
-        likeFacade.addLike(likeDto);
-        log.error("Adding like");
-        return new ResponseEntity<>(likeDto, HttpStatus.OK);
+        User user = userFacade.getUserFromSecurityContext();
+        List<Like> likes = user.getLikes();
+        for (Like l:likes){
+            if(l.getUser().getId().equals(likeDto.getUser().getId())){
+                likeFacade.addLike(likeDto);
+                log.error("Adding like");
+                return new ResponseEntity<>(likeDto, HttpStatus.OK);
+            }
+        }
+        log.error("You are trying to add like from someone else user");
+        throw new RestError("You are trying to add like from someone else user");
+
     }
 
     @DeleteMapping(value = "delete")
@@ -60,7 +69,7 @@ public class LikeController {
         User user = userFacade.getUserFromSecurityContext();
         List<Like> userLikes = user.getLikes();
         for (Like l : userLikes) {
-            if (l.getId() == like.getId()) {
+            if (l.getId().equals(like.getId())) {
                 likeFacade.deleteLike(id);
                 log.error("Deleting like");
                 return ResponseEntity.ok()
@@ -84,6 +93,10 @@ public class LikeController {
     @GetMapping(value = "post/id")
     public ResponseEntity<List<LikeDto>> getLikesByPost_Id(@RequestParam(name = "postId") Long postId) {
         List<LikeDto> dtoList = likeFacade.getLikesByPost_Id(postId);
+        if (dtoList.isEmpty()) {
+            log.error("The user has no likes or post does't exist");
+            throw new RestError("The user has no likes or post does't exist");
+        }
         log.info("Getting like by post id");
         return new ResponseEntity<>(dtoList, HttpStatus.OK);
     }

@@ -40,7 +40,6 @@ public class LikeServiceImpl implements LikeService {
 
     @Override
     public void deleteLike(long id) {
-        getLike(id);
         Like like = getLike(id);
         User user = like.getUser();
         user.setLikes(user.getLikes().stream().filter(l -> !l.getId().equals(id)).collect(Collectors.toList()));

@@ -47,9 +47,17 @@ public class CommunityController {
 
     @PostMapping(value = "add")
     public ResponseEntity<CommunityDto> addCommunity(@Valid @RequestBody CommunityDto communityDto) {
-        communityFacade.addCommunity(communityDto);
-        log.info("Adding community");
-        return new ResponseEntity<>(communityDto, HttpStatus.OK);
+        User user = userFacade.getUserFromSecurityContext();
+        Community community = communityFacade.convertCommunityDtoToCommunity(communityDto);
+        User adminUser = community.getAdminUser();
+        if (user.equals(adminUser)) {
+            communityFacade.addCommunity(communityDto);
+            log.info("Adding community");
+            return new ResponseEntity<>(communityDto, HttpStatus.OK);
+        } else {
+            log.error("Getting community by id");
+            throw new RestError("You are trying to add a group that you do not represent as an administrator");
+        }
     }
 
     @DeleteMapping(value = "delete")
@@ -77,7 +85,7 @@ public class CommunityController {
     }
 
     @PutMapping(value = "update")
-    public ResponseEntity<CommunityDto> updateCommunity(@Valid @RequestBody CommunityDto communityDto) throws RestError {
+    public ResponseEntity<CommunityDto> updateCommunity(@Valid @RequestBody CommunityDto communityDto) {
         User user = userFacade.getUserFromSecurityContext();
         Community community = communityFacade.convertCommunityDtoToCommunity(communityDto);
         User adminUser = community.getAdminUser();
@@ -89,18 +97,17 @@ public class CommunityController {
             log.error("Getting community by id");
             throw new RestError("You are trying to update a group that you do not represent as an administrator");
         }
-
     }
 
     @GetMapping(value = "search/name")
-    public ResponseEntity<CommunityDto> getCommunityByName(@PathVariable(name = "name") String name) {
+    public ResponseEntity<CommunityDto> getCommunityByName(@RequestParam(name = "name") String name) {
         CommunityDto communityDto = communityFacade.getCommunityByName(name);
         log.info("Getting community by name");
         return new ResponseEntity<>(communityDto, HttpStatus.OK);
     }
 
     @GetMapping(value = "search/admin")
-    public ResponseEntity<List<CommunityDto>> getCommunitiesByAdminUser_Id(@PathVariable(name = "adminId") Long adminId) {
+    public ResponseEntity<List<CommunityDto>> getCommunitiesByAdminUser_Id(@RequestParam(name = "adminId") Long adminId) {
         List<CommunityDto> communityDtoList = communityFacade.getCommunitiesByAdminUserId(adminId);
         log.info("Getting community by admin user");
         return new ResponseEntity<>(communityDtoList, HttpStatus.OK);

@@ -30,6 +30,7 @@ public class Community {
     @NotBlank(message = "Name is mandatory")
     @Column(name = "name")
     private String name;
+
     @OneToOne(fetch = FetchType.LAZY, cascade = {
             CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH
     })

@@ -3,10 +3,7 @@ package com.senla.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.*;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
@@ -33,8 +30,7 @@ public class User {
     @Column(name = "user_name")
     private String userName;
 
-    @Min(value = 4, message = "Password should be not less than 4 characters")
-    @Max(value = 20, message = "Password should be not greater than 20 characters")
+
     @NotBlank(message = "Password is mandatory")
     @Column(name = "password")
     private String password;
@@ -64,7 +60,7 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
     private List<Like> likes;
-    @NotBlank(message = "Creation time field is is mandatory")
+    @NotNull(message = "Creation time field is is mandatory")
     @Column(name = "creation_time", nullable = false)
     private LocalDateTime creationTime;
 

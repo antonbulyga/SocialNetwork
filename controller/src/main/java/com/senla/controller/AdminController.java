@@ -1,10 +1,7 @@
 package com.senla.controller;
 
 import com.senla.dto.*;
-import com.senla.entity.Dialog;
-import com.senla.entity.Friendship;
-import com.senla.entity.Profile;
-import com.senla.entity.User;
+import com.senla.entity.*;
 import com.senla.exception.RestError;
 import com.senla.facade.*;
 import lombok.extern.slf4j.Slf4j;
@@ -165,8 +162,8 @@ public class AdminController {
         return new ResponseEntity<>(profileDto, HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "posts/delete/{id}")
-    public ResponseEntity<String> deletePost(@PathVariable(name = "id") long id) {
+    @DeleteMapping(value = "posts/delete")
+    public ResponseEntity<String> deletePost(@RequestParam(name = "id") long id) {
         postFacade.getPost(id);
         postFacade.deletePost(id);
         log.info("Deleting post by id as admin");
@@ -222,6 +219,22 @@ public class AdminController {
         List<LikeDto> likeDtoList = likeFacade.getAllLikes();
         log.info("Getting all likes as admin");
         return new ResponseEntity<>(likeDtoList, HttpStatus.OK);
+    }
+
+    @PostMapping(value = "likes/add")
+    public ResponseEntity<LikeDto> addLike(@Valid @RequestBody LikeDto likeDto) {
+        likeFacade.addLike(likeDto);
+        log.error("Adding like");
+        return new ResponseEntity<>(likeDto, HttpStatus.OK);
+    }
+
+    @DeleteMapping(value = "likes/delete")
+    public ResponseEntity<String> deleteLike(@RequestParam(name = "id") long id) {
+        likeFacade.deleteLike(id);
+        log.error("Deleting like");
+        return ResponseEntity.ok()
+                        .body("You have deleted like successfully");
+
     }
 
     @GetMapping(value = "dialogs")
@@ -282,6 +295,21 @@ public class AdminController {
         log.error("You are deleting user from the dialog");
         DialogDto dialogDto = dialogFacade.deleteUserFromDialog(dialogId, userId);
         return new ResponseEntity<>(dialogDto, HttpStatus.OK);
+    }
+
+    @PostMapping(value = "community/add")
+    public ResponseEntity<CommunityDto> addCommunity(@Valid @RequestBody CommunityDto communityDto) {
+        communityFacade.addCommunity(communityDto);
+        log.info("Adding community");
+        return new ResponseEntity<>(communityDto, HttpStatus.OK);
+
+    }
+
+    @PutMapping(value = "community/update")
+    public ResponseEntity<CommunityDto> updateCommunity(@Valid @RequestBody CommunityDto communityDto) {
+        communityFacade.updateCommunity(communityDto);
+        log.info("Updating community");
+        return new ResponseEntity<>(communityDto, HttpStatus.OK);
     }
 
     @DeleteMapping(value = "community/delete")
