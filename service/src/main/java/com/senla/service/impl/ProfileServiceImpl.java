@@ -1,15 +1,19 @@
 package com.senla.service.impl;
 
 import com.senla.entity.Profile;
+import com.senla.entity.User;
 import com.senla.exception.EntityNotFoundException;
 import com.senla.repository.ProfileRepository;
 import com.senla.service.ProfileService;
+import com.senla.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -18,10 +22,12 @@ import java.util.List;
 public class ProfileServiceImpl implements ProfileService {
 
     private final ProfileRepository profileRepository;
+    private UserService userService;
 
     @Autowired
-    public ProfileServiceImpl(ProfileRepository profileRepository) {
+    public ProfileServiceImpl(ProfileRepository profileRepository,@Lazy UserService userService) {
         this.profileRepository = profileRepository;
+        this.userService = userService;
     }
 
     public Profile getProfile(Long id) {
@@ -38,15 +44,20 @@ public class ProfileServiceImpl implements ProfileService {
 
     @Override
     public Profile addProfile(Profile profile) {
-        profile.getUser().setProfile(profile);
         profileRepository.save(profile);
         log.info("Adding profile");
         return profile;
     }
 
     @Override
-    public void deleteProfile(long id) {
-        getProfile(id);
+    public void deleteProfile(Long id) {
+        Profile profile = getProfile(id);
+        User user = profile.getUser();
+        if(user != null) {
+            user.setMessages(user.getMessages().stream().filter(mess -> !mess.getId().equals(id))
+                    .collect(Collectors.toList()));
+            userService.updateUser(user);
+        }
         log.info("Deleting profile");
         profileRepository.deleteById(id);
     }

@@ -36,7 +36,7 @@ public class User {
     private String password;
 
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_profile_id", referencedColumnName = "id")
     private Profile profile;
 

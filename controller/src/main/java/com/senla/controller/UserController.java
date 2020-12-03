@@ -2,7 +2,9 @@ package com.senla.controller;
 
 import com.senla.dto.UserDto;
 import com.senla.entity.User;
+import com.senla.exception.RestError;
 import com.senla.facade.UserFacade;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,7 @@ import javax.validation.Valid;
 
 @RestController
 @RequestMapping(value = "/users/")
+@Slf4j
 public class UserController {
 
     private final UserFacade userFacade;
@@ -38,18 +41,25 @@ public class UserController {
     }
 
     @PostMapping("add")
-    public UserDto register(@Valid @RequestBody UserDto userDto) {
+    public ResponseEntity<UserDto> register(@Valid @RequestBody UserDto userDto) {
         UserDto userDtoWithDate = userFacade.addUser(userDto);
-        return userDtoWithDate;
+        return new ResponseEntity<>(userDtoWithDate, HttpStatus.OK);
     }
 
-    @PutMapping("update")
-    public UserDto update(@Valid @RequestBody UserDto userDto) {
-        UserDto userDtoWithDate = userFacade.updateUser(userDto);
-        return userDtoWithDate;
+    @PostMapping("update")
+    public ResponseEntity<UserDto> update(@Valid @RequestBody UserDto userDto) {
+        User user = userFacade.getUserFromSecurityContext();
+        if (user.getId().equals(userDto.getId())) {
+            UserDto userDtoWithDate = userFacade.updateUser(userDto);
+            return new ResponseEntity<>(userDtoWithDate, HttpStatus.OK);
+        } else {
+            log.warn("You are trying to update someone else's user");
+            throw new RestError("You are trying to update someone else's user");
+        }
     }
 
-    @GetMapping(value = "edit/password")
+
+    @PostMapping(value = "edit/password")
     public ResponseEntity<String> changePassword(@RequestParam(name = "newPassword") String newPassword) {
         User user = userFacade.getUserFromSecurityContext();
         userFacade.changeUserPassword(newPassword, user.getId());

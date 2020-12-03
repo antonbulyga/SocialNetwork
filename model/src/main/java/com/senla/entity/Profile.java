@@ -43,7 +43,7 @@ public class Profile {
     private String lastName;
 
     @OneToOne(mappedBy = "profile",
-            fetch = FetchType.EAGER)
+            fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private User user;
 
     @NotBlank(message = "Field country is mandatory")

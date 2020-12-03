@@ -7,7 +7,7 @@ import java.util.List;
 public interface ProfileService {
     Profile addProfile(Profile profile);
 
-    void deleteProfile(long id);
+    void deleteProfile(Long id);
 
     Profile updateProfile(Profile profile);
 

@@ -130,17 +130,8 @@ public class AdminController {
         return new ResponseEntity<>(dtoList, HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "profiles/delete")
-    public ResponseEntity<String> deleteProfileAsAdmin(@RequestParam(name = "id") long id) {
-        profileFacade.getProfile(id);
-        profileFacade.deleteProfiles(id);
-        log.info("Deleting profile as admin");
-        return ResponseEntity.ok()
-                .body("You have deleted the profile successfully");
-    }
-
     @GetMapping(value = "profiles/search/user")
-    public ResponseEntity<ProfileDto> findProfileByUser_IdAsAdmin(@RequestParam(name = "user") Long userId) {
+    public ResponseEntity<ProfileDto> findProfileByUser_IdAsAdmin(@RequestParam(name = "userId") Long userId) {
         Profile profile = profileFacade.findProfileByUser_Id(userId);
         log.info("Finding profile by user id as admin");
         ProfileDto profileDto = profileFacade.convertProfileDtoFromProfile(profile);

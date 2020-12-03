@@ -36,21 +36,21 @@ public class ProfileController {
         return new ResponseEntity<>(profileDto, HttpStatus.OK);
     }
 
-    @DeleteMapping(value = "delete")
+  /*  @DeleteMapping(value = "delete")
     public ResponseEntity<String> deleteProfile() {
         User user = userFacade.getUserFromSecurityContext();
         Profile profile = profileFacade.findProfileByUser_Id(user.getId());
         profileFacade.deleteProfiles(profile.getId());
         return ResponseEntity.ok()
                 .body("You have deleted the profile successfully");
-    }
+    }*/
 
     @PutMapping(value = "update")
     public ResponseEntity<ProfileDto> updateProfile(@Valid @RequestBody ProfileDto profileDto) {
         User user = userFacade.getUserFromSecurityContext();
         Profile profileFromSecurityContext = user.getProfile();
         Profile profile = profileFacade.convertProfileFromProfileDto(profileDto);
-        if (profileFromSecurityContext.getId() == profile.getId()) {
+        if (profileFromSecurityContext.getId().equals(profile.getId())) {
             profileFacade.updateProfile(profileDto);
             log.info("You have updated profile successfully");
             return new ResponseEntity<>(profileDto, HttpStatus.OK);
@@ -94,7 +94,7 @@ public class ProfileController {
     }
 
     @GetMapping(value = "search/fullname")
-    public ResponseEntity<ProfileDto> findProfileByLastName(@RequestParam(name = "name") String firstName, @PathVariable(name = "surname") String lastName) {
+    public ResponseEntity<ProfileDto> findProfileByLastName(@RequestParam(name = "name") String firstName, @RequestParam(name = "surname") String lastName) {
         ProfileDto profileDto = profileFacade.findProfileByFirstNameAndLastName(firstName, lastName);
         return new ResponseEntity<>(profileDto, HttpStatus.OK);
     }
