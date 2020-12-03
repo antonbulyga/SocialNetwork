@@ -13,13 +13,7 @@ public class ProfileToProfileShortDto implements Converter<Profile, ProfileShort
     public ProfileShortDto convert(Profile profile) {
         return ProfileShortDto.builder()
                 .id(profile.getId())
-                .dateOfBirth(profile.getDateOfBirth())
-                .gender(profile.getGender())
-                .phoneNumber(profile.getPhoneNumber())
                 .firstName(profile.getFirstName())
-                .lastName(profile.getLastName())
-                .city(profile.getCity())
-                .country(profile.getCountry())
                 .build();
     }
 }

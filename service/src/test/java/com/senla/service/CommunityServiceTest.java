@@ -2,12 +2,16 @@ package com.senla.service;
 
 import com.senla.entity.Community;
 import com.senla.repository.CommunityRepository;
+import com.senla.service.impl.CommunityServiceImpl;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.InjectMocks;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,14 +22,20 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 
-@ExtendWith(MockitoExtension.class)
+@RunWith(MockitoJUnitRunner.class)
+@EnableAutoConfiguration
+@ContextConfiguration(classes = ConfigurationServiceTest.class)
 public class CommunityServiceTest {
 
-    @InjectMocks
     private CommunityService communityService;
 
     @Mock
     private CommunityRepository communityRepository;
+
+    @Before
+    public void setUp(){
+        communityService = new CommunityServiceImpl(communityRepository);
+    }
 
     private final Community community = new Community(1L, "Любители математики");
     final Long communityId=1L;
@@ -50,12 +60,6 @@ public class CommunityServiceTest {
         given(communityRepository.findById(community.getId())).willReturn(Optional.of(community));
         final Optional<Community> expected  = communityService.getCommunityById(community.getId());
         assertThat(expected).isNotNull();
-    }
-
-    @Test
-    public void shouldBeDeleteCommunity() {
-        communityService.deleteCommunity(communityId);
-        verify(communityRepository, times(1)).deleteById(communityId);
     }
 
     @Test
