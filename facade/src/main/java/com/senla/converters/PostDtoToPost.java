@@ -34,9 +34,9 @@ public class PostDtoToPost implements Converter<PostDto, Post> {
                 .id(postDto.getId())
                 .text(postDto.getText())
                 .community(postDto.getCommunity() == null ? community :communityService.getCommunity(postDto.getCommunity().getId()))
-                .likes(postDto.getLikes().stream().map(l -> likeService.getLike(l.getId())).collect(Collectors.toList()))
                 .user(userService.getUser(postDto.getUser().getId()))
                 .dateOfCreation(LocalDateTime.now())
+                .countLike(postDto.getCountLike())
                 .build();
     }
 }

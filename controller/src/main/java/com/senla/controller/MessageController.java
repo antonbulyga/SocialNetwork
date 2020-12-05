@@ -13,6 +13,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -35,6 +36,7 @@ public class MessageController {
         this.dialogFacade = dialogFacade;
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping(value = "")
     public ResponseEntity<List<MessageDto>> getAllMessagesForUserFromAllDialogs() {
         List<MessageDto> fullMessageDtoList = new ArrayList<>();
@@ -42,6 +44,7 @@ public class MessageController {
         return new ResponseEntity<>(fullMessageDtoList, HttpStatus.OK);
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @PostMapping(value = "add")
     public ResponseEntity<MessageDto> addMessageToDialog(@Valid @RequestBody MessageDto messageDto) {
         User user = userFacade.getUserFromSecurityContext();
@@ -65,6 +68,7 @@ public class MessageController {
         throw new RestError("User can not add message to someone else dialog or user");
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @DeleteMapping(value = "delete")
     public ResponseEntity<String> deleteMessage(@RequestParam(name = "id") Long id) {
         User user = userFacade.getUserFromSecurityContext();
@@ -81,6 +85,7 @@ public class MessageController {
         throw new RestError("User has no message with this id");
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @PutMapping(value = "update")
     public ResponseEntity<MessageDto> updateMessage(@Valid @RequestBody MessageDto messageDto) {
         User user = userFacade.getUserFromSecurityContext();
@@ -98,6 +103,7 @@ public class MessageController {
         throw new RestError("You can't edit someone else message");
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping(value = "search/dialog/{id}")
     public ResponseEntity<List<MessageDto>> getMessagesByDialog_Id(@PathVariable(name = "id") long id) {
         List<MessageDto> messageDtoList;
@@ -119,6 +125,7 @@ public class MessageController {
 
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping(value = "{id}")
     public ResponseEntity<MessageDto> getMessageById(@PathVariable(name = "id") Long messageId) {
         MessageDto messageDto;

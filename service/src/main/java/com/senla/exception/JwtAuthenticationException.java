@@ -1,4 +1,4 @@
-package com.senla.security;
+package com.senla.exception;
 
 import org.springframework.security.core.AuthenticationException;
 

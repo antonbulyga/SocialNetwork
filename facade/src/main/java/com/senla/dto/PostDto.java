@@ -16,8 +16,6 @@ public class PostDto {
     @NotNull(message = "Post id is mandatory")
     private long id;
 
-    private List<LikeShortDto> likes;
-
     @NotBlank(message = "Field text mandatory")
     private String text;
 
@@ -26,4 +24,7 @@ public class PostDto {
     private CommunityShortDto community;
 
     private LocalDateTime dateOfCreation;
+
+    @NotNull(message = "Field count like is mandatory")
+    private int countLike;
 }

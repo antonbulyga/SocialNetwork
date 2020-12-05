@@ -14,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -35,6 +36,7 @@ public class LikeController {
         this.userFacade = userFacade;
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping(value = "")
     public ResponseEntity<List<LikeDto>> getAllUserLikes() {
         User user = userFacade.getUserFromSecurityContext();
@@ -47,6 +49,7 @@ public class LikeController {
         return new ResponseEntity<>(likeDtoList, HttpStatus.OK);
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @PostMapping(value = "add")
     public ResponseEntity<LikeDto> addLike(@Valid @RequestBody LikeDto likeDto) {
         User user = userFacade.getUserFromSecurityContext();
@@ -63,6 +66,7 @@ public class LikeController {
 
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @DeleteMapping(value = "delete")
     public ResponseEntity<String> deleteLike(@RequestParam(name = "id") long id) {
         Like like = likeFacade.getLike(id);
@@ -76,13 +80,13 @@ public class LikeController {
                         .body("You have deleted like successfully");
             }
 
-
         }
         log.error("You are trying to delete like from someone else user");
         throw new RestError("You are trying to delete like from someone else user");
 
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping(value = "{id}")
     public ResponseEntity<LikeDto> getLikeById(@PathVariable(name = "id") Long likeId) {
         LikeDto likeDto = likeFacade.getLikeDto(likeId);
@@ -90,6 +94,7 @@ public class LikeController {
         return new ResponseEntity<>(likeDto, HttpStatus.OK);
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping(value = "post/id")
     public ResponseEntity<List<LikeDto>> getLikesByPost_Id(@RequestParam(name = "postId") Long postId) {
         List<LikeDto> dtoList = likeFacade.getLikesByPost_Id(postId);

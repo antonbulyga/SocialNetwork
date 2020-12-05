@@ -10,6 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -29,6 +30,7 @@ public class DialogController {
         this.userFacade = userFacade;
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping(value = "")
     public ResponseEntity<List<DialogDto>> getAllUsersDialogs() {
         User user = userFacade.getUserFromSecurityContext();
@@ -38,6 +40,7 @@ public class DialogController {
         return new ResponseEntity<>(dialogDtoList, HttpStatus.OK);
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @PostMapping(value = "add")
     public ResponseEntity<DialogDto> addDialog(@Valid @RequestBody DialogDto dialogDto) {
         DialogDto dialogDtoWithData = dialogFacade.addDialog(dialogDto);
@@ -45,6 +48,7 @@ public class DialogController {
         return new ResponseEntity<>(dialogDtoWithData, HttpStatus.OK);
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @DeleteMapping(value = "delete")
     public ResponseEntity<String> deleteDialog(@RequestParam(name = "id") long id) {
         User user = userFacade.getUserFromSecurityContext();
@@ -62,6 +66,7 @@ public class DialogController {
         throw new RestError("You are trying to delete someone else dialog");
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping(value = "{id}")
     public ResponseEntity<DialogDto> getDialogById(@PathVariable(name = "id") Long id) {
         User user = userFacade.getUserFromSecurityContext();
@@ -77,6 +82,7 @@ public class DialogController {
         throw new RestError("You are trying to get someone else dialog");
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @PutMapping(value = "update")
     public ResponseEntity<DialogDto> updateDialog(@Valid @RequestBody DialogDto dialogDto) {
         User user = userFacade.getUserFromSecurityContext();
@@ -93,6 +99,7 @@ public class DialogController {
         throw new RestError("You are trying to update someone else dialog");
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping(value = "search/name")
     public ResponseEntity<DialogDto> getDialogByName(@RequestParam(name = "name") String name) {
         User user = userFacade.getUserFromSecurityContext();
@@ -109,6 +116,7 @@ public class DialogController {
 
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @PostMapping(value = "add/user")
     public ResponseEntity<DialogDto> addUserToDialog(@RequestParam(name = "dialogId") Long dialogId, @RequestParam(name = "userId") Long userId) {
         User user = userFacade.getUserFromSecurityContext();
@@ -126,6 +134,7 @@ public class DialogController {
 
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @DeleteMapping(value = "delete/user")
     public ResponseEntity<DialogDto> deleteUserFromDialog(@RequestParam(name = "dialogId") Long dialogId, @RequestParam(name = "userId") Long userId) {
         User user = userFacade.getUserFromSecurityContext();

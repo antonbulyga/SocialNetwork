@@ -1,25 +1,24 @@
 package com.senla.exception;
 
+import io.jsonwebtoken.JwtException;
 import org.springframework.context.support.DefaultMessageSourceResolvable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.FieldError;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @ControllerAdvice
-public class RestExceptionHandler extends ResponseEntityExceptionHandler {
+public class RestExceptionHandler extends ResponseEntityExceptionHandler{
 
     @ExceptionHandler(EntityNotFoundException.class)
     @ResponseBody
@@ -42,6 +41,11 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return e.getMessage();
     }
 
+    @ExceptionHandler(AccessDeniedException.class)
+    protected ResponseEntity<Object> handleAccessDeniedException(AccessDeniedException e) {
+        RestApiResponse restApiResponse = new RestApiResponse(HttpStatus.FORBIDDEN, "Access denied");
+        return new ResponseEntity<>(restApiResponse, HttpStatus.FORBIDDEN);
+    }
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
@@ -60,4 +64,6 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
                                             List<String> messages) {
         return handleExceptionInternal(ex, messages, headers, status, request);
     }
+
+
 }

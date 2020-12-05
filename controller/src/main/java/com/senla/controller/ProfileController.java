@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -30,21 +31,22 @@ public class ProfileController {
         this.userFacade = userFacade;
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN", "ROLE_GUEST"})
+    @GetMapping(value = "")
+    public ResponseEntity<List<ProfileDto>> getAllProfiles() {
+        List<ProfileDto> dtoList = profileFacade.getAllProfiles();
+        log.info("Getting all profiles");
+        return new ResponseEntity<>(dtoList, HttpStatus.OK);
+    }
+
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @PostMapping(value = "add")
     public ResponseEntity<ProfileDto> addProfile(@Valid @RequestBody ProfileDto profileDto) {
         profileFacade.addProfile(profileDto);
         return new ResponseEntity<>(profileDto, HttpStatus.OK);
     }
 
-  /*  @DeleteMapping(value = "delete")
-    public ResponseEntity<String> deleteProfile() {
-        User user = userFacade.getUserFromSecurityContext();
-        Profile profile = profileFacade.findProfileByUser_Id(user.getId());
-        profileFacade.deleteProfiles(profile.getId());
-        return ResponseEntity.ok()
-                .body("You have deleted the profile successfully");
-    }*/
-
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @PutMapping(value = "update")
     public ResponseEntity<ProfileDto> updateProfile(@Valid @RequestBody ProfileDto profileDto) {
         User user = userFacade.getUserFromSecurityContext();
@@ -62,6 +64,7 @@ public class ProfileController {
 
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN", "ROLE_GUEST"})
     @GetMapping(value = "search/user")
     public ResponseEntity<ProfileDto> findMyProfileByUserId() {
         User user = userFacade.getUserFromSecurityContext();
@@ -69,36 +72,42 @@ public class ProfileController {
         return new ResponseEntity<>(profileDto, HttpStatus.OK);
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN", "ROLE_GUEST"})
     @GetMapping(value = "search/city")
     public ResponseEntity<List<ProfileDto>> findProfileByCity(@RequestParam(name = "city") String city) {
         List<ProfileDto> profileDtoList = profileFacade.findProfilesByCity(city);
         return new ResponseEntity<>(profileDtoList, HttpStatus.OK);
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN", "ROLE_GUEST"})
     @GetMapping(value = "search/country")
     public ResponseEntity<List<ProfileDto>> findProfileByCountry(@RequestParam(name = "country") String country) {
         List<ProfileDto> profileDtoList = profileFacade.findProfilesByCountry(country);
         return new ResponseEntity<>(profileDtoList, HttpStatus.OK);
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN", "ROLE_GUEST"})
     @GetMapping(value = "search/name")
     public ResponseEntity<List<ProfileDto>> findProfileByFirstName(@RequestParam(name = "name") String firstName) {
         List<ProfileDto> profileDtoList = profileFacade.findProfilesByFirstName(firstName);
         return new ResponseEntity<>(profileDtoList, HttpStatus.OK);
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN", "ROLE_GUEST"})
     @GetMapping(value = "search/surname")
     public ResponseEntity<List<ProfileDto>> findProfileByLastName(@RequestParam(name = "surname") String lastName) {
         List<ProfileDto> profileDtoList = profileFacade.findProfilesByLastName(lastName);
         return new ResponseEntity<>(profileDtoList, HttpStatus.OK);
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN", "ROLE_GUEST"})
     @GetMapping(value = "search/fullname")
     public ResponseEntity<ProfileDto> findProfileByLastName(@RequestParam(name = "name") String firstName, @RequestParam(name = "surname") String lastName) {
         ProfileDto profileDto = profileFacade.findProfileByFirstNameAndLastName(firstName, lastName);
         return new ResponseEntity<>(profileDto, HttpStatus.OK);
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN", "ROLE_GUEST"})
     @GetMapping(value = "search/gender")
     public ResponseEntity<List<ProfileDto>> findProfileByGender(@RequestParam(name = "gender") String genderString) {
         Enum gender = Gender.valueOf(genderString);
@@ -106,6 +115,7 @@ public class ProfileController {
         return new ResponseEntity<>(profileDtoList, HttpStatus.OK);
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping(value = "{id}")
     public ResponseEntity<ProfileDto> getProfileById(@PathVariable(name = "id") Long profileId) {
         ProfileDto profileDto = profileFacade.getProfile(profileId);

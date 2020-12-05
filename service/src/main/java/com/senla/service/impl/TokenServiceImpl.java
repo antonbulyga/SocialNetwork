@@ -23,13 +23,9 @@ public class TokenServiceImpl implements TokenService {
 
 
     @Override
-    public Boolean findTokenByTokenNumber(String tokenNumber) {
-        Boolean flag = tokenRepository.findByTokenNumber(tokenNumber);
-        if (flag == null) {
-            return false;
-        }
+    public Token findTokenByTokenNumber(String tokenNumber) {
         log.info("Finding token by number");
-        return flag;
+        return tokenRepository.findByTokenNumber(tokenNumber);
     }
 
     @Override

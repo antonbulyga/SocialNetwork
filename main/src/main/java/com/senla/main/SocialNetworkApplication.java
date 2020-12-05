@@ -5,11 +5,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 
 @SpringBootApplication
 @ComponentScan({"com.senla"})
 @EntityScan(basePackages = "com.senla.entity")
 @EnableJpaRepositories(basePackages = "com.senla.repository")
+@EnableGlobalMethodSecurity(securedEnabled = true)
 public class SocialNetworkApplication {
     public static void main(String[] args) {
         SpringApplication.run(SocialNetworkApplication.class, args);

@@ -1,8 +1,10 @@
 package com.senla.service;
 
 
+import com.senla.entity.Token;
+
 public interface TokenService {
-    Boolean findTokenByTokenNumber(String tokenNumber);
+    Token findTokenByTokenNumber(String tokenNumber);
 
     void addToken(String tokenNumber);
 }

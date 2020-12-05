@@ -2,6 +2,7 @@ package com.senla.entity;
 
 import com.senla.enumeration.Gender;
 import lombok.*;
+import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -53,4 +54,5 @@ public class Profile {
     @NotBlank(message = "Field city is mandatory")
     @Column(name = "city")
     private String city;
+
 }

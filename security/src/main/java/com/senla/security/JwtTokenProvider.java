@@ -2,6 +2,8 @@ package com.senla.security;
 
 import com.senla.entity.Role;
 
+import com.senla.entity.Token;
+import com.senla.exception.JwtAuthenticationException;
 import com.senla.service.TokenService;
 import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;
@@ -91,10 +93,10 @@ public class JwtTokenProvider {
             if (claims.getBody().getExpiration().before(new Date())) {
                 return false;
             }
-            if (!tokenService.findTokenByTokenNumber(token)) {
+            Token tokenNumber = tokenService.findTokenByTokenNumber(token);
+            if (tokenNumber == null) {
                 return true;
             }
-
             return false;
         } catch (JwtException | IllegalArgumentException e) {
             throw new JwtAuthenticationException("JWT token is expired or invalid");

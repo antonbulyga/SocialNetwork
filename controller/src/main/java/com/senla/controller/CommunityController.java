@@ -14,6 +14,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -35,6 +36,7 @@ public class CommunityController {
         this.userFacade = userFacade;
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping(value = "")
     public ResponseEntity<List<CommunityDto>> getAllCommunities() {
         List<CommunityDto> communityDtoList = communityFacade.getAllCommunities();
@@ -45,6 +47,7 @@ public class CommunityController {
         return new ResponseEntity<>(communityDtoList, HttpStatus.OK);
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @PostMapping(value = "add")
     public ResponseEntity<CommunityDto> addCommunity(@Valid @RequestBody CommunityDto communityDto) {
         User user = userFacade.getUserFromSecurityContext();
@@ -60,6 +63,7 @@ public class CommunityController {
         }
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @DeleteMapping(value = "delete")
     public ResponseEntity<String> deleteCommunity(@RequestParam(name = "id") long id){
         User user = userFacade.getUserFromSecurityContext();
@@ -77,6 +81,7 @@ public class CommunityController {
 
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping(value = "{id}")
     public ResponseEntity<CommunityDto> getCommunityById(@PathVariable(name = "id") Long id) {
         CommunityDto communityDto = communityFacade.getDtoCommunity(id);
@@ -84,6 +89,7 @@ public class CommunityController {
         return new ResponseEntity<>(communityDto, HttpStatus.OK);
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @PutMapping(value = "update")
     public ResponseEntity<CommunityDto> updateCommunity(@Valid @RequestBody CommunityDto communityDto) {
         User user = userFacade.getUserFromSecurityContext();
@@ -99,6 +105,7 @@ public class CommunityController {
         }
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping(value = "search/name")
     public ResponseEntity<CommunityDto> getCommunityByName(@RequestParam(name = "name") String name) {
         CommunityDto communityDto = communityFacade.getCommunityByName(name);
@@ -106,6 +113,7 @@ public class CommunityController {
         return new ResponseEntity<>(communityDto, HttpStatus.OK);
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping(value = "search/admin")
     public ResponseEntity<List<CommunityDto>> getCommunitiesByAdminUser_Id(@RequestParam(name = "adminId") Long adminId) {
         List<CommunityDto> communityDtoList = communityFacade.getCommunitiesByAdminUserId(adminId);

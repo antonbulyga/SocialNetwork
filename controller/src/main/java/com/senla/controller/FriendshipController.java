@@ -11,6 +11,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -32,12 +33,13 @@ public class FriendshipController {
         this.userFacade = userFacade;
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @PostMapping(value = "request")
     public ResponseEntity<FriendshipDto> sentFriendRequest(@RequestParam(name = "idOne") Long userOneId,
                                                            @RequestParam(name = "idTwo") Long userTwoId,
                                                            @RequestParam(name = "idAction") Long actionUserId) {
         User user = userFacade.getUserFromSecurityContext();
-        if (user.getId() == actionUserId) {
+        if (user.getId().equals(actionUserId)) {
             FriendshipDto friendshipDto = friendshipFacade.sentFriendRequest(userOneId, userTwoId, actionUserId);
             log.info("Sending a friend request");
             return ResponseEntity.ok()
@@ -48,12 +50,13 @@ public class FriendshipController {
         }
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @PostMapping(value = "add")
     public ResponseEntity<FriendshipDto> addToFriends(@RequestParam(name = "idOne") Long userOneId,
                                                       @RequestParam(name = "idTwo") Long userTwoId,
                                                       @RequestParam(name = "idAction") Long actionUserId) {
         User user = userFacade.getUserFromSecurityContext();
-        if (user.getId() == actionUserId) {
+        if (user.getId().equals(actionUserId)) {
             FriendshipDto friendshipDto = friendshipFacade.addToFriends(userOneId, userTwoId, actionUserId);
             log.info("Adding to friend user");
             return ResponseEntity.ok()
@@ -64,10 +67,11 @@ public class FriendshipController {
         }
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping(value = "friends")
     public ResponseEntity<List<UserDto>> getFriendsListOfUser(@RequestParam(name = "id") Long userId) {
         User user = userFacade.getUserFromSecurityContext();
-        if (user.getId() == userId) {
+        if (user.getId().equals(userId)) {
             List<UserDto> userDto = friendshipFacade.getFriendsListOfUser(userId);
             log.info("Getting a friend list of the user");
             return new ResponseEntity<>(userDto, HttpStatus.OK);
@@ -77,12 +81,13 @@ public class FriendshipController {
         }
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @PostMapping(value = "delete")
     public ResponseEntity<FriendshipDto> deleteFriendship(@RequestParam(name = "idOne") Long userOneId,
                                                           @RequestParam(name = "idTwo") Long userTwoId,
                                                           @RequestParam(name = "idAction") Long actionUserId) {
         User user = userFacade.getUserFromSecurityContext();
-        if (user.getId() == actionUserId) {
+        if (user.getId().equals(actionUserId)) {
             FriendshipDto friendshipDto = friendshipFacade.deleteFriendship(userOneId, userTwoId, actionUserId);
             log.info("Deleting the user from the friends");
             return ResponseEntity.ok()
@@ -93,12 +98,13 @@ public class FriendshipController {
         }
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @PostMapping(value = "block")
     public ResponseEntity<FriendshipDto> blockUser(@RequestParam(name = "idOne") Long userOneId,
                                                    @RequestParam(name = "idTwo") Long userTwoId,
                                                    @RequestParam(name = "idAction") Long actionUserId) {
         User user = userFacade.getUserFromSecurityContext();
-        if (user.getId() == actionUserId) {
+        if (user.getId().equals(actionUserId)) {
             FriendshipDto friendshipDto = friendshipFacade.blockUser(userOneId, userTwoId, actionUserId);
             log.info("Blocking user");
             return ResponseEntity.ok()
@@ -109,12 +115,13 @@ public class FriendshipController {
         }
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @PostMapping(value = "unblock")
     public ResponseEntity<FriendshipDto> unblockUser(@RequestParam(name = "idOne") Long userOneId,
                                                      @RequestParam(name = "idTwo") Long userTwoId,
                                                      @RequestParam(name = "idAction") Long actionUserId) {
         User user = userFacade.getUserFromSecurityContext();
-        if (user.getId() == actionUserId) {
+        if (user.getId().equals(actionUserId)) {
             FriendshipDto friendshipDto = friendshipFacade.unblockUser(userOneId, userTwoId, actionUserId);
             log.info("Unlocking user");
             return ResponseEntity.ok()
@@ -125,13 +132,14 @@ public class FriendshipController {
         }
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping(value = "requests")
     public ResponseEntity<Map<String, List<UserDto>>> getRequests(@RequestParam(name = "id") Long userId) {
         User user = userFacade.getUserFromSecurityContext();
-        if (user.getId() == userId) {
+        if (user.getId().equals(userId)) {
             List<Friendship> requests = friendshipFacade.getRequests(userId);
             Map<Boolean, List<Friendship>> requestMap = requests.stream()
-                    .collect(Collectors.partitioningBy((f) -> f.getActionUser().getId() == userId));
+                    .collect(Collectors.partitioningBy((f) -> f.getActionUser().getId().equals(userId)));
 
             List<UserDto> outgoingFriendRequests = requestMap.get(true).stream()
                     .map(Friendship::getActionUser)

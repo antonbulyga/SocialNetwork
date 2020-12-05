@@ -12,10 +12,7 @@ public class UserToUserShortDto implements Converter<User, UserShortDto> {
     public UserShortDto convert(User user) {
         return UserShortDto.builder()
                 .id(user.getId())
-                /*.email(user.getUserName())
                 .userName(user.getUserName())
-                .password(user.getPassword())
-                .creationTime(user.getCreationTime())*/
                 .build();
     }
 }

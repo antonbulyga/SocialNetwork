@@ -1,6 +1,7 @@
 package com.senla.entity;
 
 import lombok.*;
+import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -38,5 +39,9 @@ public class Post {
     @ManyToOne(targetEntity = Community.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "community_id")
     private Community community;
+
+    @NotNull(message = "Field count like is mandatory")
+    @Formula("(select count(*) from likes l where l.post_id = id)")
+    private int countLike;
 
 }
