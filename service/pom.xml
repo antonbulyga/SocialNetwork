@@ -20,10 +20,6 @@
             <scope>compile</scope>
         </dependency>
         <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-        </dependency>
-        <dependency>
             <groupId>com.senla</groupId>
             <artifactId>model</artifactId>
             <version>0.0.1-SNAPSHOT</version>

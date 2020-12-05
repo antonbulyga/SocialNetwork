@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
-@RequestMapping(value = "/users/")
+@RequestMapping(value = "/users")
 @Slf4j
 public class UserController {
 
@@ -26,14 +26,14 @@ public class UserController {
     }
 
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    @GetMapping(value = "id")
+    @GetMapping(value = "/id")
     public ResponseEntity<UserDto> getUserById() {
         UserDto userDto = userFacade.getUserDtoFromSecurityContext();
         return new ResponseEntity<>(userDto, HttpStatus.OK);
     }
 
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    @DeleteMapping("delete")
+    @DeleteMapping("/delete")
     public ResponseEntity<String> deleteUser() {
         User user = userFacade.getUserFromSecurityContext();
         userFacade.deleteUser(user.getId());
@@ -43,14 +43,14 @@ public class UserController {
     }
 
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    @PostMapping("add")
+    @PostMapping("/add")
     public ResponseEntity<UserDto> register(@Valid @RequestBody UserDto userDto) {
         UserDto userDtoWithDate = userFacade.addUser(userDto);
         return new ResponseEntity<>(userDtoWithDate, HttpStatus.OK);
     }
 
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    @PostMapping("update")
+    @PostMapping("/update")
     public ResponseEntity<UserDto> update(@Valid @RequestBody UserDto userDto) {
         User user = userFacade.getUserFromSecurityContext();
         if (user.getId().equals(userDto.getId())) {
@@ -63,7 +63,7 @@ public class UserController {
     }
 
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    @PostMapping(value = "edit/password")
+    @PostMapping(value = "/edit/password")
     public ResponseEntity<String> changePassword(@RequestParam(name = "newPassword") String newPassword) {
         User user = userFacade.getUserFromSecurityContext();
         userFacade.changeUserPassword(newPassword, user.getId());
@@ -72,7 +72,7 @@ public class UserController {
     }
 
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    @GetMapping(value = "find/username")
+    @GetMapping(value = "/find/username")
     public ResponseEntity<UserDto> getUserByUserName(@RequestParam(name = "userName") String userName) {
         UserDto userDto = userFacade.findUserByUserName(userName);
         return new ResponseEntity<>(userDto, HttpStatus.OK);

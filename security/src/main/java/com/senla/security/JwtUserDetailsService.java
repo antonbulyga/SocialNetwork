@@ -1,7 +1,7 @@
 package com.senla.security;
 
 import com.senla.entity.User;
-import com.senla.service.UserService;
+import com.senla.service.user.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;

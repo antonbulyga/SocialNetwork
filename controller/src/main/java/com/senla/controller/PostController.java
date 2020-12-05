@@ -18,7 +18,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/posts/")
+@RequestMapping(value = "/posts")
 @Slf4j
 public class PostController {
 
@@ -44,7 +44,7 @@ public class PostController {
     }
 
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    @PostMapping(value = "add")
+    @PostMapping(value = "/add")
     public ResponseEntity<PostDto> addPost(@Valid @RequestBody PostDto postDto) {
         PostDto postDtoWithDate = postFacade.addPost(postDto);
         log.info("You have added post successfully");
@@ -52,7 +52,7 @@ public class PostController {
     }
 
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    @DeleteMapping(value = "delete")
+    @DeleteMapping(value = "/delete")
     public ResponseEntity<String> deletePost(@RequestParam(name = "id") Long id) {
         User user = userFacade.getUserFromSecurityContext();
         List<Post> posts = user.getPosts();
@@ -71,7 +71,7 @@ public class PostController {
     }
 
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    @PutMapping(value = "update")
+    @PutMapping(value = "/update")
     public ResponseEntity<PostDto> updatePost(@Valid @RequestBody PostDto postDto) {
         User user = userFacade.getUserFromSecurityContext();
         List<Post> posts = user.getPosts();
@@ -87,7 +87,7 @@ public class PostController {
     }
 
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    @GetMapping(value = "search/user/{id}")
+    @GetMapping(value = "/search/user/{id}")
     public ResponseEntity<List<PostDto>> getPostByUser_Id(@PathVariable(name = "id") Long id) {
         List<PostDto> postDtoList = postFacade.getPostsDtoByUser_Id(id);
         log.info("You received the post by user id");
@@ -95,7 +95,7 @@ public class PostController {
     }
 
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    @GetMapping(value = "{id}")
+    @GetMapping(value = "/{id}")
     public ResponseEntity<PostDto> getPostById(@PathVariable(name = "id") Long postId) {
         PostDto postDto = postFacade.getPost(postId);
         log.info("You got a post by id");

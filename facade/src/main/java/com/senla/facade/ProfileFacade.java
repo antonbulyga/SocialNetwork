@@ -4,7 +4,7 @@ import com.senla.converters.ProfileDtoToProfile;
 import com.senla.converters.ProfileToProfileDto;
 import com.senla.dto.ProfileDto;
 import com.senla.entity.Profile;
-import com.senla.service.ProfileService;
+import com.senla.service.profile.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

@@ -4,7 +4,7 @@ import com.senla.converters.LikeDtoToLike;
 import com.senla.converters.LikeToLikeDto;
 import com.senla.dto.LikeDto;
 import com.senla.entity.Like;
-import com.senla.service.LikeService;
+import com.senla.service.like.LikeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

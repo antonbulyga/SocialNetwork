@@ -66,5 +66,12 @@ public class User {
     @ManyToMany(mappedBy = "userList", fetch = FetchType.LAZY)
     private List<Dialog> dialogs;
 
-
+    public User(Long id, @NotBlank(message = "Email is mandatory") @Email String email, @NotBlank(message = "User name is mandatory") String userName, @NotBlank(message = "Password is mandatory") String password,
+                @NotNull(message = "Creation time field is is mandatory") LocalDateTime creationTime) {
+        this.id = id;
+        this.email = email;
+        this.userName = userName;
+        this.password = password;
+        this.creationTime = creationTime;
+    }
 }

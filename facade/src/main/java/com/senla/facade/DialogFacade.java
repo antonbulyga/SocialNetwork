@@ -4,7 +4,7 @@ import com.senla.converters.DialogDtoToDialog;
 import com.senla.converters.DialogToDialogDto;
 import com.senla.dto.DialogDto;
 import com.senla.entity.Dialog;
-import com.senla.service.DialogService;
+import com.senla.service.dialog.DialogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

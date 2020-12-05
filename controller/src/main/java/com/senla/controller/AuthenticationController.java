@@ -3,8 +3,8 @@ package com.senla.controller;
 import com.senla.dto.AuthenticationRequestDto;
 import com.senla.entity.User;
 import com.senla.security.JwtTokenProvider;
-import com.senla.service.TokenService;
-import com.senla.service.UserService;
+import com.senla.service.token.TokenService;
+import com.senla.service.user.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @RestController
-@RequestMapping(value = "/auth/")
+@RequestMapping(value = "/auth")
 @Slf4j
 public class AuthenticationController {
 
@@ -37,7 +37,7 @@ public class AuthenticationController {
         this.tokenService = tokenService;
     }
 
-    @PostMapping("login")
+    @PostMapping("/login")
     public ResponseEntity login(@Valid @RequestBody AuthenticationRequestDto requestDto) {
         try {
             String username = requestDto.getUsername();
@@ -59,7 +59,7 @@ public class AuthenticationController {
         }
     }
 
-    @GetMapping("exit")
+    @GetMapping("/exit")
     public ResponseEntity logout(@RequestHeader(name = "Authorization") String authorization) {
         if (authorization != null && authorization.startsWith("Bearer_")) {
             String token = authorization.substring(7, authorization.length());

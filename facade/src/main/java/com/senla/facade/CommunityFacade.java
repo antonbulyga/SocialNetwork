@@ -4,7 +4,7 @@ import com.senla.converters.CommunityDtoToCommunity;
 import com.senla.converters.CommunityToCommunityDto;
 import com.senla.dto.CommunityDto;
 import com.senla.entity.Community;
-import com.senla.service.CommunityService;
+import com.senla.service.community.CommunityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

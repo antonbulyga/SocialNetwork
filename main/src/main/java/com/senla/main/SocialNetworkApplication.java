@@ -11,7 +11,6 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 @ComponentScan({"com.senla"})
 @EntityScan(basePackages = "com.senla.entity")
 @EnableJpaRepositories(basePackages = "com.senla.repository")
-@EnableGlobalMethodSecurity(securedEnabled = true)
 public class SocialNetworkApplication {
     public static void main(String[] args) {
         SpringApplication.run(SocialNetworkApplication.class, args);

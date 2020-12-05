@@ -4,7 +4,7 @@ import com.senla.converters.UserDtoToUser;
 import com.senla.converters.UserToUserDto;
 import com.senla.dto.UserDto;
 import com.senla.entity.User;
-import com.senla.service.UserService;
+import com.senla.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

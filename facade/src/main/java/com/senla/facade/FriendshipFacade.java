@@ -6,7 +6,7 @@ import com.senla.dto.FriendshipDto;
 import com.senla.dto.UserDto;
 import com.senla.entity.Friendship;
 import com.senla.entity.User;
-import com.senla.service.FriendshipService;
+import com.senla.service.friendship.FriendshipService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

@@ -1,15 +1,11 @@
 package com.senla.controller;
 
-import com.senla.converters.CommunityDtoToCommunity;
-import com.senla.converters.CommunityToCommunityDto;
 import com.senla.dto.CommunityDto;
 import com.senla.entity.Community;
 import com.senla.entity.User;
 import com.senla.exception.RestError;
 import com.senla.facade.CommunityFacade;
 import com.senla.facade.UserFacade;
-import com.senla.service.CommunityService;
-import com.senla.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,12 +14,10 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(value = "/communities/")
+@RequestMapping(value = "/communities")
 @Slf4j
 public class CommunityController {
 
@@ -48,7 +42,7 @@ public class CommunityController {
     }
 
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    @PostMapping(value = "add")
+    @PostMapping(value = "/add")
     public ResponseEntity<CommunityDto> addCommunity(@Valid @RequestBody CommunityDto communityDto) {
         User user = userFacade.getUserFromSecurityContext();
         Community community = communityFacade.convertCommunityDtoToCommunity(communityDto);
@@ -64,7 +58,7 @@ public class CommunityController {
     }
 
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    @DeleteMapping(value = "delete")
+    @DeleteMapping(value = "/delete")
     public ResponseEntity<String> deleteCommunity(@RequestParam(name = "id") long id){
         User user = userFacade.getUserFromSecurityContext();
         Community community = communityFacade.getCommunity(id);
@@ -82,7 +76,7 @@ public class CommunityController {
     }
 
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    @GetMapping(value = "{id}")
+    @GetMapping(value = "/{id}")
     public ResponseEntity<CommunityDto> getCommunityById(@PathVariable(name = "id") Long id) {
         CommunityDto communityDto = communityFacade.getDtoCommunity(id);
         log.info("Getting community by id");
@@ -90,7 +84,7 @@ public class CommunityController {
     }
 
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    @PutMapping(value = "update")
+    @PutMapping(value = "/update")
     public ResponseEntity<CommunityDto> updateCommunity(@Valid @RequestBody CommunityDto communityDto) {
         User user = userFacade.getUserFromSecurityContext();
         Community community = communityFacade.convertCommunityDtoToCommunity(communityDto);
@@ -106,7 +100,7 @@ public class CommunityController {
     }
 
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    @GetMapping(value = "search/name")
+    @GetMapping(value = "/search/name")
     public ResponseEntity<CommunityDto> getCommunityByName(@RequestParam(name = "name") String name) {
         CommunityDto communityDto = communityFacade.getCommunityByName(name);
         log.info("Getting community by name");
@@ -114,7 +108,7 @@ public class CommunityController {
     }
 
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    @GetMapping(value = "search/admin")
+    @GetMapping(value = "/search/admin")
     public ResponseEntity<List<CommunityDto>> getCommunitiesByAdminUser_Id(@RequestParam(name = "adminId") Long adminId) {
         List<CommunityDto> communityDtoList = communityFacade.getCommunitiesByAdminUserId(adminId);
         log.info("Getting community by admin user");

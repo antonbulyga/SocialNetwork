@@ -4,7 +4,7 @@ import com.senla.converters.PostDtoToPost;
 import com.senla.converters.PostToPostDto;
 import com.senla.dto.PostDto;
 import com.senla.entity.Post;
-import com.senla.service.PostService;
+import com.senla.service.post.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

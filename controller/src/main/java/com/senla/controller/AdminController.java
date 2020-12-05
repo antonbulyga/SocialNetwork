@@ -17,7 +17,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(value = "/admin/")
+@RequestMapping(value = "/admin")
 @Slf4j
 public class AdminController {
 
@@ -47,7 +47,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @GetMapping(value = "users")
+    @GetMapping(value = "/users")
     public ResponseEntity<List<UserDto>> getAllUsersAsAdmin() {
         List<UserDto> usersDtoList = userFacade.getAllUsers();
         log.info("Getting all users as admin");
@@ -59,7 +59,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @GetMapping(value = "users/{id}")
+    @GetMapping(value = "/users/{id}")
     public ResponseEntity<UserDto> getUserByIdAsAdmin(@PathVariable(name = "id") Long id) {
         UserDto userDto = userFacade.getUser(id);
         log.info("Getting user by id as admin");
@@ -67,7 +67,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @DeleteMapping("users/delete")
+    @DeleteMapping("/users/delete")
     public ResponseEntity<String> deleteUserAsAdmin(@RequestParam(name = "id") Long userId) {
         userFacade.deleteUser(userId);
         log.info("Deleting user by id as admin");
@@ -77,7 +77,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @GetMapping(value = "users/search/email")
+    @GetMapping(value = "/users/search/email")
     public ResponseEntity<UserDto> findByEmailAsAdmin(@RequestParam(name = "email") String email) {
         UserDto userDto = userFacade.findUserByEmail(email);
         log.info("Finding user by email as admin");
@@ -85,7 +85,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @GetMapping(value = "users/edit/password")
+    @GetMapping(value = "/users/edit/password")
     public ResponseEntity<UserDto> changePasswordAsAdmin(@RequestParam(name = "newPassword") String newPassword, @RequestParam(name = "id") long userId) {
         UserDto userDto = userFacade.changeUserPassword(newPassword, userId);
         log.info("You have changed password successfully");
@@ -93,7 +93,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @GetMapping(value = "roles")
+    @GetMapping(value = "/roles")
     public ResponseEntity<List<RoleDto>> getAllRolesAsAdmin() {
         List<RoleDto> roleDtoList = roleFacade.getAllRoles();
         log.info("Getting all roles as admin");
@@ -101,7 +101,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @PostMapping(value = "roles/add")
+    @PostMapping(value = "/roles/add")
     public ResponseEntity<RoleDto> addRole(@Valid @RequestBody RoleDto roleDto) {
         roleFacade.addRole(roleDto);
         log.info("Adding role as admin");
@@ -109,7 +109,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @DeleteMapping(value = "roles/delete")
+    @DeleteMapping(value = "/roles/delete")
     public ResponseEntity<String> deleteRole(@Valid @RequestBody RoleDto roleDto) {
         roleFacade.deleteRole(roleDto.getId());
         log.info("Deleting role as admin");
@@ -118,7 +118,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @PutMapping(value = "roles/update")
+    @PutMapping(value = "/roles/update")
     public ResponseEntity<RoleDto> update(@Valid @RequestBody RoleDto roleDto) {
         roleFacade.updateRole(roleDto);
         log.info("Updating role as admin");
@@ -126,7 +126,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @GetMapping(value = "roles/search/name")
+    @GetMapping(value = "/roles/search/name")
     public ResponseEntity<RoleDto> getRoleByName(@RequestParam(name = "name") String name) {
         RoleDto roleDto = roleFacade.getRoleByName(name);
         log.info("Getting role by name as admin");
@@ -134,7 +134,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @GetMapping(value = "profiles")
+    @GetMapping(value = "/profiles")
     public ResponseEntity<List<ProfileDto>> getAllProfilesAsAdmin() {
         List<ProfileDto> dtoList = profileFacade.getAllProfiles();
         log.info("Getting all profiles as admin");
@@ -142,7 +142,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @GetMapping(value = "profiles/search/user")
+    @GetMapping(value = "/profiles/search/user")
     public ResponseEntity<ProfileDto> findProfileByUser_IdAsAdmin(@RequestParam(name = "userId") Long userId) {
         Profile profile = profileFacade.findProfileByUser_Id(userId);
         log.info("Finding profile by user id as admin");
@@ -151,7 +151,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @PutMapping(value = "profiles/update")
+    @PutMapping(value = "/profiles/update")
     public ResponseEntity<ProfileDto> updateProfileAsAdmin(@Valid @RequestBody ProfileDto profileDto) {
         profileFacade.updateProfile(profileDto);
         log.info("Updating profile as admin");
@@ -159,7 +159,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @DeleteMapping(value = "posts/delete")
+    @DeleteMapping(value = "/posts/delete")
     public ResponseEntity<String> deletePost(@RequestParam(name = "id") long id) {
         postFacade.getPost(id);
         postFacade.deletePost(id);
@@ -169,7 +169,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @PutMapping(value = "posts/update")
+    @PutMapping(value = "/posts/update")
     public ResponseEntity<PostDto> updatePostAsAdmin(@Valid @RequestBody PostDto postDto) {
         PostDto postDtoWithDate =  postFacade.updatePost(postDto);
         log.info("Updating post by id as admin");
@@ -177,7 +177,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @GetMapping(value = "messages")
+    @GetMapping(value = "/messages")
     public ResponseEntity<List<MessageDto>> getAllMessagesAsAdmin() {
         List<MessageDto> messageDtoList = messageFacade.getAllMessages();
         log.info("Getting all messages as admin");
@@ -185,14 +185,14 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @PostMapping(value = "messages/add")
+    @PostMapping(value = "/messages/add")
     public ResponseEntity<MessageDto> addMessageAsAdmin(@Valid @RequestBody MessageDto messageDto) {
         log.info("Adding message as admin");
         return new ResponseEntity<>(messageDto, HttpStatus.OK);
     }
 
     @Secured("ROLE_ADMIN")
-    @DeleteMapping(value = "messages/delete")
+    @DeleteMapping(value = "/messages/delete")
     public ResponseEntity<String> deleteMessageAsAdmin(@RequestParam(name = "id") long id) {
         messageFacade.deleteMessage(id);
         log.info("Deleting message as admin");
@@ -201,7 +201,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @GetMapping(value = "messages/search/dialog/{id}")
+    @GetMapping(value = "/messages/search/dialog/{id}")
     public ResponseEntity<List<MessageDto>> getMessagesByDialog_Id(@PathVariable(name = "id") Long id) {
         List<MessageDto> messageDtoList = messageFacade.getMessagesByDialog_Id(id);
         log.info("Getting messages by dialog id as admin");
@@ -209,7 +209,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @GetMapping(value = "messages/{id}")
+    @GetMapping(value = "/messages/{id}")
     public ResponseEntity<MessageDto> getMessageByIdAsAdmin(@PathVariable(name = "id") Long messageId) {
         MessageDto messageDto = messageFacade.getMessageDto(messageId);
         log.info("Getting messages by id as admin");
@@ -217,7 +217,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @GetMapping(value = "likes")
+    @GetMapping(value = "/likes")
     public ResponseEntity<List<LikeDto>> getAllLikesAsAdmin() {
         List<LikeDto> likeDtoList = likeFacade.getAllLikes();
         log.info("Getting all likes as admin");
@@ -225,7 +225,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @PostMapping(value = "likes/add")
+    @PostMapping(value = "/likes/add")
     public ResponseEntity<LikeDto> addLike(@Valid @RequestBody LikeDto likeDto) {
         likeFacade.addLike(likeDto);
         log.error("Adding like");
@@ -233,7 +233,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @DeleteMapping(value = "likes/delete")
+    @DeleteMapping(value = "/likes/delete")
     public ResponseEntity<String> deleteLike(@RequestParam(name = "id") Long id) {
         likeFacade.deleteLike(id);
         log.error("Deleting like");
@@ -243,7 +243,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @GetMapping(value = "dialogs")
+    @GetMapping(value = "/dialogs")
     public ResponseEntity<List<DialogDto>> getAllDialogsAsAdmin() {
         List<DialogDto> dialogDtoList = dialogFacade.getAllDialogs();
         log.info("Getting all dialogs as admin");
@@ -251,7 +251,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @PostMapping(value = "dialogs/add")
+    @PostMapping(value = "/dialogs/add")
     public ResponseEntity<DialogDto> addDialogAsAdmin(@Valid @RequestBody DialogDto dialogDto) {
         DialogDto dialogDtoWithData = dialogFacade.addDialog(dialogDto);
         log.info("Adding a new dialog");
@@ -259,7 +259,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @DeleteMapping(value = "dialogs/delete")
+    @DeleteMapping(value = "/dialogs/delete")
     public ResponseEntity<String> deleteDialog(@RequestParam(name = "id") Long id) {
         dialogFacade.deleteDialog(id);
         log.info("Deleting the dialog as admin");
@@ -269,7 +269,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @GetMapping(value = "dialogs/{id}")
+    @GetMapping(value = "/dialogs/{id}")
     public ResponseEntity<DialogDto> getDialogById(@PathVariable(name = "id") Long id) {
         DialogDto dialogDto = dialogFacade.getDialogDto(id);
         log.info("Getting the dialog by id as admin");
@@ -277,7 +277,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @PutMapping(value = "dialogs/update")
+    @PutMapping(value = "/dialogs/update")
     public ResponseEntity<DialogDto> updateDialog(@Valid @RequestBody DialogDto dialogDto) {
         DialogDto dialogDtoWithData =  dialogFacade.updateDialog(dialogDto);
         log.error("You are updating dialog");
@@ -285,7 +285,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @GetMapping(value = "dialogs/search/name")
+    @GetMapping(value = "/dialogs/search/name")
     public ResponseEntity<DialogDto> getDialogByName(@RequestParam(name = "name") String name) {
         DialogDto dialogDtoWithTime = dialogFacade.getDialogByName(name);
         log.error("You are getting dialog by name as admin");
@@ -293,7 +293,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @PostMapping(value = "dialogs/add/user")
+    @PostMapping(value = "/dialogs/add/user")
     public ResponseEntity<DialogDto> addUserToDialog(@RequestParam(name = "dialogId") Long dialogId, @RequestParam(name = "userId") Long userId) {
         log.error("You are adding user to the dialog");
         DialogDto dialogDtoWithTime = dialogFacade.addUserToDialog(dialogId, userId);
@@ -301,7 +301,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @DeleteMapping(value = "dialogs/delete/user")
+    @DeleteMapping(value = "/dialogs/delete/user")
     public ResponseEntity<DialogDto> deleteUserFromDialog(@RequestParam(name = "dialogId") Long dialogId, @RequestParam(name = "userId") Long userId) {
         log.error("You are deleting user from the dialog");
         DialogDto dialogDtoWithTime = dialogFacade.deleteUserFromDialog(dialogId, userId);
@@ -309,7 +309,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @PostMapping(value = "community/add")
+    @PostMapping(value = "/community/add")
     public ResponseEntity<CommunityDto> addCommunity(@Valid @RequestBody CommunityDto communityDto) {
         communityFacade.addCommunity(communityDto);
         log.info("Adding community");
@@ -318,7 +318,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @PutMapping(value = "community/update")
+    @PutMapping(value = "/community/update")
     public ResponseEntity<CommunityDto> updateCommunity(@Valid @RequestBody CommunityDto communityDto) {
         communityFacade.updateCommunity(communityDto);
         log.info("Updating community");
@@ -326,7 +326,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @DeleteMapping(value = "community/delete")
+    @DeleteMapping(value = "/community/delete")
     public ResponseEntity<String> deleteCommunityAsAdmin(@RequestParam(name = "id") long id) {
         communityFacade.deleteCommunity(id);
         log.info("Deleting community as admin");
@@ -335,7 +335,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @PostMapping(value = "friendship/request")
+    @PostMapping(value = "/friendship/request")
     public ResponseEntity<FriendshipDto> sentFriendRequestAsAdmin(@RequestParam(name = "idOne") Long userOneId,
                                                                   @RequestParam(name = "idTwo") Long userTwoId,
                                                                   @RequestParam(name = "idAction") Long actionUserId) {
@@ -346,7 +346,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @PostMapping(value = "friendship/add")
+    @PostMapping(value = "/friendship/add")
     public ResponseEntity<FriendshipDto> addToFriendsAsAdmin(@RequestParam(name = "idOne") Long userOneId,
                                                              @RequestParam(name = "idTwo") Long userTwoId,
                                                              @RequestParam(name = "idAction") Long actionUserId) {
@@ -357,7 +357,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @GetMapping(value = "friendship/friends")
+    @GetMapping(value = "/friendship/friends")
     public ResponseEntity<List<UserDto>> getFriendsListOfUserAsAdmin(@RequestParam(name = "id") Long userId) {
         List<UserDto> userDto = friendshipFacade.getFriendsListOfUser(userId);
         log.info("Getting a friend list of the user");
@@ -365,7 +365,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @PostMapping(value = "friendship/delete")
+    @PostMapping(value = "/friendship/delete")
     public ResponseEntity<FriendshipDto> deleteFriendshipAsAdmin(@RequestParam(name = "idOne") Long userOneId,
                                                                  @RequestParam(name = "idTwo") Long userTwoId,
                                                                  @RequestParam(name = "idAction") Long actionUserId) {
@@ -376,7 +376,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @PostMapping(value = "friendship/block")
+    @PostMapping(value = "/friendship/block")
     public ResponseEntity<FriendshipDto> blockUserAsAdmin(@RequestParam(name = "idOne") Long userOneId,
                                                           @RequestParam(name = "idTwo") Long userTwoId,
                                                           @RequestParam(name = "idAction") Long actionUserId) {
@@ -387,7 +387,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @PostMapping(value = "friendship/unblock")
+    @PostMapping(value = "/friendship/unblock")
     public ResponseEntity<FriendshipDto> unblockUserAsAdmin(@RequestParam(name = "idOne") Long userOneId,
                                                             @RequestParam(name = "idTwo") Long userTwoId,
                                                             @RequestParam(name = "idAction") Long actionUserId) {
@@ -399,7 +399,7 @@ public class AdminController {
     }
 
     @Secured("ROLE_ADMIN")
-    @GetMapping(value = "friendship/requests")
+    @GetMapping(value = "/friendship/requests")
     public ResponseEntity<Map<String, List<UserDto>>> getRequestsAsAdmin(@RequestParam(name = "id") Long userId) {
         List<Friendship> requests = friendshipFacade.getRequests(userId);
         Map<Boolean, List<Friendship>> requestMap = requests.stream()

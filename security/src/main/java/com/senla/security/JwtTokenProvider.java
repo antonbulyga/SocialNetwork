@@ -4,7 +4,7 @@ import com.senla.entity.Role;
 
 import com.senla.entity.Token;
 import com.senla.exception.JwtAuthenticationException;
-import com.senla.service.TokenService;
+import com.senla.service.token.TokenService;
 import io.jsonwebtoken.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,7 +1,6 @@
 package com.senla.repository;
 
 import com.senla.entity.Community;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

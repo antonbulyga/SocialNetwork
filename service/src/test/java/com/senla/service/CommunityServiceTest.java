@@ -1,8 +1,10 @@
 package com.senla.service;
 
 import com.senla.entity.Community;
+import com.senla.entity.User;
 import com.senla.repository.CommunityRepository;
-import com.senla.service.impl.CommunityServiceImpl;
+import com.senla.service.community.CommunityService;
+import com.senla.service.community.CommunityServiceImpl;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
@@ -11,7 +13,6 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,9 +66,9 @@ public class CommunityServiceTest {
     @Test
     public void shouldReturnFindAll() {
         List<Community> communities = new ArrayList();
-        communities.add(new Community(1L, "Любители математики"));
-        communities.add(new Community(1L, "Любители математики"));
-        communities.add(new Community(1L, "Любители математики"));
+        communities.add(new Community(communityId, "Любители математики"));
+        communities.add(new Community(communityId, "Любители математики"));
+        communities.add(new Community(communityId, "Любители математики"));
         given(communityRepository.findAll()).willReturn(communities);
         List<Community> expected = communityService.getAllCommunities();
         assertEquals(expected, communities);
@@ -81,9 +82,9 @@ public class CommunityServiceTest {
 
     public void getCommunityByUserAdmin() {
         List<Community> communities = new ArrayList();
-        communities.add(new Community(1L, "Любители математики"));
-        communities.add(new Community(1L, "Любители математики"));
-        communities.add(new Community(1L, "Любители математики"));
+        communities.add(new Community(communityId, "Любители математики"));
+        communities.add(new Community(communityId, "Любители математики"));
+        communities.add(new Community(communityId, "Любители математики"));
         given(communityRepository.getCommunitiesByAdminUser_Id(community.getAdminUser().getId())).willReturn(communities);
         List<Community> expected = communityService.getAllCommunities();
         assertEquals(expected, communities);

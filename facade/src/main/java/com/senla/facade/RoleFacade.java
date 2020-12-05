@@ -4,7 +4,7 @@ import com.senla.converters.RoleDtoToRole;
 import com.senla.converters.RoleToRoleDto;
 import com.senla.dto.RoleDto;
 import com.senla.entity.Role;
-import com.senla.service.RoleService;
+import com.senla.service.role.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

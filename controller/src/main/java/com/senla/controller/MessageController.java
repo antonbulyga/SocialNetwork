@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/messages/")
+@RequestMapping(value = "/messages")
 @Slf4j
 public class MessageController {
 
@@ -45,7 +45,7 @@ public class MessageController {
     }
 
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    @PostMapping(value = "add")
+    @PostMapping(value = "/add")
     public ResponseEntity<MessageDto> addMessageToDialog(@Valid @RequestBody MessageDto messageDto) {
         User user = userFacade.getUserFromSecurityContext();
         List<Dialog> dialogs = user.getDialogs();
@@ -69,7 +69,7 @@ public class MessageController {
     }
 
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    @DeleteMapping(value = "delete")
+    @DeleteMapping(value = "/delete")
     public ResponseEntity<String> deleteMessage(@RequestParam(name = "id") Long id) {
         User user = userFacade.getUserFromSecurityContext();
         List<Message> messages = user.getMessages();
@@ -86,7 +86,7 @@ public class MessageController {
     }
 
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    @PutMapping(value = "update")
+    @PutMapping(value = "/update")
     public ResponseEntity<MessageDto> updateMessage(@Valid @RequestBody MessageDto messageDto) {
         User user = userFacade.getUserFromSecurityContext();
         List<Message> messages = user.getMessages();
@@ -104,7 +104,7 @@ public class MessageController {
     }
 
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    @GetMapping(value = "search/dialog/{id}")
+    @GetMapping(value = "/search/dialog/{id}")
     public ResponseEntity<List<MessageDto>> getMessagesByDialog_Id(@PathVariable(name = "id") long id) {
         List<MessageDto> messageDtoList;
         User user = userFacade.getUserFromSecurityContext();
@@ -126,7 +126,7 @@ public class MessageController {
     }
 
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    @GetMapping(value = "{id}")
+    @GetMapping(value = "/{id}")
     public ResponseEntity<MessageDto> getMessageById(@PathVariable(name = "id") Long messageId) {
         MessageDto messageDto;
         Message message = messageFacade.getMessage(messageId);

@@ -4,7 +4,7 @@ import com.senla.converters.MessageDtoToMessage;
 import com.senla.converters.MessageToMessageDto;
 import com.senla.dto.MessageDto;
 import com.senla.entity.Message;
-import com.senla.service.MessageService;
+import com.senla.service.message.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 

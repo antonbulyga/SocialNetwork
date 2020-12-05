@@ -2,6 +2,7 @@ package com.senla.repository;
 
 
 import com.senla.entity.Community;
+import com.senla.entity.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -40,7 +42,10 @@ public class CommunityRepositoryTest {
 
         @Test
         public void getCommunitiesByAdminUser_Id_Success() {
-            entityManager.merge(new Community(1L, "Group test"));
+            Community community = new Community(1L, "Group test");
+            User user = new User(1L, "anton@mail.ru", "Anton", "1234" , LocalDateTime.now());
+            community.setAdminUser(user);
+            entityManager.merge(community);
             List<Community> communities = communityRepository.getCommunitiesByAdminUser_Id(1L);
             assertEquals(1,communities.size());
         }

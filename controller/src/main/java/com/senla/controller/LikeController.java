@@ -1,15 +1,11 @@
 package com.senla.controller;
 
-import com.senla.converters.LikeDtoToLike;
-import com.senla.converters.LikeToLikeDto;
 import com.senla.dto.LikeDto;
 import com.senla.entity.Like;
 import com.senla.entity.User;
 import com.senla.exception.RestError;
 import com.senla.facade.LikeFacade;
 import com.senla.facade.UserFacade;
-import com.senla.service.LikeService;
-import com.senla.service.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,12 +14,10 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping(value = "/likes/")
+@RequestMapping(value = "/likes")
 @Slf4j
 public class LikeController {
 
@@ -50,7 +44,7 @@ public class LikeController {
     }
 
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    @PostMapping(value = "add")
+    @PostMapping(value = "/add")
     public ResponseEntity<LikeDto> addLike(@Valid @RequestBody LikeDto likeDto) {
         User user = userFacade.getUserFromSecurityContext();
         List<Like> likes = user.getLikes();
@@ -67,7 +61,7 @@ public class LikeController {
     }
 
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    @DeleteMapping(value = "delete")
+    @DeleteMapping(value = "/delete")
     public ResponseEntity<String> deleteLike(@RequestParam(name = "id") long id) {
         Like like = likeFacade.getLike(id);
         User user = userFacade.getUserFromSecurityContext();
@@ -87,7 +81,7 @@ public class LikeController {
     }
 
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    @GetMapping(value = "{id}")
+    @GetMapping(value = "/{id}")
     public ResponseEntity<LikeDto> getLikeById(@PathVariable(name = "id") Long likeId) {
         LikeDto likeDto = likeFacade.getLikeDto(likeId);
         log.info("You are getting like by id");
@@ -95,7 +89,7 @@ public class LikeController {
     }
 
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    @GetMapping(value = "post/id")
+    @GetMapping(value = "/post/id")
     public ResponseEntity<List<LikeDto>> getLikesByPost_Id(@RequestParam(name = "postId") Long postId) {
         List<LikeDto> dtoList = likeFacade.getLikesByPost_Id(postId);
         if (dtoList.isEmpty()) {

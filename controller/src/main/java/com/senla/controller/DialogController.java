@@ -17,7 +17,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/dialogs/")
+@RequestMapping(value = "/dialogs")
 @Slf4j
 public class DialogController {
 
@@ -41,7 +41,7 @@ public class DialogController {
     }
 
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    @PostMapping(value = "add")
+    @PostMapping(value = "/add")
     public ResponseEntity<DialogDto> addDialog(@Valid @RequestBody DialogDto dialogDto) {
         DialogDto dialogDtoWithData = dialogFacade.addDialog(dialogDto);
         log.info("Adding a new dialog");
@@ -49,7 +49,7 @@ public class DialogController {
     }
 
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    @DeleteMapping(value = "delete")
+    @DeleteMapping(value = "/delete")
     public ResponseEntity<String> deleteDialog(@RequestParam(name = "id") long id) {
         User user = userFacade.getUserFromSecurityContext();
         List<Dialog> dialogs = user.getDialogs();
@@ -67,7 +67,7 @@ public class DialogController {
     }
 
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    @GetMapping(value = "{id}")
+    @GetMapping(value = "/{id}")
     public ResponseEntity<DialogDto> getDialogById(@PathVariable(name = "id") Long id) {
         User user = userFacade.getUserFromSecurityContext();
         List<Dialog> dialogs = user.getDialogs();
@@ -83,7 +83,7 @@ public class DialogController {
     }
 
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    @PutMapping(value = "update")
+    @PutMapping(value = "/update")
     public ResponseEntity<DialogDto> updateDialog(@Valid @RequestBody DialogDto dialogDto) {
         User user = userFacade.getUserFromSecurityContext();
         List<Dialog> dialogs = user.getDialogs();
@@ -100,7 +100,7 @@ public class DialogController {
     }
 
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    @GetMapping(value = "search/name")
+    @GetMapping(value = "/search/name")
     public ResponseEntity<DialogDto> getDialogByName(@RequestParam(name = "name") String name) {
         User user = userFacade.getUserFromSecurityContext();
         DialogDto dialogDto = dialogFacade.getDialogByName(name);
@@ -117,7 +117,7 @@ public class DialogController {
     }
 
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    @PostMapping(value = "add/user")
+    @PostMapping(value = "/add/user")
     public ResponseEntity<DialogDto> addUserToDialog(@RequestParam(name = "dialogId") Long dialogId, @RequestParam(name = "userId") Long userId) {
         User user = userFacade.getUserFromSecurityContext();
         List<Dialog> dialogs = user.getDialogs();
@@ -135,7 +135,7 @@ public class DialogController {
     }
 
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    @DeleteMapping(value = "delete/user")
+    @DeleteMapping(value = "/delete/user")
     public ResponseEntity<DialogDto> deleteUserFromDialog(@RequestParam(name = "dialogId") Long dialogId, @RequestParam(name = "userId") Long userId) {
         User user = userFacade.getUserFromSecurityContext();
         List<Dialog> dialogs = user.getDialogs();
