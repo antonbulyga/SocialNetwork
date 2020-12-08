@@ -22,7 +22,7 @@ public class Dialog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Name is mandatory")
+    @NotBlank(message = "{dialog.name}")
     @Column(name = "name")
     private String name;
 
@@ -33,6 +33,7 @@ public class Dialog {
     @OneToMany(mappedBy = "dialog", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Message> messages;
 
+    @NotEmpty(message = "{dialog.userList.notEmpty}")
     @ManyToMany(fetch = FetchType.LAZY, cascade = {
             CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE
     })

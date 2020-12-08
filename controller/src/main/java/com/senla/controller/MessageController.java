@@ -1,6 +1,6 @@
 package com.senla.controller;
 
-import com.senla.dto.MessageDto;
+import com.senla.dto.message.MessageDto;
 import com.senla.entity.Dialog;
 import com.senla.entity.Message;
 import com.senla.entity.User;
@@ -20,6 +20,11 @@ import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * * @author  Anton Bulyha
+ * * @version 1.0
+ * * @since   2020-08-12
+ */
 @RestController
 @RequestMapping(value = "/messages")
 @Slf4j
@@ -36,6 +41,10 @@ public class MessageController {
         this.dialogFacade = dialogFacade;
     }
 
+    /**
+     * Get all messages from all dialogs where user participate
+     * @return list of the message dto
+     */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping(value = "")
     public ResponseEntity<List<MessageDto>> getAllMessagesForUserFromAllDialogs() {
@@ -44,6 +53,11 @@ public class MessageController {
         return new ResponseEntity<>(fullMessageDtoList, HttpStatus.OK);
     }
 
+    /**
+     * Add message to the dialog
+     * @param messageDto message dto
+     * @return message dto
+     */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @PostMapping(value = "/add")
     public ResponseEntity<MessageDto> addMessageToDialog(@Valid @RequestBody MessageDto messageDto) {
@@ -68,6 +82,11 @@ public class MessageController {
         throw new RestError("User can not add message to someone else dialog or user");
     }
 
+    /**
+     * Delete message
+     * @param id message id
+     * @return string response
+     */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @DeleteMapping(value = "/delete")
     public ResponseEntity<String> deleteMessage(@RequestParam(name = "id") Long id) {
@@ -85,6 +104,11 @@ public class MessageController {
         throw new RestError("User has no message with this id");
     }
 
+    /**
+     * Update message
+     * @param messageDto message dto
+     * @return message dto
+     */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @PutMapping(value = "/update")
     public ResponseEntity<MessageDto> updateMessage(@Valid @RequestBody MessageDto messageDto) {
@@ -103,6 +127,11 @@ public class MessageController {
         throw new RestError("You can't edit someone else message");
     }
 
+    /**
+     * Get list of message by dialog id
+     * @param id dialog id
+     * @return list of the message id
+     */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping(value = "/search/dialog/{id}")
     public ResponseEntity<List<MessageDto>> getMessagesByDialog_Id(@PathVariable(name = "id") long id) {
@@ -125,6 +154,11 @@ public class MessageController {
 
     }
 
+    /**
+     * Get message by id
+     * @param messageId message id
+     * @return message dto
+     */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping(value = "/{id}")
     public ResponseEntity<MessageDto> getMessageById(@PathVariable(name = "id") Long messageId) {

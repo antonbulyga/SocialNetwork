@@ -19,6 +19,11 @@ import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * * @author  Anton Bulyha
+ * * @version 1.0
+ * * @since   2020-08-12
+ */
 @RestController
 @RequestMapping(value = "/auth")
 @Slf4j
@@ -37,6 +42,11 @@ public class AuthenticationController {
         this.tokenService = tokenService;
     }
 
+    /**
+     * Login
+     * @param requestDto request dto
+     * @return response as a string
+     */
     @PostMapping("/login")
     public ResponseEntity login(@Valid @RequestBody AuthenticationRequestDto requestDto) {
         try {
@@ -59,6 +69,11 @@ public class AuthenticationController {
         }
     }
 
+    /**
+     * Log out
+     * @param authorization authorization number
+     * @return response as a string
+     */
     @GetMapping("/exit")
     public ResponseEntity logout(@RequestHeader(name = "Authorization") String authorization) {
         if (authorization != null && authorization.startsWith("Bearer_")) {

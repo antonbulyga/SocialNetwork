@@ -1,9 +1,8 @@
 package com.senla.controller;
 
-import com.senla.dto.PostDto;
+import com.senla.dto.post.PostDto;
 import com.senla.entity.Post;
 import com.senla.entity.User;
-import com.senla.exception.EntityNotFoundException;
 import com.senla.exception.RestError;
 import com.senla.facade.PostFacade;
 import com.senla.facade.UserFacade;
@@ -17,6 +16,11 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+/**
+ * * @author  Anton Bulyha
+ * * @version 1.0
+ * * @since   2020-08-12
+ */
 @RestController
 @RequestMapping(value = "/posts")
 @Slf4j
@@ -31,6 +35,10 @@ public class PostController {
         this.userFacade = userFacade;
     }
 
+    /**
+     * Get all posts
+     * @return list of the post dto
+     */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping(value = "")
     public ResponseEntity<List<PostDto>> getAllPosts() {
@@ -43,6 +51,11 @@ public class PostController {
         return new ResponseEntity<>(postDtoList, HttpStatus.OK);
     }
 
+    /**
+     * Add post
+     * @param postDto post dto
+     * @return post dto
+     */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @PostMapping(value = "/add")
     public ResponseEntity<PostDto> addPost(@Valid @RequestBody PostDto postDto) {
@@ -51,6 +64,11 @@ public class PostController {
         return new ResponseEntity<>(postDtoWithDate, HttpStatus.OK);
     }
 
+    /**
+     * Delete post
+     * @param id post id
+     * @return string response
+     */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @DeleteMapping(value = "/delete")
     public ResponseEntity<String> deletePost(@RequestParam(name = "id") Long id) {
@@ -70,6 +88,11 @@ public class PostController {
 
     }
 
+    /**
+     * Update post
+     * @param postDto post dto
+     * @return post dto
+     */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @PutMapping(value = "/update")
     public ResponseEntity<PostDto> updatePost(@Valid @RequestBody PostDto postDto) {
@@ -86,6 +109,11 @@ public class PostController {
         throw new RestError("You are trying to update someone else post");
     }
 
+    /**
+     * Get post by user id
+     * @param id user id
+     * @return list of the post dto
+     */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping(value = "/search/user/{id}")
     public ResponseEntity<List<PostDto>> getPostByUser_Id(@PathVariable(name = "id") Long id) {
@@ -94,6 +122,11 @@ public class PostController {
         return new ResponseEntity<>(postDtoList, HttpStatus.OK);
     }
 
+    /**
+     * Get post by id
+     * @param postId post id
+     * @return post dto
+     */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping(value = "/{id}")
     public ResponseEntity<PostDto> getPostById(@PathVariable(name = "id") Long postId) {

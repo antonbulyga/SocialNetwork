@@ -1,6 +1,6 @@
 package com.senla.controller;
 
-import com.senla.dto.CommunityDto;
+import com.senla.dto.community.CommunityDto;
 import com.senla.entity.Community;
 import com.senla.entity.User;
 import com.senla.exception.RestError;
@@ -16,6 +16,11 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+/**
+ * * @author  Anton Bulyha
+ * * @version 1.0
+ * * @since   2020-08-12
+ */
 @RestController
 @RequestMapping(value = "/communities")
 @Slf4j
@@ -30,6 +35,10 @@ public class CommunityController {
         this.userFacade = userFacade;
     }
 
+    /**
+     * Get all communities
+     * @return list of the communities dto
+     */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping(value = "")
     public ResponseEntity<List<CommunityDto>> getAllCommunities() {
@@ -41,6 +50,11 @@ public class CommunityController {
         return new ResponseEntity<>(communityDtoList, HttpStatus.OK);
     }
 
+    /**
+     * Add community
+     * @param communityDto
+     * @return community dto
+     */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @PostMapping(value = "/add")
     public ResponseEntity<CommunityDto> addCommunity(@Valid @RequestBody CommunityDto communityDto) {
@@ -57,6 +71,11 @@ public class CommunityController {
         }
     }
 
+    /**
+     * Delete community
+     * @param id community id
+     * @return response as a string
+     */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @DeleteMapping(value = "/delete")
     public ResponseEntity<String> deleteCommunity(@RequestParam(name = "id") long id){
@@ -75,6 +94,11 @@ public class CommunityController {
 
     }
 
+    /**
+     * Get community be id
+     * @param id community id
+     * @return community dto
+     */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping(value = "/{id}")
     public ResponseEntity<CommunityDto> getCommunityById(@PathVariable(name = "id") Long id) {
@@ -83,6 +107,11 @@ public class CommunityController {
         return new ResponseEntity<>(communityDto, HttpStatus.OK);
     }
 
+    /**
+     * Update community
+     * @param communityDto
+     * @return community dto
+     */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @PutMapping(value = "/update")
     public ResponseEntity<CommunityDto> updateCommunity(@Valid @RequestBody CommunityDto communityDto) {
@@ -99,6 +128,11 @@ public class CommunityController {
         }
     }
 
+    /**
+     * Get community by name
+     * @param name community name
+     * @return community dto
+     */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping(value = "/search/name")
     public ResponseEntity<CommunityDto> getCommunityByName(@RequestParam(name = "name") String name) {
@@ -107,6 +141,11 @@ public class CommunityController {
         return new ResponseEntity<>(communityDto, HttpStatus.OK);
     }
 
+    /**
+     * Get list of the communities by admin user id
+     * @param adminId admin user id
+     * @return list of the community dto
+     */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping(value = "/search/admin")
     public ResponseEntity<List<CommunityDto>> getCommunitiesByAdminUser_Id(@RequestParam(name = "adminId") Long adminId) {

@@ -1,8 +1,8 @@
 package com.senla.facade;
 
-import com.senla.converters.RoleDtoToRole;
-import com.senla.converters.RoleToRoleDto;
-import com.senla.dto.RoleDto;
+import com.senla.converters.role.ReverseRoleDTOConverter;
+import com.senla.converters.role.RoleDTOConverter;
+import com.senla.dto.role.RoleDto;
 import com.senla.entity.Role;
 import com.senla.service.role.RoleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,18 +15,18 @@ import java.util.stream.Collectors;
 public class RoleFacade {
 
     private final RoleService roleService;
-    private final RoleToRoleDto roleToRoleDto;
-    private final RoleDtoToRole roleDtoToRole;
+    private final RoleDTOConverter roleDTOConverter;
+    private final ReverseRoleDTOConverter reverseRoleDTOConverter;
 
     @Autowired
-    public RoleFacade(RoleService roleService, RoleToRoleDto roleToRoleDto, RoleDtoToRole roleDtoToRole) {
+    public RoleFacade(RoleService roleService, RoleDTOConverter roleDTOConverter, ReverseRoleDTOConverter reverseRoleDTOConverter) {
         this.roleService = roleService;
-        this.roleToRoleDto = roleToRoleDto;
-        this.roleDtoToRole = roleDtoToRole;
+        this.roleDTOConverter = roleDTOConverter;
+        this.reverseRoleDTOConverter = reverseRoleDTOConverter;
     }
 
     public RoleDto addRole(RoleDto roleDto) {
-        roleService.addRole(roleDtoToRole.convert(roleDto));
+        roleService.addRole(reverseRoleDTOConverter.convert(roleDto));
         return roleDto;
     }
 
@@ -35,18 +35,18 @@ public class RoleFacade {
     }
 
     public RoleDto updateRole(RoleDto roleDto) {
-        Role role = roleDtoToRole.convert(roleDto);
+        Role role = reverseRoleDTOConverter.convert(roleDto);
         roleService.updateRole(role);
         return roleDto;
     }
 
     public List<RoleDto> getAllRoles() {
         List<Role> roles = roleService.getAllRoles();
-        return roles.stream().map(roleToRoleDto::convert).collect(Collectors.toList());
+        return roles.stream().map(roleDTOConverter::convert).collect(Collectors.toList());
     }
 
     public RoleDto getRoleDto(Long id) {
-        return roleToRoleDto.convert(roleService.getRole(id));
+        return roleDTOConverter.convert(roleService.getRole(id));
     }
 
     public Role getRole(Long id) {
@@ -55,6 +55,6 @@ public class RoleFacade {
 
     public RoleDto getRoleByName(String name) {
         Role role = roleService.getRoleByName(name);
-        return roleToRoleDto.convert(role);
+        return roleDTOConverter.convert(role);
     }
 }

@@ -1,6 +1,6 @@
 package com.senla.controller;
 
-import com.senla.dto.LikeDto;
+import com.senla.dto.like.LikeDto;
 import com.senla.entity.Like;
 import com.senla.entity.User;
 import com.senla.exception.RestError;
@@ -16,6 +16,11 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+/**
+ * * @author  Anton Bulyha
+ * * @version 1.0
+ * * @since   2020-08-12
+ */
 @RestController
 @RequestMapping(value = "/likes")
 @Slf4j
@@ -30,6 +35,10 @@ public class LikeController {
         this.userFacade = userFacade;
     }
 
+    /**
+     * Get all user likes
+     * @return
+     */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping(value = "")
     public ResponseEntity<List<LikeDto>> getAllUserLikes() {
@@ -43,6 +52,11 @@ public class LikeController {
         return new ResponseEntity<>(likeDtoList, HttpStatus.OK);
     }
 
+    /**
+     * Add like
+     * @param likeDto like dto
+     * @return like dto
+     */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @PostMapping(value = "/add")
     public ResponseEntity<LikeDto> addLike(@Valid @RequestBody LikeDto likeDto) {
@@ -60,6 +74,11 @@ public class LikeController {
 
     }
 
+    /**
+     * Delete like
+     * @param id like id
+     * @return string response
+     */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @DeleteMapping(value = "/delete")
     public ResponseEntity<String> deleteLike(@RequestParam(name = "id") long id) {
@@ -80,6 +99,11 @@ public class LikeController {
 
     }
 
+    /**
+     * Get like by id
+     * @param likeId like id
+     * @return like dto
+     */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping(value = "/{id}")
     public ResponseEntity<LikeDto> getLikeById(@PathVariable(name = "id") Long likeId) {
@@ -88,6 +112,11 @@ public class LikeController {
         return new ResponseEntity<>(likeDto, HttpStatus.OK);
     }
 
+    /**
+     * Get likes by post id
+     * @param postId post id
+     * @return list of the like dto
+     */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping(value = "/post/id")
     public ResponseEntity<List<LikeDto>> getLikesByPost_Id(@RequestParam(name = "postId") Long postId) {

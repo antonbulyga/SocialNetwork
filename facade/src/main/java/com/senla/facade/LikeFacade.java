@@ -1,8 +1,8 @@
 package com.senla.facade;
 
-import com.senla.converters.LikeDtoToLike;
-import com.senla.converters.LikeToLikeDto;
-import com.senla.dto.LikeDto;
+import com.senla.converters.like.ReverseLikeDTOConverter;
+import com.senla.converters.like.LikeDTOConverter;
+import com.senla.dto.like.LikeDto;
 import com.senla.entity.Like;
 import com.senla.service.like.LikeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,18 +15,18 @@ import java.util.stream.Collectors;
 public class LikeFacade {
 
     private final LikeService likeService;
-    private final LikeToLikeDto likeToLikeDto;
-    private final LikeDtoToLike likeDtoToLike;
+    private final LikeDTOConverter likeDTOConverter;
+    private final ReverseLikeDTOConverter reverseLikeDTOConverter;
 
     @Autowired
-    public LikeFacade(LikeService likeService, LikeToLikeDto likeToLikeDto, LikeDtoToLike likeDtoToLike) {
+    public LikeFacade(LikeService likeService, LikeDTOConverter likeDTOConverter, ReverseLikeDTOConverter reverseLikeDTOConverter) {
         this.likeService = likeService;
-        this.likeToLikeDto = likeToLikeDto;
-        this.likeDtoToLike = likeDtoToLike;
+        this.likeDTOConverter = likeDTOConverter;
+        this.reverseLikeDTOConverter = reverseLikeDTOConverter;
     }
 
     public LikeDto addLike(LikeDto likeDto) {
-        likeService.addLike(likeDtoToLike.convert(likeDto));
+        likeService.addLike(reverseLikeDTOConverter.convert(likeDto));
         return likeDto;
     }
 
@@ -36,11 +36,11 @@ public class LikeFacade {
 
     public List<LikeDto> getAllLikes() {
         List<Like> likes = likeService.getAll();
-        return likes.stream().map(likeToLikeDto::convert).collect(Collectors.toList());
+        return likes.stream().map(likeDTOConverter::convert).collect(Collectors.toList());
     }
 
     public LikeDto getLikeDto(Long id) {
-        return likeToLikeDto.convert(likeService.getLike(id));
+        return likeDTOConverter.convert(likeService.getLike(id));
     }
 
     public Like getLike(Long id) {
@@ -49,10 +49,10 @@ public class LikeFacade {
 
     public List<LikeDto> getLikesByPost_Id(Long postId) {
         List<Like> likes = likeService.getLikesByPost_Id(postId);
-        return likes.stream().map(likeToLikeDto::convert).collect(Collectors.toList());
+        return likes.stream().map(likeDTOConverter::convert).collect(Collectors.toList());
     }
 
     public List<LikeDto> convertListLikesToLikeDto(List<Like> likes) {
-        return likes.stream().map(likeToLikeDto::convert).collect(Collectors.toList());
+        return likes.stream().map(likeDTOConverter::convert).collect(Collectors.toList());
     }
 }

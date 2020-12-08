@@ -1,8 +1,8 @@
 package com.senla.facade;
 
-import com.senla.converters.UserDtoToUser;
-import com.senla.converters.UserToUserDto;
-import com.senla.dto.UserDto;
+import com.senla.converters.user.ReverseUserDTOConverter;
+import com.senla.converters.user.UserDTOConverter;
+import com.senla.dto.user.UserDto;
 import com.senla.entity.User;
 import com.senla.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,27 +15,27 @@ import java.util.stream.Collectors;
 public class UserFacade {
 
     private final UserService userService;
-    private final UserToUserDto userToUserDto;
-    private final UserDtoToUser userDtoToUser;
+    private final UserDTOConverter userDTOConverter;
+    private final ReverseUserDTOConverter reverseUserDTOConverter;
 
     @Autowired
-    public UserFacade(UserService userService, UserToUserDto userToUserDto, UserDtoToUser userDtoToUser) {
+    public UserFacade(UserService userService, UserDTOConverter userDTOConverter, ReverseUserDTOConverter reverseUserDTOConverter) {
         this.userService = userService;
-        this.userToUserDto = userToUserDto;
-        this.userDtoToUser = userDtoToUser;
+        this.userDTOConverter = userDTOConverter;
+        this.reverseUserDTOConverter = reverseUserDTOConverter;
     }
 
     public UserDto getUser(Long id) {
-        return userToUserDto.convert(userService.getUser(id));
+        return userDTOConverter.convert(userService.getUser(id));
     }
 
     public List<UserDto> getAllUsers() {
         List<User> users = userService.getAllUsers();
-        return users.stream().map(userToUserDto::convert).collect(Collectors.toList());
+        return users.stream().map(userDTOConverter::convert).collect(Collectors.toList());
     }
 
     public UserDto addUser(UserDto userDto) {
-        User user =  userService.addUser(userDtoToUser.convert(userDto));
+        User user =  userService.addUser(reverseUserDTOConverter.convert(userDto));
         UserDto userDtoWithDate = convertUserToUserDto(user);
         return userDtoWithDate;
     }
@@ -45,21 +45,21 @@ public class UserFacade {
     }
 
     public UserDto findUserByEmail(String email) {
-        return userToUserDto.convert(userService.findUserByEmail(email));
+        return userDTOConverter.convert(userService.findUserByEmail(email));
     }
 
     public UserDto updateUser(UserDto userDto) {
-        User user =  userService.updateUser(userDtoToUser.convert(userDto));
+        User user =  userService.updateUser(reverseUserDTOConverter.convert(userDto));
         UserDto userDtoWithDate = convertUserToUserDto(user);
         return userDtoWithDate;
     }
 
     public UserDto findUserByUserName(String userName) {
-        return userToUserDto.convert(userService.findUserByUserName(userName));
+        return userDTOConverter.convert(userService.findUserByUserName(userName));
     }
 
     public UserDto changeUserPassword(String newPassword, long userId) {
-        return userToUserDto.convert(userService.changeUserPassword(newPassword, userId));
+        return userDTOConverter.convert(userService.changeUserPassword(newPassword, userId));
     }
 
     public User getUserFromSecurityContext() {
@@ -67,10 +67,10 @@ public class UserFacade {
     }
 
     public UserDto getUserDtoFromSecurityContext() {
-        return userToUserDto.convert(userService.getUserFromSecurityContext());
+        return userDTOConverter.convert(userService.getUserFromSecurityContext());
     }
 
     public UserDto convertUserToUserDto(User user) {
-        return userToUserDto.convert(user);
+        return userDTOConverter.convert(user);
     }
 }

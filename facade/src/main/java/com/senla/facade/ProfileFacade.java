@@ -1,8 +1,10 @@
 package com.senla.facade;
 
-import com.senla.converters.ProfileDtoToProfile;
-import com.senla.converters.ProfileToProfileDto;
-import com.senla.dto.ProfileDto;
+import com.senla.converters.profile.ReverseProfileDTOConverter;
+import com.senla.converters.profile.ProfileForUserDtoToProfile;
+import com.senla.converters.profile.ProfileDTOConverter;
+import com.senla.dto.profile.ProfileDto;
+import com.senla.dto.profile.ProfileForUserDto;
 import com.senla.entity.Profile;
 import com.senla.service.profile.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,19 +17,26 @@ import java.util.stream.Collectors;
 public class ProfileFacade {
 
     private final ProfileService profileService;
-    private final ProfileToProfileDto profileToProfileDto;
-    private final ProfileDtoToProfile profileDtoToProfile;
+    private final ProfileDTOConverter profileDTOConverter;
+    private final ReverseProfileDTOConverter reverseProfileDTOConverter;
+    private final ProfileForUserDtoToProfile profileForUserDtoToProfile;
 
     @Autowired
-    public ProfileFacade(ProfileService profileService, ProfileToProfileDto profileToProfileDto, ProfileDtoToProfile profileDtoToProfile) {
+    public ProfileFacade(ProfileService profileService, ProfileDTOConverter profileDTOConverter, ReverseProfileDTOConverter reverseProfileDTOConverter, ProfileForUserDtoToProfile profileForUserDtoToProfile) {
         this.profileService = profileService;
-        this.profileToProfileDto = profileToProfileDto;
-        this.profileDtoToProfile = profileDtoToProfile;
+        this.profileDTOConverter = profileDTOConverter;
+        this.reverseProfileDTOConverter = reverseProfileDTOConverter;
+        this.profileForUserDtoToProfile = profileForUserDtoToProfile;
     }
 
     public ProfileDto addProfile(ProfileDto profileDto) {
-        profileService.addProfile(profileDtoToProfile.convert(profileDto));
+        profileService.addProfile(reverseProfileDTOConverter.convert(profileDto));
         return profileDto;
+    }
+
+    public ProfileDto addProfile(ProfileForUserDto profileForUserDto) {
+       Profile profile = profileService.addProfile(profileForUserDtoToProfile.convert(profileForUserDto));
+        return profileDTOConverter.convert(profile);
     }
 
     public void deleteProfiles(Long id) {
@@ -35,51 +44,51 @@ public class ProfileFacade {
     }
 
     public ProfileDto updateProfile(ProfileDto profileDto) {
-        profileService.updateProfile(profileDtoToProfile.convert(profileDto));
+        profileService.updateProfile(reverseProfileDTOConverter.convert(profileDto));
         return profileDto;
     }
 
     public List<ProfileDto> getAllProfiles() {
         List<Profile> profiles = profileService.getAllProfiles();
-        return profiles.stream().map(profileToProfileDto::convert).collect(Collectors.toList());
+        return profiles.stream().map(profileDTOConverter::convert).collect(Collectors.toList());
     }
 
     public List<ProfileDto> findProfilesByCity(String city) {
         List<Profile> profiles = profileService.findProfilesByCity(city);
-        return profiles.stream().map(profileToProfileDto::convert).collect(Collectors.toList());
+        return profiles.stream().map(profileDTOConverter::convert).collect(Collectors.toList());
     }
 
     public List<ProfileDto> findProfilesByCountry(String country) {
         List<Profile> profiles = profileService.findProfilesByCountry(country);
-        return profiles.stream().map(profileToProfileDto::convert).collect(Collectors.toList());
+        return profiles.stream().map(profileDTOConverter::convert).collect(Collectors.toList());
     }
 
     public List<ProfileDto> findProfilesByFirstName(String firstName) {
         List<Profile> profiles = profileService.findProfilesByFirstName(firstName);
-        return profiles.stream().map(profileToProfileDto::convert).collect(Collectors.toList());
+        return profiles.stream().map(profileDTOConverter::convert).collect(Collectors.toList());
     }
 
     public List<ProfileDto> findProfilesByLastName(String lastName) {
         List<Profile> profiles = profileService.findProfilesByLastName(lastName);
-        return profiles.stream().map(profileToProfileDto::convert).collect(Collectors.toList());
+        return profiles.stream().map(profileDTOConverter::convert).collect(Collectors.toList());
     }
 
     public ProfileDto findProfileByFirstNameAndLastName(String firstName, String LastName) {
-        return profileToProfileDto.convert(profileService.findProfileByFirstNameAndLastName(firstName, LastName));
+        return profileDTOConverter.convert(profileService.findProfileByFirstNameAndLastName(firstName, LastName));
     }
 
 
     public List<ProfileDto> findProfileByGender(Enum gender) {
         List<Profile> profiles = profileService.findProfileByGender(gender);
-        return profiles.stream().map(profileToProfileDto::convert).collect(Collectors.toList());
+        return profiles.stream().map(profileDTOConverter::convert).collect(Collectors.toList());
     }
 
     public ProfileDto getProfile(Long id) {
-        return profileToProfileDto.convert(profileService.getProfile(id));
+        return profileDTOConverter.convert(profileService.getProfile(id));
     }
 
     public ProfileDto findProfileDtoByUser_Id(Long userId) {
-        return profileToProfileDto.convert(profileService.findProfileByUser_Id(userId));
+        return profileDTOConverter.convert(profileService.findProfileByUser_Id(userId));
     }
 
     public Profile findProfileByUser_Id(Long userId) {
@@ -87,10 +96,10 @@ public class ProfileFacade {
     }
 
     public Profile convertProfileFromProfileDto(ProfileDto profileDto) {
-        return profileDtoToProfile.convert(profileDto);
+        return reverseProfileDTOConverter.convert(profileDto);
     }
 
     public ProfileDto convertProfileDtoFromProfile(Profile profile) {
-        return profileToProfileDto.convert(profile);
+        return profileDTOConverter.convert(profile);
     }
 }

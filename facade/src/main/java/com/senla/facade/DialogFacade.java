@@ -1,8 +1,8 @@
 package com.senla.facade;
 
-import com.senla.converters.DialogDtoToDialog;
-import com.senla.converters.DialogToDialogDto;
-import com.senla.dto.DialogDto;
+import com.senla.converters.dialog.ReverseDialogDTOConverter;
+import com.senla.converters.dialog.DialogDTOConverter;
+import com.senla.dto.dialog.DialogDto;
 import com.senla.entity.Dialog;
 import com.senla.service.dialog.DialogService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,19 +15,19 @@ import java.util.stream.Collectors;
 public class DialogFacade {
 
     private final DialogService dialogService;
-    private final DialogToDialogDto dialogToDialogDto;
-    private final DialogDtoToDialog dialogDtoToDialog;
+    private final DialogDTOConverter dialogDTOConverter;
+    private final ReverseDialogDTOConverter reverseDialogDTOConverter;
 
     @Autowired
-    public DialogFacade(DialogService dialogService, DialogToDialogDto dialogToDialogDto, DialogDtoToDialog dialogDtoToDialog) {
+    public DialogFacade(DialogService dialogService, DialogDTOConverter dialogDTOConverter, ReverseDialogDTOConverter reverseDialogDTOConverter) {
         this.dialogService = dialogService;
-        this.dialogToDialogDto = dialogToDialogDto;
-        this.dialogDtoToDialog = dialogDtoToDialog;
+        this.dialogDTOConverter = dialogDTOConverter;
+        this.reverseDialogDTOConverter = reverseDialogDTOConverter;
     }
 
     public DialogDto addDialog(DialogDto dialogDto) {
-        Dialog dialog = dialogService.addDialog(dialogDtoToDialog.convert(dialogDto));
-        DialogDto dialogDtoWithData = dialogToDialogDto.convert(dialog);
+        Dialog dialog = dialogService.addDialog(reverseDialogDTOConverter.convert(dialogDto));
+        DialogDto dialogDtoWithData = dialogDTOConverter.convert(dialog);
         return dialogDtoWithData;
     }
 
@@ -36,19 +36,19 @@ public class DialogFacade {
     }
 
     public DialogDto updateDialog(DialogDto dialogDto) {
-        Dialog dialog = dialogDtoToDialog.convert(dialogDto);
+        Dialog dialog = reverseDialogDTOConverter.convert(dialogDto);
         dialogService.updateDialog(dialog);
-        DialogDto dialogDtoWithData = dialogToDialogDto.convert(dialog);
+        DialogDto dialogDtoWithData = dialogDTOConverter.convert(dialog);
         return dialogDtoWithData;
     }
 
     public List<DialogDto> getAllDialogs() {
         List<Dialog> messages = dialogService.getAllDialogs();
-        return messages.stream().map(p -> dialogToDialogDto.convert(p)).collect(Collectors.toList());
+        return messages.stream().map(p -> dialogDTOConverter.convert(p)).collect(Collectors.toList());
     }
 
     public DialogDto getDialogDto(Long id) {
-        return dialogToDialogDto.convert(dialogService.getDialog(id));
+        return dialogDTOConverter.convert(dialogService.getDialog(id));
     }
 
     public Dialog getDialog(Long id) {
@@ -57,20 +57,20 @@ public class DialogFacade {
 
     public DialogDto getDialogByName(String name) {
         Dialog dialog = dialogService.getDialogByName(name);
-        return dialogToDialogDto.convert(dialog);
+        return dialogDTOConverter.convert(dialog);
     }
 
     public DialogDto addUserToDialog(Long dialogId, Long userId) {
         Dialog dialog = dialogService.addUserToDialog(dialogId, userId);
-        return dialogToDialogDto.convert(dialog);
+        return dialogDTOConverter.convert(dialog);
     }
 
     public DialogDto deleteUserFromDialog(Long dialogId, Long userId) {
         Dialog dialog = dialogService.deleteUserFromDialog(dialogId, userId);
-        return dialogToDialogDto.convert(dialog);
+        return dialogDTOConverter.convert(dialog);
     }
 
     public List<DialogDto> convertDialogListToLikeDto(List<Dialog> dialogs) {
-        return dialogs.stream().map(dialogToDialogDto::convert).collect(Collectors.toList());
+        return dialogs.stream().map(dialogDTOConverter::convert).collect(Collectors.toList());
     }
 }

@@ -78,7 +78,7 @@ public class FriendshipServiceImpl implements FriendshipService {
         for (Friendship f : friendships) {
             if (f.getActionUser().equals(userOne) & f.getUserOne().equals(userOne)
                     & f.getUserTwo().equals(userTwo)) {
-                friendshipRepository.addToFriends(userOne, userTwo, userTwo);
+                friendshipRepository.acceptFriendRequest(userOne, userTwo, userTwo);
                 return createFriendship(userOne, userTwo, userTwo, FriendshipStatus.FRIEND);
             }
         }

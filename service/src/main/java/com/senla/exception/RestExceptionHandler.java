@@ -17,27 +17,26 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @ControllerAdvice
-public class RestExceptionHandler extends ResponseEntityExceptionHandler{
+public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(EntityNotFoundException.class)
     @ResponseBody
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    protected String handleEntityNotFoundException(EntityNotFoundException e) {
-        return e.getMessage();
+    protected ResponseEntity<Object> handleEntityNotFoundException(EntityNotFoundException e) {
+        RestApiResponse restApiResponse = new RestApiResponse(HttpStatus.BAD_REQUEST, e.getMessage());
+        return new ResponseEntity<>(restApiResponse, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(RestError.class)
-    @ResponseBody
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    protected String handleRestError(RestError e) {
-        return e.getMessage();
+    protected ResponseEntity<Object> handleRestError(RestError e) {
+        RestApiResponse restApiResponse = new RestApiResponse(HttpStatus.BAD_REQUEST, e.getMessage());
+        return new ResponseEntity<>(restApiResponse, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(IncorrectRequest.class)
-    @ResponseBody
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    protected String handleIncorrectRequest(IncorrectRequest e) {
-        return e.getMessage();
+    protected ResponseEntity<Object> handleIncorrectRequest(IncorrectRequest e) {
+        RestApiResponse restApiResponse = new RestApiResponse(HttpStatus.BAD_REQUEST, e.getMessage());
+        return new ResponseEntity<>(restApiResponse, HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(AccessDeniedException.class)

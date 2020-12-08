@@ -1,8 +1,8 @@
 package com.senla.facade;
 
-import com.senla.converters.MessageDtoToMessage;
-import com.senla.converters.MessageToMessageDto;
-import com.senla.dto.MessageDto;
+import com.senla.converters.message.ReverseMessageDTOConverter;
+import com.senla.converters.message.MessageDTOConverter;
+import com.senla.dto.message.MessageDto;
 import com.senla.entity.Message;
 import com.senla.service.message.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,19 +15,19 @@ import java.util.stream.Collectors;
 public class MessageFacade {
 
     private final MessageService messageService;
-    private final MessageToMessageDto messageToMessageDto;
-    private final MessageDtoToMessage messageDtoToMessage;
+    private final MessageDTOConverter messageDTOConverter;
+    private final ReverseMessageDTOConverter reverseMessageDTOConverter;
 
     @Autowired
-    public MessageFacade(MessageService messageService, MessageToMessageDto messageToMessageDto, MessageDtoToMessage messageDtoToMessage) {
+    public MessageFacade(MessageService messageService, MessageDTOConverter messageDTOConverter, ReverseMessageDTOConverter reverseMessageDTOConverter) {
         this.messageService = messageService;
-        this.messageToMessageDto = messageToMessageDto;
-        this.messageDtoToMessage = messageDtoToMessage;
+        this.messageDTOConverter = messageDTOConverter;
+        this.reverseMessageDTOConverter = reverseMessageDTOConverter;
     }
 
     public MessageDto addMessage(MessageDto messageDto) {
-        Message message = messageService.addMessage(messageDtoToMessage.convert(messageDto));
-        MessageDto messageDtoWithDate = messageToMessageDto.convert(message);
+        Message message = messageService.addMessage(reverseMessageDTOConverter.convert(messageDto));
+        MessageDto messageDtoWithDate = messageDTOConverter.convert(message);
         return messageDtoWithDate;
     }
 
@@ -36,18 +36,18 @@ public class MessageFacade {
     }
 
     public MessageDto updateMessage(MessageDto messageDto) {
-        Message message = messageService.updateMessage(messageDtoToMessage.convert(messageDto));
-        MessageDto messageDtoWithDate = messageToMessageDto.convert(message);
+        Message message = messageService.updateMessage(reverseMessageDTOConverter.convert(messageDto));
+        MessageDto messageDtoWithDate = messageDTOConverter.convert(message);
         return messageDtoWithDate;
     }
 
     public List<MessageDto> getAllMessages() {
         List<Message> messages = messageService.getAllMessages();
-        return messages.stream().map(messageToMessageDto::convert).collect(Collectors.toList());
+        return messages.stream().map(messageDTOConverter::convert).collect(Collectors.toList());
     }
 
     public MessageDto getMessageDto(Long id) {
-        return messageToMessageDto.convert(messageService.getMessage(id));
+        return messageDTOConverter.convert(messageService.getMessage(id));
     }
 
     public Message getMessage(Long id) {
@@ -56,7 +56,7 @@ public class MessageFacade {
 
     public List<MessageDto> getMessagesByDialog_Id(Long dialogId) {
         List<Message> messages = messageService.getMessagesByDialog_Id(dialogId);
-        return messages.stream().map(messageToMessageDto::convert).collect(Collectors.toList());
+        return messages.stream().map(messageDTOConverter::convert).collect(Collectors.toList());
     }
 
 }
