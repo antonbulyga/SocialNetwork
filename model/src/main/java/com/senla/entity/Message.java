@@ -32,7 +32,6 @@ public class Message {
     @JoinColumn(name = "dialog_id")
     private Dialog dialog;
 
-    @NotNull(message = "Creation time is mandatory")
     @Column(name = "creation_time")
     private LocalDateTime creationTime;
 

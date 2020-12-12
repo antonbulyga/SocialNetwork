@@ -24,7 +24,6 @@ public class Post {
     @OneToMany(mappedBy = "post", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Like> likes;
 
-    @NotBlank(message = "Text of the post is mandatory")
     @Column(name = "text")
     private String text;
 
@@ -32,7 +31,6 @@ public class Post {
     @JoinColumn(name = "users_id")
     private User user;
 
-    @NotNull(message = "Date of creation is mandatory")
     @Column(name = "date_of_creation")
     private LocalDateTime dateOfCreation;
 
@@ -40,7 +38,6 @@ public class Post {
     @JoinColumn(name = "community_id")
     private Community community;
 
-    @NotNull(message = "Field count like is mandatory")
     @Formula("(select count(*) from likes l where l.post_id = id)")
     private int countLike;
 

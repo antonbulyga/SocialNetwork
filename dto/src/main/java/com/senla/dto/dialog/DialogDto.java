@@ -16,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DialogDto {
-    @NotNull(message = "Id of the dialog is mandatory")
+    @NotNull(message = "{dialog.id}")
     private long id;
 
     @NotBlank(message = "{dialog.name}")

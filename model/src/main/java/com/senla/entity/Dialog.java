@@ -22,18 +22,15 @@ public class Dialog {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "{dialog.name}")
     @Column(name = "name")
     private String name;
 
-    @NotNull(message = "Time creation is mandatory")
     @Column(name = "time_creation")
     private LocalDateTime timeCreation;
 
     @OneToMany(mappedBy = "dialog", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Message> messages;
 
-    @NotEmpty(message = "{dialog.userList.notEmpty}")
     @ManyToMany(fetch = FetchType.LAZY, cascade = {
             CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH, CascadeType.MERGE
     })
@@ -42,4 +39,9 @@ public class Dialog {
             inverseJoinColumns = {@JoinColumn(name = "users_id", referencedColumnName = "id")})
     private List<User> userList;
 
+    public Dialog(Long id, String name, LocalDateTime timeCreation) {
+        this.id = id;
+        this.name = name;
+        this.timeCreation = timeCreation;
+    }
 }

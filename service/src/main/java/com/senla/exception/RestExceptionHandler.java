@@ -20,11 +20,9 @@ import java.util.stream.Collectors;
 public class RestExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(EntityNotFoundException.class)
-    @ResponseBody
-    @ResponseStatus(HttpStatus.NOT_FOUND)
     protected ResponseEntity<Object> handleEntityNotFoundException(EntityNotFoundException e) {
-        RestApiResponse restApiResponse = new RestApiResponse(HttpStatus.BAD_REQUEST, e.getMessage());
-        return new ResponseEntity<>(restApiResponse, HttpStatus.BAD_REQUEST);
+        RestApiResponse restApiResponse = new RestApiResponse(HttpStatus.NOT_FOUND, e.getMessage());
+        return new ResponseEntity<>(restApiResponse, HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(RestError.class)

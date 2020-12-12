@@ -23,4 +23,5 @@ public class Like {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "users_id", referencedColumnName = "id")
     private User user;
+
 }

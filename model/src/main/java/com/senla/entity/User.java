@@ -21,20 +21,16 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Email is mandatory")
     @Email
     @Column(name = "email")
     private String email;
 
-    @NotBlank(message = "User name is mandatory")
     @Column(name = "user_name")
     private String userName;
 
 
-    @NotBlank(message = "Password is mandatory")
     @Column(name = "password")
     private String password;
-
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "user_profile_id", referencedColumnName = "id")
@@ -55,7 +51,7 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,
             fetch = FetchType.LAZY)
     private List<Like> likes;
-    @NotNull(message = "Creation time field is is mandatory")
+
     @Column(name = "creation_time", nullable = false)
     private LocalDateTime creationTime;
 
@@ -74,4 +70,5 @@ public class User {
         this.password = password;
         this.creationTime = creationTime;
     }
+
 }

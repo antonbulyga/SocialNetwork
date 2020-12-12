@@ -13,6 +13,7 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +24,7 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 
-@RunWith(MockitoJUnitRunner.class)
+@RunWith(SpringRunner.class)
 @EnableAutoConfiguration
 @ContextConfiguration(classes = ConfigurationServiceTest.class)
 public class CommunityServiceTest {
@@ -39,7 +40,7 @@ public class CommunityServiceTest {
     }
 
     private final Community community = new Community(1L, "Любители математики");
-    final Long communityId=1L;
+    final Long communityId = 1L;
 
     @Test
     public void getCommunityTest() {
@@ -88,5 +89,12 @@ public class CommunityServiceTest {
         given(communityRepository.getCommunitiesByAdminUser_Id(community.getAdminUser().getId())).willReturn(communities);
         List<Community> expected = communityService.getAllCommunities();
         assertEquals(expected, communities);
+    }
+
+    @Test
+    public void shouldBeDelete(){
+        when(communityRepository.findById(community.getId())).thenReturn(Optional.of(community));
+        communityService.deleteCommunity(communityId);
+        verify(communityRepository, times(1)).deleteById(community.getId());
     }
 }

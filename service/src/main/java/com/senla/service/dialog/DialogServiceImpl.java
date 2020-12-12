@@ -27,6 +27,7 @@ public class DialogServiceImpl implements DialogService {
         this.userService = userService;
     }
 
+
     public Dialog getDialog(Long id) {
         return dialogRepository.findById(id)
                 .orElseThrow(() ->

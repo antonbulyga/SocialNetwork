@@ -33,5 +33,4 @@ public class Friendship {
     @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "action_user_id")
     private User actionUser;
-
 }

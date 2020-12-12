@@ -22,24 +22,19 @@ public class Profile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotNull(message = "Date of birth is mandatory")
     @Column(name = "date_of_birth")
     private LocalDate dateOfBirth;
 
-    @NotNull(message = "Field gender is mandatory")
     @Column(name = "gender")
     @Enumerated(EnumType.STRING)
     private Gender gender;
 
-    @NotBlank(message = "Field phone is mandatory")
     @Column(name = "phone")
     private String phoneNumber;
 
-    @NotBlank(message = "Field first name is mandatory")
     @Column(name = "first_name")
     private String firstName;
 
-    @NotBlank(message = "Field last name is mandatory")
     @Column(name = "last_name")
     private String lastName;
 
@@ -47,11 +42,9 @@ public class Profile {
             fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private User user;
 
-    @NotBlank(message = "Field country is mandatory")
     @Column(name = "country")
     private String country;
 
-    @NotBlank(message = "Field city is mandatory")
     @Column(name = "city")
     private String city;
 

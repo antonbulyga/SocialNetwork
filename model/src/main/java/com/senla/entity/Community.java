@@ -27,7 +27,6 @@ public class Community {
             inverseJoinColumns = {@JoinColumn(name = "users_id", referencedColumnName = "id")})
     private List<User> users;
 
-    @NotBlank(message = "Name is mandatory")
     @Column(name = "name")
     private String name;
 

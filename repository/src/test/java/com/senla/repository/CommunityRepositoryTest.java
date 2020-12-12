@@ -33,8 +33,9 @@ public class CommunityRepositoryTest {
 
        @Test
         public void findByCommunityName_Success() {
-           Community community = new Community(1L, "Group test");
-           entityManager.merge(community);
+           Community community = new Community();
+           community.setName("Group test");
+           entityManager.persist(community);
            entityManager.flush();
            Community found = communityRepository.getCommunityByName(community.getName());
            assertEquals(found.getName(),community.getName());
@@ -42,12 +43,65 @@ public class CommunityRepositoryTest {
 
         @Test
         public void getCommunitiesByAdminUser_Id_Success() {
-            Community community = new Community(1L, "Group test");
-            User user = new User(1L, "anton@mail.ru", "Anton", "1234" , LocalDateTime.now());
+            Community community = new Community();
+            community.setName("Group test");
+            User user = new User();
+            user.setUserName("Anton");
+            user.setCreationTime(LocalDateTime.now());
             community.setAdminUser(user);
-            entityManager.merge(community);
+            entityManager.persist(community);
             List<Community> communities = communityRepository.getCommunitiesByAdminUser_Id(1L);
             assertEquals(1,communities.size());
         }
 
+    @Test
+    public void findAll_Success() {
+        Community community = new Community();
+        community.setName("test dialog 1");
+        entityManager.persist(community);
+        entityManager.flush();
+        List<Community> result = communityRepository.findAll();
+        assertEquals(1,result.size());
+    }
+
+    @Test
+    public void findById_Success() {
+        Community community = new Community();
+        community.setName("test dialog 1");
+        entityManager.persist(community);
+        entityManager.flush();
+        Community result = communityRepository.findById(community.getId()).orElse(null);
+        assertEquals(community, result);
+    }
+
+    @Test
+    public void addMessage_Success() {
+        Community community = new Community();
+        community.setName("test dialog 1");
+        entityManager.persist(community);
+        entityManager.flush();
+        Community result = communityRepository.save(community);
+        assertEquals(community, result);
+    }
+
+    @Test
+    public void deleteMessage_Success() {
+        Community community = new Community();
+        community.setName("test dialog 1");
+        entityManager.persist(community);
+        entityManager.flush();
+        communityRepository.deleteById(community.getId());
+        Community result = communityRepository.findById(community.getId()).orElse(null);
+        assertEquals(null, result);
+    }
+
+    @Test
+    public void updateMessage_Success() {
+        Community community = new Community();
+        community.setName("test dialog 1");
+        entityManager.persist(community);
+        entityManager.flush();
+        Community result = communityRepository.save(community);
+        assertEquals(community, result);
+    }
 }

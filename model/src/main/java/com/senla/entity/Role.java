@@ -18,7 +18,6 @@ public class Role {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "Name is mandatory")
     @Column(name = "name", nullable = false)
     private String name;
 

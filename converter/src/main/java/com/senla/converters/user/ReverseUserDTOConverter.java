@@ -45,7 +45,6 @@ public class ReverseUserDTOConverter implements Converter<UserDto, User> {
 
     @Override
     public User convert(UserDto userDto) {
-        List<Community> communities = null;
         Community community = null;
         return User.builder()
                 .id(userDto.getId())
@@ -53,7 +52,7 @@ public class ReverseUserDTOConverter implements Converter<UserDto, User> {
                 .email(userDto.getEmail())
                 .password(userDto.getPassword())
                 .userName(userDto.getUserName())
-                .communities(userDto.getCommunity() == null ? communities : userDto.getCommunities().stream().map(c -> communityService.getCommunity(c.getId())).collect(Collectors.toList()))
+                .communities(userDto.getCommunities().stream().map(c -> communityService.getCommunity(c.getId())).collect(Collectors.toList()))
                 .community(userDto.getCommunity() == null ? community : communityService.getCommunity(userDto.getCommunity().getId()))
                 .likes(userDto.getLikes().stream().map(l -> likeService.getLike(l.getId())).collect(Collectors.toList()))
                 .profile(profileService.getProfile(userDto.getProfile().getId()))

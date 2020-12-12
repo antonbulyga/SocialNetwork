@@ -37,6 +37,20 @@ public class ProfileController {
     }
 
     /**
+     * View own profile
+     * @return profile dto
+     */
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
+    @GetMapping(value = "/my")
+    public ResponseEntity<ProfileDto> getMyProfile() {
+        User user = userFacade.getUserFromSecurityContext();
+        ProfileDto profileDto = profileFacade.getProfile(user.getId());
+        log.info("Getting my profile");
+        return new ResponseEntity<>(profileDto, HttpStatus.OK);
+    }
+
+
+    /**
      * Get all profiles
      * @return dto profile list
      */
