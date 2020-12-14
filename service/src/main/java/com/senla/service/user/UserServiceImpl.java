@@ -27,14 +27,12 @@ public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
     private final CommunityService communityService;
-    private final ProfileService profileService;
     private final BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, CommunityService communityService,@Lazy ProfileService profileService, BCryptPasswordEncoder passwordEncoder) {
+    public UserServiceImpl(UserRepository userRepository,@Lazy CommunityService communityService, BCryptPasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.communityService = communityService;
-        this.profileService = profileService;
         this.passwordEncoder = passwordEncoder;
     }
 

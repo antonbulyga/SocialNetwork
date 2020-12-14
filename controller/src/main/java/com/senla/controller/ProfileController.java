@@ -41,7 +41,7 @@ public class ProfileController {
      * @return profile dto
      */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    @GetMapping(value = "/my")
+    @GetMapping(value = "/myprofile")
     public ResponseEntity<ProfileDto> getMyProfile() {
         User user = userFacade.getUserFromSecurityContext();
         ProfileDto profileDto = profileFacade.getProfile(user.getId());
@@ -68,7 +68,7 @@ public class ProfileController {
      * @return profile dto
      */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    @PutMapping(value = "/update")
+    @PutMapping(value = "/myprofile/update")
     public ResponseEntity<ProfileDto> updateProfile(@Valid @RequestBody ProfileDto profileDto) {
         User user = userFacade.getUserFromSecurityContext();
         Profile profileFromSecurityContext = user.getProfile();
@@ -83,18 +83,6 @@ public class ProfileController {
             throw new RestError("You are trying to update someone else's profile");
         }
 
-    }
-
-    /**
-     * Find profile by user id
-     * @return profile dto
-     */
-    @Secured({"ROLE_USER", "ROLE_ADMIN", "ROLE_GUEST"})
-    @GetMapping(value = "/search/user")
-    public ResponseEntity<ProfileDto> findMyProfileByUserId() {
-        User user = userFacade.getUserFromSecurityContext();
-        ProfileDto profileDto = profileFacade.findProfileDtoByUser_Id(user.getId());
-        return new ResponseEntity<>(profileDto, HttpStatus.OK);
     }
 
     /**

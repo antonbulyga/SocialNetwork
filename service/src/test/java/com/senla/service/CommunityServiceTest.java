@@ -1,10 +1,10 @@
 package com.senla.service;
 
 import com.senla.entity.Community;
-import com.senla.entity.User;
 import com.senla.repository.CommunityRepository;
 import com.senla.service.community.CommunityService;
 import com.senla.service.community.CommunityServiceImpl;
+import com.senla.service.user.UserService;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
@@ -13,7 +13,6 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +23,7 @@ import static org.junit.Assert.assertEquals;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.*;
 
-@RunWith(SpringRunner.class)
+@RunWith(MockitoJUnitRunner.class)
 @EnableAutoConfiguration
 @ContextConfiguration(classes = ConfigurationServiceTest.class)
 public class CommunityServiceTest {
@@ -34,9 +33,12 @@ public class CommunityServiceTest {
     @Mock
     private CommunityRepository communityRepository;
 
+    @Mock
+    private UserService userService;
+
     @Before
     public void setUp(){
-        communityService = new CommunityServiceImpl(communityRepository);
+        communityService = new CommunityServiceImpl(communityRepository, userService);
     }
 
     private final Community community = new Community(1L, "Любители математики");

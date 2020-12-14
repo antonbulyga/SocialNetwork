@@ -30,6 +30,12 @@ public interface FriendshipRepository extends JpaRepository<Friendship, Long> {
     void acceptFriendRequest(@Param("userOne") User userOne, @Param("userTwo") User userTwo, @Param("actionUser") User actionUser);
 
     @Modifying(clearAutomatically = true)
+    @Query(value = "update friendship set status = 'DECLINED', action_user_id = :actionUser where user_one_id = :userOne and user_two_id = :userTwo " +
+            "and status = 'REQUEST'",
+            nativeQuery = true)
+    void declineFriendRequest(@Param("userOne") User userOne, @Param("userTwo") User userTwo, @Param("actionUser") User actionUser);
+
+    @Modifying(clearAutomatically = true)
     @Query(value = "select * from friendship where user_one_id = :userId or user_two_id = :userId and status = 'FRIEND'",
             nativeQuery = true)
     List<Friendship> getFriendsListOfUser(@Param("userId") User userId);

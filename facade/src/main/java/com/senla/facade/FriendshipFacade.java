@@ -27,13 +27,13 @@ public class FriendshipFacade {
         this.userDTOConverter = userDTOConverter;
     }
 
-    public FriendshipDto sentNewFriendRequest(Long userOneId, Long userTwoId, Long actionUserId) {
+    public FriendshipDto sentFriendRequest(Long userOneId, Long userTwoId, Long actionUserId) {
         Friendship friendship = friendshipService.createFriendRequest(userOneId, userTwoId, actionUserId);
         return friendshipDTOConverter.convert(friendship);
     }
 
-    public FriendshipDto sentFriendRequest(Long userOneId, Long userTwoId, Long actionUserId) {
-        Friendship friendship = friendshipService.createFriendRequest(userOneId, userTwoId, actionUserId);
+    public FriendshipDto declineFriendRequest(Long userOneId, Long userTwoId, Long actionUserId) {
+        Friendship friendship = friendshipService.declineFriendRequest(userOneId, userTwoId, actionUserId);
         return friendshipDTOConverter.convert(friendship);
     }
 
@@ -66,4 +66,12 @@ public class FriendshipFacade {
         return users.stream().map(userDTOConverter::convert).collect(Collectors.toList());
     }
 
+    public List<FriendshipDto> getFriendFriendshipsDtoForUser(Long userId) {
+        List<Friendship> friendships = friendshipService.getFriendFriendshipsForUser(userId);
+        return friendships.stream().map(friendshipDTOConverter::convert).collect(Collectors.toList());
+    }
+
+    public List<Friendship> getFriendFriendshipsForUser(Long userId) {
+        return friendshipService.getFriendFriendshipsForUser(userId);
+    }
 }

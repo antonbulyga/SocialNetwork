@@ -10,6 +10,7 @@ import com.senla.dto.profile.ProfileDto;
 import com.senla.dto.role.RoleDto;
 import com.senla.dto.user.UserDto;
 import com.senla.entity.*;
+import com.senla.exception.RestError;
 import com.senla.facade.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,6 +62,7 @@ public class AdminController {
 
     /**
      * Get all users
+     *
      * @return user dto
      */
     @Secured("ROLE_ADMIN")
@@ -77,6 +79,7 @@ public class AdminController {
 
     /**
      * Get user by id as admin user
+     *
      * @param id user id
      * @return user dto
      */
@@ -90,6 +93,7 @@ public class AdminController {
 
     /**
      * Delete user as admin user
+     *
      * @param userId user id
      * @return string
      */
@@ -105,6 +109,7 @@ public class AdminController {
 
     /**
      * Find user by email as admin
+     *
      * @param email user email
      * @return user dto
      */
@@ -118,8 +123,9 @@ public class AdminController {
 
     /**
      * Change password as admin user
+     *
      * @param newPassword new user password
-     * @param userId user id
+     * @param userId      user id
      * @return user dto
      */
     @Secured("ROLE_ADMIN")
@@ -132,6 +138,7 @@ public class AdminController {
 
     /**
      * Get all roles as admin
+     *
      * @return list of role dto
      */
     @Secured("ROLE_ADMIN")
@@ -144,6 +151,7 @@ public class AdminController {
 
     /**
      * Add role
+     *
      * @param roleDto role dto
      * @return role dto
      */
@@ -157,6 +165,7 @@ public class AdminController {
 
     /**
      * Delete role
+     *
      * @param roleDto role dto
      * @return string
      */
@@ -171,6 +180,7 @@ public class AdminController {
 
     /**
      * Update role
+     *
      * @param roleDto role dto
      * @return role dto
      */
@@ -184,6 +194,7 @@ public class AdminController {
 
     /**
      * Get role by name
+     *
      * @param name role name
      * @return role dto
      */
@@ -197,6 +208,7 @@ public class AdminController {
 
     /**
      * Get all profiles as admin user
+     *
      * @return list profile dto
      */
     @Secured("ROLE_ADMIN")
@@ -209,6 +221,7 @@ public class AdminController {
 
     /**
      * Find user profile by user id as admin user
+     *
      * @param userId user id
      * @return profile dto
      */
@@ -223,6 +236,7 @@ public class AdminController {
 
     /**
      * Update user profile as admin user
+     *
      * @param profileDto profile dto
      * @return profile dto
      */
@@ -236,6 +250,7 @@ public class AdminController {
 
     /**
      * Delete post
+     *
      * @param id post id
      * @return string
      */
@@ -251,19 +266,21 @@ public class AdminController {
 
     /**
      * Update post
+     *
      * @param postDto post dto
      * @return post dto
      */
     @Secured("ROLE_ADMIN")
     @PutMapping(value = "/posts/update")
     public ResponseEntity<PostDto> updatePostAsAdmin(@Valid @RequestBody PostDto postDto) {
-        PostDto postDtoWithDate =  postFacade.updatePost(postDto);
+        PostDto postDtoWithDate = postFacade.updatePost(postDto);
         log.info("Updating post by id as admin");
         return new ResponseEntity<>(postDtoWithDate, HttpStatus.OK);
     }
 
     /**
      * Get all messages as admin user
+     *
      * @return list of the messages dto
      */
     @Secured("ROLE_ADMIN")
@@ -276,6 +293,7 @@ public class AdminController {
 
     /**
      * Add message as admin user
+     *
      * @param messageDto message dto
      * @return message dto
      */
@@ -288,6 +306,7 @@ public class AdminController {
 
     /**
      * Delete message as admin user
+     *
      * @param id message id
      * @return string
      */
@@ -302,6 +321,7 @@ public class AdminController {
 
     /**
      * Get message by dialog id
+     *
      * @param id dialog id
      * @return list of the message dto
      */
@@ -315,6 +335,7 @@ public class AdminController {
 
     /**
      * Get message by id as admin user
+     *
      * @param messageId message id
      * @return message dto
      */
@@ -328,6 +349,7 @@ public class AdminController {
 
     /**
      * Get all likes as admin user
+     *
      * @return list of the like dto
      */
     @Secured("ROLE_ADMIN")
@@ -340,6 +362,7 @@ public class AdminController {
 
     /**
      * Add like
+     *
      * @param likeDto like dto
      * @return like dto
      */
@@ -353,6 +376,7 @@ public class AdminController {
 
     /**
      * Delete like
+     *
      * @param id like id
      * @return string
      */
@@ -362,12 +386,13 @@ public class AdminController {
         likeFacade.deleteLike(id);
         log.error("Deleting like");
         return ResponseEntity.ok()
-                        .body("You have deleted like successfully");
+                .body("You have deleted like successfully");
 
     }
 
     /**
      * Get all dialogs as admin user
+     *
      * @return list of dialog dto
      */
     @Secured("ROLE_ADMIN")
@@ -380,6 +405,7 @@ public class AdminController {
 
     /**
      * Add dialog as admin user
+     *
      * @param dialogDto dialog dto
      * @return dialog dto
      */
@@ -393,6 +419,7 @@ public class AdminController {
 
     /**
      * Delete dialog
+     *
      * @param id dialog dto
      * @return string
      */
@@ -408,6 +435,7 @@ public class AdminController {
 
     /**
      * Get dialog by id
+     *
      * @param id dialog id
      * @return dialog dto
      */
@@ -421,19 +449,21 @@ public class AdminController {
 
     /**
      * Update dialog
+     *
      * @param dialogDto dialog dto
      * @return dialog dto
      */
     @Secured("ROLE_ADMIN")
     @PutMapping(value = "/dialogs/update")
     public ResponseEntity<DialogDto> updateDialog(@Valid @RequestBody DialogDto dialogDto) {
-        DialogDto dialogDtoWithData =  dialogFacade.updateDialog(dialogDto);
+        DialogDto dialogDtoWithData = dialogFacade.updateDialog(dialogDto);
         log.error("You are updating dialog");
         return new ResponseEntity<>(dialogDtoWithData, HttpStatus.OK);
     }
 
     /**
      * Get dialog by name
+     *
      * @param name dialog name
      * @return dialog dto
      */
@@ -447,8 +477,9 @@ public class AdminController {
 
     /**
      * Add user to the dialog
+     *
      * @param dialogId dialog id
-     * @param userId user id
+     * @param userId   user id
      * @return dialog dto
      */
     @Secured("ROLE_ADMIN")
@@ -461,8 +492,9 @@ public class AdminController {
 
     /**
      * Delete user from the dialog
+     *
      * @param dialogId dialog id
-     * @param userId user id
+     * @param userId   user id
      * @return dialog dto
      */
     @Secured("ROLE_ADMIN")
@@ -475,16 +507,45 @@ public class AdminController {
 
     /**
      * Add community
+     *
      * @param communityDto community dto
      * @return community dto
      */
     @Secured("ROLE_ADMIN")
-    @PostMapping(value = "/community/add")
+    @PostMapping(value = "/communities/add")
     public ResponseEntity<CommunityDto> addCommunity(@Valid @RequestBody CommunityDto communityDto) {
         communityFacade.addCommunity(communityDto);
         log.info("Adding community");
         return new ResponseEntity<>(communityDto, HttpStatus.OK);
+    }
 
+    /**
+     * Add user to the community as admin
+     * @param userId user id
+     * @param communityId community id
+     * @return community dto
+     */
+    @Secured("ROLE_ADMIN")
+    @PostMapping(value = "/communities/add/user")
+    public ResponseEntity<CommunityDto> addUserToCommunity(@RequestParam(name = "userId") Long userId, @RequestParam(name = "communityId") Long communityId) {
+        CommunityDto communityDto = communityFacade.addUserToCommunity(communityId, userId);
+        log.info("Adding user to the community");
+        return new ResponseEntity<>(communityDto, HttpStatus.OK);
+    }
+
+    /**
+     * Delete user from the community
+     * @param userId user id
+     * @param communityId community id
+     * @return
+     */
+    @Secured("ROLE_ADMIN")
+    @DeleteMapping(value = "/communities/delete/user")
+    public ResponseEntity<String> removeUserFromCommunity(@RequestParam(name = "userId") Long userId, @RequestParam(name = "communityId") Long communityId) {
+        communityFacade.removeUserFromCommunity(communityId, userId);
+        log.info("Removing user from the community");
+        return ResponseEntity.ok()
+                .body("You have deleted user from the community successfully");
     }
 
     /**
@@ -502,6 +563,7 @@ public class AdminController {
 
     /**
      * Delete community as admin user
+     *
      * @param id community id
      * @return string
      */
@@ -515,9 +577,8 @@ public class AdminController {
     }
 
     /**
-     *
-     * @param userOneId user one id
-     * @param userTwoId user two id
+     * @param userOneId    user one id
+     * @param userTwoId    user two id
      * @param actionUserId action user id
      * @return friendship dto
      */
@@ -534,13 +595,14 @@ public class AdminController {
 
     /**
      * Add to friends as admin user
-     * @param userOneId user one id
-     * @param userTwoId user two id
+     *
+     * @param userOneId    user one id
+     * @param userTwoId    user two id
      * @param actionUserId action user id
      * @return friendship dto
      */
     @Secured("ROLE_ADMIN")
-    @PostMapping(value = "/friendship/add")
+    @PostMapping(value = "/friendship/accept")
     public ResponseEntity<FriendshipDto> addToFriendsAsAdmin(@RequestParam(name = "idOne") Long userOneId,
                                                              @RequestParam(name = "idTwo") Long userTwoId,
                                                              @RequestParam(name = "idAction") Long actionUserId) {
@@ -550,8 +612,21 @@ public class AdminController {
                 .body(friendshipDto);
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
+    @PostMapping(value = "/friendship/decline")
+    public ResponseEntity<FriendshipDto> declineFriendRequest(@RequestParam(name = "idOne") Long userOneId,
+                                                              @RequestParam(name = "idTwo") Long userTwoId,
+                                                              @RequestParam(name = "idAction") Long actionUserId) {
+
+        FriendshipDto friendshipDto = friendshipFacade.declineFriendRequest(userOneId, userTwoId, actionUserId);
+        log.info("Decline friend request");
+        return ResponseEntity.ok()
+                .body(friendshipDto);
+    }
+
     /**
      * Get friends list of user as admin
+     *
      * @param userId user id
      * @return user dto
      */
@@ -576,8 +651,9 @@ public class AdminController {
 
     /**
      * Block user as admin user
-     * @param userOneId user one id
-     * @param userTwoId user two id
+     *
+     * @param userOneId    user one id
+     * @param userTwoId    user two id
      * @param actionUserId action user id
      * @return friendship dto
      */
@@ -594,8 +670,9 @@ public class AdminController {
 
     /**
      * Unblock user as admin
-     * @param userOneId user one id
-     * @param userTwoId user two id
+     *
+     * @param userOneId    user one id
+     * @param userTwoId    user two id
      * @param actionUserId action user id
      * @return friendship dto
      */
@@ -613,6 +690,7 @@ public class AdminController {
 
     /**
      * Get friends requests as admin user
+     *
      * @param userId user id
      * @return map string and list of the user dto
      */

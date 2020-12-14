@@ -29,5 +29,5 @@ public interface FriendshipService {
 
     List<Friendship> getAllFriendshipsForUser(Long userId);
 
-
+    Friendship declineFriendRequest(Long userOneId, Long userTwoId, Long actionId);
 }

@@ -37,6 +37,7 @@ public class CommunityController {
 
     /**
      * Get all communities
+     *
      * @return list of the communities dto
      */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
@@ -72,13 +73,64 @@ public class CommunityController {
     }
 
     /**
+     * Join the community as user
+     * @param communityId
+     * @return
+     */
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
+    @PostMapping(value = "/join")
+    public ResponseEntity<CommunityDto> joinToCommunity(@RequestParam(name = "communityId") Long communityId) {
+        User user = userFacade.getUserFromSecurityContext();
+        Community community = communityFacade.getCommunity(communityId);
+        List<User> users = community.getUsers();
+        int count = 0;
+        for (User u : users) {
+            if (u.getId().equals(user.getId())) {
+                count++;
+            }
+        }
+        if (count > 0) {
+            log.error("The user is already in the group");
+            throw new RestError("The user is already in the group");
+        } else {
+            log.info("Adding user to the community");
+            CommunityDto communityDto = communityFacade.addUserToCommunity(communityId, user.getId());
+            return new ResponseEntity<>(communityDto, HttpStatus.OK);
+        }
+    }
+
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
+    @PostMapping(value = "/leave")
+    public ResponseEntity<String> leaveFromCommunity(@RequestParam(name = "communityId") Long communityId) {
+        User user = userFacade.getUserFromSecurityContext();
+        Community community = communityFacade.getCommunity(communityId);
+        List<User> users = community.getUsers();
+        int count = 0;
+        for (User u : users) {
+            if (u.getId().equals(user.getId())) {
+                count++;
+            }
+        }
+        if (count > 0) {
+            log.info("Leaving from the community");
+            communityFacade.removeUserFromCommunity(communityId, user.getId());
+            return ResponseEntity.ok()
+                    .body("You have left from the community successfully");
+        } else {
+            log.error("The user does not participate in the group");
+            throw new RestError("The user does not participate in the group");
+        }
+    }
+
+    /**
      * Delete community
+     *
      * @param id community id
      * @return response as a string
      */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @DeleteMapping(value = "/delete")
-    public ResponseEntity<String> deleteCommunity(@RequestParam(name = "id") long id){
+    public ResponseEntity<String> deleteCommunity(@RequestParam(name = "id") long id) {
         User user = userFacade.getUserFromSecurityContext();
         Community community = communityFacade.getCommunity(id);
         User adminUser = community.getAdminUser();
@@ -96,6 +148,7 @@ public class CommunityController {
 
     /**
      * Get community be id
+     *
      * @param id community id
      * @return community dto
      */
@@ -109,6 +162,7 @@ public class CommunityController {
 
     /**
      * Update community
+     *
      * @param communityDto
      * @return community dto
      */
@@ -130,6 +184,7 @@ public class CommunityController {
 
     /**
      * Get community by name
+     *
      * @param name community name
      * @return community dto
      */
@@ -143,6 +198,7 @@ public class CommunityController {
 
     /**
      * Get list of the communities by admin user id
+     *
      * @param adminId admin user id
      * @return list of the community dto
      */

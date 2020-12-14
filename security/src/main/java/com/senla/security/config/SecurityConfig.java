@@ -1,6 +1,8 @@
-package com.senla.security;
+package com.senla.security.config;
 
 import com.senla.exception.RestExceptionHandler;
+import com.senla.security.JwtConfigurer;
+import com.senla.security.JwtTokenProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

@@ -46,6 +46,15 @@ public class CommunityFacade {
         return communities.stream().map(communityDTOConverter::convert).collect(Collectors.toList());
     }
 
+    public CommunityDto addUserToCommunity(Long communityId, Long userId) {
+       Community community = communityService.addUserToCommunity(communityId, userId);
+       return communityDTOConverter.convert(community);
+    }
+
+    public void removeUserFromCommunity(Long communityId, Long userId) {
+        communityService.removeUserFromCommunity(communityId, userId);
+    }
+
     public CommunityDto getDtoCommunity(Long id) {
         return communityDTOConverter.convert(communityService.getCommunity(id));
     }

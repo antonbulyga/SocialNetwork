@@ -2,7 +2,9 @@ package com.senla.facade;
 
 import com.senla.converters.user.ReverseUserDTOConverter;
 import com.senla.converters.user.UserDTOConverter;
+import com.senla.converters.user.UserToUserNestedDtoConverter;
 import com.senla.dto.user.UserDto;
+import com.senla.dto.user.UserNestedDto;
 import com.senla.entity.User;
 import com.senla.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,12 +19,14 @@ public class UserFacade {
     private final UserService userService;
     private final UserDTOConverter userDTOConverter;
     private final ReverseUserDTOConverter reverseUserDTOConverter;
+    private final UserToUserNestedDtoConverter userToUserNestedDtoConverter;
 
     @Autowired
-    public UserFacade(UserService userService, UserDTOConverter userDTOConverter, ReverseUserDTOConverter reverseUserDTOConverter) {
+    public UserFacade(UserService userService, UserDTOConverter userDTOConverter, ReverseUserDTOConverter reverseUserDTOConverter, UserToUserNestedDtoConverter userToUserNestedDtoConverter) {
         this.userService = userService;
         this.userDTOConverter = userDTOConverter;
         this.reverseUserDTOConverter = reverseUserDTOConverter;
+        this.userToUserNestedDtoConverter = userToUserNestedDtoConverter;
     }
 
     public UserDto getUser(Long id) {
@@ -72,5 +76,9 @@ public class UserFacade {
 
     public UserDto convertUserToUserDto(User user) {
         return userDTOConverter.convert(user);
+    }
+
+    public UserNestedDto convertToUserNestedDto(User user){
+        return userToUserNestedDtoConverter.convert(user);
     }
 }

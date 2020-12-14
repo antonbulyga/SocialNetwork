@@ -1,10 +1,13 @@
 package com.senla.service.community;
 
 import com.senla.entity.Community;
+import com.senla.entity.User;
 import com.senla.exception.EntityNotFoundException;
 import com.senla.repository.CommunityRepository;
+import com.senla.service.user.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -17,10 +20,12 @@ import java.util.Optional;
 public class CommunityServiceImpl implements CommunityService {
 
     private final CommunityRepository communityRepository;
+    private final UserService userService;
 
     @Autowired
-    public CommunityServiceImpl(CommunityRepository communityRepository) {
+    public CommunityServiceImpl(CommunityRepository communityRepository, @Lazy UserService userService) {
         this.communityRepository = communityRepository;
+        this.userService = userService;
     }
 
     @Override
@@ -68,5 +73,22 @@ public class CommunityServiceImpl implements CommunityService {
         return communityRepository.findById(id);
     }
 
+    @Override
+    public Community addUserToCommunity(Long communityId, Long userId) {
+        Community community = getCommunity(communityId);
+        User user = userService.getUser(userId);
+        List<User> users = community.getUsers();
+        users.add(user);
+        return updateCommunity(community);
+    }
+
+    @Override
+    public void removeUserFromCommunity(Long communityId, Long userId) {
+        Community community = getCommunity(communityId);
+        User user = userService.getUser(userId);
+        List<User> users = community.getUsers();
+        users.remove(user);
+        updateCommunity(community);
+    }
 
 }

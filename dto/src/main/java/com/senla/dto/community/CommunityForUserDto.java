@@ -16,5 +16,4 @@ public class CommunityForUserDto {
 
     @NotBlank(message = "Name of the community is mandatory")
     private String name;
-
 }

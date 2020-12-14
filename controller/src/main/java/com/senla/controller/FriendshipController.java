@@ -2,6 +2,7 @@ package com.senla.controller;
 
 import com.senla.dto.friendship.FriendshipDto;
 import com.senla.dto.user.UserDto;
+import com.senla.dto.user.UserNestedDto;
 import com.senla.entity.Friendship;
 import com.senla.entity.User;
 import com.senla.exception.RestError;
@@ -40,8 +41,9 @@ public class FriendshipController {
 
     /**
      * Sent friend request
-     * @param userOneId  first user id
-     * @param userTwoId  second user id
+     *
+     * @param userOneId    first user id
+     * @param userTwoId    second user id
      * @param actionUserId action user id
      * @return friendship dto
      */
@@ -63,21 +65,47 @@ public class FriendshipController {
     }
 
     /**
-     *Accept friend request
-     * @param userOneId first user id
-     * @param userTwoId second user id
+     * Accept friend request
+     *
+     * @param userOneId    first user id
+     * @param userTwoId    second user id
      * @param actionUserId action user id
      * @return friendship dto
      */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    @PostMapping(value = "/add")
+    @PostMapping(value = "/accept")
     public ResponseEntity<FriendshipDto> acceptFriendRequest(@RequestParam(name = "idOne") Long userOneId,
                                                              @RequestParam(name = "idTwo") Long userTwoId,
                                                              @RequestParam(name = "idAction") Long actionUserId) {
         User user = userFacade.getUserFromSecurityContext();
         if (user.getId().equals(actionUserId)) {
             FriendshipDto friendshipDto = friendshipFacade.addToFriends(userOneId, userTwoId, actionUserId);
-            log.info("Adding to friend user");
+            log.info("Accept friend request");
+            return ResponseEntity.ok()
+                    .body(friendshipDto);
+        } else {
+            log.error("You are trying to add to the friends list from another user");
+            throw new RestError("You are trying to add to the friends list from another user");
+        }
+    }
+
+    /**
+     * Decline friend request
+     *
+     * @param userOneId    first user id
+     * @param userTwoId    second user id
+     * @param actionUserId action user id
+     * @return friendship dto
+     */
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
+    @PostMapping(value = "/decline")
+    public ResponseEntity<FriendshipDto> declineFriendRequest(@RequestParam(name = "idOne") Long userOneId,
+                                                              @RequestParam(name = "idTwo") Long userTwoId,
+                                                              @RequestParam(name = "idAction") Long actionUserId) {
+        User user = userFacade.getUserFromSecurityContext();
+        if (user.getId().equals(actionUserId)) {
+            FriendshipDto friendshipDto = friendshipFacade.addToFriends(userOneId, userTwoId, actionUserId);
+            log.info("Decline friend request");
             return ResponseEntity.ok()
                     .body(friendshipDto);
         } else {
@@ -88,6 +116,7 @@ public class FriendshipController {
 
     /**
      * Get friends list of user
+     *
      * @param userId user id
      * @return list of the friendship dto
      */
@@ -107,8 +136,9 @@ public class FriendshipController {
 
     /**
      * Delete friendship
-     * @param userOneId first user id
-     * @param userTwoId second user id
+     *
+     * @param userOneId    first user id
+     * @param userTwoId    second user id
      * @param actionUserId action user id
      * @return friendship dto
      */
@@ -131,8 +161,9 @@ public class FriendshipController {
 
     /**
      * Block user
-     * @param userOneId first user id
-     * @param userTwoId second user id
+     *
+     * @param userOneId    first user id
+     * @param userTwoId    second user id
      * @param actionUserId action user id
      * @return friendship dto
      */
@@ -155,8 +186,9 @@ public class FriendshipController {
 
     /**
      * Unblock user
-     * @param userOneId first user id
-     * @param userTwoId second user id
+     *
+     * @param userOneId    first user id
+     * @param userTwoId    second user id
      * @param actionUserId action user id
      * @return friendship dto
      */
@@ -179,6 +211,7 @@ public class FriendshipController {
 
     /**
      * Get all requests by user. Show outgoing and incoming friends requests
+     *
      * @param userId user id
      * @return map string and list of the user dto
      */
@@ -210,6 +243,26 @@ public class FriendshipController {
             log.error("You are trying to get the requests list from another user");
             throw new RestError("You are trying to get the requests list from another user");
         }
+    }
+
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
+    @GetMapping(value = "/user/frindslist")
+    public ResponseEntity<List<UserNestedDto>> getFriendFriendshipsForUser(@RequestParam(name = "userId") Long userId) {
+        User user = userFacade.getUserFromSecurityContext();
+        List<UserNestedDto> friendsListOfUser;
+        List<Friendship> friendshipList = friendshipFacade.getFriendFriendshipsForUser(userId);
+        log.info("Getting friends list of user");
+            friendsListOfUser = friendshipList.stream()
+                    .map(f -> {
+                        if(!user.getId().equals(userId)){
+                            return f.getUserOne();
+                        }
+                        return f.getUserTwo();
+                    })
+                    .map(userFacade::convertToUserNestedDto)
+                    .collect(Collectors.toList());
+        return ResponseEntity.ok()
+                .body(friendsListOfUser);
     }
 
 }

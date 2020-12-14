@@ -21,5 +21,9 @@ public interface CommunityService {
     List<Community> getCommunitiesByAdminUserId(Long adminId);
 
     Optional<Community> getCommunityById(Long id);
+
+    Community addUserToCommunity(Long communityId, Long userId);
+
+    void removeUserFromCommunity(Long communityId, Long userId);
 }
 
