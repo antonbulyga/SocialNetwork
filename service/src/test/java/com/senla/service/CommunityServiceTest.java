@@ -12,7 +12,6 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.test.context.ContextConfiguration;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +24,6 @@ import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 @EnableAutoConfiguration
-@ContextConfiguration(classes = ConfigurationServiceTest.class)
 public class CommunityServiceTest {
 
     private CommunityService communityService;
@@ -37,7 +35,7 @@ public class CommunityServiceTest {
     private UserService userService;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         communityService = new CommunityServiceImpl(communityRepository, userService);
     }
 
@@ -60,9 +58,9 @@ public class CommunityServiceTest {
     }
 
     @Test
-    public void findCommunityById(){
+    public void findCommunityById() {
         given(communityRepository.findById(community.getId())).willReturn(Optional.of(community));
-        final Optional<Community> expected  = communityService.getCommunityById(community.getId());
+        final Optional<Community> expected = communityService.getCommunityById(community.getId());
         assertThat(expected).isNotNull();
     }
 
@@ -94,7 +92,7 @@ public class CommunityServiceTest {
     }
 
     @Test
-    public void shouldBeDelete(){
+    public void shouldBeDelete() {
         when(communityRepository.findById(community.getId())).thenReturn(Optional.of(community));
         communityService.deleteCommunity(communityId);
         verify(communityRepository, times(1)).deleteById(community.getId());

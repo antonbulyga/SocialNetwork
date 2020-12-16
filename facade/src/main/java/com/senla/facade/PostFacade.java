@@ -27,8 +27,7 @@ public class PostFacade {
 
     public PostDto addPost(PostDto postDto) {
         Post postWithDate = postService.addPost(reversePostDTOConverter.convert(postDto));
-        PostDto postDtoWithDate = postDTOConverter.convert(postWithDate);
-        return postDtoWithDate;
+        return postDTOConverter.convert(postWithDate);
     }
 
     public void deletePost(long id) {
@@ -37,8 +36,7 @@ public class PostFacade {
 
     public PostDto updatePost(PostDto postDto) {
         Post postWithDate = postService.updatePost(reversePostDTOConverter.convert(postDto));
-        PostDto postDtoWithDate = postDTOConverter.convert(postWithDate);
-        return postDtoWithDate;
+        return postDTOConverter.convert(postWithDate);
     }
 
     public List<PostDto> getAllPosts() {

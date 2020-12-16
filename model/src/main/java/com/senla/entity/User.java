@@ -14,7 +14,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@EqualsAndHashCode
+@EqualsAndHashCode(of = "id")
 @Table(name = "users")
 public class User {
     @Id
@@ -28,11 +28,11 @@ public class User {
     @Column(name = "user_name")
     private String userName;
 
-
     @Column(name = "password")
     private String password;
 
-    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.EAGER, cascade = {
+            CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH,CascadeType.REMOVE})
     @JoinColumn(name = "user_profile_id", referencedColumnName = "id")
     private Profile profile;
 
@@ -42,22 +42,26 @@ public class User {
     @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
     private Set<Role> roles;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = {
+            CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH,CascadeType.REMOVE})
     private List<Post> posts;
 
-    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = {
+            CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH,CascadeType.REMOVE})
     private List<Message> messages;
 
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "user",
+            fetch = FetchType.LAZY, cascade = {
+            CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH,CascadeType.REMOVE})
     private List<Like> likes;
 
     @Column(name = "creation_time", nullable = false)
     private LocalDateTime creationTime;
 
-    @OneToOne(mappedBy = "adminUser",
-            fetch = FetchType.LAZY)
-    private Community community;
+    @OneToMany(mappedBy = "adminUser",
+            fetch = FetchType.LAZY, cascade = {
+            CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH})
+    private List<Community> communitiesWhereUserAdmin;
 
     @ManyToMany(mappedBy = "userList", fetch = FetchType.LAZY)
     private List<Dialog> dialogs;

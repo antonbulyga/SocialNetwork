@@ -37,6 +37,7 @@ public class LikeController {
 
     /**
      * Get all user likes
+     *
      * @return
      */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
@@ -54,6 +55,7 @@ public class LikeController {
 
     /**
      * Add like
+     *
      * @param likeDto like dto
      * @return like dto
      */
@@ -62,8 +64,8 @@ public class LikeController {
     public ResponseEntity<LikeDto> addLike(@Valid @RequestBody LikeDto likeDto) {
         User user = userFacade.getUserFromSecurityContext();
         List<Like> likes = user.getLikes();
-        for (Like l:likes){
-            if(l.getUser().getId().equals(likeDto.getUser().getId())){
+        for (Like l : likes) {
+            if (l.getUser().getId().equals(likeDto.getUser().getId())) {
                 likeFacade.addLike(likeDto);
                 log.error("Adding like");
                 return new ResponseEntity<>(likeDto, HttpStatus.OK);
@@ -76,6 +78,7 @@ public class LikeController {
 
     /**
      * Delete like
+     *
      * @param id like id
      * @return string response
      */
@@ -101,6 +104,7 @@ public class LikeController {
 
     /**
      * Get like by id
+     *
      * @param likeId like id
      * @return like dto
      */
@@ -114,6 +118,7 @@ public class LikeController {
 
     /**
      * Get likes by post id
+     *
      * @param postId post id
      * @return list of the like dto
      */

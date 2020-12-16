@@ -15,14 +15,12 @@ import java.time.LocalDateTime;
 @Component
 public class ReversePostDTOConverter implements Converter<PostDto, Post> {
 
-    private CommunityService communityService;
-    private LikeService likeService;
-    private UserService userService;
+    private final CommunityService communityService;
+    private final UserService userService;
 
     @Autowired
-    public ReversePostDTOConverter(CommunityService communityService, LikeService likeService, UserService userService) {
+    public ReversePostDTOConverter(CommunityService communityService, UserService userService) {
         this.communityService = communityService;
-        this.likeService = likeService;
         this.userService = userService;
     }
 
@@ -32,7 +30,7 @@ public class ReversePostDTOConverter implements Converter<PostDto, Post> {
         return Post.builder()
                 .id(postDto.getId())
                 .text(postDto.getText())
-                .community(postDto.getCommunity() == null ? community :communityService.getCommunity(postDto.getCommunity().getId()))
+                .community(postDto.getCommunity() == null ? community : communityService.getCommunity(postDto.getCommunity().getId()))
                 .user(userService.getUser(postDto.getUser().getId()))
                 .dateOfCreation(LocalDateTime.now())
                 .countLike(postDto.getCountLike())

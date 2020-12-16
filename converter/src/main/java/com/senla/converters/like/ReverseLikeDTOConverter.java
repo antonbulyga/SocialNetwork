@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class ReverseLikeDTOConverter implements Converter<LikeDto, Like> {
 
-    private UserService userService;
-    private PostService postService;
+    private final UserService userService;
+    private final PostService postService;
 
     @Autowired
     public ReverseLikeDTOConverter(UserService userService, PostService postService) {

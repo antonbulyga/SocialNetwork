@@ -1,9 +1,7 @@
 package com.senla.controller;
 
-import com.senla.dto.profile.ProfileDto;
 import com.senla.dto.profile.ProfileForUserDto;
 import com.senla.dto.user.UserDto;
-import com.senla.entity.Profile;
 import com.senla.entity.User;
 import com.senla.exception.RestError;
 import com.senla.facade.ProfileFacade;
@@ -38,6 +36,7 @@ public class UserController {
 
     /**
      * Get User by id
+     *
      * @return user dto
      */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
@@ -49,6 +48,7 @@ public class UserController {
 
     /**
      * Delete user
+     *
      * @return string response
      */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
@@ -63,24 +63,24 @@ public class UserController {
 
     /**
      * Add user
+     *
      * @param userDto user dto
      * @return user dto
      */
     @PostMapping("/register")
     public ResponseEntity<UserDto> addUser(@Valid @RequestBody UserDto userDto) {
-        ProfileForUserDto profileForUserDto = userDto.getProfile();
-        profileFacade.addProfile(profileForUserDto);
         UserDto userDtoWithDate = userFacade.addUser(userDto);
         return new ResponseEntity<>(userDtoWithDate, HttpStatus.OK);
     }
 
     /**
      * Update user
+     *
      * @param userDto
      * @return
      */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    @PostMapping("/update")
+    @PutMapping("/update")
     public ResponseEntity<UserDto> updateUser(@Valid @RequestBody UserDto userDto) {
         User user = userFacade.getUserFromSecurityContext();
         if (user.getId().equals(userDto.getId())) {
@@ -94,6 +94,7 @@ public class UserController {
 
     /**
      * Change user password
+     *
      * @param newPassword
      * @return
      */
@@ -108,6 +109,7 @@ public class UserController {
 
     /**
      * Get user by name
+     *
      * @param userName user name
      * @return user dto
      */

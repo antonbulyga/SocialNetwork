@@ -46,7 +46,7 @@ public class UserDto {
 
     private LocalDateTime creationTime;
 
-    private CommunityForUserDto community;
+    private List<CommunityForUserDto> communitiesWhereUserAdmin;
 
     private List<DialogForMessageAndUserDto> dialogs;
 }

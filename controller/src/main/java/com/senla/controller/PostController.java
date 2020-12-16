@@ -37,6 +37,7 @@ public class PostController {
 
     /**
      * Get all posts
+     *
      * @return list of the post dto
      */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
@@ -53,6 +54,7 @@ public class PostController {
 
     /**
      * Add post
+     *
      * @param postDto post dto
      * @return post dto
      */
@@ -66,6 +68,7 @@ public class PostController {
 
     /**
      * Delete post
+     *
      * @param id post id
      * @return string response
      */
@@ -90,6 +93,7 @@ public class PostController {
 
     /**
      * Update post
+     *
      * @param postDto post dto
      * @return post dto
      */
@@ -100,7 +104,7 @@ public class PostController {
         List<Post> posts = user.getPosts();
         for (Post p : posts) {
             if (p.getId() == postDto.getId()) {
-                PostDto postDtoWithDate =  postFacade.updatePost(postDto);
+                PostDto postDtoWithDate = postFacade.updatePost(postDto);
                 log.info("You have updated post successfully");
                 return new ResponseEntity<>(postDtoWithDate, HttpStatus.OK);
             }
@@ -111,6 +115,7 @@ public class PostController {
 
     /**
      * Get post by user id
+     *
      * @param id user id
      * @return list of the post dto
      */
@@ -124,6 +129,7 @@ public class PostController {
 
     /**
      * Get post by id
+     *
      * @param postId post id
      * @return post dto
      */

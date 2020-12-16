@@ -1,6 +1,5 @@
 package com.senla.repository;
 
-import com.senla.entity.Dialog;
 import com.senla.entity.Post;
 import com.senla.entity.User;
 import org.junit.Test;
@@ -36,7 +35,7 @@ public class PostRepositoryTest {
         entityManager.persist(post);
         entityManager.flush();
         List<Post> result = postRepository.findAll();
-        assertEquals(1,result.size());
+        assertEquals(1, result.size());
     }
 
     @Test
@@ -92,6 +91,6 @@ public class PostRepositoryTest {
         entityManager.persist(post);
         entityManager.flush();
         List<Post> posts = postRepository.getPostByUser_Id(user.getId());
-        assertEquals(1,posts.size());
+        assertEquals(1, posts.size());
     }
 }

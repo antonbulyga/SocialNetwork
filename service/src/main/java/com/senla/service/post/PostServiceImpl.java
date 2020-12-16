@@ -15,7 +15,6 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
 @Service
 @Transactional
 @Slf4j
@@ -33,6 +32,7 @@ public class PostServiceImpl implements PostService {
     }
 
     public Post getPost(Long id) {
+        log.info("Getting post by id");
         return postRepository.findById(id)
                 .orElseThrow(() ->
                         new EntityNotFoundException(String.format("Post with id = %s is not found", id)));
@@ -40,6 +40,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Post addPost(Post post) {
+        log.info("Adding post");
         postRepository.save(post);
         return post;
     }
@@ -48,29 +49,41 @@ public class PostServiceImpl implements PostService {
     public void deletePost(long id) {
         Post post = getPost(id);
         Community community = post.getCommunity();
-        if(community != null) {
+        if (community != null) {
             community.setPosts(community.getPosts().stream().filter(p -> !p.getId().equals(id)).collect(Collectors.toList()));
             communityService.updateCommunity(community);
         }
         User user = post.getUser();
         user.setPosts(user.getPosts().stream().filter(p -> !p.getId().equals(id)).collect(Collectors.toList()));
         userService.updateUser(user);
+        log.info("Deleting post by id");
         postRepository.deleteById(id);
     }
 
     @Override
     public List<Post> getPostsByUser_Id(Long userId) {
-        return postRepository.getPostByUser_Id(userId);
+        List<Post> posts = postRepository.getPostByUser_Id(userId);
+        if (posts.isEmpty()) {
+            log.warn("This user has not created any posts");
+            throw new EntityNotFoundException("This user has not created any posts");
+        }
+        return posts;
     }
 
     @Override
     public Post updatePost(Post post) {
+        log.info("Updating post");
         postRepository.save(post);
         return post;
     }
 
     @Override
     public List<Post> getAllPosts() {
-        return postRepository.findAll();
+        List<Post> posts = postRepository.findAll();
+        if (posts.isEmpty()) {
+            log.warn("Post list is empty");
+            throw new EntityNotFoundException("Post list is empty");
+        }
+        return posts;
     }
 }

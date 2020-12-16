@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ReverseProfileDTOConverter implements Converter<ProfileDto, Profile> {
 
-    private UserService userService;
+    private final UserService userService;
 
     @Autowired
     public ReverseProfileDTOConverter(UserService userService) {

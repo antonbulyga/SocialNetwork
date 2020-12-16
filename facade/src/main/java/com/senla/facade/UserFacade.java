@@ -6,6 +6,7 @@ import com.senla.converters.user.UserToUserNestedDtoConverter;
 import com.senla.dto.user.UserDto;
 import com.senla.dto.user.UserNestedDto;
 import com.senla.entity.User;
+import com.senla.service.profile.ProfileService;
 import com.senla.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -20,13 +21,15 @@ public class UserFacade {
     private final UserDTOConverter userDTOConverter;
     private final ReverseUserDTOConverter reverseUserDTOConverter;
     private final UserToUserNestedDtoConverter userToUserNestedDtoConverter;
+    private final ProfileService profileService;
 
     @Autowired
-    public UserFacade(UserService userService, UserDTOConverter userDTOConverter, ReverseUserDTOConverter reverseUserDTOConverter, UserToUserNestedDtoConverter userToUserNestedDtoConverter) {
+    public UserFacade(UserService userService, UserDTOConverter userDTOConverter, ReverseUserDTOConverter reverseUserDTOConverter, UserToUserNestedDtoConverter userToUserNestedDtoConverter, ProfileService profileService) {
         this.userService = userService;
         this.userDTOConverter = userDTOConverter;
         this.reverseUserDTOConverter = reverseUserDTOConverter;
         this.userToUserNestedDtoConverter = userToUserNestedDtoConverter;
+        this.profileService = profileService;
     }
 
     public UserDto getUser(Long id) {
@@ -39,9 +42,13 @@ public class UserFacade {
     }
 
     public UserDto addUser(UserDto userDto) {
-        User user =  userService.addUser(reverseUserDTOConverter.convert(userDto));
-        UserDto userDtoWithDate = convertUserToUserDto(user);
-        return userDtoWithDate;
+        User user = userService.addUser(reverseUserDTOConverter.convert(userDto));
+        return convertUserToUserDto(user);
+    }
+
+    public UserDto addUser(User user) {
+       User newUser = userService.addUser(user);
+       return convertUserToUserDto(user);
     }
 
     public void deleteUser(Long userId) {
@@ -53,9 +60,8 @@ public class UserFacade {
     }
 
     public UserDto updateUser(UserDto userDto) {
-        User user =  userService.updateUser(reverseUserDTOConverter.convert(userDto));
-        UserDto userDtoWithDate = convertUserToUserDto(user);
-        return userDtoWithDate;
+        User user = userService.updateUser(reverseUserDTOConverter.convert(userDto));
+        return convertUserToUserDto(user);
     }
 
     public UserDto findUserByUserName(String userName) {

@@ -39,7 +39,7 @@ public class FriendshipServiceImpl implements FriendshipService {
             }
 
         } else {
-            log.error("Your request is incorrect. User one id should be less than user two id");
+            log.warn("Your request is incorrect. User one id should be less than user two id");
             throw new IncorrectRequest("Your request is incorrect. User one id should be less than user two id");
         }
 
@@ -65,7 +65,7 @@ public class FriendshipServiceImpl implements FriendshipService {
                 }
             }
         }
-        log.error("Relationship of that users already exists");
+        log.warn("Relationship of that users already exists");
         throw new IncorrectRequest("Relationship of that users already exists");
     }
 
@@ -82,7 +82,7 @@ public class FriendshipServiceImpl implements FriendshipService {
                 return createFriendship(userOne, userTwo, userTwo, FriendshipStatus.FRIEND);
             }
         }
-        log.error("Relationship of that users already exists");
+        log.warn("Relationship of that users already exists");
         throw new IncorrectRequest("Relationship of that users already exists");
     }
 
@@ -109,7 +109,7 @@ public class FriendshipServiceImpl implements FriendshipService {
                 return createFriendship(userOne, userTwo, actionUser, FriendshipStatus.DECLINED);
             }
         }
-        log.error("Relationship of that users already exists");
+        log.warn("Relationship of that users already exists");
         throw new IncorrectRequest("Relationship of that users already exists");
     }
 
@@ -122,12 +122,12 @@ public class FriendshipServiceImpl implements FriendshipService {
         List<Friendship> friendships = getAllFriendshipsForUser(actionId);
         for (Friendship f : friendships) {
             if (f.getUserOne().equals(userOne)
-                    & f.getUserTwo().equals(userTwo) & !f.getFriendshipStatus().equals(FriendshipStatus.BLOCKED) ) {
+                    & f.getUserTwo().equals(userTwo) & !f.getFriendshipStatus().equals(FriendshipStatus.BLOCKED)) {
                 friendshipRepository.blockUser(userOne, userTwo, actionUser);
                 return createFriendship(userOne, userTwo, actionUser, FriendshipStatus.BLOCKED);
             }
         }
-        log.error("Relationship of that users already exists");
+        log.warn("Relationship of that users already exists");
         throw new IncorrectRequest("Relationship of that users already exists");
     }
 
@@ -146,7 +146,7 @@ public class FriendshipServiceImpl implements FriendshipService {
                 return createFriendship(userOne, userTwo, actionUser, FriendshipStatus.DECLINED);
             }
         }
-        log.error("Relationship of that users already exists");
+        log.warn("Relationship of that users already exists");
         throw new IncorrectRequest("Relationship of that users already exists");
     }
 
@@ -155,7 +155,7 @@ public class FriendshipServiceImpl implements FriendshipService {
         User user = userService.getUser(userId);
         List<Friendship> friendships = friendshipRepository.getRequestFriendshipsForUser(user);
         if (friendships.isEmpty()) {
-            log.error("No users with that relationship. Incorrect request, try again");
+            log.warn("No users with that relationship. Incorrect request, try again");
             throw new IncorrectRequest("No users with that relationship. Incorrect request, try again");
         }
         return friendships;
@@ -165,7 +165,7 @@ public class FriendshipServiceImpl implements FriendshipService {
         User user = userService.getUser(userId);
         List<Friendship> friendships = friendshipRepository.getFriendFriendshipsForUser(user);
         if (friendships.isEmpty()) {
-            log.error("No users with that relationship. Incorrect request, try again");
+            log.warn("No users with that relationship. Incorrect request, try again");
             throw new IncorrectRequest("No users with that relationship. Incorrect request, try again");
         }
         return friendships;
@@ -175,7 +175,7 @@ public class FriendshipServiceImpl implements FriendshipService {
         User user = userService.getUser(userId);
         List<Friendship> friendships = friendshipRepository.getBlockedFriendshipsForUser(user);
         if (friendships.isEmpty()) {
-            log.error("No users with that relationship. Incorrect request, try again");
+            log.warn("No users with that relationship. Incorrect request, try again");
             throw new IncorrectRequest("No users with that relationship. Incorrect request, try again");
         }
         return friendships;
@@ -185,7 +185,7 @@ public class FriendshipServiceImpl implements FriendshipService {
         User user = userService.getUser(userId);
         List<Friendship> friendships = friendshipRepository.getAllFriendshipsForUser(user);
         if (friendships.isEmpty()) {
-            log.error("No users with that relationship. Incorrect request, try again");
+            log.warn("No users with that relationship. Incorrect request, try again");
             throw new IncorrectRequest("No users with that relationship. Incorrect request, try again");
         }
         return friendships;
@@ -193,19 +193,19 @@ public class FriendshipServiceImpl implements FriendshipService {
 
     @Override
     public Friendship declineFriendRequest(Long userOneId, Long userTwoId, Long actionId) {
-            validate(userOneId, userTwoId, actionId);
-            User userOne = userService.getUser(userOneId);
-            User userTwo = userService.getUser(userTwoId);
-            List<Friendship> friendships = getRequestFriendships(actionId);
-            for (Friendship f : friendships) {
-                if (f.getActionUser().equals(userOne) & f.getUserOne().equals(userOne)
-                        & f.getUserTwo().equals(userTwo)) {
-                    friendshipRepository.declineFriendRequest(userOne, userTwo, userTwo);
-                    return createFriendship(userOne, userTwo, userTwo, FriendshipStatus.DECLINED);
-                }
+        validate(userOneId, userTwoId, actionId);
+        User userOne = userService.getUser(userOneId);
+        User userTwo = userService.getUser(userTwoId);
+        List<Friendship> friendships = getRequestFriendships(actionId);
+        for (Friendship f : friendships) {
+            if (f.getActionUser().equals(userOne) & f.getUserOne().equals(userOne)
+                    & f.getUserTwo().equals(userTwo)) {
+                friendshipRepository.declineFriendRequest(userOne, userTwo, userTwo);
+                return createFriendship(userOne, userTwo, userTwo, FriendshipStatus.DECLINED);
             }
-            log.error("Relationship of that users already exists");
-            throw new IncorrectRequest("Relationship of that users already exists");
+        }
+        log.warn("Relationship of that users already exists");
+        throw new IncorrectRequest("Relationship of that users already exists");
     }
 
     private Friendship createFriendship(User userOne, User userTwo, User actionUser, FriendshipStatus status) {

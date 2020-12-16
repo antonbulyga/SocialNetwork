@@ -40,7 +40,7 @@ public class LikeRepositoryTest {
         entityManager.persist(like);
         entityManager.flush();
         List<Like> result = likeRepository.findAll();
-        assertEquals(1,result.size());
+        assertEquals(1, result.size());
     }
 
     @Test

@@ -1,7 +1,6 @@
 package com.senla.service.like;
 
 import com.senla.entity.Like;
-import com.senla.entity.Post;
 
 import java.util.List;
 

@@ -15,6 +15,6 @@ public class MessageByLocaleServiceImpl implements MessageByLocaleService {
     @Override
     public String getMessage(String id) {
         Locale locale = LocaleContextHolder.getLocale();
-        return messageSource.getMessage(id,null,locale);
+        return messageSource.getMessage(id, null, locale);
     }
 }

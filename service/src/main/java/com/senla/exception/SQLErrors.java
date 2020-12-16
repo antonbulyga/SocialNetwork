@@ -1,9 +1,5 @@
 package com.senla.exception;
 
-import org.springframework.http.HttpStatus;
-
-import java.util.List;
-
 public class SQLErrors extends RuntimeException {
     public SQLErrors() {
     }

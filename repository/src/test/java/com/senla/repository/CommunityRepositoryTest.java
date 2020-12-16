@@ -31,28 +31,31 @@ public class CommunityRepositoryTest {
     private CommunityRepository communityRepository;
 
 
-       @Test
-        public void findByCommunityName_Success() {
-           Community community = new Community();
-           community.setName("Group test");
-           entityManager.persist(community);
-           entityManager.flush();
-           Community found = communityRepository.getCommunityByName(community.getName());
-           assertEquals(found.getName(),community.getName());
-        }
+    @Test
+    public void findByCommunityName_Success() {
+        Community community = new Community();
+        community.setName("Group test");
+        entityManager.persist(community);
+        entityManager.flush();
+        Community found = communityRepository.getCommunityByName(community.getName());
+        assertEquals(found.getName(), community.getName());
+    }
 
-        @Test
-        public void getCommunitiesByAdminUser_Id_Success() {
-            Community community = new Community();
-            community.setName("Group test");
-            User user = new User();
-            user.setUserName("Anton");
-            user.setCreationTime(LocalDateTime.now());
-            community.setAdminUser(user);
-            entityManager.persist(community);
-            List<Community> communities = communityRepository.getCommunitiesByAdminUser_Id(1L);
-            assertEquals(1,communities.size());
-        }
+    @Test
+    public void getCommunitiesByAdminUser_Id_Success() {
+        Community community = new Community();
+        community.setName("Group test");
+        User user = new User();
+        user.setUserName("Anton");
+        user.setCreationTime(LocalDateTime.now());
+        entityManager.persist(user);
+        entityManager.flush();
+        community.setAdminUser(user);
+        entityManager.persist(community);
+        entityManager.flush();
+        List<Community> communities = communityRepository.getCommunitiesByAdminUser_Id(1L);
+        assertEquals(1, communities.size());
+    }
 
     @Test
     public void findAll_Success() {
@@ -61,7 +64,7 @@ public class CommunityRepositoryTest {
         entityManager.persist(community);
         entityManager.flush();
         List<Community> result = communityRepository.findAll();
-        assertEquals(1,result.size());
+        assertEquals(1, result.size());
     }
 
     @Test

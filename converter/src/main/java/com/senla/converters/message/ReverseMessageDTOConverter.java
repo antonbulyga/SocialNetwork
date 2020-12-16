@@ -13,8 +13,8 @@ import java.time.LocalDateTime;
 @Component
 public class ReverseMessageDTOConverter implements Converter<MessageDto, Message> {
 
-    private UserService userService;
-    private DialogService dialogService;
+    private final UserService userService;
+    private final DialogService dialogService;
 
     @Autowired
     public ReverseMessageDTOConverter(UserService userService, DialogService dialogService) {

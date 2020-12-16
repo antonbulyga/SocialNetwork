@@ -34,7 +34,7 @@ public class ProfileRepositoryTest {
         entityManager.persist(profile);
         entityManager.flush();
         List<Profile> result = profileRepository.findAll();
-        assertEquals(1,result.size());
+        assertEquals(1, result.size());
     }
 
     @Test

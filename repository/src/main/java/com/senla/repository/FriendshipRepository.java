@@ -2,7 +2,6 @@ package com.senla.repository;
 
 import com.senla.entity.Friendship;
 import com.senla.entity.User;
-import com.senla.enumeration.FriendshipStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;

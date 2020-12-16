@@ -1,7 +1,6 @@
 package com.senla.service;
 
 import com.senla.entity.Dialog;
-import com.senla.entity.User;
 import com.senla.repository.DialogRepository;
 import com.senla.service.dialog.DialogService;
 import com.senla.service.dialog.DialogServiceImpl;
@@ -13,7 +12,6 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.test.context.ContextConfiguration;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -28,7 +26,6 @@ import static org.mockito.Mockito.*;
 
 @RunWith(MockitoJUnitRunner.class)
 @EnableAutoConfiguration
-@ContextConfiguration(classes = ConfigurationServiceTest.class)
 public class DialogServiceTest {
 
     private DialogService dialogService;
@@ -40,7 +37,7 @@ public class DialogServiceTest {
     private UserService userService;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         dialogService = new DialogServiceImpl(dialogRepository, userService);
     }
 
@@ -87,7 +84,7 @@ public class DialogServiceTest {
     }
 
     @Test
-    public void shouldBeDelete(){
+    public void shouldBeDelete() {
         when(dialogRepository.findById(dialog.getId())).thenReturn(Optional.of(dialog));
         dialogService.deleteDialog(dialogId);
         verify(dialogRepository, times(1)).deleteById(dialog.getId());

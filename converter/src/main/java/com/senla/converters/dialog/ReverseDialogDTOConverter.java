@@ -14,8 +14,8 @@ import java.util.stream.Collectors;
 @Component
 public class ReverseDialogDTOConverter implements Converter<DialogDto, Dialog> {
 
-    private MessageService messageService;
-    private UserService userService;
+    private final MessageService messageService;
+    private final UserService userService;
 
     @Autowired
     public ReverseDialogDTOConverter(MessageService messageService, UserService userService) {

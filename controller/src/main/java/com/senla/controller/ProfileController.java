@@ -38,6 +38,7 @@ public class ProfileController {
 
     /**
      * View own profile
+     *
      * @return profile dto
      */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
@@ -52,6 +53,7 @@ public class ProfileController {
 
     /**
      * Get all profiles
+     *
      * @return dto profile list
      */
     @Secured({"ROLE_USER", "ROLE_ADMIN", "ROLE_GUEST"})
@@ -62,8 +64,18 @@ public class ProfileController {
         return new ResponseEntity<>(dtoList, HttpStatus.OK);
     }
 
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
+    @PostMapping(value = "/add")
+    public ResponseEntity<ProfileDto> addProfile(@Valid @RequestBody ProfileDto profileDto) {
+            profileFacade.addProfile(profileDto);
+            log.info("You have added profile successfully");
+            return new ResponseEntity<>(profileDto, HttpStatus.OK);
+    }
+
+
     /**
      * Update profile
+     *
      * @param profileDto profile dto
      * @return profile dto
      */
@@ -87,6 +99,7 @@ public class ProfileController {
 
     /**
      * Find profile by city
+     *
      * @param city city name
      * @return dto profile list
      */
@@ -99,6 +112,7 @@ public class ProfileController {
 
     /**
      * Find profile by country
+     *
      * @param country country name
      * @return dto profile list
      */
@@ -111,6 +125,7 @@ public class ProfileController {
 
     /**
      * Find profile by the first name
+     *
      * @param firstName
      * @return dto profile list
      */
@@ -123,6 +138,7 @@ public class ProfileController {
 
     /**
      * Find profile by the last name
+     *
      * @param lastName
      * @return dto profile list
      */
@@ -135,6 +151,7 @@ public class ProfileController {
 
     /**
      * Find profile by the full name
+     *
      * @param firstName
      * @param lastName
      * @return profile dto
@@ -148,6 +165,7 @@ public class ProfileController {
 
     /**
      * Find profile by gender
+     *
      * @param genderString
      * @return dto profile list
      */
@@ -161,6 +179,7 @@ public class ProfileController {
 
     /**
      * Find profile by id
+     *
      * @param profileId
      * @return profile dto
      */

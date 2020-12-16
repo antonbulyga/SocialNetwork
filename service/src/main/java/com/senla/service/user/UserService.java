@@ -15,13 +15,13 @@ public interface UserService {
 
     List<User> getAllUsers();
 
-    User getUserById(long userId);
+    User getUserById(Long userId);
 
     User getUser(Long id);
 
     User findUserByUserName(String userName);
 
-    User changeUserPassword(String newPassword, long userId);
+    User changeUserPassword(String newPassword, Long userId);
 
     User getUserFromSecurityContext();
 }

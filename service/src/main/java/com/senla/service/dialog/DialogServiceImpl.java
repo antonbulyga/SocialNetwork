@@ -1,6 +1,5 @@
 package com.senla.service.dialog;
 
-
 import com.senla.entity.Dialog;
 import com.senla.entity.User;
 import com.senla.exception.EntityNotFoundException;
@@ -29,6 +28,7 @@ public class DialogServiceImpl implements DialogService {
 
 
     public Dialog getDialog(Long id) {
+        log.info("Getting dialog by id");
         return dialogRepository.findById(id)
                 .orElseThrow(() ->
                         new EntityNotFoundException(String.format("Dialog with id = %s is not found", id)));
@@ -36,6 +36,7 @@ public class DialogServiceImpl implements DialogService {
 
     @Override
     public Dialog addDialog(Dialog dialog) {
+        log.info("Adding dialog");
         dialogRepository.save(dialog);
         return dialog;
     }
@@ -43,23 +44,31 @@ public class DialogServiceImpl implements DialogService {
     @Override
     public void deleteDialog(long id) {
         getDialog(id);
+        log.info("Deleting dialog");
         dialogRepository.deleteById(id);
     }
 
     @Override
     public Dialog getDialogByName(String name) {
-        return dialogRepository.getDialogByName(name);
+        log.info("Getting dialog by name");
+        Dialog dialog = dialogRepository.getDialogByName(name);
+        if (dialog == null) {
+            throw new EntityNotFoundException("No dialog with this name");
+        }
+        return dialog;
     }
 
 
     @Override
     public Dialog updateDialog(Dialog dialog) {
+        log.info("Updating dialog");
         dialogRepository.save(dialog);
         return dialog;
     }
 
     @Override
     public List<Dialog> getAllDialogs() {
+        log.info("Getting all dialog");
         return dialogRepository.findAll();
     }
 
@@ -69,6 +78,7 @@ public class DialogServiceImpl implements DialogService {
         User user = userService.getUser(userId);
         List<User> users = dialog.getUserList();
         users.add(user);
+        log.info("Adding user to the dialog");
         updateDialog(dialog);
         return dialog;
     }
@@ -79,6 +89,7 @@ public class DialogServiceImpl implements DialogService {
         User user = userService.getUser(userId);
         List<User> users = dialog.getUserList();
         users.remove(user);
+        log.info("Deleting user from the dialog");
         updateDialog(dialog);
         return dialog;
     }

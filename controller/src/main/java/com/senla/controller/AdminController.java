@@ -9,7 +9,9 @@ import com.senla.dto.post.PostDto;
 import com.senla.dto.profile.ProfileDto;
 import com.senla.dto.role.RoleDto;
 import com.senla.dto.user.UserDto;
-import com.senla.entity.*;
+import com.senla.entity.Friendship;
+import com.senla.entity.Profile;
+import com.senla.entity.User;
 import com.senla.exception.RestError;
 import com.senla.facade.*;
 import lombok.extern.slf4j.Slf4j;
@@ -119,6 +121,13 @@ public class AdminController {
         UserDto userDto = userFacade.findUserByEmail(email);
         log.info("Finding user by email as admin");
         return new ResponseEntity<>(userDto, HttpStatus.OK);
+    }
+
+    @Secured("ROLE_ADMIN")
+    @PutMapping("/users/update")
+    public ResponseEntity<UserDto> updateUser(@Valid @RequestBody UserDto userDto) {
+        UserDto userDtoWithDate = userFacade.updateUser(userDto);
+        return new ResponseEntity<>(userDtoWithDate, HttpStatus.OK);
     }
 
     /**
@@ -521,7 +530,8 @@ public class AdminController {
 
     /**
      * Add user to the community as admin
-     * @param userId user id
+     *
+     * @param userId      user id
      * @param communityId community id
      * @return community dto
      */
@@ -535,7 +545,8 @@ public class AdminController {
 
     /**
      * Delete user from the community
-     * @param userId user id
+     *
+     * @param userId      user id
      * @param communityId community id
      * @return
      */
@@ -550,11 +561,12 @@ public class AdminController {
 
     /**
      * Update community
+     *
      * @param communityDto community dto
      * @return community dto
      */
     @Secured("ROLE_ADMIN")
-    @PutMapping(value = "/community/update")
+    @PutMapping(value = "/communities/update")
     public ResponseEntity<CommunityDto> updateCommunity(@Valid @RequestBody CommunityDto communityDto) {
         communityFacade.updateCommunity(communityDto);
         log.info("Updating community");
@@ -568,7 +580,7 @@ public class AdminController {
      * @return string
      */
     @Secured("ROLE_ADMIN")
-    @DeleteMapping(value = "/community/delete")
+    @DeleteMapping(value = "/communities/delete")
     public ResponseEntity<String> deleteCommunityAsAdmin(@RequestParam(name = "id") long id) {
         communityFacade.deleteCommunity(id);
         log.info("Deleting community as admin");

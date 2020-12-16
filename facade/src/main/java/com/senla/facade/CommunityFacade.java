@@ -31,6 +31,11 @@ public class CommunityFacade {
         return communityDto;
     }
 
+    public CommunityDto addCommunity(Community community) {
+        communityService.addCommunity(community);
+        return communityDTOConverter.convert(community);
+    }
+
     public void deleteCommunity(long id) {
         communityService.deleteCommunity(id);
     }
@@ -47,8 +52,8 @@ public class CommunityFacade {
     }
 
     public CommunityDto addUserToCommunity(Long communityId, Long userId) {
-       Community community = communityService.addUserToCommunity(communityId, userId);
-       return communityDTOConverter.convert(community);
+        Community community = communityService.addUserToCommunity(communityId, userId);
+        return communityDTOConverter.convert(community);
     }
 
     public void removeUserFromCommunity(Long communityId, Long userId) {

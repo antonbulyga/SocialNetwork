@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 @Component
 public class ReverseRoleDTOConverter implements Converter<RoleDto, Role> {
 
-    private UserService userService;
+    private final UserService userService;
 
     @Autowired
     public ReverseRoleDTOConverter(UserService userService) {

@@ -35,7 +35,7 @@ public class DialogRepositoryTest {
         entityManager.persist(dialog);
         entityManager.flush();
         Dialog found = dialogRepository.getDialogByName(dialog.getName());
-        assertEquals(found.getName(),dialog.getName());
+        assertEquals(found.getName(), dialog.getName());
     }
 
     @Test
@@ -45,7 +45,7 @@ public class DialogRepositoryTest {
         entityManager.persist(dialog);
         entityManager.flush();
         List<Dialog> result = dialogRepository.findAll();
-        assertEquals(1,result.size());
+        assertEquals(1, result.size());
     }
 
     @Test

@@ -27,8 +27,7 @@ public class MessageFacade {
 
     public MessageDto addMessage(MessageDto messageDto) {
         Message message = messageService.addMessage(reverseMessageDTOConverter.convert(messageDto));
-        MessageDto messageDtoWithDate = messageDTOConverter.convert(message);
-        return messageDtoWithDate;
+        return messageDTOConverter.convert(message);
     }
 
     public void deleteMessage(long id) {
@@ -37,8 +36,7 @@ public class MessageFacade {
 
     public MessageDto updateMessage(MessageDto messageDto) {
         Message message = messageService.updateMessage(reverseMessageDTOConverter.convert(messageDto));
-        MessageDto messageDtoWithDate = messageDTOConverter.convert(message);
-        return messageDtoWithDate;
+        return messageDTOConverter.convert(message);
     }
 
     public List<MessageDto> getAllMessages() {

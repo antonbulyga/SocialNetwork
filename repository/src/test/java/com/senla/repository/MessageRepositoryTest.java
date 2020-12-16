@@ -1,8 +1,6 @@
 package com.senla.repository;
 
-import com.senla.entity.Dialog;
 import com.senla.entity.Message;
-import com.senla.entity.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +10,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
@@ -36,7 +33,7 @@ public class MessageRepositoryTest {
         entityManager.persist(message);
         entityManager.flush();
         List<Message> result = messageRepository.findAll();
-        assertEquals(1,result.size());
+        assertEquals(1, result.size());
     }
 
     @Test
@@ -47,26 +44,6 @@ public class MessageRepositoryTest {
         entityManager.flush();
         Message result = messageRepository.findById(message.getId()).orElse(null);
         assertEquals(message, result);
-    }
-
-    @Test
-    public void getMessagesByDialog_Id_Success() {
-        User user = new User();
-        user.setUserName("Nikolai");
-        user.setCreationTime(LocalDateTime.now());
-        entityManager.persist(user);
-        Dialog dialog = new Dialog();
-        dialog.setName("Test 1");
-        dialog.setTimeCreation(LocalDateTime.now());
-        entityManager.persist(dialog);
-        Message message = new Message();
-        message.setMessage("Test");
-        message.setDialog(dialog);
-        message.setUser(user);
-        entityManager.persist(message);
-        entityManager.flush();
-        List<Message> messages = messageRepository.getMessagesByDialog_Id(1L);
-        assertEquals(1,messages.size());
     }
 
     @Test

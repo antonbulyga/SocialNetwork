@@ -3,6 +3,7 @@ package com.senla.converters.user;
 
 import com.senla.dto.user.UserDto;
 import com.senla.entity.Community;
+import com.senla.entity.Profile;
 import com.senla.entity.User;
 import com.senla.service.community.CommunityService;
 import com.senla.service.dialog.DialogService;
@@ -22,13 +23,13 @@ import java.util.stream.Collectors;
 @Component
 public class ReverseUserDTOConverter implements Converter<UserDto, User> {
 
-    private CommunityService communityService;
-    private PostService postService;
-    private ProfileService profileService;
-    private RoleService roleService;
-    private LikeService likeService;
-    private MessageService messageService;
-    private DialogService dialogService;
+    private final CommunityService communityService;
+    private final PostService postService;
+    private final ProfileService profileService;
+    private final RoleService roleService;
+    private final LikeService likeService;
+    private final MessageService messageService;
+    private final DialogService dialogService;
 
     @Autowired
     public ReverseUserDTOConverter(CommunityService communityService, PostService postService, ProfileService profileService,
@@ -46,6 +47,7 @@ public class ReverseUserDTOConverter implements Converter<UserDto, User> {
     @Override
     public User convert(UserDto userDto) {
         Community community = null;
+        Profile profile = null;
         return User.builder()
                 .id(userDto.getId())
                 .creationTime(LocalDateTime.now())
@@ -53,9 +55,9 @@ public class ReverseUserDTOConverter implements Converter<UserDto, User> {
                 .password(userDto.getPassword())
                 .userName(userDto.getUserName())
                 .communities(userDto.getCommunities().stream().map(c -> communityService.getCommunity(c.getId())).collect(Collectors.toList()))
-                .community(userDto.getCommunity() == null ? community : communityService.getCommunity(userDto.getCommunity().getId()))
+                .communitiesWhereUserAdmin(userDto.getCommunitiesWhereUserAdmin().stream().map(c -> communityService.getCommunity(c.getId())).collect(Collectors.toList()))
                 .likes(userDto.getLikes().stream().map(l -> likeService.getLike(l.getId())).collect(Collectors.toList()))
-                .profile(profileService.getProfile(userDto.getProfile().getId()))
+                .profile(userDto.getProfile() == null ? profile : profileService.getProfile(userDto.getProfile().getId()))
                 .messages(userDto.getMessages().stream().map(m -> messageService.getMessage(m.getId())).collect(Collectors.toList()))
                 .posts(userDto.getPosts().stream().map(p -> postService.getPost(p.getId())).collect(Collectors.toList()))
                 .roles(userDto.getRoles().stream().map(r -> roleService.getRoleByName(r.getName())).collect(Collectors.toSet()))

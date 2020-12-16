@@ -40,6 +40,7 @@ public class DialogController {
 
     /**
      * Get all dialogs of the user
+     *
      * @return list of dialog dto
      */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
@@ -54,6 +55,7 @@ public class DialogController {
 
     /**
      * Add dialog
+     *
      * @param dialogDto dialog dto
      * @return dialog dto
      */
@@ -67,6 +69,7 @@ public class DialogController {
 
     /**
      * Delete dialog
+     *
      * @param id dialog id
      * @return string response
      */
@@ -91,6 +94,7 @@ public class DialogController {
 
     /**
      * Get dialog by id
+     *
      * @param id dialog id
      * @return dialog dto
      */
@@ -112,6 +116,7 @@ public class DialogController {
 
     /**
      * Update dialog
+     *
      * @param dialogDto dialog dto
      * @return dialog dto
      */
@@ -134,6 +139,7 @@ public class DialogController {
 
     /**
      * Get dialog by name
+     *
      * @param name dialog name
      * @return dialog dto
      */
@@ -156,8 +162,9 @@ public class DialogController {
 
     /**
      * Add user to the dialog
+     *
      * @param dialogId dialog id
-     * @param userId user id
+     * @param userId   user id
      * @return dialog dto
      */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
@@ -180,8 +187,9 @@ public class DialogController {
 
     /**
      * Delete user from the dialog
+     *
      * @param dialogId dialog id
-     * @param userId user id
+     * @param userId   user id
      * @return dialog dto
      */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})

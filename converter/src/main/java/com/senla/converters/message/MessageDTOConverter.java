@@ -12,8 +12,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class MessageDTOConverter implements Converter<Message, MessageDto> {
 
-    private UserToUserNestedDtoConverter userToUserNestedDtoConverter;
-    private DialogToDialogForMessageAndUserDtoConverter dialogToDialogForMessageAndUserDtoConverter;
+    private final UserToUserNestedDtoConverter userToUserNestedDtoConverter;
+    private final DialogToDialogForMessageAndUserDtoConverter dialogToDialogForMessageAndUserDtoConverter;
 
     @Autowired
     public MessageDTOConverter(UserToUserNestedDtoConverter userToUserNestedDtoConverter, DialogToDialogForMessageAndUserDtoConverter dialogToDialogForMessageAndUserDtoConverter) {

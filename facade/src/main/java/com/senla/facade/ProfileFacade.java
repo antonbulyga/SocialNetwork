@@ -34,15 +34,6 @@ public class ProfileFacade {
         return profileDto;
     }
 
-    public ProfileDto addProfile(ProfileForUserDto profileForUserDto) {
-       Profile profile = profileService.addProfile(profileForUserDtoToProfile.convert(profileForUserDto));
-        return profileDTOConverter.convert(profile);
-    }
-
-    public void deleteProfiles(Long id) {
-        profileService.deleteProfile(id);
-    }
-
     public ProfileDto updateProfile(ProfileDto profileDto) {
         profileService.updateProfile(reverseProfileDTOConverter.convert(profileDto));
         return profileDto;
@@ -79,7 +70,7 @@ public class ProfileFacade {
 
 
     public List<ProfileDto> findProfileByGender(Enum gender) {
-        List<Profile> profiles = profileService.findProfileByGender(gender);
+        List<Profile> profiles = profileService.findProfilesByGender(gender);
         return profiles.stream().map(profileDTOConverter::convert).collect(Collectors.toList());
     }
 

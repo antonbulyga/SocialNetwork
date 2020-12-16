@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class ProfileDTOConverter implements Converter<Profile, ProfileDto> {
 
-    private UserToUserNestedDtoConverter userToUserNestedDtoConverter;
+    private final UserToUserNestedDtoConverter userToUserNestedDtoConverter;
 
     @Autowired
     public ProfileDTOConverter(UserToUserNestedDtoConverter userToUserNestedDtoConverter) {

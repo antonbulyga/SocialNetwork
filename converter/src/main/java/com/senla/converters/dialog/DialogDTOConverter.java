@@ -13,8 +13,8 @@ import java.util.stream.Collectors;
 @Component
 public class DialogDTOConverter implements Converter<Dialog, DialogDto> {
 
-    private MessageToMessageForListDtoConverter messageToMessageForListDtoConverter;
-    private UserToUserNestedDtoConverter userToUserNestedDtoConverter;
+    private final MessageToMessageForListDtoConverter messageToMessageForListDtoConverter;
+    private final UserToUserNestedDtoConverter userToUserNestedDtoConverter;
 
     @Autowired
     public DialogDTOConverter(MessageToMessageForListDtoConverter messageToMessageForListDtoConverter, UserToUserNestedDtoConverter userToUserNestedDtoConverter) {

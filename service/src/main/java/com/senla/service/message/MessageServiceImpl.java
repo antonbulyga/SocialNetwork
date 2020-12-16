@@ -33,6 +33,7 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public Message addMessage(Message message) {
+        log.info("Adding the message");
         messageRepository.save(message);
         return message;
     }
@@ -48,21 +49,33 @@ public class MessageServiceImpl implements MessageService {
         dialog.setMessages(dialog.getMessages().stream().filter(mess -> !mess.getId().equals(id))
                 .collect(Collectors.toList()));
         dialogService.updateDialog(dialog);
+        log.info("Deleting message by id");
         messageRepository.deleteById(id);
     }
 
     @Override
     public List<Message> getAllMessages() {
-        return messageRepository.findAll();
+        List<Message> messages = messageRepository.findAll();
+        if(messages.isEmpty()){
+            log.warn("Message list is empty");
+            throw new EntityNotFoundException("Message list is empty");
+        }
+        return messages;
     }
 
     @Override
     public List<Message> getMessagesByDialog_Id(Long dialogId) {
-        return messageRepository.getMessagesByDialog_Id(dialogId);
+        List<Message> messages = messageRepository.getMessagesByDialog_Id(dialogId);
+        if(messages.isEmpty()){
+            log.warn("No messages found in the dialog");
+            throw new EntityNotFoundException("No messages found in the dialog");
+        }
+        return messages;
     }
 
     @Override
     public Message getMessage(Long id) {
+        log.info("Getting message by id");
         return messageRepository.findById(id)
                 .orElseThrow(() ->
                         new EntityNotFoundException(String.format("Message with id = %s is not found", id)));
@@ -70,6 +83,7 @@ public class MessageServiceImpl implements MessageService {
 
     @Override
     public Message updateMessage(Message message) {
+        log.info("Updating message");
         messageRepository.save(message);
         return message;
     }

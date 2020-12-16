@@ -5,7 +5,6 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import java.util.List;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -30,9 +29,7 @@ public class Community {
     @Column(name = "name")
     private String name;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = {
-            CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH
-    })
+    @ManyToOne(targetEntity = User.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "admin_id", referencedColumnName = "id")
     private User adminUser;
 

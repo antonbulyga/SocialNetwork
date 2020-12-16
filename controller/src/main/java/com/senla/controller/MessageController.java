@@ -43,6 +43,7 @@ public class MessageController {
 
     /**
      * Get all messages from all dialogs where user participate
+     *
      * @return list of the message dto
      */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
@@ -55,6 +56,7 @@ public class MessageController {
 
     /**
      * Add message to the dialog
+     *
      * @param messageDto message dto
      * @return message dto
      */
@@ -84,6 +86,7 @@ public class MessageController {
 
     /**
      * Delete message
+     *
      * @param id message id
      * @return string response
      */
@@ -106,6 +109,7 @@ public class MessageController {
 
     /**
      * Update message
+     *
      * @param messageDto message dto
      * @return message dto
      */
@@ -129,6 +133,7 @@ public class MessageController {
 
     /**
      * Get list of message by dialog id
+     *
      * @param id dialog id
      * @return list of the message id
      */
@@ -156,6 +161,7 @@ public class MessageController {
 
     /**
      * Get message by id
+     *
      * @param messageId message id
      * @return message dto
      */

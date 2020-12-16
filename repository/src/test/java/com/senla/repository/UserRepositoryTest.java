@@ -1,6 +1,5 @@
 package com.senla.repository;
 
-import com.senla.entity.Profile;
 import com.senla.entity.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -36,7 +35,7 @@ public class UserRepositoryTest {
         entityManager.persist(user);
         entityManager.flush();
         List<User> result = userRepository.findAll();
-        assertEquals(1,result.size());
+        assertEquals(1, result.size());
     }
 
     @Test

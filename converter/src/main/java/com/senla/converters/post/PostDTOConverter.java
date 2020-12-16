@@ -1,9 +1,8 @@
 
 package com.senla.converters.post;
 
-import com.senla.converters.user.UserToUserNestedDtoConverter;
 import com.senla.converters.community.CommunityToCommunityForUserDtoConverter;
-import com.senla.converters.like.LikeToLikeForPostAndUserDtoConverter;
+import com.senla.converters.user.UserToUserNestedDtoConverter;
 import com.senla.dto.community.CommunityForUserDto;
 import com.senla.dto.post.PostDto;
 import com.senla.entity.Post;
@@ -14,16 +13,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class PostDTOConverter implements Converter<Post, PostDto> {
 
-    private CommunityToCommunityForUserDtoConverter communityToCommunityForUserDtoConverter;
-    private UserToUserNestedDtoConverter userToUserNestedDtoConverter;
-    private LikeToLikeForPostAndUserDtoConverter likeToLikeForPostAndUserDtoConverter;
+    private final CommunityToCommunityForUserDtoConverter communityToCommunityForUserDtoConverter;
+    private final UserToUserNestedDtoConverter userToUserNestedDtoConverter;
 
     @Autowired
     public PostDTOConverter(CommunityToCommunityForUserDtoConverter communityToCommunityForUserDtoConverter,
-                            UserToUserNestedDtoConverter userToUserNestedDtoConverter, LikeToLikeForPostAndUserDtoConverter likeToLikeForPostAndUserDtoConverter) {
+                            UserToUserNestedDtoConverter userToUserNestedDtoConverter) {
         this.communityToCommunityForUserDtoConverter = communityToCommunityForUserDtoConverter;
         this.userToUserNestedDtoConverter = userToUserNestedDtoConverter;
-        this.likeToLikeForPostAndUserDtoConverter = likeToLikeForPostAndUserDtoConverter;
     }
 
     @Override

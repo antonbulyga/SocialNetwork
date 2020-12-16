@@ -2,13 +2,9 @@ package com.senla.entity;
 
 import com.senla.enumeration.Gender;
 import lombok.*;
-import org.hibernate.annotations.Formula;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Getter
 @Setter

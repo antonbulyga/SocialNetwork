@@ -1,7 +1,6 @@
 package com.senla.service.dialog;
 
 import com.senla.entity.Dialog;
-import com.senla.entity.User;
 
 import java.util.List;
 

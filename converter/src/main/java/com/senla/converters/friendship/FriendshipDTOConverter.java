@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class FriendshipDTOConverter implements Converter<Friendship, FriendshipDto> {
 
-    private UserToUserNestedDtoConverter userToUserNestedDtoConverter;
+    private final UserToUserNestedDtoConverter userToUserNestedDtoConverter;
 
     @Autowired
     public FriendshipDTOConverter(UserToUserNestedDtoConverter userToUserNestedDtoConverter) {

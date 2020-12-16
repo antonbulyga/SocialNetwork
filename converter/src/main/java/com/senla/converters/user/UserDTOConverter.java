@@ -20,13 +20,13 @@ import java.util.stream.Collectors;
 @Component
 public class UserDTOConverter implements Converter<User, UserDto> {
 
-    private PostToPostForUserAndCommunityDtoConverter postToPostForUserAndCommunityDtoConverter;
-    private CommunityToCommunityForUserDtoConverter communityToCommunityForUserDtoConverter;
-    private MessageToMessageForListDtoConverter messageToMessageForListDtoConverter;
-    private LikeToLikeForPostAndUserDtoConverter likeToLikeForPostAndUserDtoConverter;
-    private RoleToRoleForProfileDtoConverter roleToRoleForProfileDtoConverter;
-    private ProfileToProfileForUserDtoConverter profileToProfileForUserDtoConverter;
-    private DialogToDialogForMessageAndUserDtoConverter dialogToDialogForMessageAndUserDtoConverter;
+    private final PostToPostForUserAndCommunityDtoConverter postToPostForUserAndCommunityDtoConverter;
+    private final CommunityToCommunityForUserDtoConverter communityToCommunityForUserDtoConverter;
+    private final MessageToMessageForListDtoConverter messageToMessageForListDtoConverter;
+    private final LikeToLikeForPostAndUserDtoConverter likeToLikeForPostAndUserDtoConverter;
+    private final RoleToRoleForProfileDtoConverter roleToRoleForProfileDtoConverter;
+    private final ProfileToProfileForUserDtoConverter profileToProfileForUserDtoConverter;
+    private final DialogToDialogForMessageAndUserDtoConverter dialogToDialogForMessageAndUserDtoConverter;
 
     @Autowired
     public UserDTOConverter(PostToPostForUserAndCommunityDtoConverter postToPostForUserAndCommunityDtoConverter, CommunityToCommunityForUserDtoConverter communityToCommunityForUserDtoConverter,
@@ -61,7 +61,7 @@ public class UserDTOConverter implements Converter<User, UserDto> {
                 .messages(user.getMessages().stream().map(m -> messageToMessageForListDtoConverter.convert(m)).collect(Collectors.toList()))
                 .likes(user.getLikes().stream().map(l -> likeToLikeForPostAndUserDtoConverter.convert(l)).collect(Collectors.toList()))
                 .creationTime(user.getCreationTime())
-                .community(user.getCommunity() == null ? community : communityToCommunityForUserDtoConverter.convert(user.getCommunity()))
+                .communitiesWhereUserAdmin(user.getCommunitiesWhereUserAdmin().stream().map(c -> communityToCommunityForUserDtoConverter.convert(c)).collect(Collectors.toList()))
                 .dialogs(user.getDialogs().stream().map(d -> dialogToDialogForMessageAndUserDtoConverter.convert(d)).collect(Collectors.toList()))
                 .build();
     }

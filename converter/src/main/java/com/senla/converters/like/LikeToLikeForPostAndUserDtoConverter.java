@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class LikeToLikeForPostAndUserDtoConverter implements Converter<Like, LikeForPostAndUserDto> {
 
-    private UserToUserNestedDtoConverter userToUserNestedDtoConverter;
+    private final UserToUserNestedDtoConverter userToUserNestedDtoConverter;
 
     @Autowired
     public LikeToLikeForPostAndUserDtoConverter(UserToUserNestedDtoConverter userToUserNestedDtoConverter) {

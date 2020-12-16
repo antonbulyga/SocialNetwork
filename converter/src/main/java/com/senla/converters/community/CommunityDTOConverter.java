@@ -14,8 +14,8 @@ import java.util.stream.Collectors;
 @Component
 public class CommunityDTOConverter implements Converter<Community, CommunityDto> {
 
-    private UserToUserNestedDtoConverter userToUserNestedDtoConverter;
-    private PostToPostForUserAndCommunityDtoConverter postToPostForUserAndCommunityDtoConverter;
+    private final UserToUserNestedDtoConverter userToUserNestedDtoConverter;
+    private final PostToPostForUserAndCommunityDtoConverter postToPostForUserAndCommunityDtoConverter;
 
     @Autowired
     public CommunityDTOConverter(UserToUserNestedDtoConverter userToUserNestedDtoConverter, PostToPostForUserAndCommunityDtoConverter postToPostForUserAndCommunityDtoConverter) {

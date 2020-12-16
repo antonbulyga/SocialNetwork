@@ -44,6 +44,7 @@ public class AuthenticationController {
 
     /**
      * Login
+     *
      * @param requestDto request dto
      * @return response as a string
      */
@@ -71,6 +72,7 @@ public class AuthenticationController {
 
     /**
      * Log out
+     *
      * @param authorization authorization number
      * @return response as a string
      */

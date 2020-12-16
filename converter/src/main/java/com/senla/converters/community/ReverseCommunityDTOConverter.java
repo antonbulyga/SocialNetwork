@@ -13,8 +13,8 @@ import java.util.stream.Collectors;
 @Component
 public class ReverseCommunityDTOConverter implements Converter<CommunityDto, Community> {
 
-    private UserService userService;
-    private PostService postService;
+    private final UserService userService;
+    private final PostService postService;
 
     @Autowired
     public ReverseCommunityDTOConverter(UserService userService, PostService postService) {

@@ -7,8 +7,6 @@ import java.util.List;
 public interface ProfileService {
     Profile addProfile(Profile profile);
 
-    void deleteProfile(Long id);
-
     Profile updateProfile(Profile profile);
 
     List<Profile> getAllProfiles();
@@ -23,9 +21,11 @@ public interface ProfileService {
 
     Profile findProfileByFirstNameAndLastName(String firstName, String LastName);
 
-    List<Profile> findProfileByGender(Enum gender);
+    List<Profile> findProfilesByGender(Enum gender);
 
     Profile getProfile(Long id);
 
     Profile findProfileByUser_Id(Long userId);
+
+    void deleteProfile(Long profileId);
 }

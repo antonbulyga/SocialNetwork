@@ -252,15 +252,15 @@ public class FriendshipController {
         List<UserNestedDto> friendsListOfUser;
         List<Friendship> friendshipList = friendshipFacade.getFriendFriendshipsForUser(userId);
         log.info("Getting friends list of user");
-            friendsListOfUser = friendshipList.stream()
-                    .map(f -> {
-                        if(!user.getId().equals(userId)){
-                            return f.getUserOne();
-                        }
-                        return f.getUserTwo();
-                    })
-                    .map(userFacade::convertToUserNestedDto)
-                    .collect(Collectors.toList());
+        friendsListOfUser = friendshipList.stream()
+                .map(f -> {
+                    if (!user.getId().equals(userId)) {
+                        return f.getUserOne();
+                    }
+                    return f.getUserTwo();
+                })
+                .map(userFacade::convertToUserNestedDto)
+                .collect(Collectors.toList());
         return ResponseEntity.ok()
                 .body(friendsListOfUser);
     }

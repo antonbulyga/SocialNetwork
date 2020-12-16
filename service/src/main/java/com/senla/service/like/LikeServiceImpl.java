@@ -13,7 +13,6 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
-
 @Service
 @Transactional
 @Slf4j
@@ -32,6 +31,7 @@ public class LikeServiceImpl implements LikeService {
 
     @Override
     public Like addLike(Like like) {
+        log.info("Adding a like");
         likeRepository.save(like);
         return like;
     }
@@ -45,6 +45,7 @@ public class LikeServiceImpl implements LikeService {
         Post post = like.getPost();
         post.setLikes(post.getLikes().stream().filter(l -> !l.getId().equals(id)).collect(Collectors.toList()));
         postService.updatePost(post);
+        log.info("Deleting like");
         likeRepository.deleteById(id);
     }
 
@@ -56,6 +57,7 @@ public class LikeServiceImpl implements LikeService {
 
     @Override
     public Like getLike(Long id) {
+        log.info("Getting like by id");
         return likeRepository.findById(id)
                 .orElseThrow(() ->
                         new EntityNotFoundException(String.format("Like with id = %s is not found", id)));
@@ -63,6 +65,12 @@ public class LikeServiceImpl implements LikeService {
 
     @Override
     public List<Like> getLikesByPost_Id(Long postId) {
-        return likeRepository.getLikesByPost_Id(postId);
+        log.info("Getting like by post");
+        List<Like> likes = likeRepository.getLikesByPost_Id(postId);
+        if (likes.isEmpty()) {
+            log.warn("No likes found under the post");
+            throw new EntityNotFoundException("No likes found under the post");
+        }
+        return likes;
     }
 }

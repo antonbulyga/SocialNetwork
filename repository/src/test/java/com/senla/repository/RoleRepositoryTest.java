@@ -33,7 +33,7 @@ public class RoleRepositoryTest {
         entityManager.persist(role);
         entityManager.flush();
         List<Role> result = roleRepository.findAll();
-        assertEquals(1,result.size());
+        assertEquals(1, result.size());
     }
 
     @Test

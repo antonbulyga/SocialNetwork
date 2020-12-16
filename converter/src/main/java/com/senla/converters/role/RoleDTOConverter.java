@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 @Component
 public class RoleDTOConverter implements Converter<Role, RoleDto> {
 
-    private UserToUserNestedDtoConverter userToUserNestedDtoConverter;
+    private final UserToUserNestedDtoConverter userToUserNestedDtoConverter;
 
     @Autowired
     public RoleDTOConverter(UserToUserNestedDtoConverter userToUserNestedDtoConverter) {

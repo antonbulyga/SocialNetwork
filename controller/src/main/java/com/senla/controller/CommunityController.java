@@ -53,6 +53,7 @@ public class CommunityController {
 
     /**
      * Add community
+     *
      * @param communityDto
      * @return community dto
      */
@@ -63,7 +64,7 @@ public class CommunityController {
         Community community = communityFacade.convertCommunityDtoToCommunity(communityDto);
         User adminUser = community.getAdminUser();
         if (user.equals(adminUser)) {
-            communityFacade.addCommunity(communityDto);
+            communityFacade.addCommunity(community);
             log.info("Adding community");
             return new ResponseEntity<>(communityDto, HttpStatus.OK);
         } else {
@@ -74,6 +75,7 @@ public class CommunityController {
 
     /**
      * Join the community as user
+     *
      * @param communityId
      * @return
      */

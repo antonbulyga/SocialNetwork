@@ -27,10 +27,4 @@ public class CommunityDto {
 
     private List<PostForUserAndCommunityDto> posts;
 
-    public CommunityDto(@NotNull(message = "Id of the community is mandatory") Long id, @NotBlank(message = "Name of the community is mandatory") String name,
-                        @NotNull(message = "Admin user can not be null") UserNestedDto adminUser) {
-        this.id = id;
-        this.name = name;
-        this.adminUser = adminUser;
-    }
 }
