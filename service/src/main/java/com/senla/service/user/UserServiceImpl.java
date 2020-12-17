@@ -18,6 +18,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -65,7 +66,7 @@ public class UserServiceImpl implements UserService {
         user.setPassword(codePassword);
         try {
             updateUser(user);
-        } catch (SQLErrors e) {
+        } catch (Exception e) {
             log.error("Error when trying to change password");
             throw new SQLErrors("Error when trying to change password");
         }
@@ -75,9 +76,14 @@ public class UserServiceImpl implements UserService {
     @Override
     public User addUser(User user) {
         log.info("Adding a new user");
-        String codePassword = passwordEncoder.encode(user.getPassword());
-        user.setPassword(codePassword);
-        userRepository.save(user);
+        try {
+            String codePassword = passwordEncoder.encode(user.getPassword());
+            user.setPassword(codePassword);
+            userRepository.save(user);
+        }
+        catch (Exception e){
+            throw new SQLErrors(e.getMessage());
+        }
         return user;
     }
 
@@ -92,8 +98,21 @@ public class UserServiceImpl implements UserService {
                 communityService.deleteCommunity(communities.get(i).getId());
             }
         }
+
+        User user = getUser(userId);
+        user.getPosts().forEach(post -> post.setUser(null));
+        user.getMessages().forEach(mess -> mess.setUser(null));
+        user.getLikes().forEach(like -> like.setUser(null));
+        user.getCommunities().forEach(comm -> comm.setUsers(comm.getUsers().stream().filter(u ->
+                !u.getId().equals(userId)).collect(Collectors.toList())));
+        user.getDialogs().forEach(dialog -> dialog.setUserList(dialog.getUserList().stream().filter(u ->
+                !u.getId().equals(userId)).collect(Collectors.toList())));
+        user.getRoles().forEach(role -> role.setUsers(role.getUsers().stream().filter(u ->
+                !u.getId().equals(userId)).collect(Collectors.toList())));
         userRepository.deleteById(userId);
+
     }
+
 
     @Override
     public User findUserByEmail(String email) {

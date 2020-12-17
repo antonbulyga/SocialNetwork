@@ -63,13 +63,11 @@ public class LikeController {
     @PostMapping(value = "/add")
     public ResponseEntity<LikeDto> addLike(@Valid @RequestBody LikeDto likeDto) {
         User user = userFacade.getUserFromSecurityContext();
-        List<Like> likes = user.getLikes();
-        for (Like l : likes) {
-            if (l.getUser().getId().equals(likeDto.getUser().getId())) {
-                likeFacade.addLike(likeDto);
+        User userFromDto = userFacade.getUser(likeDto.getUser().getId());
+            if (user.getId().equals(userFromDto.getId())) {
+                LikeDto likeDtoWithDetails = likeFacade.addLike(likeDto);
                 log.error("Adding like");
-                return new ResponseEntity<>(likeDto, HttpStatus.OK);
-            }
+                return new ResponseEntity<>(likeDtoWithDetails, HttpStatus.OK);
         }
         log.error("You are trying to add like from someone else user");
         throw new RestError("You are trying to add like from someone else user");
@@ -111,9 +109,9 @@ public class LikeController {
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping(value = "/{id}")
     public ResponseEntity<LikeDto> getLikeById(@PathVariable(name = "id") Long likeId) {
-        LikeDto likeDto = likeFacade.getLikeDto(likeId);
+        LikeDto likeDtoWithDetails = likeFacade.getLikeDto(likeId);
         log.info("You are getting like by id");
-        return new ResponseEntity<>(likeDto, HttpStatus.OK);
+        return new ResponseEntity<>(likeDtoWithDetails, HttpStatus.OK);
     }
 
     /**

@@ -26,8 +26,8 @@ public class LikeFacade {
     }
 
     public LikeDto addLike(LikeDto likeDto) {
-        likeService.addLike(reverseLikeDTOConverter.convert(likeDto));
-        return likeDto;
+       Like like = likeService.addLike(reverseLikeDTOConverter.convert(likeDto));
+        return likeDTOConverter.convert(like);
     }
 
     public void deleteLike(long id) {

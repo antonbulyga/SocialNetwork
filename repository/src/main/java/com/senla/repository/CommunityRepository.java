@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface CommunityRepository extends JpaRepository<Community, Long> {
-    Community getCommunityByName(String name);
+    List<Community> getCommunitiesByName(String name);
 
     List<Community> getCommunitiesByAdminUser_Id(Long adminId);
 }

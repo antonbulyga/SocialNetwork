@@ -27,13 +27,13 @@ public class CommunityFacade {
     }
 
     public CommunityDto addCommunity(CommunityDto communityDto) {
-        communityService.addCommunity(reverseCommunityDTOConverter.convert(communityDto));
-        return communityDto;
+        Community communityWithDetails = communityService.addCommunity(reverseCommunityDTOConverter.convert(communityDto));
+        return communityDTOConverter.convert(communityWithDetails);
     }
 
     public CommunityDto addCommunity(Community community) {
-        communityService.addCommunity(community);
-        return communityDTOConverter.convert(community);
+       Community communityWithData = communityService.addCommunity(community);
+        return communityDTOConverter.convert(communityWithData);
     }
 
     public void deleteCommunity(long id) {
@@ -42,8 +42,8 @@ public class CommunityFacade {
 
     public CommunityDto updateCommunity(CommunityDto communityDto) {
         Community community = reverseCommunityDTOConverter.convert(communityDto);
-        communityService.updateCommunity(community);
-        return communityDto;
+        Community communityWithDetails = communityService.updateCommunity(community);
+        return communityDTOConverter.convert(communityWithDetails);
     }
 
     public List<CommunityDto> getAllCommunities() {
@@ -69,9 +69,9 @@ public class CommunityFacade {
     }
 
 
-    public CommunityDto getCommunityByName(String name) {
-        Community community = communityService.getCommunityByName(name);
-        return communityDTOConverter.convert(community);
+    public List<CommunityDto> getCommunityByName(String name) {
+        List<Community> communities = communityService.getCommunityByName(name);
+        return communities.stream().map(communityDTOConverter::convert).collect(Collectors.toList());
     }
 
     public List<CommunityDto> getCommunitiesByAdminUserId(Long adminId) {

@@ -65,6 +65,7 @@ public class LikeServiceImpl implements LikeService {
 
     @Override
     public List<Like> getLikesByPost_Id(Long postId) {
+        postService.getPost(postId);
         log.info("Getting like by post");
         List<Like> likes = likeRepository.getLikesByPost_Id(postId);
         if (likes.isEmpty()) {

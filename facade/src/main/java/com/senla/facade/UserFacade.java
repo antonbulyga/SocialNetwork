@@ -21,19 +21,21 @@ public class UserFacade {
     private final UserDTOConverter userDTOConverter;
     private final ReverseUserDTOConverter reverseUserDTOConverter;
     private final UserToUserNestedDtoConverter userToUserNestedDtoConverter;
-    private final ProfileService profileService;
 
     @Autowired
-    public UserFacade(UserService userService, UserDTOConverter userDTOConverter, ReverseUserDTOConverter reverseUserDTOConverter, UserToUserNestedDtoConverter userToUserNestedDtoConverter, ProfileService profileService) {
+    public UserFacade(UserService userService, UserDTOConverter userDTOConverter, ReverseUserDTOConverter reverseUserDTOConverter, UserToUserNestedDtoConverter userToUserNestedDtoConverter) {
         this.userService = userService;
         this.userDTOConverter = userDTOConverter;
         this.reverseUserDTOConverter = reverseUserDTOConverter;
         this.userToUserNestedDtoConverter = userToUserNestedDtoConverter;
-        this.profileService = profileService;
     }
 
-    public UserDto getUser(Long id) {
+    public UserDto getUserDto(Long id) {
         return userDTOConverter.convert(userService.getUser(id));
+    }
+
+    public User getUser(Long id) {
+        return userService.getUser(id);
     }
 
     public List<UserDto> getAllUsers() {

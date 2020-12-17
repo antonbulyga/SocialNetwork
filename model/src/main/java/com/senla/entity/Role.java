@@ -20,12 +20,6 @@ public class Role {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = {
-            CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH
-    })
-    @JoinTable(name = "users_has_roles",
-            joinColumns = {@JoinColumn(name = "roles_id", referencedColumnName = "id")},
-            inverseJoinColumns = {@JoinColumn(name = "users_id", referencedColumnName = "id")})
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
     private List<User> users;
-
 }

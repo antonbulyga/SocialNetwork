@@ -10,6 +10,7 @@ import com.senla.dto.profile.ProfileDto;
 import com.senla.dto.role.RoleDto;
 import com.senla.dto.user.UserDto;
 import com.senla.entity.Friendship;
+import com.senla.entity.Message;
 import com.senla.entity.Profile;
 import com.senla.entity.User;
 import com.senla.exception.RestError;
@@ -88,7 +89,7 @@ public class AdminController {
     @Secured("ROLE_ADMIN")
     @GetMapping(value = "/users/{id}")
     public ResponseEntity<UserDto> getUserByIdAsAdmin(@PathVariable(name = "id") Long id) {
-        UserDto userDto = userFacade.getUser(id);
+        UserDto userDto = userFacade.getUserDto(id);
         log.info("Getting user by id as admin");
         return new ResponseEntity<>(userDto, HttpStatus.OK);
     }
@@ -138,7 +139,7 @@ public class AdminController {
      * @return user dto
      */
     @Secured("ROLE_ADMIN")
-    @GetMapping(value = "/users/edit/password")
+    @PostMapping(value = "/users/edit/password")
     public ResponseEntity<UserDto> changePasswordAsAdmin(@RequestParam(name = "newPassword") String newPassword, @RequestParam(name = "id") long userId) {
         UserDto userDto = userFacade.changeUserPassword(newPassword, userId);
         log.info("You have changed password successfully");
@@ -252,9 +253,9 @@ public class AdminController {
     @Secured("ROLE_ADMIN")
     @PutMapping(value = "/profiles/update")
     public ResponseEntity<ProfileDto> updateProfileAsAdmin(@Valid @RequestBody ProfileDto profileDto) {
-        profileFacade.updateProfile(profileDto);
+        ProfileDto profileDtoNew = profileFacade.updateProfile(profileDto);
         log.info("Updating profile as admin");
-        return new ResponseEntity<>(profileDto, HttpStatus.OK);
+        return new ResponseEntity<>(profileDtoNew, HttpStatus.OK);
     }
 
     /**
@@ -310,7 +311,8 @@ public class AdminController {
     @PostMapping(value = "/messages/add")
     public ResponseEntity<MessageDto> addMessageAsAdmin(@Valid @RequestBody MessageDto messageDto) {
         log.info("Adding message as admin");
-        return new ResponseEntity<>(messageDto, HttpStatus.OK);
+        MessageDto messageDtoWithTime = messageFacade.addMessage(messageDto);
+        return new ResponseEntity<>(messageDtoWithTime, HttpStatus.OK);
     }
 
     /**
@@ -340,6 +342,22 @@ public class AdminController {
         List<MessageDto> messageDtoList = messageFacade.getMessagesByDialog_Id(id);
         log.info("Getting messages by dialog id as admin");
         return new ResponseEntity<>(messageDtoList, HttpStatus.OK);
+    }
+
+    /**
+     * Update message as admin
+     *
+     * @param messageDto message dto
+     * @return message dto
+     */
+    @Secured("ROLE_ADMIN")
+    @PutMapping(value = "/messages/update")
+    public ResponseEntity<MessageDto> updateMessage(@Valid @RequestBody MessageDto messageDto) {
+
+        MessageDto messageDtoWithTime = messageFacade.updateMessage(messageDto);
+        log.info("You have updated message successfully");
+        return new ResponseEntity<>(messageDtoWithTime, HttpStatus.OK);
+
     }
 
     /**
@@ -378,9 +396,9 @@ public class AdminController {
     @Secured("ROLE_ADMIN")
     @PostMapping(value = "/likes/add")
     public ResponseEntity<LikeDto> addLike(@Valid @RequestBody LikeDto likeDto) {
-        likeFacade.addLike(likeDto);
+        LikeDto likeDtoWithDetails = likeFacade.addLike(likeDto);
         log.error("Adding like");
-        return new ResponseEntity<>(likeDto, HttpStatus.OK);
+        return new ResponseEntity<>(likeDtoWithDetails, HttpStatus.OK);
     }
 
     /**
@@ -523,9 +541,9 @@ public class AdminController {
     @Secured("ROLE_ADMIN")
     @PostMapping(value = "/communities/add")
     public ResponseEntity<CommunityDto> addCommunity(@Valid @RequestBody CommunityDto communityDto) {
-        communityFacade.addCommunity(communityDto);
+        CommunityDto communityDtoWithDetails = communityFacade.addCommunity(communityDto);
         log.info("Adding community");
-        return new ResponseEntity<>(communityDto, HttpStatus.OK);
+        return new ResponseEntity<>(communityDtoWithDetails, HttpStatus.OK);
     }
 
     /**
@@ -568,9 +586,9 @@ public class AdminController {
     @Secured("ROLE_ADMIN")
     @PutMapping(value = "/communities/update")
     public ResponseEntity<CommunityDto> updateCommunity(@Valid @RequestBody CommunityDto communityDto) {
-        communityFacade.updateCommunity(communityDto);
+        CommunityDto communityDtoWithDetails = communityFacade.updateCommunity(communityDto);
         log.info("Updating community");
-        return new ResponseEntity<>(communityDto, HttpStatus.OK);
+        return new ResponseEntity<>(communityDtoWithDetails, HttpStatus.OK);
     }
 
     /**

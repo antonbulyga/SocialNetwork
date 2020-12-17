@@ -5,6 +5,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -12,6 +13,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import javax.validation.ConstraintViolationException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -65,4 +67,17 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         RestApiResponse restApiResponse = new RestApiResponse(HttpStatus.BAD_REQUEST, e.getMessage());
         return new ResponseEntity<>(restApiResponse, HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(BadCredentialsException.class)
+    protected ResponseEntity<Object> handleBadCredentialsException(BadCredentialsException e) {
+        RestApiResponse restApiResponse = new RestApiResponse(HttpStatus.FORBIDDEN, e.getMessage());
+        return new ResponseEntity<>(restApiResponse, HttpStatus.FORBIDDEN);
+    }
+
+    @ExceptionHandler(SQLErrors.class)
+    protected ResponseEntity<Object> handleSql(SQLErrors e) {
+        RestApiResponse restApiResponse = new RestApiResponse(HttpStatus.BAD_REQUEST, e.getMessage());
+        return new ResponseEntity<>(restApiResponse, HttpStatus.BAD_REQUEST);
+    }
+
 }

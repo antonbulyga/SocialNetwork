@@ -10,7 +10,7 @@ public interface CommunityService {
 
     void deleteCommunity(long id);
 
-    Community getCommunityByName(String name);
+    List<Community> getCommunityByName(String name);
 
     Community updateCommunity(Community community);
 

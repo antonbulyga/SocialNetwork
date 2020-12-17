@@ -75,10 +75,14 @@ public class CommunityServiceTest {
         assertEquals(expected, communities);
     }
 
+    @Test
     public void getCommunityByNameTest() {
-        when(communityRepository.getCommunityByName(community.getName())).thenReturn(community);
-        Community resultCommunity = communityService.getCommunityByName(community.getName());
-        Assertions.assertEquals(community, resultCommunity);
+        List<Community> communities = new ArrayList();
+        communities.add(new Community(communityId, "Любители математики"));
+        communities.add(new Community(communityId, "Любители математики"));
+        given(communityRepository.getCommunitiesByName(community.getName())).willReturn(communities);
+        List<Community> expected = communityService.getCommunityByName(community.getName());
+        assertEquals(communities, expected);
     }
 
     public void getCommunityByUserAdmin() {

@@ -51,18 +51,18 @@ public class UserDTOConverter implements Converter<User, UserDto> {
         ProfileForUserDto profile = null;
         return UserDto.builder()
                 .id(user.getId())
-                .email(user.getUserName())
+                .email(user.getEmail())
                 .userName(user.getUserName())
                 .password(user.getPassword())
                 .profile(user.getProfile() == null ? profile : profileToProfileForUserDtoConverter.convert(user.getProfile()))
-                .communities(user.getCommunities().stream().map(c -> communityToCommunityForUserDtoConverter.convert(c)).collect(Collectors.toList()))
-                .roles(user.getRoles().stream().map(r -> roleToRoleForProfileDtoConverter.convert(r)).collect(Collectors.toList()))
-                .posts(user.getPosts().stream().map(p -> postToPostForUserAndCommunityDtoConverter.convert(p)).collect(Collectors.toList()))
-                .messages(user.getMessages().stream().map(m -> messageToMessageForListDtoConverter.convert(m)).collect(Collectors.toList()))
-                .likes(user.getLikes().stream().map(l -> likeToLikeForPostAndUserDtoConverter.convert(l)).collect(Collectors.toList()))
+                .communities(user.getCommunities().stream().map(communityToCommunityForUserDtoConverter::convert).collect(Collectors.toList()))
+                .roles(user.getRoles().stream().map(roleToRoleForProfileDtoConverter::convert).collect(Collectors.toList()))
+                .posts(user.getPosts().stream().map(postToPostForUserAndCommunityDtoConverter::convert).collect(Collectors.toList()))
+                .messages(user.getMessages().stream().map(messageToMessageForListDtoConverter::convert).collect(Collectors.toList()))
+                .likes(user.getLikes().stream().map(likeToLikeForPostAndUserDtoConverter::convert).collect(Collectors.toList()))
                 .creationTime(user.getCreationTime())
-                .communitiesWhereUserAdmin(user.getCommunitiesWhereUserAdmin().stream().map(c -> communityToCommunityForUserDtoConverter.convert(c)).collect(Collectors.toList()))
-                .dialogs(user.getDialogs().stream().map(d -> dialogToDialogForMessageAndUserDtoConverter.convert(d)).collect(Collectors.toList()))
+                .communitiesWhereUserAdmin(user.getCommunitiesWhereUserAdmin().stream().map(communityToCommunityForUserDtoConverter::convert).collect(Collectors.toList()))
+                .dialogs(user.getDialogs().stream().map(dialogToDialogForMessageAndUserDtoConverter::convert).collect(Collectors.toList()))
                 .build();
     }
 }

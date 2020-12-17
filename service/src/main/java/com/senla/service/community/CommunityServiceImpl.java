@@ -43,9 +43,9 @@ public class CommunityServiceImpl implements CommunityService {
     }
 
     @Override
-    public Community getCommunityByName(String name) {
+    public List<Community> getCommunityByName(String name) {
         log.info("Getting community by name");
-        return communityRepository.getCommunityByName(name);
+        return communityRepository.getCommunitiesByName(name);
     }
 
     @Override

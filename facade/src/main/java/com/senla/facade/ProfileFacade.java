@@ -1,10 +1,8 @@
 package com.senla.facade;
 
-import com.senla.converters.profile.ReverseProfileDTOConverter;
-import com.senla.converters.profile.ProfileForUserDtoToProfile;
 import com.senla.converters.profile.ProfileDTOConverter;
+import com.senla.converters.profile.ReverseProfileDTOConverter;
 import com.senla.dto.profile.ProfileDto;
-import com.senla.dto.profile.ProfileForUserDto;
 import com.senla.entity.Profile;
 import com.senla.service.profile.ProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,24 +17,22 @@ public class ProfileFacade {
     private final ProfileService profileService;
     private final ProfileDTOConverter profileDTOConverter;
     private final ReverseProfileDTOConverter reverseProfileDTOConverter;
-    private final ProfileForUserDtoToProfile profileForUserDtoToProfile;
 
     @Autowired
-    public ProfileFacade(ProfileService profileService, ProfileDTOConverter profileDTOConverter, ReverseProfileDTOConverter reverseProfileDTOConverter, ProfileForUserDtoToProfile profileForUserDtoToProfile) {
+    public ProfileFacade(ProfileService profileService, ProfileDTOConverter profileDTOConverter, ReverseProfileDTOConverter reverseProfileDTOConverter) {
         this.profileService = profileService;
         this.profileDTOConverter = profileDTOConverter;
         this.reverseProfileDTOConverter = reverseProfileDTOConverter;
-        this.profileForUserDtoToProfile = profileForUserDtoToProfile;
     }
 
     public ProfileDto addProfile(ProfileDto profileDto) {
-        profileService.addProfile(reverseProfileDTOConverter.convert(profileDto));
-        return profileDto;
+       Profile profile = profileService.addProfile(reverseProfileDTOConverter.convert(profileDto));
+       return profileDTOConverter.convert(profile);
     }
 
     public ProfileDto updateProfile(ProfileDto profileDto) {
-        profileService.updateProfile(reverseProfileDTOConverter.convert(profileDto));
-        return profileDto;
+        Profile profile =  profileService.updateProfile(reverseProfileDTOConverter.convert(profileDto));
+        return profileDTOConverter.convert(profile);
     }
 
     public List<ProfileDto> getAllProfiles() {

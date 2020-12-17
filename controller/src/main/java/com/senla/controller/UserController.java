@@ -26,12 +26,10 @@ import javax.validation.Valid;
 public class UserController {
 
     private final UserFacade userFacade;
-    private final ProfileFacade profileFacade;
 
     @Autowired
-    public UserController(UserFacade userFacade, ProfileFacade profileFacade) {
+    public UserController(UserFacade userFacade) {
         this.userFacade = userFacade;
-        this.profileFacade = profileFacade;
     }
 
     /**

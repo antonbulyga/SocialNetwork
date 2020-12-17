@@ -7,7 +7,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.ContextConfiguration;
@@ -30,16 +29,6 @@ public class CommunityRepositoryTest {
     @Autowired
     private CommunityRepository communityRepository;
 
-
-    @Test
-    public void findByCommunityName_Success() {
-        Community community = new Community();
-        community.setName("Group test");
-        entityManager.persist(community);
-        entityManager.flush();
-        Community found = communityRepository.getCommunityByName(community.getName());
-        assertEquals(found.getName(), community.getName());
-    }
 
     @Test
     public void getCommunitiesByAdminUser_Id_Success() {

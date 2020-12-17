@@ -21,7 +21,7 @@ public class Like {
     private Post post;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "users_id", referencedColumnName = "id")
+    @JoinColumn(name = "users_id")
     private User user;
 
 }

@@ -64,9 +64,9 @@ public class CommunityController {
         Community community = communityFacade.convertCommunityDtoToCommunity(communityDto);
         User adminUser = community.getAdminUser();
         if (user.equals(adminUser)) {
-            communityFacade.addCommunity(community);
+           CommunityDto communityDtoWithDetails = communityFacade.addCommunity(community);
             log.info("Adding community");
-            return new ResponseEntity<>(communityDto, HttpStatus.OK);
+            return new ResponseEntity<>(communityDtoWithDetails, HttpStatus.OK);
         } else {
             log.error("Getting community by id");
             throw new RestError("You are trying to add a group that you do not represent as an administrator");
@@ -175,9 +175,9 @@ public class CommunityController {
         Community community = communityFacade.convertCommunityDtoToCommunity(communityDto);
         User adminUser = community.getAdminUser();
         if (user.equals(adminUser)) {
-            communityFacade.updateCommunity(communityDto);
+            CommunityDto communityDtoWithDetails = communityFacade.updateCommunity(communityDto);
             log.info("Updating community");
-            return new ResponseEntity<>(communityDto, HttpStatus.OK);
+            return new ResponseEntity<>(communityDtoWithDetails, HttpStatus.OK);
         } else {
             log.error("Getting community by id");
             throw new RestError("You are trying to update a group that you do not represent as an administrator");
@@ -192,8 +192,8 @@ public class CommunityController {
      */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping(value = "/search/name")
-    public ResponseEntity<CommunityDto> getCommunityByName(@RequestParam(name = "name") String name) {
-        CommunityDto communityDto = communityFacade.getCommunityByName(name);
+    public ResponseEntity<List<CommunityDto>> getCommunitiesByName(@RequestParam(name = "name") String name) {
+        List<CommunityDto> communityDto = communityFacade.getCommunityByName(name);
         log.info("Getting community by name");
         return new ResponseEntity<>(communityDto, HttpStatus.OK);
     }

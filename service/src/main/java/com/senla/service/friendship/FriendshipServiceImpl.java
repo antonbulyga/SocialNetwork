@@ -80,7 +80,12 @@ public class FriendshipServiceImpl implements FriendshipService {
                     & f.getUserTwo().equals(userTwo)) {
                 friendshipRepository.acceptFriendRequest(userOne, userTwo, userTwo);
                 return createFriendship(userOne, userTwo, userTwo, FriendshipStatus.FRIEND);
+            } if (f.getActionUser().equals(userTwo) & f.getUserOne().equals(userOne)
+                    & f.getUserTwo().equals(userTwo)) {
+                friendshipRepository.acceptFriendRequest(userOne, userTwo, userOne);
+                return createFriendship(userOne, userTwo, userOne, FriendshipStatus.FRIEND);
             }
+
         }
         log.warn("Relationship of that users already exists");
         throw new IncorrectRequest("Relationship of that users already exists");
@@ -202,6 +207,11 @@ public class FriendshipServiceImpl implements FriendshipService {
                     & f.getUserTwo().equals(userTwo)) {
                 friendshipRepository.declineFriendRequest(userOne, userTwo, userTwo);
                 return createFriendship(userOne, userTwo, userTwo, FriendshipStatus.DECLINED);
+
+            } if (f.getActionUser().equals(userTwo) & f.getUserOne().equals(userOne)
+                    & f.getUserTwo().equals(userTwo)) {
+                friendshipRepository.acceptFriendRequest(userOne, userTwo, userOne);
+                return createFriendship(userOne, userTwo, userOne, FriendshipStatus.DECLINED);
             }
         }
         log.warn("Relationship of that users already exists");

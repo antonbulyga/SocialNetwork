@@ -39,7 +39,12 @@ public class User {
     @ManyToMany(mappedBy = "users", fetch = FetchType.LAZY)
     private List<Community> communities;
 
-    @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {
+            CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH
+    })
+    @JoinTable(name = "users_has_roles",
+            joinColumns = {@JoinColumn(name = "users_id", referencedColumnName = "id")},
+            inverseJoinColumns = {@JoinColumn(name = "roles_id", referencedColumnName = "id")})
     private Set<Role> roles;
 
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = {

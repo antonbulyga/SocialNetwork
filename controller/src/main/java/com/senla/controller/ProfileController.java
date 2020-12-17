@@ -64,12 +64,11 @@ public class ProfileController {
         return new ResponseEntity<>(dtoList, HttpStatus.OK);
     }
 
-    @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @PostMapping(value = "/add")
     public ResponseEntity<ProfileDto> addProfile(@Valid @RequestBody ProfileDto profileDto) {
-            profileFacade.addProfile(profileDto);
+            ProfileDto profileDtoNew = profileFacade.addProfile(profileDto);
             log.info("You have added profile successfully");
-            return new ResponseEntity<>(profileDto, HttpStatus.OK);
+            return new ResponseEntity<>(profileDtoNew, HttpStatus.OK);
     }
 
 

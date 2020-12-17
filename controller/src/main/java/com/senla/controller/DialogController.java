@@ -1,6 +1,7 @@
 package com.senla.controller;
 
 import com.senla.dto.dialog.DialogDto;
+import com.senla.dto.user.UserNestedDto;
 import com.senla.entity.Dialog;
 import com.senla.entity.User;
 import com.senla.exception.RestError;
@@ -62,9 +63,18 @@ public class DialogController {
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @PostMapping(value = "/add")
     public ResponseEntity<DialogDto> addDialog(@Valid @RequestBody DialogDto dialogDto) {
-        DialogDto dialogDtoWithData = dialogFacade.addDialog(dialogDto);
-        log.info("Adding a new dialog");
-        return new ResponseEntity<>(dialogDtoWithData, HttpStatus.OK);
+        User user = userFacade.getUserFromSecurityContext();
+        List<UserNestedDto> userFromDtoList = dialogDto.getUserList();
+        for (UserNestedDto d : userFromDtoList) {
+            if (user.getId().equals(d.getId())) {
+                DialogDto dialogDtoWithData = dialogFacade.addDialog(dialogDto);
+                log.info("Adding a new dialog");
+                return new ResponseEntity<>(dialogDtoWithData, HttpStatus.OK);
+            }
+
+        }
+        log.error("You are trying to create dialog without your user inside");
+        throw new RestError(messageByLocaleService.getMessage("dialog.invalid.add"));
     }
 
     /**
@@ -75,11 +85,11 @@ public class DialogController {
      */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @DeleteMapping(value = "/delete")
-    public ResponseEntity<String> deleteDialog(@RequestParam(name = "id") long id) {
+    public ResponseEntity<String> deleteDialog(@RequestParam(name = "id") Long id) {
         User user = userFacade.getUserFromSecurityContext();
         List<Dialog> dialogs = user.getDialogs();
         for (Dialog d : dialogs) {
-            if (d.getId() == id) {
+            if (d.getId().equals(id)) {
                 dialogFacade.deleteDialog(id);
                 log.info("Deleting the dialog");
                 return ResponseEntity.ok()
@@ -134,7 +144,7 @@ public class DialogController {
 
         }
         log.error("You are trying to update dialog where you do not participate");
-        throw new RestError(messageByLocaleService.getMessage(messageByLocaleService.getMessage("dialog.invalid.update")));
+        throw new RestError(messageByLocaleService.getMessage("dialog.invalid.update"));
     }
 
     /**
@@ -169,7 +179,8 @@ public class DialogController {
      */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @PostMapping(value = "/add/user")
-    public ResponseEntity<DialogDto> addUserToDialog(@RequestParam(name = "dialogId") Long dialogId, @RequestParam(name = "userId") Long userId) {
+    public ResponseEntity<DialogDto> addUserToDialog(@RequestParam(name = "dialogId") Long
+                                                             dialogId, @RequestParam(name = "userId") Long userId) {
         User user = userFacade.getUserFromSecurityContext();
         List<Dialog> dialogs = user.getDialogs();
         for (Dialog d : dialogs) {
@@ -194,7 +205,8 @@ public class DialogController {
      */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @DeleteMapping(value = "/delete/user")
-    public ResponseEntity<DialogDto> deleteUserFromDialog(@RequestParam(name = "dialogId") Long dialogId, @RequestParam(name = "userId") Long userId) {
+    public ResponseEntity<DialogDto> deleteUserFromDialog(@RequestParam(name = "dialogId") Long
+                                                                  dialogId, @RequestParam(name = "userId") Long userId) {
         User user = userFacade.getUserFromSecurityContext();
         List<Dialog> dialogs = user.getDialogs();
         for (Dialog d : dialogs) {

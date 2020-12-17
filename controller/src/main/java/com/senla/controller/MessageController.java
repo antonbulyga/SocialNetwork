@@ -132,34 +132,6 @@ public class MessageController {
     }
 
     /**
-     * Get list of message by dialog id
-     *
-     * @param id dialog id
-     * @return list of the message id
-     */
-    @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    @GetMapping(value = "/search/dialog/{id}")
-    public ResponseEntity<List<MessageDto>> getMessagesByDialog_Id(@PathVariable(name = "id") long id) {
-        List<MessageDto> messageDtoList;
-        User user = userFacade.getUserFromSecurityContext();
-        List<Dialog> dialogs = user.getDialogs();
-        List<MessageDto> messageListDto = messageFacade.getMessagesByDialog_Id(id);
-        if (messageListDto.size() == 0) {
-            throw new EntityNotFoundException("Dialog does not exist or no message in the dialog");
-        }
-        for (Dialog d : dialogs) {
-            if (d.getId() == id) {
-                messageDtoList = messageFacade.getMessagesByDialog_Id(id);
-                return new ResponseEntity<>(messageDtoList, HttpStatus.OK);
-            }
-
-        }
-        log.error("You are trying to get messages from someone else dialog");
-        throw new RestError("You are trying to get messages from someone else dialog");
-
-    }
-
-    /**
      * Get message by id
      *
      * @param messageId message id

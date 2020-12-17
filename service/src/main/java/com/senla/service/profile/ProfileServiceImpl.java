@@ -1,8 +1,10 @@
 package com.senla.service.profile;
 
 import com.senla.entity.Profile;
+import com.senla.entity.User;
 import com.senla.exception.EntityNotFoundException;
 import com.senla.repository.ProfileRepository;
+import com.senla.repository.UserRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,10 +18,12 @@ import java.util.List;
 public class ProfileServiceImpl implements ProfileService {
 
     private final ProfileRepository profileRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public ProfileServiceImpl(ProfileRepository profileRepository) {
+    public ProfileServiceImpl(ProfileRepository profileRepository, UserRepository userRepository) {
         this.profileRepository = profileRepository;
+        this.userRepository = userRepository;
     }
 
     public Profile getProfile(Long id) {
@@ -47,6 +51,9 @@ public class ProfileServiceImpl implements ProfileService {
 
     @Override
     public Profile addProfile(Profile profile) {
+        User user = profile.getUser();
+        user.setProfile(profile);
+        userRepository.save(user);
         profileRepository.save(profile);
         log.info("Adding profile");
         return profile;

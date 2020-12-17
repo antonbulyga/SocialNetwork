@@ -249,20 +249,26 @@ public class FriendshipController {
     @GetMapping(value = "/user/frindslist")
     public ResponseEntity<List<UserNestedDto>> getFriendFriendshipsForUser(@RequestParam(name = "userId") Long userId) {
         User user = userFacade.getUserFromSecurityContext();
-        List<UserNestedDto> friendsListOfUser;
-        List<Friendship> friendshipList = friendshipFacade.getFriendFriendshipsForUser(userId);
-        log.info("Getting friends list of user");
-        friendsListOfUser = friendshipList.stream()
-                .map(f -> {
-                    if (!user.getId().equals(userId)) {
-                        return f.getUserOne();
-                    }
-                    return f.getUserTwo();
-                })
-                .map(userFacade::convertToUserNestedDto)
-                .collect(Collectors.toList());
-        return ResponseEntity.ok()
-                .body(friendsListOfUser);
+        if (user.getId().equals(userId)) {
+            List<UserNestedDto> friendsListOfUser;
+            List<Friendship> friendshipList = friendshipFacade.getFriendFriendshipsForUser(userId);
+            log.info("Getting friends list of user");
+            friendsListOfUser = friendshipList.stream()
+                    .map(f -> {
+                        if (user.getId().equals(userId)) {
+                            return f.getUserOne();
+                        }
+                        return f.getUserTwo();
+                    })
+                    .map(userFacade::convertToUserNestedDto)
+                    .collect(Collectors.toList());
+            return ResponseEntity.ok()
+                    .body(friendsListOfUser);
+        } else {
+            log.error("You can only view the friends of a registered user");
+            throw new RestError("You can only view the friends of a registered user");
+        }
+
     }
 
 }
