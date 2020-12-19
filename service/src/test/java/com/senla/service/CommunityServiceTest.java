@@ -40,7 +40,7 @@ public class CommunityServiceTest {
     }
 
     private final Community community = new Community(1L, "Любители математики");
-    final Long communityId = 1L;
+    private final Long communityId = 1L;
 
     @Test
     public void getCommunityTest() {

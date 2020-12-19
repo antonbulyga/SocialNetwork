@@ -4,7 +4,6 @@ import com.senla.dto.message.MessageDto;
 import com.senla.entity.Dialog;
 import com.senla.entity.Message;
 import com.senla.entity.User;
-import com.senla.exception.EntityNotFoundException;
 import com.senla.exception.RestError;
 import com.senla.facade.DialogFacade;
 import com.senla.facade.MessageFacade;
@@ -17,7 +16,6 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.ArrayList;
 import java.util.List;
 
 /**

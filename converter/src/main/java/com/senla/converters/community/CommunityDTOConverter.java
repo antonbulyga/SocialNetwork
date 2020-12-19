@@ -29,8 +29,8 @@ public class CommunityDTOConverter implements Converter<Community, CommunityDto>
                 .id(community.getId())
                 .adminUser(userToUserNestedDtoConverter.convert(community.getAdminUser()))
                 .name(community.getName())
-                .posts(community.getPosts().stream().map(p -> postToPostForUserAndCommunityDtoConverter.convert(p)).collect(Collectors.toList()))
-                .users(community.getUsers().stream().map(u -> userToUserNestedDtoConverter.convert(u)).collect(Collectors.toList()))
+                .posts(community.getPosts().stream().map(postToPostForUserAndCommunityDtoConverter::convert).collect(Collectors.toList()))
+                .users(community.getUsers().stream().map(userToUserNestedDtoConverter::convert).collect(Collectors.toList()))
                 .build();
     }
 }

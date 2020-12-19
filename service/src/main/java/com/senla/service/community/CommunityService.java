@@ -25,5 +25,7 @@ public interface CommunityService {
     Community addUserToCommunity(Long communityId, Long userId);
 
     void removeUserFromCommunity(Long communityId, Long userId);
+
+    int communityParticipateChecker(Long communityId , Long userId);
 }
 

@@ -19,7 +19,7 @@ public interface ProfileService {
 
     List<Profile> findProfilesByLastName(String lastName);
 
-    Profile findProfileByFirstNameAndLastName(String firstName, String LastName);
+    List<Profile> findProfileByFirstNameAndLastName(String firstName, String LastName);
 
     List<Profile> findProfilesByGender(Enum gender);
 
@@ -27,5 +27,4 @@ public interface ProfileService {
 
     Profile findProfileByUser_Id(Long userId);
 
-    void deleteProfile(Long profileId);
 }

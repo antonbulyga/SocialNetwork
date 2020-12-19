@@ -21,7 +21,7 @@ public interface FriendshipService {
 
     List<Friendship> getRequestFriendships(Long userId);
 
-    boolean validate(Long userOneId, Long userTwoId, Long actionId);
+    void validate(Long userOneId, Long userTwoId, Long actionId);
 
     List<Friendship> getFriendFriendshipsForUser(Long userId);
 

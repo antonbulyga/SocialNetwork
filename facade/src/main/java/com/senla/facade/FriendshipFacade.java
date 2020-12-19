@@ -7,11 +7,8 @@ import com.senla.dto.user.UserDto;
 import com.senla.dto.user.UserNestedDto;
 import com.senla.entity.Friendship;
 import com.senla.entity.User;
-import com.senla.exception.RestError;
 import com.senla.service.friendship.FriendshipService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 
 import java.util.HashMap;
@@ -103,7 +100,7 @@ public class FriendshipFacade {
 
     public Set<UserNestedDto> getFriendFriendshipsForUser(Long userId) {
         List<Friendship> friendshipList = friendshipService.getFriendFriendshipsForUser(userId);
-        Set<UserNestedDto> friendsListOfUser = friendshipList.stream()
+        return friendshipList.stream()
                 .map(f -> {
                     if (!f.getUserOne().getId().equals(userId)) {
                         return f.getUserOne();
@@ -112,6 +109,5 @@ public class FriendshipFacade {
                 })
                 .map(userFacade::convertToUserNestedDto)
                 .collect(Collectors.toSet());
-        return friendsListOfUser;
     }
 }

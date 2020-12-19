@@ -30,7 +30,7 @@ public class LikeFacade {
         return likeDTOConverter.convert(like);
     }
 
-    public void deleteLike(long id) {
+    public void deleteLike(Long id) {
         likeService.deleteLike(id);
     }
 

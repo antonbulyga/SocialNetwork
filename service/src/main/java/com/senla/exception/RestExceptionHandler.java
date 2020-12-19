@@ -1,6 +1,7 @@
 package com.senla.exception;
 
 import org.springframework.context.support.DefaultMessageSourceResolvable;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -54,7 +55,7 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
                 .stream()
                 .map(DefaultMessageSourceResolvable::getDefaultMessage)
                 .collect(Collectors.toList());
-        return response(ex, request, headers, HttpStatus.BAD_REQUEST, errorList);
+        return response(ex, request, headers, status, errorList);
     }
 
     private ResponseEntity<Object> response(Exception ex, WebRequest request, HttpHeaders headers, HttpStatus status,
@@ -83,6 +84,12 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(NullPointerException.class)
     protected ResponseEntity<Object> handleNullPointerException(NullPointerException e) {
         RestApiResponse restApiResponse = new RestApiResponse(HttpStatus.INTERNAL_SERVER_ERROR, "Server error");
+        return new ResponseEntity<>(restApiResponse, HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(DataIntegrityViolationException .class)
+    protected ResponseEntity<Object> handleNullPointerException(DataIntegrityViolationException e) {
+        RestApiResponse restApiResponse = new RestApiResponse(HttpStatus.INTERNAL_SERVER_ERROR, e.getMessage());
         return new ResponseEntity<>(restApiResponse, HttpStatus.BAD_REQUEST);
     }
 }

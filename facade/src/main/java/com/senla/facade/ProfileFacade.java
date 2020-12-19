@@ -60,8 +60,9 @@ public class ProfileFacade {
         return profiles.stream().map(profileDTOConverter::convert).collect(Collectors.toList());
     }
 
-    public ProfileDto findProfileByFirstNameAndLastName(String firstName, String LastName) {
-        return profileDTOConverter.convert(profileService.findProfileByFirstNameAndLastName(firstName, LastName));
+    public List<ProfileDto> findProfileByFirstNameAndLastName(String firstName, String LastName) {
+        List<Profile> profiles = profileService.findProfileByFirstNameAndLastName(firstName, LastName);
+        return profiles.stream().map(profileDTOConverter::convert).collect(Collectors.toList());
     }
 
 

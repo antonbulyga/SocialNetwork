@@ -24,7 +24,7 @@ public class RoleDTOConverter implements Converter<Role, RoleDto> {
         return RoleDto.builder()
                 .id(role.getId())
                 .name(role.getName())
-                .users(role.getUsers().stream().map(u -> userToUserNestedDtoConverter.convert(u)).collect(Collectors.toList()))
+                .users(role.getUsers().stream().map(userToUserNestedDtoConverter::convert).collect(Collectors.toList()))
                 .build();
     }
 }

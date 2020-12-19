@@ -100,4 +100,16 @@ public class CommunityServiceImpl implements CommunityService {
         updateCommunity(community);
     }
 
+    @Override
+    public int communityParticipateChecker(Long communityId , Long userId) {
+        Community community = getCommunity(communityId);
+        List<User> users = community.getUsers();
+        int count = 0;
+        for (User u : users) {
+            if (u.getId().equals(userId)) {
+                count++;
+            }
+        }
+        return count;
+    }
 }

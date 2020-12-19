@@ -125,7 +125,7 @@ public class ProfileController {
     /**
      * Find profile by the first name
      *
-     * @param firstName
+     * @param firstName string
      * @return dto profile list
      */
     @Secured({"ROLE_USER", "ROLE_ADMIN", "ROLE_GUEST"})
@@ -138,7 +138,7 @@ public class ProfileController {
     /**
      * Find profile by the last name
      *
-     * @param lastName
+     * @param lastName string
      * @return dto profile list
      */
     @Secured({"ROLE_USER", "ROLE_ADMIN", "ROLE_GUEST"})
@@ -151,14 +151,14 @@ public class ProfileController {
     /**
      * Find profile by the full name
      *
-     * @param firstName
-     * @param lastName
+     * @param firstName string
+     * @param lastName string
      * @return profile dto
      */
     @Secured({"ROLE_USER", "ROLE_ADMIN", "ROLE_GUEST"})
     @GetMapping(value = "/search/fullname")
-    public ResponseEntity<ProfileDto> findProfileByFullName(@RequestParam(name = "name") String firstName, @RequestParam(name = "surname") String lastName) {
-        ProfileDto profileDto = profileFacade.findProfileByFirstNameAndLastName(firstName, lastName);
+    public ResponseEntity<List<ProfileDto>> findProfileByFullName(@RequestParam(name = "name") String firstName, @RequestParam(name = "surname") String lastName) {
+        List<ProfileDto> profileDto = profileFacade.findProfileByFirstNameAndLastName(firstName, lastName);
         return new ResponseEntity<>(profileDto, HttpStatus.OK);
     }
 

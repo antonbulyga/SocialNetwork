@@ -1,10 +1,8 @@
 package com.senla.controller;
 
-import com.senla.dto.profile.ProfileForUserDto;
 import com.senla.dto.user.UserDto;
 import com.senla.entity.User;
 import com.senla.exception.RestError;
-import com.senla.facade.ProfileFacade;
 import com.senla.facade.UserFacade;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

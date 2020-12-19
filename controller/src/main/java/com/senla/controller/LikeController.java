@@ -38,7 +38,7 @@ public class LikeController {
     /**
      * Get all user likes
      *
-     * @return
+     * @return like dto
      */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping(value = "")

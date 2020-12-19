@@ -44,13 +44,6 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
-    public void deleteProfile(Long profileId) {
-        getProfile(profileId);
-        profileRepository.deleteById(profileId);
-        log.info("Deleting profile");
-    }
-
-    @Override
     public Profile addProfile(Profile profile) {
         User user = profile.getUser();
         user.setProfile(profile);
@@ -120,8 +113,8 @@ public class ProfileServiceImpl implements ProfileService {
     }
 
     @Override
-    public Profile findProfileByFirstNameAndLastName(String firstName, String LastName) {
-        Profile profile = profileRepository.findByFirstNameAndLastName(firstName, LastName);
+    public List<Profile> findProfileByFirstNameAndLastName(String firstName, String LastName) {
+        List<Profile> profile = profileRepository.findByFirstNameAndLastName(firstName, LastName);
         log.info("Finding profile by first name and last name");
         if (profile == null) {
             log.warn("No profile with this first name and last name");

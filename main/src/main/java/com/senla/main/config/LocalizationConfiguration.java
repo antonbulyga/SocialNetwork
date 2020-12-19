@@ -26,14 +26,11 @@ public class LocalizationConfiguration {
     @Bean
     public LocaleResolver localeResolver() {
         SessionLocaleResolver slr = new SessionLocaleResolver();
-        switch (language) {
-            case "Russian":
-                Locale locale = new Locale("ru");
-                slr.setDefaultLocale(locale);
-                break;
-            default:
-                slr.setDefaultLocale(Locale.US);
-                break;
+        if ("Russian".equals(language)) {
+            Locale locale = new Locale("ru");
+            slr.setDefaultLocale(locale);
+        } else {
+            slr.setDefaultLocale(Locale.US);
         }
         return slr;
     }
@@ -41,13 +38,10 @@ public class LocalizationConfiguration {
     @Bean
     public ReloadableResourceBundleMessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();
-        switch (language) {
-            case "Russian":
-                messageSource.setBasename("classpath:locale/messages_ru");
-                break;
-            default:
-                messageSource.setBasename("classpath:locale/messages");
-                break;
+        if ("Russian".equals(language)) {
+            messageSource.setBasename("classpath:locale/messages_ru");
+        } else {
+            messageSource.setBasename("classpath:locale/messages");
         }
         messageSource.setDefaultEncoding("windows-1251");
         messageSource.setCacheSeconds(3600); //refresh cache once per hour

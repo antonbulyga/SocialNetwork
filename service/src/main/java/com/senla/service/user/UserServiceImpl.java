@@ -1,8 +1,6 @@
 package com.senla.service.user;
 
 import com.senla.entity.Community;
-import com.senla.entity.Like;
-import com.senla.entity.Profile;
 import com.senla.entity.User;
 import com.senla.exception.EntityNotFoundException;
 import com.senla.exception.SQLErrors;
@@ -18,7 +16,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -92,10 +89,10 @@ public class UserServiceImpl implements UserService {
         log.info("Deleting user by id");
         List<Community> communities = communityService.getCommunitiesByAdminUserId(userId);
         if (communities.size() != 0) {
-            for (int i = 0; i < communities.size(); i++) {
-                communities.get(i).getUsers().removeAll(communities.get(i).getUsers());
-                communities.get(i).getPosts().removeAll(communities.get(i).getPosts());
-                communityService.deleteCommunity(communities.get(i).getId());
+            for (Community community : communities) {
+                community.getUsers().removeAll(community.getUsers());
+                community.getPosts().removeAll(community.getPosts());
+                communityService.deleteCommunity(community.getId());
             }
         }
 

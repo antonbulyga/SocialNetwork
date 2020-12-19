@@ -3,7 +3,6 @@ package com.senla.controller;
 import com.senla.dto.friendship.FriendshipDto;
 import com.senla.dto.user.UserDto;
 import com.senla.dto.user.UserNestedDto;
-import com.senla.entity.Friendship;
 import com.senla.entity.User;
 import com.senla.exception.RestError;
 import com.senla.facade.FriendshipFacade;
@@ -15,11 +14,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.stream.Collectors;
 
 /**
  * * @author  Anton Bulyha

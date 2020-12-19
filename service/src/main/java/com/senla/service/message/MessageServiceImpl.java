@@ -56,7 +56,7 @@ public class MessageServiceImpl implements MessageService {
     @Override
     public List<Message> getAllMessages() {
         List<Message> messages = messageRepository.findAll();
-        if(messages.isEmpty()){
+        if (messages.isEmpty()) {
             log.warn("Message list is empty");
             throw new EntityNotFoundException("Message list is empty");
         }
@@ -66,7 +66,7 @@ public class MessageServiceImpl implements MessageService {
     @Override
     public List<Message> getMessagesByDialog_Id(Long dialogId) {
         List<Message> messages = messageRepository.getMessagesByDialog_Id(dialogId);
-        if(messages.isEmpty()){
+        if (messages.isEmpty()) {
             log.warn("No messages found in the dialog");
             throw new EntityNotFoundException("No messages found in the dialog");
         }
@@ -76,7 +76,7 @@ public class MessageServiceImpl implements MessageService {
     @Override
     public List<Message> getMessageByUser_Id(Long userId) {
         List<Message> messages = messageRepository.getMessageByUser_Id(userId);
-        if(messages.isEmpty()){
+        if (messages.isEmpty()) {
             log.warn("No messages found");
             throw new EntityNotFoundException("No messages found");
         }

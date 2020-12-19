@@ -9,11 +9,7 @@ import com.senla.dto.post.PostDto;
 import com.senla.dto.profile.ProfileDto;
 import com.senla.dto.role.RoleDto;
 import com.senla.dto.user.UserDto;
-import com.senla.entity.Friendship;
-import com.senla.entity.Message;
 import com.senla.entity.Profile;
-import com.senla.entity.User;
-import com.senla.exception.RestError;
 import com.senla.facade.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +19,8 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 /**
  * * @author  Anton Bulyha
@@ -290,8 +284,8 @@ public class AdminController {
 
     /**
      * Get posts from the community as admin
-     * @param id
-     * @return
+     * @param id community id
+     * @return post dto
      */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping(value = "/posts/search/community/{id}")

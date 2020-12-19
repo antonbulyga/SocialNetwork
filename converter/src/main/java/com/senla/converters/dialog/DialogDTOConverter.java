@@ -27,9 +27,9 @@ public class DialogDTOConverter implements Converter<Dialog, DialogDto> {
         return DialogDto.builder()
                 .id(dialog.getId())
                 .name(dialog.getName())
-                .messages(dialog.getMessages().stream().map(m -> messageToMessageForListDtoConverter.convert(m)).collect(Collectors.toList()))
+                .messages(dialog.getMessages().stream().map(messageToMessageForListDtoConverter::convert).collect(Collectors.toList()))
                 .timeCreation(dialog.getTimeCreation())
-                .userList(dialog.getUserList().stream().map(u -> userToUserNestedDtoConverter.convert(u)).collect(Collectors.toList()))
+                .userList(dialog.getUserList().stream().map(userToUserNestedDtoConverter::convert).collect(Collectors.toList()))
                 .build();
     }
 }

@@ -1,23 +1,17 @@
 package com.senla.service.friendship;
 
-import com.senla.dto.user.UserDto;
 import com.senla.entity.Friendship;
 import com.senla.entity.User;
 import com.senla.enumeration.FriendshipStatus;
 import com.senla.exception.IncorrectRequest;
-import com.senla.exception.RestError;
 import com.senla.repository.FriendshipRepository;
 import com.senla.service.user.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -34,11 +28,10 @@ public class FriendshipServiceImpl implements FriendshipService {
         this.userService = userService;
     }
 
-    public boolean validate(Long userOneId, Long userTwoId, Long actionId) {
+    public void validate(Long userOneId, Long userTwoId, Long actionId) {
         if (userOneId < userTwoId) {
             if ((userOneId.equals(actionId) || userTwoId.equals(actionId))) {
                 log.info("Parameters is correct");
-                return true;
             } else {
                 log.error("Your request is incorrect action id should be one of the users");
                 throw new IncorrectRequest("Your request is incorrect action id should be one of the users");

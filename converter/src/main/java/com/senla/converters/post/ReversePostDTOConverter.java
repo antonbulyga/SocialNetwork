@@ -4,7 +4,6 @@ import com.senla.dto.post.PostDto;
 import com.senla.entity.Community;
 import com.senla.entity.Post;
 import com.senla.service.community.CommunityService;
-import com.senla.service.like.LikeService;
 import com.senla.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.convert.converter.Converter;

@@ -43,8 +43,7 @@ public class JwtTokenProvider {
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
-        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
-        return bCryptPasswordEncoder;
+        return new BCryptPasswordEncoder();
     }
 
     @PostConstruct
@@ -93,11 +92,7 @@ public class JwtTokenProvider {
                 return false;
             }
             Token tokenNumber = tokenService.findTokenByTokenNumber(token);
-            if (tokenNumber == null) {
-                return true;
-            }
-
-            return false;
+            return tokenNumber == null;
         } catch (JwtException | IllegalArgumentException e) {
             throw new JwtAuthenticationException("JWT token is expired or invalid");
         }
