@@ -49,9 +49,9 @@ public class MessageController {
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping(value = "")
     public ResponseEntity<List<MessageDto>> getAllMessagesForUserFromAllDialogs() {
-        List<MessageDto> fullMessageDtoList = new ArrayList<>();
-        userFacade.getUserFromSecurityContext().getDialogs().forEach(d -> fullMessageDtoList.addAll(messageFacade.getMessagesByDialog_Id(d.getId())));
-        return new ResponseEntity<>(fullMessageDtoList, HttpStatus.OK);
+        User user = userFacade.getUserFromSecurityContext();
+        List<MessageDto> messageDtoList = messageFacade.getMessageByUser_Id(user.getId());
+        return new ResponseEntity<>(messageDtoList, HttpStatus.OK);
     }
 
     /**

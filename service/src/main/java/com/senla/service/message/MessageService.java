@@ -16,4 +16,6 @@ public interface MessageService {
     Message getMessage(Long id);
 
     Message updateMessage(Message message);
+
+    List<Message> getMessageByUser_Id(Long userId);
 }

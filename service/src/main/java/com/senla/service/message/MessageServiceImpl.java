@@ -74,6 +74,16 @@ public class MessageServiceImpl implements MessageService {
     }
 
     @Override
+    public List<Message> getMessageByUser_Id(Long userId) {
+        List<Message> messages = messageRepository.getMessageByUser_Id(userId);
+        if(messages.isEmpty()){
+            log.warn("No messages found");
+            throw new EntityNotFoundException("No messages found");
+        }
+        return messages;
+    }
+
+    @Override
     public Message getMessage(Long id) {
         log.info("Getting message by id");
         return messageRepository.findById(id)

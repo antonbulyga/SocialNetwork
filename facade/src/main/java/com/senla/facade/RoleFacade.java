@@ -45,14 +45,6 @@ public class RoleFacade {
         return roles.stream().map(roleDTOConverter::convert).collect(Collectors.toList());
     }
 
-    public RoleDto getRoleDto(Long id) {
-        return roleDTOConverter.convert(roleService.getRole(id));
-    }
-
-    public Role getRole(Long id) {
-        return roleService.getRole(id);
-    }
-
     public RoleDto getRoleByName(String name) {
         Role role = roleService.getRoleByName(name);
         return roleDTOConverter.convert(role);

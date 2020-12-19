@@ -289,6 +289,19 @@ public class AdminController {
     }
 
     /**
+     * Get posts from the community as admin
+     * @param id
+     * @return
+     */
+    @Secured({"ROLE_USER", "ROLE_ADMIN"})
+    @GetMapping(value = "/posts/search/community/{id}")
+    public ResponseEntity<List<PostDto>> getPostsByCommunity_Id(@PathVariable(name = "id") Long id) {
+        List<PostDto> postDtoList = postFacade.getPostDtoByCommunity_Id(id);
+        log.info("You received the post by community id");
+        return new ResponseEntity<>(postDtoList, HttpStatus.OK);
+    }
+
+    /**
      * Get all messages as admin user
      *
      * @return list of the messages dto
@@ -727,23 +740,7 @@ public class AdminController {
     @Secured("ROLE_ADMIN")
     @GetMapping(value = "/friendship/requests")
     public ResponseEntity<Map<String, List<UserDto>>> getRequestsAsAdmin(@RequestParam(name = "id") Long userId) {
-        List<Friendship> requests = friendshipFacade.getRequests(userId);
-        Map<Boolean, List<Friendship>> requestMap = requests.stream()
-                .collect(Collectors.partitioningBy((f) -> f.getActionUser().getId() == userId));
-
-        List<UserDto> outgoingFriendRequests = requestMap.get(true).stream()
-                .map(Friendship::getActionUser)
-                .map(userFacade::convertUserToUserDto)
-                .collect(Collectors.toList());
-
-        List<UserDto> incomingFriendRequests = requestMap.get(false).stream()
-                .map(Friendship::getActionUser)
-                .map(userFacade::convertUserToUserDto)
-                .collect(Collectors.toList());
-
-        Map<String, List<UserDto>> map = new HashMap<>();
-        map.put("outgoingFriendRequests", outgoingFriendRequests);
-        map.put("incomingFriendRequests", incomingFriendRequests);
+        Map<String, List<UserDto>> map = friendshipFacade.getOutgoingAndIncomingRequestsForUser(userId);
         log.info("Getting user requests");
         return new ResponseEntity<>(map, HttpStatus.OK);
     }

@@ -26,12 +26,12 @@ public class ProfileFacade {
     }
 
     public ProfileDto addProfile(ProfileDto profileDto) {
-       Profile profile = profileService.addProfile(reverseProfileDTOConverter.convert(profileDto));
-       return profileDTOConverter.convert(profile);
+        Profile profile = profileService.addProfile(reverseProfileDTOConverter.convert(profileDto));
+        return profileDTOConverter.convert(profile);
     }
 
     public ProfileDto updateProfile(ProfileDto profileDto) {
-        Profile profile =  profileService.updateProfile(reverseProfileDTOConverter.convert(profileDto));
+        Profile profile = profileService.updateProfile(reverseProfileDTOConverter.convert(profileDto));
         return profileDTOConverter.convert(profile);
     }
 

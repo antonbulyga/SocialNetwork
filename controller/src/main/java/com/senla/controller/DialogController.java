@@ -93,7 +93,7 @@ public class DialogController {
                 dialogFacade.deleteDialog(id);
                 log.info("Deleting the dialog");
                 return ResponseEntity.ok()
-                        .body(messageByLocaleService.getMessage(messageByLocaleService.getMessage("dialog.success.delete")));
+                        .body(messageByLocaleService.getMessage("dialog.success.delete"));
             }
 
         }

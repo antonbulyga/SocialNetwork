@@ -32,7 +32,7 @@ public class CommunityFacade {
     }
 
     public CommunityDto addCommunity(Community community) {
-       Community communityWithData = communityService.addCommunity(community);
+        Community communityWithData = communityService.addCommunity(community);
         return communityDTOConverter.convert(communityWithData);
     }
 

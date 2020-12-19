@@ -57,4 +57,9 @@ public class MessageFacade {
         return messages.stream().map(messageDTOConverter::convert).collect(Collectors.toList());
     }
 
+    public List<MessageDto> getMessageByUser_Id(Long userId) {
+        List<Message> messages = messageService.getMessageByUser_Id(userId);
+        return messages.stream().map(messageDTOConverter::convert).collect(Collectors.toList());
+    }
+
 }

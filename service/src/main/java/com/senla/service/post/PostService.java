@@ -16,4 +16,6 @@ public interface PostService {
     List<Post> getAllPosts();
 
     Post getPost(Long id);
+
+    List<Post> getPostByCommunity_Id(Long communityId);
 }

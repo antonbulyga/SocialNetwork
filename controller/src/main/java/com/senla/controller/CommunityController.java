@@ -64,13 +64,13 @@ public class CommunityController {
         Community community = communityFacade.convertCommunityDtoToCommunity(communityDto);
         User adminUser = community.getAdminUser();
         if (user.equals(adminUser)) {
-           CommunityDto communityDtoWithDetails = communityFacade.addCommunity(community);
+            CommunityDto communityDtoWithDetails = communityFacade.addCommunity(community);
             log.info("Adding community");
             return new ResponseEntity<>(communityDtoWithDetails, HttpStatus.OK);
-        } else {
-            log.error("Getting community by id");
-            throw new RestError("You are trying to add a group that you do not represent as an administrator");
         }
+        log.error("Getting community by id");
+        throw new RestError("You are trying to add a group that you do not represent as an administrator");
+
     }
 
     /**
@@ -94,11 +94,11 @@ public class CommunityController {
         if (count > 0) {
             log.error("The user is already in the group");
             throw new RestError("The user is already in the group");
-        } else {
-            log.info("Adding user to the community");
-            CommunityDto communityDto = communityFacade.addUserToCommunity(communityId, user.getId());
-            return new ResponseEntity<>(communityDto, HttpStatus.OK);
         }
+        log.info("Adding user to the community");
+        CommunityDto communityDto = communityFacade.addUserToCommunity(communityId, user.getId());
+        return new ResponseEntity<>(communityDto, HttpStatus.OK);
+
     }
 
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
@@ -118,10 +118,10 @@ public class CommunityController {
             communityFacade.removeUserFromCommunity(communityId, user.getId());
             return ResponseEntity.ok()
                     .body("You have left from the community successfully");
-        } else {
-            log.error("The user does not participate in the group");
-            throw new RestError("The user does not participate in the group");
         }
+        log.error("The user does not participate in the group");
+        throw new RestError("The user does not participate in the group");
+
     }
 
     /**
@@ -141,10 +141,10 @@ public class CommunityController {
             log.info("Deleting community");
             return ResponseEntity.ok()
                     .body("You have deleted community successfully");
-        } else {
-            log.error("You are trying to delete a group that you do not represent as an administrator");
-            throw new RestError("You are trying to delete a group that you do not represent as an administrator");
         }
+        log.error("You are trying to delete a group that you do not represent as an administrator");
+        throw new RestError("You are trying to delete a group that you do not represent as an administrator");
+
 
     }
 
@@ -178,10 +178,10 @@ public class CommunityController {
             CommunityDto communityDtoWithDetails = communityFacade.updateCommunity(communityDto);
             log.info("Updating community");
             return new ResponseEntity<>(communityDtoWithDetails, HttpStatus.OK);
-        } else {
-            log.error("Getting community by id");
-            throw new RestError("You are trying to update a group that you do not represent as an administrator");
         }
+        log.error("Getting community by id");
+        throw new RestError("You are trying to update a group that you do not represent as an administrator");
+
     }
 
     /**

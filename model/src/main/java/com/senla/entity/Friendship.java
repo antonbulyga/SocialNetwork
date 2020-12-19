@@ -12,6 +12,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Builder
 @Entity
+@EqualsAndHashCode(of = "id")
 @Table(name = "friendship")
 public class Friendship {
     @Id

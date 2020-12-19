@@ -80,4 +80,9 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(restApiResponse, HttpStatus.BAD_REQUEST);
     }
 
+    @ExceptionHandler(NullPointerException.class)
+    protected ResponseEntity<Object> handleNullPointerException(NullPointerException e) {
+        RestApiResponse restApiResponse = new RestApiResponse(HttpStatus.INTERNAL_SERVER_ERROR, "Server error");
+        return new ResponseEntity<>(restApiResponse, HttpStatus.BAD_REQUEST);
+    }
 }

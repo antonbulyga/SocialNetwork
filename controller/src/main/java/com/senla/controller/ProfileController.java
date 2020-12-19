@@ -41,7 +41,7 @@ public class ProfileController {
      *
      * @return profile dto
      */
-    @Secured({"ROLE_USER", "ROLE_ADMIN"})
+    @Secured({"ROLE_USER", "ROLE_ADMIN", "ROLE_GUEST"})
     @GetMapping(value = "/myprofile")
     public ResponseEntity<ProfileDto> getMyProfile() {
         User user = userFacade.getUserFromSecurityContext();
@@ -66,9 +66,9 @@ public class ProfileController {
 
     @PostMapping(value = "/add")
     public ResponseEntity<ProfileDto> addProfile(@Valid @RequestBody ProfileDto profileDto) {
-            ProfileDto profileDtoNew = profileFacade.addProfile(profileDto);
-            log.info("You have added profile successfully");
-            return new ResponseEntity<>(profileDtoNew, HttpStatus.OK);
+        ProfileDto profileDtoNew = profileFacade.addProfile(profileDto);
+        log.info("You have added profile successfully");
+        return new ResponseEntity<>(profileDtoNew, HttpStatus.OK);
     }
 
 
@@ -89,10 +89,10 @@ public class ProfileController {
             log.info("You have updated profile successfully");
             return new ResponseEntity<>(profileDto, HttpStatus.OK);
 
-        } else {
+        }
             log.warn("You are trying to update someone else's profile");
             throw new RestError("You are trying to update someone else's profile");
-        }
+
 
     }
 

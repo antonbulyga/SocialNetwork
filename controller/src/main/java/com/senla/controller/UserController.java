@@ -84,10 +84,10 @@ public class UserController {
         if (user.getId().equals(userDto.getId())) {
             UserDto userDtoWithDate = userFacade.updateUser(userDto);
             return new ResponseEntity<>(userDtoWithDate, HttpStatus.OK);
-        } else {
-            log.warn("You are trying to update someone else's user");
-            throw new RestError("You are trying to update someone else's user");
         }
+        log.warn("You are trying to update someone else's user");
+        throw new RestError("You are trying to update someone else's user");
+
     }
 
     /**

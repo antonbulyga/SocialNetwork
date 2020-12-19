@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 /**
@@ -58,10 +59,10 @@ public class FriendshipController {
             log.info("Sending a friend request");
             return ResponseEntity.ok()
                     .body(friendshipDto);
-        } else {
-            log.error("You are trying to send a friend request from another user");
-            throw new RestError("You are trying to send a friend request from another user");
         }
+        log.error("You are trying to send a friend request from another user");
+        throw new RestError("You are trying to send a friend request from another user");
+
     }
 
     /**
@@ -83,10 +84,10 @@ public class FriendshipController {
             log.info("Accept friend request");
             return ResponseEntity.ok()
                     .body(friendshipDto);
-        } else {
-            log.error("You are trying to add to the friends list from another user");
-            throw new RestError("You are trying to add to the friends list from another user");
         }
+        log.error("You are trying to add to the friends list from another user");
+        throw new RestError("You are trying to add to the friends list from another user");
+
     }
 
     /**
@@ -108,10 +109,10 @@ public class FriendshipController {
             log.info("Decline friend request");
             return ResponseEntity.ok()
                     .body(friendshipDto);
-        } else {
-            log.error("You are trying to add to the friends list from another user");
-            throw new RestError("You are trying to add to the friends list from another user");
         }
+        log.error("You are trying to add to the friends list from another user");
+        throw new RestError("You are trying to add to the friends list from another user");
+
     }
 
     /**
@@ -128,10 +129,10 @@ public class FriendshipController {
             List<UserDto> userDto = friendshipFacade.getFriendsListOfUser(userId);
             log.info("Getting a friend list of the user");
             return new ResponseEntity<>(userDto, HttpStatus.OK);
-        } else {
-            log.error("You are trying to get a friends list of another user");
-            throw new RestError("You are trying to get a friends list of another user");
         }
+        log.error("You are trying to get a friends list of another user");
+        throw new RestError("You are trying to get a friends list of another user");
+
     }
 
     /**
@@ -153,10 +154,10 @@ public class FriendshipController {
             log.info("Deleting the user from the friends");
             return ResponseEntity.ok()
                     .body(friendshipDto);
-        } else {
-            log.error("You are trying to delete a friendship of another user");
-            throw new RestError("You are trying to delete a friendship of another user");
         }
+        log.error("You are trying to delete a friendship of another user");
+        throw new RestError("You are trying to delete a friendship of another user");
+
     }
 
     /**
@@ -178,10 +179,10 @@ public class FriendshipController {
             log.info("Blocking user");
             return ResponseEntity.ok()
                     .body(friendshipDto);
-        } else {
-            log.error("You are trying to block user from another user");
-            throw new RestError("You are trying to block user from another user");
         }
+        log.error("You are trying to block user from another user");
+        throw new RestError("You are trying to block user from another user");
+
     }
 
     /**
@@ -203,10 +204,10 @@ public class FriendshipController {
             log.info("Unlocking user");
             return ResponseEntity.ok()
                     .body(friendshipDto);
-        } else {
-            log.error("You are trying to unblock user from another user");
-            throw new RestError("You are trying to unblock user from another user");
         }
+        log.error("You are trying to unblock user from another user");
+        throw new RestError("You are trying to unblock user from another user");
+
     }
 
     /**
@@ -217,58 +218,25 @@ public class FriendshipController {
      */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping(value = "/requests")
-    public ResponseEntity<Map<String, List<UserDto>>> getRequests(@RequestParam(name = "id") Long userId) {
+    public ResponseEntity<Map<String, List<UserDto>>> getOutgoingAndIncomingRequestsForUser(@RequestParam(name = "id") Long userId) {
         User user = userFacade.getUserFromSecurityContext();
         if (user.getId().equals(userId)) {
-            List<Friendship> requests = friendshipFacade.getRequests(userId);
-            Map<Boolean, List<Friendship>> requestMap = requests.stream()
-                    .collect(Collectors.partitioningBy((f) -> f.getActionUser().getId().equals(userId)));
-
-            List<UserDto> outgoingFriendRequests = requestMap.get(true).stream()
-                    .map(Friendship::getActionUser)
-                    .map(userFacade::convertUserToUserDto)
-                    .collect(Collectors.toList());
-
-            List<UserDto> incomingFriendRequests = requestMap.get(false).stream()
-                    .map(Friendship::getActionUser)
-                    .map(userFacade::convertUserToUserDto)
-                    .collect(Collectors.toList());
-
-            Map<String, List<UserDto>> map = new HashMap<>();
-            map.put("outgoingFriendRequests", outgoingFriendRequests);
-            map.put("incomingFriendRequests", incomingFriendRequests);
+            Map<String, List<UserDto>> map = friendshipFacade.getOutgoingAndIncomingRequestsForUser(userId);
             log.info("Getting user requests");
             return new ResponseEntity<>(map, HttpStatus.OK);
-        } else {
-            log.error("You are trying to get the requests list from another user");
-            throw new RestError("You are trying to get the requests list from another user");
         }
+        log.error("You are trying to get the requests list from another user");
+        throw new RestError("You are trying to get the requests list from another user");
+
     }
 
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping(value = "/user/frindslist")
-    public ResponseEntity<List<UserNestedDto>> getFriendFriendshipsForUser(@RequestParam(name = "userId") Long userId) {
-        User user = userFacade.getUserFromSecurityContext();
-        if (user.getId().equals(userId)) {
-            List<UserNestedDto> friendsListOfUser;
-            List<Friendship> friendshipList = friendshipFacade.getFriendFriendshipsForUser(userId);
-            log.info("Getting friends list of user");
-            friendsListOfUser = friendshipList.stream()
-                    .map(f -> {
-                        if (user.getId().equals(userId)) {
-                            return f.getUserOne();
-                        }
-                        return f.getUserTwo();
-                    })
-                    .map(userFacade::convertToUserNestedDto)
-                    .collect(Collectors.toList());
-            return ResponseEntity.ok()
-                    .body(friendsListOfUser);
-        } else {
-            log.error("You can only view the friends of a registered user");
-            throw new RestError("You can only view the friends of a registered user");
-        }
-
+    public ResponseEntity<Set<UserNestedDto>> getFriendFriendshipsForUser(@RequestParam(name = "userId") Long userId) {
+        log.info("Getting friends list of user");
+        Set<UserNestedDto> friendsListOfUser = friendshipFacade.getFriendFriendshipsForUser(userId);
+        return ResponseEntity.ok()
+                .body(friendsListOfUser);
     }
 
 }

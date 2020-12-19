@@ -71,6 +71,16 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
+    public List<Post> getPostByCommunity_Id(Long communityId) {
+        List<Post> posts = postRepository.getPostByCommunity_Id(communityId);
+        if (posts.isEmpty()) {
+            log.warn("No posts in this community");
+            throw new EntityNotFoundException("No posts in this community");
+        }
+        return posts;
+    }
+
+    @Override
     public Post updatePost(Post post) {
         log.info("Updating post");
         postRepository.save(post);

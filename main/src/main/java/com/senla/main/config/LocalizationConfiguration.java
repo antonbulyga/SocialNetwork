@@ -37,6 +37,7 @@ public class LocalizationConfiguration {
         }
         return slr;
     }
+
     @Bean
     public ReloadableResourceBundleMessageSource messageSource() {
         ReloadableResourceBundleMessageSource messageSource = new ReloadableResourceBundleMessageSource();

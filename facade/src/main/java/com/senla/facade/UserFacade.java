@@ -6,7 +6,6 @@ import com.senla.converters.user.UserToUserNestedDtoConverter;
 import com.senla.dto.user.UserDto;
 import com.senla.dto.user.UserNestedDto;
 import com.senla.entity.User;
-import com.senla.service.profile.ProfileService;
 import com.senla.service.user.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -48,11 +47,6 @@ public class UserFacade {
         return convertUserToUserDto(user);
     }
 
-    public UserDto addUser(User user) {
-       User newUser = userService.addUser(user);
-       return convertUserToUserDto(user);
-    }
-
     public void deleteUser(Long userId) {
         userService.deleteUser(userId);
     }
@@ -86,7 +80,7 @@ public class UserFacade {
         return userDTOConverter.convert(user);
     }
 
-    public UserNestedDto convertToUserNestedDto(User user){
+    public UserNestedDto convertToUserNestedDto(User user) {
         return userToUserNestedDtoConverter.convert(user);
     }
 }

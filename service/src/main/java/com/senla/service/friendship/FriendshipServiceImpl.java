@@ -1,17 +1,23 @@
 package com.senla.service.friendship;
 
+import com.senla.dto.user.UserDto;
 import com.senla.entity.Friendship;
 import com.senla.entity.User;
 import com.senla.enumeration.FriendshipStatus;
 import com.senla.exception.IncorrectRequest;
+import com.senla.exception.RestError;
 import com.senla.repository.FriendshipRepository;
 import com.senla.service.user.UserService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -217,6 +223,7 @@ public class FriendshipServiceImpl implements FriendshipService {
         log.warn("Relationship of that users already exists");
         throw new IncorrectRequest("Relationship of that users already exists");
     }
+
 
     private Friendship createFriendship(User userOne, User userTwo, User actionUser, FriendshipStatus status) {
         validate(userOne.getId(), userTwo.getId(), actionUser.getId());

@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface MessageRepository extends JpaRepository<Message, Long> {
     List<Message> getMessagesByDialog_Id(Long dialogId);
+    List<Message> getMessageByUser_Id(Long userId);
 }

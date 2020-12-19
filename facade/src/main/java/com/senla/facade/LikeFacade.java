@@ -26,7 +26,7 @@ public class LikeFacade {
     }
 
     public LikeDto addLike(LikeDto likeDto) {
-       Like like = likeService.addLike(reverseLikeDTOConverter.convert(likeDto));
+        Like like = likeService.addLike(reverseLikeDTOConverter.convert(likeDto));
         return likeDTOConverter.convert(like);
     }
 

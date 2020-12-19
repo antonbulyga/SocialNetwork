@@ -64,10 +64,10 @@ public class LikeController {
     public ResponseEntity<LikeDto> addLike(@Valid @RequestBody LikeDto likeDto) {
         User user = userFacade.getUserFromSecurityContext();
         User userFromDto = userFacade.getUser(likeDto.getUser().getId());
-            if (user.getId().equals(userFromDto.getId())) {
-                LikeDto likeDtoWithDetails = likeFacade.addLike(likeDto);
-                log.error("Adding like");
-                return new ResponseEntity<>(likeDtoWithDetails, HttpStatus.OK);
+        if (user.getId().equals(userFromDto.getId())) {
+            LikeDto likeDtoWithDetails = likeFacade.addLike(likeDto);
+            log.error("Adding like");
+            return new ResponseEntity<>(likeDtoWithDetails, HttpStatus.OK);
         }
         log.error("You are trying to add like from someone else user");
         throw new RestError("You are trying to add like from someone else user");

@@ -53,4 +53,8 @@ public class PostFacade {
         return posts.stream().map(postDTOConverter::convert).collect(Collectors.toList());
     }
 
+    public List<PostDto> getPostDtoByCommunity_Id(Long communityId) {
+        List<Post> posts = postService.getPostByCommunity_Id(communityId);
+        return posts.stream().map(postDTOConverter::convert).collect(Collectors.toList());
+    }
 }

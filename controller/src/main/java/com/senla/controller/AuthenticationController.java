@@ -79,7 +79,7 @@ public class AuthenticationController {
     @GetMapping("/exit")
     public ResponseEntity logout(@RequestHeader(name = "Authorization") String authorization) {
         if (authorization != null && authorization.startsWith("Bearer ")) {
-            String token = authorization.substring(7, authorization.length());
+            String token = authorization.substring(7);
             tokenService.addToken(token);
             log.info("You are logged out");
         }
