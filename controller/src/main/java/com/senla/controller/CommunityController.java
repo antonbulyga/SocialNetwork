@@ -3,6 +3,7 @@ package com.senla.controller;
 import com.senla.dto.community.CommunityDto;
 import com.senla.entity.Community;
 import com.senla.entity.User;
+import com.senla.exception.EntityNotFoundException;
 import com.senla.exception.RestError;
 import com.senla.facade.CommunityFacade;
 import com.senla.facade.UserFacade;
@@ -44,9 +45,9 @@ public class CommunityController {
     @GetMapping(value = "")
     public ResponseEntity<List<CommunityDto>> getAllCommunities() {
         List<CommunityDto> communityDtoList = communityFacade.getAllCommunities();
-        if (communityDtoList == null) {
+        if (communityDtoList.isEmpty()) {
             log.info("No communities");
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+            throw new EntityNotFoundException("No communities");
         }
         return new ResponseEntity<>(communityDtoList, HttpStatus.OK);
     }
@@ -83,7 +84,7 @@ public class CommunityController {
     @PostMapping(value = "/join")
     public ResponseEntity<CommunityDto> joinToCommunity(@RequestParam(name = "communityId") Long communityId) {
         User user = userFacade.getUserFromSecurityContext();
-        int count = communityFacade.communityParticipateChecker(communityId, user.getId());
+        int count = communityFacade.communityParticipateCheck(communityId, user.getId());
         if (count > 0) {
             log.error("The user is already in the group");
             throw new RestError("The user is already in the group");
@@ -103,7 +104,7 @@ public class CommunityController {
     @PostMapping(value = "/leave")
     public ResponseEntity<String> leaveFromCommunity(@RequestParam(name = "communityId") Long communityId) {
         User user = userFacade.getUserFromSecurityContext();
-        int count = communityFacade.communityParticipateChecker(communityId , user.getId());
+        int count = communityFacade.communityParticipateCheck(communityId , user.getId());
         if (count > 0) {
             log.info("Leaving from the community");
             communityFacade.removeUserFromCommunity(communityId, user.getId());

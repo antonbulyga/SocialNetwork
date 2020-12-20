@@ -83,7 +83,7 @@ public class CommunityFacade {
         return reverseCommunityDTOConverter.convert(communityDto);
     }
 
-    public int communityParticipateChecker(Long communityId, Long userId) {
+    public int communityParticipateCheck(Long communityId, Long userId) {
         return communityService.communityParticipateChecker(communityId , userId);
     }
 }

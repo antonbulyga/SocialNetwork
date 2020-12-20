@@ -1,738 +1,160 @@
-2020-12-19 15:42:05,060 [main] INFO  com.senla.main.SocialNetworkApplication  - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 11852 (C:\Users\Anton\Documents\SocialNetwork\main\target\classes started by Anton in C:\Users\Anton\Documents\SocialNetwork)
-2020-12-19 15:42:05,074 [main] INFO  com.senla.main.SocialNetworkApplication  - No active profile set, falling back to default profiles: default
-2020-12-19 15:42:06,336 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-12-19 15:42:06,455 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 106ms. Found 10 JPA repository interfaces.
-2020-12-19 15:42:07,190 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@52f57666' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-19 15:42:07,208 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-19 15:42:07,513 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat initialized with port(s): 8182 (http)
-2020-12-19 15:42:07,524 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
-2020-12-19 15:42:07,525 [main] INFO  org.apache.catalina.core.StandardEngine  - Starting Servlet engine: [Apache Tomcat/9.0.38]
-2020-12-19 15:42:07,527 [main] INFO  o.a.catalina.core.AprLifecycleListener   - Loaded Apache Tomcat Native library [1.2.25] using APR version [1.7.0].
-2020-12-19 15:42:07,527 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
-2020-12-19 15:42:07,527 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
-2020-12-19 15:42:07,531 [main] INFO  o.a.catalina.core.AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 1.1.1g  21 Apr 2020]
-2020-12-19 15:42:07,701 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]       - Initializing Spring embedded WebApplicationContext
-2020-12-19 15:42:07,702 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2507 ms
-2020-12-19 15:42:07,909 [main] INFO  o.hibernate.jpa.internal.util.LogHelper  - HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-12-19 15:42:07,984 [main] INFO  org.hibernate.Version                    - HHH000412: Hibernate ORM core version 5.4.21.Final
-2020-12-19 15:42:08,180 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-12-19 15:42:08,347 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Starting...
-2020-12-19 15:42:08,680 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Start completed.
-2020-12-19 15:42:08,703 [main] INFO  org.hibernate.dialect.Dialect            - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
-2020-12-19 15:42:10,290 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator       - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-12-19 15:42:10,302 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-12-19 15:42:11,294 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2020-12-19 15:42:11,612 [main] INFO  o.s.s.web.DefaultSecurityFilterChain     - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4fc8163, org.springframework.security.web.context.SecurityContextPersistenceFilter@3220833f, org.springframework.security.web.header.HeaderWriterFilter@5243d730, org.springframework.security.web.authentication.logout.LogoutFilter@489b7559, com.senla.security.JwtTokenFilter@6c26e588, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@3c862522, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@2d527346, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@62f73b0c, org.springframework.security.web.session.SessionManagementFilter@6aaf1ce8, org.springframework.security.web.access.ExceptionTranslationFilter@458704ee, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@513bec8c]
-2020-12-19 15:42:11,708 [main] INFO  o.s.s.concurrent.ThreadPoolTaskExecutor  - Initializing ExecutorService 'applicationTaskExecutor'
-2020-12-19 15:42:12,496 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat started on port(s): 8182 (http) with context path ''
-2020-12-19 15:42:12,505 [main] INFO  com.senla.main.SocialNetworkApplication  - Started SocialNetworkApplication in 8.252 seconds (JVM running for 9.408)
-2020-12-19 15:42:18,590 [http-nio-8182-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]       - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-12-19 15:42:18,591 [http-nio-8182-exec-1] INFO  o.s.web.servlet.DispatcherServlet        - Initializing Servlet 'dispatcherServlet'
-2020-12-19 15:42:18,602 [http-nio-8182-exec-1] INFO  o.s.web.servlet.DispatcherServlet        - Completed initialization in 10 ms
-2020-12-19 15:42:18,735 [http-nio-8182-exec-1] INFO  com.senla.service.token.TokenServiceImpl - Finding token by number
-2020-12-19 15:42:18,935 [http-nio-8182-exec-1] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
-2020-12-19 15:42:19,020 [http-nio-8182-exec-1] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa successfully loaded
-2020-12-19 15:42:19,030 [http-nio-8182-exec-1] INFO  com.senla.service.token.TokenServiceImpl - Finding token by number
-2020-12-19 15:42:19,033 [http-nio-8182-exec-1] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
-2020-12-19 15:42:19,040 [http-nio-8182-exec-1] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa successfully loaded
-2020-12-19 15:42:19,114 [http-nio-8182-exec-1] INFO  com.senla.service.user.UserServiceImpl   - Getting user by id
-2020-12-19 15:42:19,255 [http-nio-8182-exec-1] INFO  com.senla.controller.AdminController     - Getting user requests
-2020-12-19 17:09:15,021 [main] INFO  com.senla.main.SocialNetworkApplication  - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 14612 (C:\Users\Anton\Documents\SocialNetwork\main\target\classes started by Anton in C:\Users\Anton\Documents\SocialNetwork)
-2020-12-19 17:09:15,029 [main] INFO  com.senla.main.SocialNetworkApplication  - No active profile set, falling back to default profiles: default
-2020-12-19 17:09:16,336 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-12-19 17:09:16,520 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 170ms. Found 10 JPA repository interfaces.
-2020-12-19 17:09:17,546 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@4f9a6c2d' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-19 17:09:17,556 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-19 17:09:17,957 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat initialized with port(s): 8182 (http)
-2020-12-19 17:09:17,969 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
-2020-12-19 17:09:17,970 [main] INFO  org.apache.catalina.core.StandardEngine  - Starting Servlet engine: [Apache Tomcat/9.0.38]
-2020-12-19 17:09:17,972 [main] INFO  o.a.catalina.core.AprLifecycleListener   - Loaded Apache Tomcat Native library [1.2.25] using APR version [1.7.0].
-2020-12-19 17:09:17,973 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
-2020-12-19 17:09:17,973 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
-2020-12-19 17:09:17,977 [main] INFO  o.a.catalina.core.AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 1.1.1g  21 Apr 2020]
-2020-12-19 17:09:18,171 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]       - Initializing Spring embedded WebApplicationContext
-2020-12-19 17:09:18,172 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 3028 ms
-2020-12-19 17:09:18,438 [main] INFO  o.hibernate.jpa.internal.util.LogHelper  - HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-12-19 17:09:18,517 [main] INFO  org.hibernate.Version                    - HHH000412: Hibernate ORM core version 5.4.21.Final
-2020-12-19 17:09:18,720 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-12-19 17:09:18,888 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Starting...
-2020-12-19 17:09:19,254 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Start completed.
-2020-12-19 17:09:19,276 [main] INFO  org.hibernate.dialect.Dialect            - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
-2020-12-19 17:09:20,836 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator       - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-12-19 17:09:20,847 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-12-19 17:09:21,718 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2020-12-19 17:09:22,042 [main] INFO  o.s.s.web.DefaultSecurityFilterChain     - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@64de9fa4, org.springframework.security.web.context.SecurityContextPersistenceFilter@11fb1691, org.springframework.security.web.header.HeaderWriterFilter@6addfa22, org.springframework.security.web.authentication.logout.LogoutFilter@1c97c3bb, com.senla.security.JwtTokenFilter@15a5cc6e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@215404a1, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@1f847d9e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@4a65c40, org.springframework.security.web.session.SessionManagementFilter@2d527346, org.springframework.security.web.access.ExceptionTranslationFilter@2eb9c7ad, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2396408a]
-2020-12-19 17:09:22,147 [main] INFO  o.s.s.concurrent.ThreadPoolTaskExecutor  - Initializing ExecutorService 'applicationTaskExecutor'
-2020-12-19 17:09:23,060 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.context.ApplicationContextException: Failed to start bean 'webServerStartStop'; nested exception is org.springframework.boot.web.server.PortInUseException: Port 8182 is already in use
-2020-12-19 17:09:23,061 [main] INFO  o.s.s.concurrent.ThreadPoolTaskExecutor  - Shutting down ExecutorService 'applicationTaskExecutor'
-2020-12-19 17:09:23,064 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2020-12-19 17:09:23,067 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Shutdown initiated...
-2020-12-19 17:09:23,080 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Shutdown completed.
-2020-12-19 17:09:23,082 [main] INFO  org.apache.catalina.core.StandardService - Stopping service [Tomcat]
-2020-12-19 17:09:23,094 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
-
-Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
-2020-12-19 17:09:23,101 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter   - 
-
-***************************
-APPLICATION FAILED TO START
-***************************
-
-Description:
-
-Web server failed to start. Port 8182 was already in use.
-
-Action:
-
-Identify and stop the process that's listening on port 8182 or configure this application to listen on another port.
-
-2020-12-19 17:09:34,242 [main] INFO  com.senla.main.SocialNetworkApplication  - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 14396 (C:\Users\Anton\Documents\SocialNetwork\main\target\classes started by Anton in C:\Users\Anton\Documents\SocialNetwork)
-2020-12-19 17:09:34,249 [main] INFO  com.senla.main.SocialNetworkApplication  - No active profile set, falling back to default profiles: default
-2020-12-19 17:09:35,407 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-12-19 17:09:35,526 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 104ms. Found 10 JPA repository interfaces.
-2020-12-19 17:09:36,204 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@ff23ae7' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-19 17:09:36,212 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-19 17:09:36,521 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat initialized with port(s): 8182 (http)
-2020-12-19 17:09:36,532 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
-2020-12-19 17:09:36,533 [main] INFO  org.apache.catalina.core.StandardEngine  - Starting Servlet engine: [Apache Tomcat/9.0.38]
-2020-12-19 17:09:36,535 [main] INFO  o.a.catalina.core.AprLifecycleListener   - Loaded Apache Tomcat Native library [1.2.25] using APR version [1.7.0].
-2020-12-19 17:09:36,535 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
-2020-12-19 17:09:36,536 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
-2020-12-19 17:09:36,540 [main] INFO  o.a.catalina.core.AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 1.1.1g  21 Apr 2020]
-2020-12-19 17:09:36,706 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]       - Initializing Spring embedded WebApplicationContext
-2020-12-19 17:09:36,707 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2339 ms
-2020-12-19 17:09:36,918 [main] INFO  o.hibernate.jpa.internal.util.LogHelper  - HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-12-19 17:09:36,994 [main] INFO  org.hibernate.Version                    - HHH000412: Hibernate ORM core version 5.4.21.Final
-2020-12-19 17:09:37,200 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-12-19 17:09:37,365 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Starting...
-2020-12-19 17:09:37,716 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Start completed.
-2020-12-19 17:09:37,737 [main] INFO  org.hibernate.dialect.Dialect            - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
-2020-12-19 17:09:39,369 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator       - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-12-19 17:09:39,380 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-12-19 17:09:40,246 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2020-12-19 17:09:40,562 [main] INFO  o.s.s.web.DefaultSecurityFilterChain     - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6fd37997, org.springframework.security.web.context.SecurityContextPersistenceFilter@77fecd2c, org.springframework.security.web.header.HeaderWriterFilter@55c581e4, org.springframework.security.web.authentication.logout.LogoutFilter@1d4e06bb, com.senla.security.JwtTokenFilter@5dc7881d, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@52b32622, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@7c1c0892, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@590336ed, org.springframework.security.web.session.SessionManagementFilter@3f267e1b, org.springframework.security.web.access.ExceptionTranslationFilter@24888d8b, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@682d8dad]
-2020-12-19 17:09:40,659 [main] INFO  o.s.s.concurrent.ThreadPoolTaskExecutor  - Initializing ExecutorService 'applicationTaskExecutor'
-2020-12-19 17:09:41,452 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat started on port(s): 8182 (http) with context path ''
-2020-12-19 17:09:41,463 [main] INFO  com.senla.main.SocialNetworkApplication  - Started SocialNetworkApplication in 8.089 seconds (JVM running for 9.453)
-2020-12-19 17:09:50,684 [http-nio-8182-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]       - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-12-19 17:09:50,685 [http-nio-8182-exec-2] INFO  o.s.web.servlet.DispatcherServlet        - Initializing Servlet 'dispatcherServlet'
-2020-12-19 17:09:50,695 [http-nio-8182-exec-2] INFO  o.s.web.servlet.DispatcherServlet        - Completed initialization in 9 ms
-2020-12-19 17:09:50,936 [http-nio-8182-exec-2] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
-2020-12-19 17:09:51,156 [http-nio-8182-exec-2] WARN  com.senla.service.user.UserServiceImpl   - No user found with this name
-2020-12-19 17:09:54,964 [http-nio-8182-exec-3] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
-2020-12-19 17:09:55,237 [http-nio-8182-exec-3] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
-2020-12-19 17:09:55,245 [http-nio-8182-exec-3] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
-2020-12-19 17:10:50,289 [http-nio-8182-exec-4] INFO  com.senla.service.token.TokenServiceImpl - Finding token by number
-2020-12-19 17:10:50,383 [http-nio-8182-exec-4] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
-2020-12-19 17:10:50,391 [http-nio-8182-exec-4] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
-2020-12-19 17:10:50,394 [http-nio-8182-exec-4] INFO  com.senla.service.token.TokenServiceImpl - Finding token by number
-2020-12-19 17:10:50,399 [http-nio-8182-exec-4] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
-2020-12-19 17:10:50,406 [http-nio-8182-exec-4] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
-2020-12-19 17:10:50,414 [http-nio-8182-exec-4] INFO  com.senla.service.user.UserServiceImpl   - Get all users
-2020-12-19 17:10:50,671 [http-nio-8182-exec-4] INFO  com.senla.controller.AdminController     - Getting all users as admin
-2020-12-19 18:06:52,354 [http-nio-8182-exec-6] INFO  com.senla.service.role.RoleServiceImpl   - Getting role by name
-2020-12-19 18:06:52,374 [http-nio-8182-exec-6] INFO  com.senla.service.user.UserServiceImpl   - Adding a new user
-2020-12-19 18:06:52,621 [http-nio-8182-exec-6] WARN  o.h.engine.jdbc.spi.SqlExceptionHelper   - SQL Error: 1062, SQLState: 23000
-2020-12-19 18:06:52,621 [http-nio-8182-exec-6] ERROR o.h.engine.jdbc.spi.SqlExceptionHelper   - Duplicate entry 'antoxa555' for key 'user_name_UNIQUE'
-2020-12-19 18:06:52,713 [http-nio-8182-exec-6] ERROR o.a.c.c.C.[.[.[/].[dispatcherServlet]    - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.DataIntegrityViolationException: could not execute statement; SQL [n/a]; constraint [user_name_UNIQUE]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement] with root cause
-java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'antoxa555' for key 'user_name_UNIQUE'
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1092)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1040)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1347)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1025)
-	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61)
-	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java)
-	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:197)
-	at org.hibernate.persister.entity.AbstractEntityPersister.update(AbstractEntityPersister.java:3450)
-	at org.hibernate.persister.entity.AbstractEntityPersister.updateOrInsert(AbstractEntityPersister.java:3312)
-	at org.hibernate.persister.entity.AbstractEntityPersister.update(AbstractEntityPersister.java:3726)
-	at org.hibernate.action.internal.EntityUpdateAction.execute(EntityUpdateAction.java:201)
-	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:604)
-	at org.hibernate.engine.spi.ActionQueue.lambda$executeActions$1(ActionQueue.java:478)
-	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:684)
-	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:475)
-	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:348)
-	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:40)
-	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:102)
-	at org.hibernate.internal.SessionImpl.doFlush(SessionImpl.java:1363)
-	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:454)
-	at org.hibernate.internal.SessionImpl.flushBeforeTransactionCompletion(SessionImpl.java:3213)
-	at org.hibernate.internal.SessionImpl.beforeTransactionCompletion(SessionImpl.java:2381)
-	at org.hibernate.engine.jdbc.internal.JdbcCoordinatorImpl.beforeTransactionCompletion(JdbcCoordinatorImpl.java:447)
-	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.beforeCompletionCallback(JdbcResourceLocalTransactionCoordinatorImpl.java:183)
-	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.access$300(JdbcResourceLocalTransactionCoordinatorImpl.java:40)
-	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commit(JdbcResourceLocalTransactionCoordinatorImpl.java:281)
-	at org.hibernate.engine.transaction.internal.TransactionImpl.commit(TransactionImpl.java:101)
-	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:534)
-	at org.springframework.transaction.support.AbstractPlatformTransactionManager.processCommit(AbstractPlatformTransactionManager.java:743)
-	at org.springframework.transaction.support.AbstractPlatformTransactionManager.commit(AbstractPlatformTransactionManager.java:711)
-	at org.springframework.transaction.interceptor.TransactionAspectSupport.commitTransactionAfterReturning(TransactionAspectSupport.java:633)
-	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:386)
-	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:118)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:749)
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:691)
-	at com.senla.service.user.UserServiceImpl$$EnhancerBySpringCGLIB$$609e5fdb.addUser(<generated>)
-	at com.senla.facade.UserFacade.addUser(UserFacade.java:46)
-	at com.senla.controller.UserController.addUser(UserController.java:68)
-	at com.senla.controller.UserController$$FastClassBySpringCGLIB$$dab5752f.invoke(<generated>)
-	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:687)
-	at com.senla.controller.UserController$$EnhancerBySpringCGLIB$$d23cbd21.addUser(<generated>)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:105)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:878)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:792)
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:652)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at com.senla.security.JwtTokenFilter.doFilter(JwtTokenFilter.java:38)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320)
-	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126)
-	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:118)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-	at com.senla.security.JwtTokenFilter.doFilter(JwtTokenFilter.java:38)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92)
-	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
-	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
-	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358)
-	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:143)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:374)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.base/java.lang.Thread.run(Thread.java:834)
-2020-12-19 18:08:35,619 [main] INFO  com.senla.main.SocialNetworkApplication  - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 19996 (C:\Users\Anton\Documents\SocialNetwork\main\target\classes started by Anton in C:\Users\Anton\Documents\SocialNetwork)
-2020-12-19 18:08:35,626 [main] INFO  com.senla.main.SocialNetworkApplication  - No active profile set, falling back to default profiles: default
-2020-12-19 18:08:36,952 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-12-19 18:08:37,069 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 107ms. Found 10 JPA repository interfaces.
-2020-12-19 18:08:37,740 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@4c58255' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-19 18:08:37,748 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-19 18:08:38,060 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat initialized with port(s): 8182 (http)
-2020-12-19 18:08:38,072 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
-2020-12-19 18:08:38,072 [main] INFO  org.apache.catalina.core.StandardEngine  - Starting Servlet engine: [Apache Tomcat/9.0.38]
-2020-12-19 18:08:38,074 [main] INFO  o.a.catalina.core.AprLifecycleListener   - Loaded Apache Tomcat Native library [1.2.25] using APR version [1.7.0].
-2020-12-19 18:08:38,075 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
-2020-12-19 18:08:38,075 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
-2020-12-19 18:08:38,079 [main] INFO  o.a.catalina.core.AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 1.1.1g  21 Apr 2020]
-2020-12-19 18:08:38,251 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]       - Initializing Spring embedded WebApplicationContext
-2020-12-19 18:08:38,251 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2487 ms
-2020-12-19 18:08:38,465 [main] INFO  o.hibernate.jpa.internal.util.LogHelper  - HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-12-19 18:08:38,545 [main] INFO  org.hibernate.Version                    - HHH000412: Hibernate ORM core version 5.4.21.Final
-2020-12-19 18:08:38,747 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-12-19 18:08:38,905 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Starting...
-2020-12-19 18:08:39,241 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Start completed.
-2020-12-19 18:08:39,261 [main] INFO  org.hibernate.dialect.Dialect            - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
-2020-12-19 18:08:40,807 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator       - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-12-19 18:08:40,819 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-12-19 18:08:41,846 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2020-12-19 18:08:42,186 [main] INFO  o.s.s.web.DefaultSecurityFilterChain     - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@5b2fc2c0, org.springframework.security.web.context.SecurityContextPersistenceFilter@1d51b6a8, org.springframework.security.web.header.HeaderWriterFilter@726e29d, org.springframework.security.web.authentication.logout.LogoutFilter@64c37088, com.senla.security.JwtTokenFilter@33197c2f, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@37dc7661, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3d01b609, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@24e79a4d, org.springframework.security.web.session.SessionManagementFilter@7c1c0892, org.springframework.security.web.access.ExceptionTranslationFilter@6693818c, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@3da55998]
-2020-12-19 18:08:42,282 [main] INFO  o.s.s.concurrent.ThreadPoolTaskExecutor  - Initializing ExecutorService 'applicationTaskExecutor'
-2020-12-19 18:08:43,087 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat started on port(s): 8182 (http) with context path ''
-2020-12-19 18:08:43,096 [main] INFO  com.senla.main.SocialNetworkApplication  - Started SocialNetworkApplication in 8.267 seconds (JVM running for 9.501)
-2020-12-19 18:08:46,448 [http-nio-8182-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]       - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-12-19 18:08:46,449 [http-nio-8182-exec-2] INFO  o.s.web.servlet.DispatcherServlet        - Initializing Servlet 'dispatcherServlet'
-2020-12-19 18:08:46,461 [http-nio-8182-exec-2] INFO  o.s.web.servlet.DispatcherServlet        - Completed initialization in 12 ms
-2020-12-19 18:08:47,138 [http-nio-8182-exec-2] INFO  com.senla.service.role.RoleServiceImpl   - Getting role by name
-2020-12-19 18:08:47,161 [http-nio-8182-exec-2] INFO  com.senla.service.user.UserServiceImpl   - Adding a new user
-2020-12-19 18:08:47,384 [http-nio-8182-exec-2] WARN  o.h.engine.jdbc.spi.SqlExceptionHelper   - SQL Error: 1062, SQLState: 23000
-2020-12-19 18:08:47,385 [http-nio-8182-exec-2] ERROR o.h.engine.jdbc.spi.SqlExceptionHelper   - Duplicate entry 'antoxa555' for key 'user_name_UNIQUE'
-2020-12-19 18:08:47,450 [http-nio-8182-exec-2] ERROR o.a.c.c.C.[.[.[/].[dispatcherServlet]    - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception [Request processing failed; nested exception is org.springframework.dao.DataIntegrityViolationException: could not execute statement; SQL [n/a]; constraint [user_name_UNIQUE]; nested exception is org.hibernate.exception.ConstraintViolationException: could not execute statement] with root cause
-java.sql.SQLIntegrityConstraintViolationException: Duplicate entry 'antoxa555' for key 'user_name_UNIQUE'
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:117)
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:97)
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:122)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeInternal(ClientPreparedStatement.java:953)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1092)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdateInternal(ClientPreparedStatement.java:1040)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeLargeUpdate(ClientPreparedStatement.java:1347)
-	at com.mysql.cj.jdbc.ClientPreparedStatement.executeUpdate(ClientPreparedStatement.java:1025)
-	at com.zaxxer.hikari.pool.ProxyPreparedStatement.executeUpdate(ProxyPreparedStatement.java:61)
-	at com.zaxxer.hikari.pool.HikariProxyPreparedStatement.executeUpdate(HikariProxyPreparedStatement.java)
-	at org.hibernate.engine.jdbc.internal.ResultSetReturnImpl.executeUpdate(ResultSetReturnImpl.java:197)
-	at org.hibernate.persister.entity.AbstractEntityPersister.update(AbstractEntityPersister.java:3450)
-	at org.hibernate.persister.entity.AbstractEntityPersister.updateOrInsert(AbstractEntityPersister.java:3312)
-	at org.hibernate.persister.entity.AbstractEntityPersister.update(AbstractEntityPersister.java:3726)
-	at org.hibernate.action.internal.EntityUpdateAction.execute(EntityUpdateAction.java:201)
-	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:604)
-	at org.hibernate.engine.spi.ActionQueue.lambda$executeActions$1(ActionQueue.java:478)
-	at java.base/java.util.LinkedHashMap.forEach(LinkedHashMap.java:684)
-	at org.hibernate.engine.spi.ActionQueue.executeActions(ActionQueue.java:475)
-	at org.hibernate.event.internal.AbstractFlushingEventListener.performExecutions(AbstractFlushingEventListener.java:348)
-	at org.hibernate.event.internal.DefaultFlushEventListener.onFlush(DefaultFlushEventListener.java:40)
-	at org.hibernate.event.service.internal.EventListenerGroupImpl.fireEventOnEachListener(EventListenerGroupImpl.java:102)
-	at org.hibernate.internal.SessionImpl.doFlush(SessionImpl.java:1363)
-	at org.hibernate.internal.SessionImpl.managedFlush(SessionImpl.java:454)
-	at org.hibernate.internal.SessionImpl.flushBeforeTransactionCompletion(SessionImpl.java:3213)
-	at org.hibernate.internal.SessionImpl.beforeTransactionCompletion(SessionImpl.java:2381)
-	at org.hibernate.engine.jdbc.internal.JdbcCoordinatorImpl.beforeTransactionCompletion(JdbcCoordinatorImpl.java:447)
-	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.beforeCompletionCallback(JdbcResourceLocalTransactionCoordinatorImpl.java:183)
-	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl.access$300(JdbcResourceLocalTransactionCoordinatorImpl.java:40)
-	at org.hibernate.resource.transaction.backend.jdbc.internal.JdbcResourceLocalTransactionCoordinatorImpl$TransactionDriverControlImpl.commit(JdbcResourceLocalTransactionCoordinatorImpl.java:281)
-	at org.hibernate.engine.transaction.internal.TransactionImpl.commit(TransactionImpl.java:101)
-	at org.springframework.orm.jpa.JpaTransactionManager.doCommit(JpaTransactionManager.java:534)
-	at org.springframework.transaction.support.AbstractPlatformTransactionManager.processCommit(AbstractPlatformTransactionManager.java:743)
-	at org.springframework.transaction.support.AbstractPlatformTransactionManager.commit(AbstractPlatformTransactionManager.java:711)
-	at org.springframework.transaction.interceptor.TransactionAspectSupport.commitTransactionAfterReturning(TransactionAspectSupport.java:633)
-	at org.springframework.transaction.interceptor.TransactionAspectSupport.invokeWithinTransaction(TransactionAspectSupport.java:386)
-	at org.springframework.transaction.interceptor.TransactionInterceptor.invoke(TransactionInterceptor.java:118)
-	at org.springframework.aop.framework.ReflectiveMethodInvocation.proceed(ReflectiveMethodInvocation.java:186)
-	at org.springframework.aop.framework.CglibAopProxy$CglibMethodInvocation.proceed(CglibAopProxy.java:749)
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:691)
-	at com.senla.service.user.UserServiceImpl$$EnhancerBySpringCGLIB$$421490b3.addUser(<generated>)
-	at com.senla.facade.UserFacade.addUser(UserFacade.java:46)
-	at com.senla.controller.UserController.addUser(UserController.java:68)
-	at com.senla.controller.UserController$$FastClassBySpringCGLIB$$dab5752f.invoke(<generated>)
-	at org.springframework.cglib.proxy.MethodProxy.invoke(MethodProxy.java:218)
-	at org.springframework.aop.framework.CglibAopProxy$DynamicAdvisedInterceptor.intercept(CglibAopProxy.java:687)
-	at com.senla.controller.UserController$$EnhancerBySpringCGLIB$$4d807662.addUser(<generated>)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
-	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
-	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
-	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:105)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:878)
-	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:792)
-	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
-	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1040)
-	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:943)
-	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1006)
-	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:909)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:652)
-	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:883)
-	at javax.servlet.http.HttpServlet.service(HttpServlet.java:733)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at com.senla.security.JwtTokenFilter.doFilter(JwtTokenFilter.java:38)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:320)
-	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.invoke(FilterSecurityInterceptor.java:126)
-	at org.springframework.security.web.access.intercept.FilterSecurityInterceptor.doFilter(FilterSecurityInterceptor.java:90)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-	at org.springframework.security.web.access.ExceptionTranslationFilter.doFilter(ExceptionTranslationFilter.java:118)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-	at org.springframework.security.web.session.SessionManagementFilter.doFilter(SessionManagementFilter.java:137)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-	at org.springframework.security.web.authentication.AnonymousAuthenticationFilter.doFilter(AnonymousAuthenticationFilter.java:111)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-	at org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter.doFilter(SecurityContextHolderAwareRequestFilter.java:158)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-	at org.springframework.security.web.savedrequest.RequestCacheAwareFilter.doFilter(RequestCacheAwareFilter.java:63)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-	at com.senla.security.JwtTokenFilter.doFilter(JwtTokenFilter.java:38)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-	at org.springframework.security.web.authentication.logout.LogoutFilter.doFilter(LogoutFilter.java:116)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-	at org.springframework.security.web.header.HeaderWriterFilter.doHeadersAfter(HeaderWriterFilter.java:92)
-	at org.springframework.security.web.header.HeaderWriterFilter.doFilterInternal(HeaderWriterFilter.java:77)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-	at org.springframework.security.web.context.SecurityContextPersistenceFilter.doFilter(SecurityContextPersistenceFilter.java:105)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-	at org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter.doFilterInternal(WebAsyncManagerIntegrationFilter.java:56)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-	at org.springframework.security.web.FilterChainProxy$VirtualFilterChain.doFilter(FilterChainProxy.java:334)
-	at org.springframework.security.web.FilterChainProxy.doFilterInternal(FilterChainProxy.java:215)
-	at org.springframework.security.web.FilterChainProxy.doFilter(FilterChainProxy.java:178)
-	at org.springframework.web.filter.DelegatingFilterProxy.invokeDelegate(DelegatingFilterProxy.java:358)
-	at org.springframework.web.filter.DelegatingFilterProxy.doFilter(DelegatingFilterProxy.java:271)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:100)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:93)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:201)
-	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:119)
-	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
-	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
-	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
-	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:97)
-	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:541)
-	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:143)
-	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
-	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:78)
-	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
-	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:374)
-	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:65)
-	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:868)
-	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1590)
-	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
-	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
-	at java.base/java.lang.Thread.run(Thread.java:834)
-2020-12-19 18:09:55,578 [main] INFO  com.senla.main.SocialNetworkApplication  - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 6796 (C:\Users\Anton\Documents\SocialNetwork\main\target\classes started by Anton in C:\Users\Anton\Documents\SocialNetwork)
-2020-12-19 18:09:55,589 [main] INFO  com.senla.main.SocialNetworkApplication  - No active profile set, falling back to default profiles: default
-2020-12-19 18:09:56,833 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-12-19 18:09:57,014 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 160ms. Found 10 JPA repository interfaces.
-2020-12-19 18:09:57,791 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@68f0f72c' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-19 18:09:57,797 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-19 18:09:58,114 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat initialized with port(s): 8182 (http)
-2020-12-19 18:09:58,127 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
-2020-12-19 18:09:58,127 [main] INFO  org.apache.catalina.core.StandardEngine  - Starting Servlet engine: [Apache Tomcat/9.0.38]
-2020-12-19 18:09:58,129 [main] INFO  o.a.catalina.core.AprLifecycleListener   - Loaded Apache Tomcat Native library [1.2.25] using APR version [1.7.0].
-2020-12-19 18:09:58,130 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
-2020-12-19 18:09:58,130 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
-2020-12-19 18:09:58,134 [main] INFO  o.a.catalina.core.AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 1.1.1g  21 Apr 2020]
-2020-12-19 18:09:58,310 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]       - Initializing Spring embedded WebApplicationContext
-2020-12-19 18:09:58,310 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2594 ms
-2020-12-19 18:09:58,526 [main] INFO  o.hibernate.jpa.internal.util.LogHelper  - HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-12-19 18:09:58,603 [main] INFO  org.hibernate.Version                    - HHH000412: Hibernate ORM core version 5.4.21.Final
-2020-12-19 18:09:58,800 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-12-19 18:09:58,974 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Starting...
-2020-12-19 18:09:59,307 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Start completed.
-2020-12-19 18:09:59,335 [main] INFO  org.hibernate.dialect.Dialect            - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
-2020-12-19 18:10:00,891 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator       - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-12-19 18:10:00,903 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-12-19 18:10:01,752 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2020-12-19 18:10:02,076 [main] INFO  o.s.s.web.DefaultSecurityFilterChain     - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@6c26e588, org.springframework.security.web.context.SecurityContextPersistenceFilter@2e5c245d, org.springframework.security.web.header.HeaderWriterFilter@15afebcc, org.springframework.security.web.authentication.logout.LogoutFilter@4028aab2, com.senla.security.JwtTokenFilter@62f73b0c, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@64c37088, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@451cef67, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@7dd2a5f7, org.springframework.security.web.session.SessionManagementFilter@6f26e775, org.springframework.security.web.access.ExceptionTranslationFilter@45b2d17b, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@693ed09d]
-2020-12-19 18:10:02,170 [main] INFO  o.s.s.concurrent.ThreadPoolTaskExecutor  - Initializing ExecutorService 'applicationTaskExecutor'
-2020-12-19 18:10:03,088 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat started on port(s): 8182 (http) with context path ''
-2020-12-19 18:10:03,098 [main] INFO  com.senla.main.SocialNetworkApplication  - Started SocialNetworkApplication in 8.372 seconds (JVM running for 9.625)
-2020-12-19 18:10:06,150 [http-nio-8182-exec-3] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]       - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-12-19 18:10:06,151 [http-nio-8182-exec-3] INFO  o.s.web.servlet.DispatcherServlet        - Initializing Servlet 'dispatcherServlet'
-2020-12-19 18:10:06,161 [http-nio-8182-exec-3] INFO  o.s.web.servlet.DispatcherServlet        - Completed initialization in 9 ms
-2020-12-19 18:10:06,728 [http-nio-8182-exec-3] INFO  com.senla.service.role.RoleServiceImpl   - Getting role by name
-2020-12-19 18:10:06,751 [http-nio-8182-exec-3] INFO  com.senla.service.user.UserServiceImpl   - Adding a new user
-2020-12-19 18:10:06,972 [http-nio-8182-exec-3] WARN  o.h.engine.jdbc.spi.SqlExceptionHelper   - SQL Error: 1062, SQLState: 23000
-2020-12-19 18:10:06,972 [http-nio-8182-exec-3] ERROR o.h.engine.jdbc.spi.SqlExceptionHelper   - Duplicate entry 'antoxa555' for key 'user_name_UNIQUE'
-2020-12-19 18:10:38,548 [main] INFO  com.senla.main.SocialNetworkApplication  - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 6232 (C:\Users\Anton\Documents\SocialNetwork\main\target\classes started by Anton in C:\Users\Anton\Documents\SocialNetwork)
-2020-12-19 18:10:38,554 [main] INFO  com.senla.main.SocialNetworkApplication  - No active profile set, falling back to default profiles: default
-2020-12-19 18:10:39,857 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-12-19 18:10:39,993 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 124ms. Found 10 JPA repository interfaces.
-2020-12-19 18:10:41,111 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@181d8899' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-19 18:10:41,118 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-19 18:10:41,452 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat initialized with port(s): 8182 (http)
-2020-12-19 18:10:41,465 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
-2020-12-19 18:10:41,465 [main] INFO  org.apache.catalina.core.StandardEngine  - Starting Servlet engine: [Apache Tomcat/9.0.38]
-2020-12-19 18:10:41,468 [main] INFO  o.a.catalina.core.AprLifecycleListener   - Loaded Apache Tomcat Native library [1.2.25] using APR version [1.7.0].
-2020-12-19 18:10:41,468 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
-2020-12-19 18:10:41,468 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
-2020-12-19 18:10:41,472 [main] INFO  o.a.catalina.core.AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 1.1.1g  21 Apr 2020]
-2020-12-19 18:10:41,641 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]       - Initializing Spring embedded WebApplicationContext
-2020-12-19 18:10:41,642 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2968 ms
-2020-12-19 18:10:41,856 [main] INFO  o.hibernate.jpa.internal.util.LogHelper  - HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-12-19 18:10:41,936 [main] INFO  org.hibernate.Version                    - HHH000412: Hibernate ORM core version 5.4.21.Final
-2020-12-19 18:10:42,135 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-12-19 18:10:42,298 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Starting...
-2020-12-19 18:10:42,634 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Start completed.
-2020-12-19 18:10:42,656 [main] INFO  org.hibernate.dialect.Dialect            - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
-2020-12-19 18:10:44,257 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator       - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-12-19 18:10:44,269 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-12-19 18:10:45,158 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2020-12-19 18:10:45,498 [main] INFO  o.s.s.web.DefaultSecurityFilterChain     - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@44d6f9cf, org.springframework.security.web.context.SecurityContextPersistenceFilter@33197c2f, org.springframework.security.web.header.HeaderWriterFilter@2f8b48c3, org.springframework.security.web.authentication.logout.LogoutFilter@1d45c4b7, com.senla.security.JwtTokenFilter@34f32575, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@5542418c, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@24ce5d4c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@54224125, org.springframework.security.web.session.SessionManagementFilter@40ebb56, org.springframework.security.web.access.ExceptionTranslationFilter@37aea657, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@29693b1d]
-2020-12-19 18:10:45,591 [main] INFO  o.s.s.concurrent.ThreadPoolTaskExecutor  - Initializing ExecutorService 'applicationTaskExecutor'
-2020-12-19 18:10:46,483 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat started on port(s): 8182 (http) with context path ''
-2020-12-19 18:10:46,493 [main] INFO  com.senla.main.SocialNetworkApplication  - Started SocialNetworkApplication in 8.847 seconds (JVM running for 10.101)
-2020-12-19 18:10:49,416 [http-nio-8182-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]       - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-12-19 18:10:49,417 [http-nio-8182-exec-1] INFO  o.s.web.servlet.DispatcherServlet        - Initializing Servlet 'dispatcherServlet'
-2020-12-19 18:10:49,429 [http-nio-8182-exec-1] INFO  o.s.web.servlet.DispatcherServlet        - Completed initialization in 12 ms
-2020-12-19 18:10:50,025 [http-nio-8182-exec-1] INFO  com.senla.service.role.RoleServiceImpl   - Getting role by name
-2020-12-19 18:10:50,050 [http-nio-8182-exec-1] INFO  com.senla.service.user.UserServiceImpl   - Adding a new user
-2020-12-19 18:10:50,286 [http-nio-8182-exec-1] WARN  o.h.engine.jdbc.spi.SqlExceptionHelper   - SQL Error: 1062, SQLState: 23000
-2020-12-19 18:10:50,286 [http-nio-8182-exec-1] ERROR o.h.engine.jdbc.spi.SqlExceptionHelper   - Duplicate entry 'antoxa555' for key 'user_name_UNIQUE'
-2020-12-19 18:22:04,093 [main] INFO  com.senla.main.SocialNetworkApplication  - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 1736 (C:\Users\Anton\Documents\SocialNetwork\main\target\classes started by Anton in C:\Users\Anton\Documents\SocialNetwork)
-2020-12-19 18:22:04,117 [main] INFO  com.senla.main.SocialNetworkApplication  - No active profile set, falling back to default profiles: default
-2020-12-19 18:22:05,747 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-12-19 18:22:05,864 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 104ms. Found 10 JPA repository interfaces.
-2020-12-19 18:22:06,545 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@5ea4300e' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-19 18:22:06,552 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-19 18:22:06,862 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat initialized with port(s): 8182 (http)
-2020-12-19 18:22:06,873 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
-2020-12-19 18:22:06,874 [main] INFO  org.apache.catalina.core.StandardEngine  - Starting Servlet engine: [Apache Tomcat/9.0.38]
-2020-12-19 18:22:06,876 [main] INFO  o.a.catalina.core.AprLifecycleListener   - Loaded Apache Tomcat Native library [1.2.25] using APR version [1.7.0].
-2020-12-19 18:22:06,876 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
-2020-12-19 18:22:06,876 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
-2020-12-19 18:22:06,880 [main] INFO  o.a.catalina.core.AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 1.1.1g  21 Apr 2020]
-2020-12-19 18:22:07,043 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]       - Initializing Spring embedded WebApplicationContext
-2020-12-19 18:22:07,043 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2774 ms
-2020-12-19 18:22:07,308 [main] INFO  o.hibernate.jpa.internal.util.LogHelper  - HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-12-19 18:22:07,397 [main] INFO  org.hibernate.Version                    - HHH000412: Hibernate ORM core version 5.4.21.Final
-2020-12-19 18:22:07,610 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-12-19 18:22:07,803 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Starting...
-2020-12-19 18:22:08,152 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Start completed.
-2020-12-19 18:22:08,174 [main] INFO  org.hibernate.dialect.Dialect            - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
-2020-12-19 18:22:09,794 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator       - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-12-19 18:22:09,807 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-12-19 18:22:10,795 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2020-12-19 18:22:11,131 [main] INFO  o.s.s.web.DefaultSecurityFilterChain     - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@4626f584, org.springframework.security.web.context.SecurityContextPersistenceFilter@5cea47a1, org.springframework.security.web.header.HeaderWriterFilter@5243d730, org.springframework.security.web.authentication.logout.LogoutFilter@6fd37997, com.senla.security.JwtTokenFilter@2396408a, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@451cef67, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@402c415e, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@3e4ead73, org.springframework.security.web.session.SessionManagementFilter@10df1f34, org.springframework.security.web.access.ExceptionTranslationFilter@458704ee, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1d6014a7]
-2020-12-19 18:22:11,234 [main] INFO  o.s.s.concurrent.ThreadPoolTaskExecutor  - Initializing ExecutorService 'applicationTaskExecutor'
-2020-12-19 18:22:12,039 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat started on port(s): 8182 (http) with context path ''
-2020-12-19 18:22:12,052 [main] INFO  com.senla.main.SocialNetworkApplication  - Started SocialNetworkApplication in 8.875 seconds (JVM running for 10.411)
-2020-12-19 18:22:27,203 [http-nio-8182-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]       - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-12-19 18:22:27,205 [http-nio-8182-exec-2] INFO  o.s.web.servlet.DispatcherServlet        - Initializing Servlet 'dispatcherServlet'
-2020-12-19 18:22:27,215 [http-nio-8182-exec-2] INFO  o.s.web.servlet.DispatcherServlet        - Completed initialization in 10 ms
-2020-12-19 18:22:27,450 [http-nio-8182-exec-2] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
-2020-12-19 18:22:27,843 [http-nio-8182-exec-2] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
-2020-12-19 18:22:27,849 [http-nio-8182-exec-2] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
-2020-12-19 18:23:28,810 [http-nio-8182-exec-5] INFO  com.senla.service.token.TokenServiceImpl - Finding token by number
-2020-12-19 18:23:28,819 [http-nio-8182-exec-5] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
-2020-12-19 18:23:28,828 [http-nio-8182-exec-5] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
-2020-12-19 18:23:28,830 [http-nio-8182-exec-5] INFO  com.senla.service.token.TokenServiceImpl - Finding token by number
-2020-12-19 18:23:28,834 [http-nio-8182-exec-5] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
-2020-12-19 18:23:28,841 [http-nio-8182-exec-5] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
-2020-12-19 18:23:28,881 [http-nio-8182-exec-5] INFO  com.senla.service.user.UserServiceImpl   - Getting user from security context
-2020-12-19 18:23:28,881 [http-nio-8182-exec-5] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
-2020-12-19 18:23:28,892 [http-nio-8182-exec-5] INFO  c.s.s.community.CommunityServiceImpl     - Getting community by id
-2020-12-19 18:23:28,928 [http-nio-8182-exec-5] INFO  com.senla.controller.CommunityController - Adding user to the community
-2020-12-19 18:23:28,929 [http-nio-8182-exec-5] INFO  c.s.s.community.CommunityServiceImpl     - Getting community by id
-2020-12-19 18:23:28,929 [http-nio-8182-exec-5] INFO  com.senla.service.user.UserServiceImpl   - Getting user by id
-2020-12-19 18:23:28,930 [http-nio-8182-exec-5] INFO  c.s.s.community.CommunityServiceImpl     - Adding user to the community
-2020-12-19 18:23:28,930 [http-nio-8182-exec-5] INFO  c.s.s.community.CommunityServiceImpl     - Updating community
-2020-12-19 18:23:39,143 [http-nio-8182-exec-6] INFO  com.senla.service.token.TokenServiceImpl - Finding token by number
-2020-12-19 18:23:39,147 [http-nio-8182-exec-6] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
-2020-12-19 18:23:39,156 [http-nio-8182-exec-6] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
-2020-12-19 18:23:39,158 [http-nio-8182-exec-6] INFO  com.senla.service.token.TokenServiceImpl - Finding token by number
-2020-12-19 18:23:39,162 [http-nio-8182-exec-6] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
-2020-12-19 18:23:39,171 [http-nio-8182-exec-6] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
-2020-12-19 18:23:39,175 [http-nio-8182-exec-6] INFO  com.senla.service.user.UserServiceImpl   - Getting user from security context
-2020-12-19 18:23:39,176 [http-nio-8182-exec-6] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
-2020-12-19 18:23:39,186 [http-nio-8182-exec-6] INFO  c.s.s.community.CommunityServiceImpl     - Getting community by id
-2020-12-19 18:23:39,196 [http-nio-8182-exec-6] INFO  com.senla.controller.CommunityController - Leaving from the community
-2020-12-19 18:23:39,197 [http-nio-8182-exec-6] INFO  c.s.s.community.CommunityServiceImpl     - Getting community by id
-2020-12-19 18:23:39,197 [http-nio-8182-exec-6] INFO  com.senla.service.user.UserServiceImpl   - Getting user by id
-2020-12-19 18:23:39,197 [http-nio-8182-exec-6] INFO  c.s.s.community.CommunityServiceImpl     - Remove user from the community
-2020-12-19 18:23:39,197 [http-nio-8182-exec-6] INFO  c.s.s.community.CommunityServiceImpl     - Updating community
-2020-12-19 18:29:22,769 [main] INFO  com.senla.main.SocialNetworkApplication  - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 20192 (C:\Users\Anton\Documents\SocialNetwork\main\target\classes started by Anton in C:\Users\Anton\Documents\SocialNetwork)
-2020-12-19 18:29:22,775 [main] INFO  com.senla.main.SocialNetworkApplication  - No active profile set, falling back to default profiles: default
-2020-12-19 18:29:23,891 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-12-19 18:29:24,004 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 102ms. Found 10 JPA repository interfaces.
-2020-12-19 18:29:24,676 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@6f911326' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-19 18:29:24,682 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-19 18:29:24,997 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat initialized with port(s): 8182 (http)
-2020-12-19 18:29:25,009 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
-2020-12-19 18:29:25,009 [main] INFO  org.apache.catalina.core.StandardEngine  - Starting Servlet engine: [Apache Tomcat/9.0.38]
-2020-12-19 18:29:25,011 [main] INFO  o.a.catalina.core.AprLifecycleListener   - Loaded Apache Tomcat Native library [1.2.25] using APR version [1.7.0].
-2020-12-19 18:29:25,012 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
-2020-12-19 18:29:25,012 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
-2020-12-19 18:29:25,016 [main] INFO  o.a.catalina.core.AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 1.1.1g  21 Apr 2020]
-2020-12-19 18:29:25,191 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]       - Initializing Spring embedded WebApplicationContext
-2020-12-19 18:29:25,191 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2300 ms
-2020-12-19 18:29:25,405 [main] INFO  o.hibernate.jpa.internal.util.LogHelper  - HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-12-19 18:29:25,491 [main] INFO  org.hibernate.Version                    - HHH000412: Hibernate ORM core version 5.4.21.Final
-2020-12-19 18:29:25,697 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-12-19 18:29:25,863 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Starting...
-2020-12-19 18:29:26,205 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Start completed.
-2020-12-19 18:29:26,226 [main] INFO  org.hibernate.dialect.Dialect            - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
-2020-12-19 18:29:27,875 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator       - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-12-19 18:29:27,888 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-12-19 18:29:28,724 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2020-12-19 18:29:29,071 [main] INFO  o.s.s.web.DefaultSecurityFilterChain     - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@23f539df, org.springframework.security.web.context.SecurityContextPersistenceFilter@2eb9c7ad, org.springframework.security.web.header.HeaderWriterFilter@34588991, org.springframework.security.web.authentication.logout.LogoutFilter@466cca41, com.senla.security.JwtTokenFilter@b859355, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@6addfa22, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3c862522, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1f24e33d, org.springframework.security.web.session.SessionManagementFilter@1fb61db4, org.springframework.security.web.access.ExceptionTranslationFilter@4202276, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@2d97344c]
-2020-12-19 18:29:29,164 [main] INFO  o.s.s.concurrent.ThreadPoolTaskExecutor  - Initializing ExecutorService 'applicationTaskExecutor'
-2020-12-19 18:29:29,956 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat started on port(s): 8182 (http) with context path ''
-2020-12-19 18:29:29,965 [main] INFO  com.senla.main.SocialNetworkApplication  - Started SocialNetworkApplication in 8.032 seconds (JVM running for 9.538)
-2020-12-19 18:29:37,481 [http-nio-8182-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]       - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-12-19 18:29:37,482 [http-nio-8182-exec-2] INFO  o.s.web.servlet.DispatcherServlet        - Initializing Servlet 'dispatcherServlet'
-2020-12-19 18:29:37,490 [http-nio-8182-exec-2] INFO  o.s.web.servlet.DispatcherServlet        - Completed initialization in 8 ms
-2020-12-19 18:29:37,729 [http-nio-8182-exec-2] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
-2020-12-19 18:29:38,119 [http-nio-8182-exec-2] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
-2020-12-19 18:29:38,124 [http-nio-8182-exec-2] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
-2020-12-19 18:32:25,163 [http-nio-8182-exec-5] INFO  com.senla.service.token.TokenServiceImpl - Finding token by number
-2020-12-19 18:32:25,175 [http-nio-8182-exec-5] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
-2020-12-19 18:32:25,182 [http-nio-8182-exec-5] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
-2020-12-19 18:32:25,184 [http-nio-8182-exec-5] INFO  com.senla.service.token.TokenServiceImpl - Finding token by number
-2020-12-19 18:32:25,190 [http-nio-8182-exec-5] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
-2020-12-19 18:32:25,198 [http-nio-8182-exec-5] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
-2020-12-19 18:32:25,265 [http-nio-8182-exec-5] INFO  c.s.service.profile.ProfileServiceImpl   - Finding profile by first name and last name
-2020-12-19 18:32:59,022 [http-nio-8182-exec-6] INFO  com.senla.service.token.TokenServiceImpl - Finding token by number
-2020-12-19 18:32:59,028 [http-nio-8182-exec-6] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
-2020-12-19 18:32:59,034 [http-nio-8182-exec-6] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
-2020-12-19 18:32:59,036 [http-nio-8182-exec-6] INFO  com.senla.service.token.TokenServiceImpl - Finding token by number
-2020-12-19 18:32:59,040 [http-nio-8182-exec-6] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
-2020-12-19 18:32:59,048 [http-nio-8182-exec-6] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
-2020-12-19 18:32:59,057 [http-nio-8182-exec-6] INFO  c.s.service.profile.ProfileServiceImpl   - Finding profile by first name and last name
-2020-12-19 18:33:13,628 [http-nio-8182-exec-7] INFO  com.senla.service.token.TokenServiceImpl - Finding token by number
-2020-12-19 18:33:13,632 [http-nio-8182-exec-7] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
-2020-12-19 18:33:13,642 [http-nio-8182-exec-7] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
-2020-12-19 18:33:13,644 [http-nio-8182-exec-7] INFO  com.senla.service.token.TokenServiceImpl - Finding token by number
-2020-12-19 18:33:13,648 [http-nio-8182-exec-7] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
-2020-12-19 18:33:13,656 [http-nio-8182-exec-7] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
-2020-12-19 18:33:13,663 [http-nio-8182-exec-7] INFO  c.s.service.profile.ProfileServiceImpl   - Finding profile by first name and last name
-2020-12-19 18:34:06,613 [main] INFO  com.senla.main.SocialNetworkApplication  - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 6620 (C:\Users\Anton\Documents\SocialNetwork\main\target\classes started by Anton in C:\Users\Anton\Documents\SocialNetwork)
-2020-12-19 18:34:06,619 [main] INFO  com.senla.main.SocialNetworkApplication  - No active profile set, falling back to default profiles: default
-2020-12-19 18:34:07,776 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-12-19 18:34:07,911 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 121ms. Found 10 JPA repository interfaces.
-2020-12-19 18:34:08,720 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@2f4e40d7' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-19 18:34:08,729 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-19 18:34:09,126 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat initialized with port(s): 8182 (http)
-2020-12-19 18:34:09,139 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
-2020-12-19 18:34:09,139 [main] INFO  org.apache.catalina.core.StandardEngine  - Starting Servlet engine: [Apache Tomcat/9.0.38]
-2020-12-19 18:34:09,142 [main] INFO  o.a.catalina.core.AprLifecycleListener   - Loaded Apache Tomcat Native library [1.2.25] using APR version [1.7.0].
-2020-12-19 18:34:09,142 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
-2020-12-19 18:34:09,143 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
-2020-12-19 18:34:09,147 [main] INFO  o.a.catalina.core.AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 1.1.1g  21 Apr 2020]
-2020-12-19 18:34:09,340 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]       - Initializing Spring embedded WebApplicationContext
-2020-12-19 18:34:09,340 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2632 ms
-2020-12-19 18:34:09,590 [main] INFO  o.hibernate.jpa.internal.util.LogHelper  - HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-12-19 18:34:09,682 [main] INFO  org.hibernate.Version                    - HHH000412: Hibernate ORM core version 5.4.21.Final
-2020-12-19 18:34:09,920 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-12-19 18:34:10,140 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Starting...
-2020-12-19 18:34:10,546 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Start completed.
-2020-12-19 18:34:10,594 [main] INFO  org.hibernate.dialect.Dialect            - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
-2020-12-19 18:34:12,507 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator       - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-12-19 18:34:12,527 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-12-19 18:34:13,623 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2020-12-19 18:34:14,021 [main] INFO  o.s.s.web.DefaultSecurityFilterChain     - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@112b3298, org.springframework.security.web.context.SecurityContextPersistenceFilter@60739eca, org.springframework.security.web.header.HeaderWriterFilter@1399ad68, org.springframework.security.web.authentication.logout.LogoutFilter@61c0fb12, com.senla.security.JwtTokenFilter@51d2d336, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@17873842, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@36dc6b9, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@90c01ab, org.springframework.security.web.session.SessionManagementFilter@7833407, org.springframework.security.web.access.ExceptionTranslationFilter@7e2f16bd, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@543196f9]
-2020-12-19 18:34:14,144 [main] INFO  o.s.s.concurrent.ThreadPoolTaskExecutor  - Initializing ExecutorService 'applicationTaskExecutor'
-2020-12-19 18:34:15,244 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat started on port(s): 8182 (http) with context path ''
-2020-12-19 18:34:15,255 [main] INFO  com.senla.main.SocialNetworkApplication  - Started SocialNetworkApplication in 9.866 seconds (JVM running for 11.328)
-2020-12-19 18:34:46,887 [http-nio-8182-exec-3] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]       - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-12-19 18:34:46,888 [http-nio-8182-exec-3] INFO  o.s.web.servlet.DispatcherServlet        - Initializing Servlet 'dispatcherServlet'
-2020-12-19 18:34:46,901 [http-nio-8182-exec-3] INFO  o.s.web.servlet.DispatcherServlet        - Completed initialization in 12 ms
-2020-12-19 18:34:47,074 [http-nio-8182-exec-3] INFO  com.senla.service.token.TokenServiceImpl - Finding token by number
-2020-12-19 18:34:47,307 [http-nio-8182-exec-3] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
-2020-12-19 18:34:47,404 [http-nio-8182-exec-3] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
-2020-12-19 18:34:47,414 [http-nio-8182-exec-3] INFO  com.senla.service.token.TokenServiceImpl - Finding token by number
-2020-12-19 18:34:47,417 [http-nio-8182-exec-3] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
-2020-12-19 18:34:47,425 [http-nio-8182-exec-3] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
-2020-12-19 18:35:09,103 [http-nio-8182-exec-3] INFO  c.s.service.profile.ProfileServiceImpl   - Finding profile by first name and last name
-2020-12-19 18:35:09,393 [SpringContextShutdownHook] INFO  o.s.s.concurrent.ThreadPoolTaskExecutor  - Shutting down ExecutorService 'applicationTaskExecutor'
-2020-12-19 18:35:09,400 [SpringContextShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
-2020-12-19 18:35:09,403 [SpringContextShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Shutdown initiated...
-2020-12-19 18:35:09,415 [SpringContextShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Shutdown completed.
-2020-12-19 18:35:15,320 [main] INFO  com.senla.main.SocialNetworkApplication  - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 17584 (C:\Users\Anton\Documents\SocialNetwork\main\target\classes started by Anton in C:\Users\Anton\Documents\SocialNetwork)
-2020-12-19 18:35:15,326 [main] INFO  com.senla.main.SocialNetworkApplication  - No active profile set, falling back to default profiles: default
-2020-12-19 18:35:16,666 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
-2020-12-19 18:35:16,788 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 109ms. Found 10 JPA repository interfaces.
-2020-12-19 18:35:17,486 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@3a26ec8d' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-19 18:35:17,493 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
-2020-12-19 18:35:17,812 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat initialized with port(s): 8182 (http)
-2020-12-19 18:35:17,823 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
-2020-12-19 18:35:17,824 [main] INFO  org.apache.catalina.core.StandardEngine  - Starting Servlet engine: [Apache Tomcat/9.0.38]
-2020-12-19 18:35:17,826 [main] INFO  o.a.catalina.core.AprLifecycleListener   - Loaded Apache Tomcat Native library [1.2.25] using APR version [1.7.0].
-2020-12-19 18:35:17,827 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
-2020-12-19 18:35:17,827 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
-2020-12-19 18:35:17,831 [main] INFO  o.a.catalina.core.AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 1.1.1g  21 Apr 2020]
-2020-12-19 18:35:18,001 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]       - Initializing Spring embedded WebApplicationContext
-2020-12-19 18:35:18,002 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2546 ms
-2020-12-19 18:35:18,224 [main] INFO  o.hibernate.jpa.internal.util.LogHelper  - HHH000204: Processing PersistenceUnitInfo [name: default]
-2020-12-19 18:35:18,305 [main] INFO  org.hibernate.Version                    - HHH000412: Hibernate ORM core version 5.4.21.Final
-2020-12-19 18:35:18,504 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
-2020-12-19 18:35:18,670 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Starting...
-2020-12-19 18:35:19,007 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Start completed.
-2020-12-19 18:35:19,028 [main] INFO  org.hibernate.dialect.Dialect            - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
-2020-12-19 18:35:20,650 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator       - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
-2020-12-19 18:35:20,662 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
-2020-12-19 18:35:21,720 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
-2020-12-19 18:35:22,075 [main] INFO  o.s.s.web.DefaultSecurityFilterChain     - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@1f6d3a81, org.springframework.security.web.context.SecurityContextPersistenceFilter@6fd37997, org.springframework.security.web.header.HeaderWriterFilter@4e322108, org.springframework.security.web.authentication.logout.LogoutFilter@7f839ec5, com.senla.security.JwtTokenFilter@641c8ba4, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@590336ed, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3da55998, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@52667676, org.springframework.security.web.session.SessionManagementFilter@682d8dad, org.springframework.security.web.access.ExceptionTranslationFilter@41dc34c8, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@8a7cd7c]
-2020-12-19 18:35:22,173 [main] INFO  o.s.s.concurrent.ThreadPoolTaskExecutor  - Initializing ExecutorService 'applicationTaskExecutor'
-2020-12-19 18:35:22,986 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat started on port(s): 8182 (http) with context path ''
-2020-12-19 18:35:22,996 [main] INFO  com.senla.main.SocialNetworkApplication  - Started SocialNetworkApplication in 8.601 seconds (JVM running for 9.871)
-2020-12-19 18:36:59,812 [http-nio-8182-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]       - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2020-12-19 18:36:59,814 [http-nio-8182-exec-1] INFO  o.s.web.servlet.DispatcherServlet        - Initializing Servlet 'dispatcherServlet'
-2020-12-19 18:36:59,827 [http-nio-8182-exec-1] INFO  o.s.web.servlet.DispatcherServlet        - Completed initialization in 13 ms
-2020-12-19 18:36:59,959 [http-nio-8182-exec-1] INFO  com.senla.service.token.TokenServiceImpl - Finding token by number
-2020-12-19 18:37:00,166 [http-nio-8182-exec-1] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
-2020-12-19 18:37:00,250 [http-nio-8182-exec-1] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
-2020-12-19 18:37:00,258 [http-nio-8182-exec-1] INFO  com.senla.service.token.TokenServiceImpl - Finding token by number
-2020-12-19 18:37:00,261 [http-nio-8182-exec-1] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
-2020-12-19 18:37:00,269 [http-nio-8182-exec-1] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
-2020-12-19 18:37:00,323 [http-nio-8182-exec-1] INFO  c.s.service.profile.ProfileServiceImpl   - Getting all profiles
-2020-12-19 18:37:00,327 [http-nio-8182-exec-1] INFO  com.senla.controller.AdminController     - Getting all profiles as admin
-2020-12-19 18:37:15,387 [http-nio-8182-exec-3] INFO  com.senla.service.token.TokenServiceImpl - Finding token by number
-2020-12-19 18:37:15,393 [http-nio-8182-exec-3] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
-2020-12-19 18:37:15,398 [http-nio-8182-exec-3] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
-2020-12-19 18:37:15,400 [http-nio-8182-exec-3] INFO  com.senla.service.token.TokenServiceImpl - Finding token by number
-2020-12-19 18:37:15,404 [http-nio-8182-exec-3] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
-2020-12-19 18:37:15,412 [http-nio-8182-exec-3] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
-2020-12-19 18:37:15,470 [http-nio-8182-exec-3] INFO  c.s.service.profile.ProfileServiceImpl   - Finding profile by first name
-2020-12-19 18:37:24,506 [http-nio-8182-exec-4] INFO  com.senla.service.token.TokenServiceImpl - Finding token by number
-2020-12-19 18:37:24,510 [http-nio-8182-exec-4] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
-2020-12-19 18:37:24,519 [http-nio-8182-exec-4] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
-2020-12-19 18:37:24,521 [http-nio-8182-exec-4] INFO  com.senla.service.token.TokenServiceImpl - Finding token by number
-2020-12-19 18:37:24,526 [http-nio-8182-exec-4] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
-2020-12-19 18:37:24,534 [http-nio-8182-exec-4] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
-2020-12-19 18:37:24,546 [http-nio-8182-exec-4] INFO  c.s.service.profile.ProfileServiceImpl   - Finding profile by last name
-2020-12-19 18:37:46,781 [http-nio-8182-exec-5] INFO  com.senla.service.token.TokenServiceImpl - Finding token by number
-2020-12-19 18:37:46,785 [http-nio-8182-exec-5] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
-2020-12-19 18:37:46,795 [http-nio-8182-exec-5] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
-2020-12-19 18:37:46,798 [http-nio-8182-exec-5] INFO  com.senla.service.token.TokenServiceImpl - Finding token by number
-2020-12-19 18:37:46,803 [http-nio-8182-exec-5] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
-2020-12-19 18:37:46,814 [http-nio-8182-exec-5] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
-2020-12-19 18:37:46,828 [http-nio-8182-exec-5] INFO  c.s.service.profile.ProfileServiceImpl   - Finding profile by first name and last name
-2020-12-19 18:37:56,372 [http-nio-8182-exec-6] INFO  com.senla.service.token.TokenServiceImpl - Finding token by number
-2020-12-19 18:37:56,379 [http-nio-8182-exec-6] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
-2020-12-19 18:37:56,386 [http-nio-8182-exec-6] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
-2020-12-19 18:37:56,387 [http-nio-8182-exec-6] INFO  com.senla.service.token.TokenServiceImpl - Finding token by number
-2020-12-19 18:37:56,393 [http-nio-8182-exec-6] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
-2020-12-19 18:37:56,397 [http-nio-8182-exec-6] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
-2020-12-19 18:37:56,410 [http-nio-8182-exec-6] INFO  c.s.service.profile.ProfileServiceImpl   - Finding profile by gender
-2020-12-19 22:24:16,411 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool        - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h35m55s263ms270µs200ns).
+2020-12-20 14:54:19,791 [main] INFO  com.senla.main.SocialNetworkApplication  - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 15248 (C:\Users\Anton\Documents\SocialNetwork\main\target\classes started by Anton in C:\Users\Anton\Documents\SocialNetwork)
+2020-12-20 14:54:19,801 [main] INFO  com.senla.main.SocialNetworkApplication  - No active profile set, falling back to default profiles: default
+2020-12-20 14:54:24,353 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-12-20 14:54:24,609 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 200ms. Found 10 JPA repository interfaces.
+2020-12-20 14:54:26,167 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@2f5b8250' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-12-20 14:54:26,180 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-12-20 14:54:26,878 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat initialized with port(s): 8182 (http)
+2020-12-20 14:54:26,903 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-12-20 14:54:26,903 [main] INFO  org.apache.catalina.core.StandardEngine  - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-12-20 14:54:26,907 [main] INFO  o.a.catalina.core.AprLifecycleListener   - Loaded Apache Tomcat Native library [1.2.25] using APR version [1.7.0].
+2020-12-20 14:54:26,907 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2020-12-20 14:54:26,907 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2020-12-20 14:54:26,967 [main] INFO  o.a.catalina.core.AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 1.1.1g  21 Apr 2020]
+2020-12-20 14:54:27,224 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]       - Initializing Spring embedded WebApplicationContext
+2020-12-20 14:54:27,225 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 7245 ms
+2020-12-20 14:54:27,665 [main] INFO  o.hibernate.jpa.internal.util.LogHelper  - HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-12-20 14:54:27,808 [main] INFO  org.hibernate.Version                    - HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-12-20 14:54:28,211 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-12-20 14:54:28,483 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Starting...
+2020-12-20 14:54:29,568 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Start completed.
+2020-12-20 14:54:29,727 [main] INFO  org.hibernate.dialect.Dialect            - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2020-12-20 14:54:32,055 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator       - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-12-20 14:54:32,092 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-12-20 14:54:33,977 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-12-20 14:54:34,527 [main] INFO  o.s.s.web.DefaultSecurityFilterChain     - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@2d97344c, org.springframework.security.web.context.SecurityContextPersistenceFilter@1fb61db4, org.springframework.security.web.header.HeaderWriterFilter@4202276, org.springframework.security.web.authentication.logout.LogoutFilter@28f3a218, com.senla.security.JwtTokenFilter@7f839ec5, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@2eb9c7ad, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@3220833f, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@23f539df, org.springframework.security.web.session.SessionManagementFilter@1db5de29, org.springframework.security.web.access.ExceptionTranslationFilter@52ab003b, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@1239c268]
+2020-12-20 14:54:34,659 [main] INFO  o.s.s.concurrent.ThreadPoolTaskExecutor  - Initializing ExecutorService 'applicationTaskExecutor'
+2020-12-20 14:54:35,693 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat started on port(s): 8182 (http) with context path ''
+2020-12-20 14:54:35,716 [main] INFO  com.senla.main.SocialNetworkApplication  - Started SocialNetworkApplication in 16.973 seconds (JVM running for 19.847)
+2020-12-20 14:54:39,891 [http-nio-8182-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]       - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-12-20 14:54:39,893 [http-nio-8182-exec-2] INFO  o.s.web.servlet.DispatcherServlet        - Initializing Servlet 'dispatcherServlet'
+2020-12-20 14:54:39,929 [http-nio-8182-exec-2] INFO  o.s.web.servlet.DispatcherServlet        - Completed initialization in 36 ms
+2020-12-20 14:54:41,155 [http-nio-8182-exec-2] INFO  com.senla.service.role.RoleServiceImpl   - Getting role by name
+2020-12-20 14:54:41,156 [http-nio-8182-exec-2] WARN  com.senla.service.role.RoleServiceImpl   - No role found with this name
+2020-12-20 14:59:07,736 [http-nio-8182-exec-5] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
+2020-12-20 14:59:07,949 [http-nio-8182-exec-5] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
+2020-12-20 14:59:07,956 [http-nio-8182-exec-5] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
+2020-12-20 14:59:24,767 [http-nio-8182-exec-6] INFO  com.senla.service.token.TokenServiceImpl - Finding token by number
+2020-12-20 14:59:24,841 [http-nio-8182-exec-6] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
+2020-12-20 14:59:24,847 [http-nio-8182-exec-6] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
+2020-12-20 14:59:24,850 [http-nio-8182-exec-6] INFO  com.senla.service.token.TokenServiceImpl - Finding token by number
+2020-12-20 14:59:24,853 [http-nio-8182-exec-6] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
+2020-12-20 14:59:24,861 [http-nio-8182-exec-6] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
+2020-12-20 14:59:24,922 [http-nio-8182-exec-6] INFO  c.s.s.community.CommunityServiceImpl     - Getting all communities
+2020-12-20 15:00:05,452 [http-nio-8182-exec-7] INFO  com.senla.service.token.TokenServiceImpl - Finding token by number
+2020-12-20 15:00:05,457 [http-nio-8182-exec-7] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
+2020-12-20 15:00:05,465 [http-nio-8182-exec-7] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
+2020-12-20 15:00:05,466 [http-nio-8182-exec-7] INFO  com.senla.service.token.TokenServiceImpl - Finding token by number
+2020-12-20 15:00:05,471 [http-nio-8182-exec-7] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
+2020-12-20 15:00:05,478 [http-nio-8182-exec-7] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
+2020-12-20 15:00:05,481 [http-nio-8182-exec-7] INFO  c.s.s.community.CommunityServiceImpl     - Getting all communities
+2020-12-20 15:00:27,347 [main] INFO  com.senla.main.SocialNetworkApplication  - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 13304 (C:\Users\Anton\Documents\SocialNetwork\main\target\classes started by Anton in C:\Users\Anton\Documents\SocialNetwork)
+2020-12-20 15:00:27,353 [main] INFO  com.senla.main.SocialNetworkApplication  - No active profile set, falling back to default profiles: default
+2020-12-20 15:00:28,701 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-12-20 15:00:28,825 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 110ms. Found 10 JPA repository interfaces.
+2020-12-20 15:00:29,625 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@315f09ef' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-12-20 15:00:29,633 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-12-20 15:00:30,047 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat initialized with port(s): 8182 (http)
+2020-12-20 15:00:30,063 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-12-20 15:00:30,063 [main] INFO  org.apache.catalina.core.StandardEngine  - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-12-20 15:00:30,065 [main] INFO  o.a.catalina.core.AprLifecycleListener   - Loaded Apache Tomcat Native library [1.2.25] using APR version [1.7.0].
+2020-12-20 15:00:30,066 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2020-12-20 15:00:30,066 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2020-12-20 15:00:30,070 [main] INFO  o.a.catalina.core.AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 1.1.1g  21 Apr 2020]
+2020-12-20 15:00:30,278 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]       - Initializing Spring embedded WebApplicationContext
+2020-12-20 15:00:30,278 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2808 ms
+2020-12-20 15:00:30,533 [main] INFO  o.hibernate.jpa.internal.util.LogHelper  - HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-12-20 15:00:30,615 [main] INFO  org.hibernate.Version                    - HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-12-20 15:00:30,833 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-12-20 15:00:31,002 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Starting...
+2020-12-20 15:00:31,351 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Start completed.
+2020-12-20 15:00:31,378 [main] INFO  org.hibernate.dialect.Dialect            - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2020-12-20 15:00:33,449 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator       - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-12-20 15:00:33,467 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-12-20 15:00:34,437 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-12-20 15:00:34,788 [main] INFO  o.s.s.web.DefaultSecurityFilterChain     - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@116efe65, org.springframework.security.web.context.SecurityContextPersistenceFilter@3b18009f, org.springframework.security.web.header.HeaderWriterFilter@37dc7661, org.springframework.security.web.authentication.logout.LogoutFilter@3d00e981, com.senla.security.JwtTokenFilter@118879d2, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1db5de29, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@74b521c, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@1239c268, org.springframework.security.web.session.SessionManagementFilter@15afebcc, org.springframework.security.web.access.ExceptionTranslationFilter@1d51b6a8, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@576a8b00]
+2020-12-20 15:00:34,882 [main] INFO  o.s.s.concurrent.ThreadPoolTaskExecutor  - Initializing ExecutorService 'applicationTaskExecutor'
+2020-12-20 15:00:35,693 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat started on port(s): 8182 (http) with context path ''
+2020-12-20 15:00:35,705 [main] INFO  com.senla.main.SocialNetworkApplication  - Started SocialNetworkApplication in 9.247 seconds (JVM running for 10.584)
+2020-12-20 15:00:43,132 [http-nio-8182-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]       - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-12-20 15:00:43,133 [http-nio-8182-exec-2] INFO  o.s.web.servlet.DispatcherServlet        - Initializing Servlet 'dispatcherServlet'
+2020-12-20 15:00:43,145 [http-nio-8182-exec-2] INFO  o.s.web.servlet.DispatcherServlet        - Completed initialization in 11 ms
+2020-12-20 15:00:43,278 [http-nio-8182-exec-2] INFO  com.senla.service.token.TokenServiceImpl - Finding token by number
+2020-12-20 15:00:43,478 [http-nio-8182-exec-2] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
+2020-12-20 15:00:43,567 [http-nio-8182-exec-2] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
+2020-12-20 15:00:43,577 [http-nio-8182-exec-2] INFO  com.senla.service.token.TokenServiceImpl - Finding token by number
+2020-12-20 15:00:43,581 [http-nio-8182-exec-2] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
+2020-12-20 15:00:43,588 [http-nio-8182-exec-2] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
+2020-12-20 15:00:43,645 [http-nio-8182-exec-2] INFO  c.s.s.community.CommunityServiceImpl     - Getting all communities
+2020-12-20 15:00:43,659 [http-nio-8182-exec-2] INFO  com.senla.controller.CommunityController - No communities
+2020-12-20 15:01:15,088 [http-nio-8182-exec-3] INFO  com.senla.service.token.TokenServiceImpl - Finding token by number
+2020-12-20 15:01:15,092 [http-nio-8182-exec-3] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
+2020-12-20 15:01:15,100 [http-nio-8182-exec-3] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
+2020-12-20 15:01:15,101 [http-nio-8182-exec-3] INFO  com.senla.service.token.TokenServiceImpl - Finding token by number
+2020-12-20 15:01:15,104 [http-nio-8182-exec-3] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
+2020-12-20 15:01:15,110 [http-nio-8182-exec-3] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
+2020-12-20 15:01:15,214 [http-nio-8182-exec-3] INFO  com.senla.service.user.UserServiceImpl   - Getting user from security context
+2020-12-20 15:01:15,214 [http-nio-8182-exec-3] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
+2020-12-20 15:01:15,222 [http-nio-8182-exec-3] INFO  com.senla.service.user.UserServiceImpl   - Getting user by id
+2020-12-20 15:01:15,227 [http-nio-8182-exec-3] INFO  com.senla.service.user.UserServiceImpl   - Getting user by id
+2020-12-20 15:01:15,232 [http-nio-8182-exec-3] INFO  com.senla.service.user.UserServiceImpl   - Getting user by id
+2020-12-20 15:01:15,239 [http-nio-8182-exec-3] INFO  com.senla.service.user.UserServiceImpl   - Getting user by id
+2020-12-20 15:01:15,242 [http-nio-8182-exec-3] INFO  com.senla.service.user.UserServiceImpl   - Getting user by id
+2020-12-20 15:01:15,246 [http-nio-8182-exec-3] INFO  com.senla.service.user.UserServiceImpl   - Getting user by id
+2020-12-20 15:01:15,248 [http-nio-8182-exec-3] INFO  c.s.s.community.CommunityServiceImpl     - Updating community
+2020-12-20 15:01:15,515 [http-nio-8182-exec-3] INFO  com.senla.controller.CommunityController - Updating community
+2020-12-20 15:01:56,868 [http-nio-8182-exec-5] INFO  com.senla.service.token.TokenServiceImpl - Finding token by number
+2020-12-20 15:01:56,872 [http-nio-8182-exec-5] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
+2020-12-20 15:01:56,877 [http-nio-8182-exec-5] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
+2020-12-20 15:01:56,880 [http-nio-8182-exec-5] INFO  com.senla.service.token.TokenServiceImpl - Finding token by number
+2020-12-20 15:01:56,884 [http-nio-8182-exec-5] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
+2020-12-20 15:01:56,892 [http-nio-8182-exec-5] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
+2020-12-20 15:01:56,901 [http-nio-8182-exec-5] INFO  com.senla.service.user.UserServiceImpl   - Getting user from security context
+2020-12-20 15:01:56,901 [http-nio-8182-exec-5] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
+2020-12-20 15:01:56,907 [http-nio-8182-exec-5] INFO  c.s.s.community.CommunityServiceImpl     - Getting community by id
+2020-12-20 15:01:56,913 [http-nio-8182-exec-5] INFO  c.s.s.community.CommunityServiceImpl     - Getting community by id
+2020-12-20 15:01:56,914 [http-nio-8182-exec-5] INFO  c.s.s.community.CommunityServiceImpl     - Deleting community by id
+2020-12-20 15:01:57,659 [http-nio-8182-exec-5] INFO  com.senla.controller.CommunityController - Deleting community
+2020-12-20 18:07:34,951 [main] INFO  com.senla.main.SocialNetworkApplication  - Starting SocialNetworkApplication on DESKTOP-CL5H5Q9 with PID 22088 (C:\Users\Anton\Documents\SocialNetwork\main\target\classes started by Anton in C:\Users\Anton\Documents\SocialNetwork)
+2020-12-20 18:07:34,958 [main] INFO  com.senla.main.SocialNetworkApplication  - No active profile set, falling back to default profiles: default
+2020-12-20 18:07:36,198 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2020-12-20 18:07:36,316 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 104ms. Found 10 JPA repository interfaces.
+2020-12-20 18:07:36,993 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler@10b1a751' of type [org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-12-20 18:07:37,000 [main] INFO  o.s.c.s.PostProcessorRegistrationDelegate$BeanPostProcessorChecker - Bean 'methodSecurityMetadataSource' of type [org.springframework.security.access.method.DelegatingMethodSecurityMetadataSource] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2020-12-20 18:07:37,318 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat initialized with port(s): 8182 (http)
+2020-12-20 18:07:37,330 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2020-12-20 18:07:37,330 [main] INFO  org.apache.catalina.core.StandardEngine  - Starting Servlet engine: [Apache Tomcat/9.0.38]
+2020-12-20 18:07:37,332 [main] INFO  o.a.catalina.core.AprLifecycleListener   - Loaded Apache Tomcat Native library [1.2.25] using APR version [1.7.0].
+2020-12-20 18:07:37,333 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR capabilities: IPv6 [true], sendfile [true], accept filters [false], random [true].
+2020-12-20 18:07:37,333 [main] INFO  o.a.catalina.core.AprLifecycleListener   - APR/OpenSSL configuration: useAprConnector [false], useOpenSSL [true]
+2020-12-20 18:07:37,337 [main] INFO  o.a.catalina.core.AprLifecycleListener   - OpenSSL successfully initialized [OpenSSL 1.1.1g  21 Apr 2020]
+2020-12-20 18:07:37,519 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]       - Initializing Spring embedded WebApplicationContext
+2020-12-20 18:07:37,519 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2447 ms
+2020-12-20 18:07:37,752 [main] INFO  o.hibernate.jpa.internal.util.LogHelper  - HHH000204: Processing PersistenceUnitInfo [name: default]
+2020-12-20 18:07:37,839 [main] INFO  org.hibernate.Version                    - HHH000412: Hibernate ORM core version 5.4.21.Final
+2020-12-20 18:07:38,052 [main] INFO  org.hibernate.annotations.common.Version - HCANN000001: Hibernate Commons Annotations {5.1.0.Final}
+2020-12-20 18:07:38,233 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Starting...
+2020-12-20 18:07:38,588 [main] INFO  com.zaxxer.hikari.HikariDataSource       - HikariPool-1 - Start completed.
+2020-12-20 18:07:38,611 [main] INFO  org.hibernate.dialect.Dialect            - HHH000400: Using dialect: org.hibernate.dialect.MySQL5Dialect
+2020-12-20 18:07:40,424 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator       - HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2020-12-20 18:07:40,437 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2020-12-20 18:07:41,381 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2020-12-20 18:07:41,783 [main] INFO  o.s.s.web.DefaultSecurityFilterChain     - Creating filter chain: any request, [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@8de4206, org.springframework.security.web.context.SecurityContextPersistenceFilter@1174e173, org.springframework.security.web.header.HeaderWriterFilter@1832b0f6, org.springframework.security.web.authentication.logout.LogoutFilter@3220833f, com.senla.security.JwtTokenFilter@10f384a2, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@1771d6a5, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@4202276, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@57fae911, org.springframework.security.web.session.SessionManagementFilter@21f94fe3, org.springframework.security.web.access.ExceptionTranslationFilter@7a7bd9a8, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@496e0f9d]
+2020-12-20 18:07:41,877 [main] INFO  o.s.s.concurrent.ThreadPoolTaskExecutor  - Initializing ExecutorService 'applicationTaskExecutor'
+2020-12-20 18:07:42,690 [main] INFO  o.s.b.w.embedded.tomcat.TomcatWebServer  - Tomcat started on port(s): 8182 (http) with context path ''
+2020-12-20 18:07:42,701 [main] INFO  com.senla.main.SocialNetworkApplication  - Started SocialNetworkApplication in 8.547 seconds (JVM running for 9.996)
+2020-12-20 18:07:50,653 [http-nio-8182-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/]       - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2020-12-20 18:07:50,654 [http-nio-8182-exec-1] INFO  o.s.web.servlet.DispatcherServlet        - Initializing Servlet 'dispatcherServlet'
+2020-12-20 18:07:50,663 [http-nio-8182-exec-1] INFO  o.s.web.servlet.DispatcherServlet        - Completed initialization in 9 ms
+2020-12-20 18:07:50,901 [http-nio-8182-exec-1] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
+2020-12-20 18:07:51,265 [http-nio-8182-exec-1] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
+2020-12-20 18:07:51,271 [http-nio-8182-exec-1] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
+2020-12-20 18:08:15,984 [http-nio-8182-exec-3] INFO  com.senla.service.token.TokenServiceImpl - Finding token by number
+2020-12-20 18:08:15,994 [http-nio-8182-exec-3] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
+2020-12-20 18:08:16,003 [http-nio-8182-exec-3] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
+2020-12-20 18:08:16,005 [http-nio-8182-exec-3] INFO  com.senla.service.token.TokenServiceImpl - Finding token by number
+2020-12-20 18:08:16,009 [http-nio-8182-exec-3] INFO  com.senla.service.user.UserServiceImpl   - Finding user by user name
+2020-12-20 18:08:16,017 [http-nio-8182-exec-3] INFO  com.senla.security.JwtUserDetailsService - In loadUserByUsername - user with username :antoxa555 successfully loaded
+2020-12-20 18:08:16,063 [http-nio-8182-exec-3] INFO  c.senla.service.dialog.DialogServiceImpl - Getting dialog by id
+2020-12-20 20:06:53,266 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool        - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=29m43s140ms951µs500ns).
+2020-12-20 21:37:55,427 [HikariPool-1 housekeeper] WARN  com.zaxxer.hikari.pool.HikariPool        - HikariPool-1 - Thread starvation or clock leap detected (housekeeper delta=1h24m32s71ms575µs300ns).
