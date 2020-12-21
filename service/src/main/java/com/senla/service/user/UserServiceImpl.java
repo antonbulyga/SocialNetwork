@@ -60,7 +60,7 @@ public class UserServiceImpl implements UserService {
         String codePassword = passwordEncoder.encode(newPassword);
         user.setPassword(codePassword);
         try {
-            updateUser(user);
+            userRepository.save(user);
         } catch (Exception e) {
             log.error("Error when trying to change password");
             throw new SQLErrors("Error when trying to change password");

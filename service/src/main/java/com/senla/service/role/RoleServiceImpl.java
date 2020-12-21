@@ -22,25 +22,11 @@ public class RoleServiceImpl implements RoleService {
         this.roleRepository = roleRepository;
     }
 
-    public Role getRole(Long id) {
-        log.info("Getting role by id");
-        return roleRepository.findById(id)
-                .orElseThrow(() ->
-                        new EntityNotFoundException(String.format("Role with id = %s is not found", id)));
-    }
-
     @Override
     public Role addRole(Role role) {
         log.info("Adding role");
         roleRepository.save(role);
         return role;
-    }
-
-    @Override
-    public void deleteRole(long id) {
-        getRole(id);
-        log.info("Deleting role");
-        roleRepository.deleteById(id);
     }
 
     @Override

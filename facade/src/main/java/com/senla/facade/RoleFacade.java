@@ -30,10 +30,6 @@ public class RoleFacade {
         return roleDto;
     }
 
-    public void deleteRole(long id) {
-        roleService.deleteRole(id);
-    }
-
     public RoleDto updateRole(RoleDto roleDto) {
         Role role = reverseRoleDTOConverter.convert(roleDto);
         roleService.updateRole(role);

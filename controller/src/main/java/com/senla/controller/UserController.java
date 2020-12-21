@@ -36,7 +36,7 @@ public class UserController {
      * @return user dto
      */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
-    @GetMapping(value = "/id")
+    @GetMapping(value = "/myuser")
     public ResponseEntity<UserDto> getUserById() {
         UserDto userDto = userFacade.getUserDtoFromSecurityContext();
         return new ResponseEntity<>(userDto, HttpStatus.OK);

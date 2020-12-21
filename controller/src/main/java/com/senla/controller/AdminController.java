@@ -168,21 +168,6 @@ public class AdminController {
     }
 
     /**
-     * Delete role
-     *
-     * @param roleDto role dto
-     * @return string
-     */
-    @Secured("ROLE_ADMIN")
-    @DeleteMapping(value = "/roles/delete")
-    public ResponseEntity<String> deleteRole(@Valid @RequestBody RoleDto roleDto) {
-        roleFacade.deleteRole(roleDto.getId());
-        log.info("Deleting role as admin");
-        return ResponseEntity.ok()
-                .body("You have deleted the role successfully");
-    }
-
-    /**
      * Update role
      *
      * @param roleDto role dto
@@ -284,6 +269,7 @@ public class AdminController {
 
     /**
      * Get posts from the community as admin
+     *
      * @param id community id
      * @return post dto
      */
@@ -306,20 +292,6 @@ public class AdminController {
         List<MessageDto> messageDtoList = messageFacade.getAllMessages();
         log.info("Getting all messages as admin");
         return new ResponseEntity<>(messageDtoList, HttpStatus.OK);
-    }
-
-    /**
-     * Add message as admin user
-     *
-     * @param messageDto message dto
-     * @return message dto
-     */
-    @Secured("ROLE_ADMIN")
-    @PostMapping(value = "/messages/add")
-    public ResponseEntity<MessageDto> addMessageAsAdmin(@Valid @RequestBody MessageDto messageDto) {
-        log.info("Adding message as admin");
-        MessageDto messageDtoWithTime = messageFacade.addMessage(messageDto);
-        return new ResponseEntity<>(messageDtoWithTime, HttpStatus.OK);
     }
 
     /**
@@ -349,22 +321,6 @@ public class AdminController {
         List<MessageDto> messageDtoList = messageFacade.getMessagesByDialog_Id(id);
         log.info("Getting messages by dialog id as admin");
         return new ResponseEntity<>(messageDtoList, HttpStatus.OK);
-    }
-
-    /**
-     * Update message as admin
-     *
-     * @param messageDto message dto
-     * @return message dto
-     */
-    @Secured("ROLE_ADMIN")
-    @PutMapping(value = "/messages/update")
-    public ResponseEntity<MessageDto> updateMessage(@Valid @RequestBody MessageDto messageDto) {
-
-        MessageDto messageDtoWithTime = messageFacade.updateMessage(messageDto);
-        log.info("You have updated message successfully");
-        return new ResponseEntity<>(messageDtoWithTime, HttpStatus.OK);
-
     }
 
     /**
