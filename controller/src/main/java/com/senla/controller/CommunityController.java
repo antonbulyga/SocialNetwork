@@ -63,14 +63,22 @@ public class CommunityController {
     public ResponseEntity<CommunityDto> addCommunity(@Valid @RequestBody CommunityDto communityDto) {
         User user = userFacade.getUserFromSecurityContext();
         Community community = communityFacade.convertCommunityDtoToCommunity(communityDto);
+        List<User> users = community.getUsers();
         User adminUser = community.getAdminUser();
         if (user.equals(adminUser)) {
-            CommunityDto communityDtoWithDetails = communityFacade.addCommunity(community);
-            log.info("Adding community");
-            return new ResponseEntity<>(communityDtoWithDetails, HttpStatus.OK);
+            for (User u : users) {
+                if (u.getId().equals(adminUser.getId())) {
+                    CommunityDto communityDtoWithDetails = communityFacade.addCommunity(community);
+                    log.info("Adding community");
+                    return new ResponseEntity<>(communityDtoWithDetails, HttpStatus.OK);
+                }
+            }
+            log.error("Group admin must participate in the community");
+            throw new RestError("Group admin must participate in the community");
         }
         log.error("Getting community by id");
         throw new RestError("You are trying to add a group that you do not represent as an administrator");
+
 
     }
 
@@ -97,6 +105,7 @@ public class CommunityController {
 
     /**
      * Leave from the community
+     *
      * @param communityId community id
      * @return response as a string
      */
@@ -104,7 +113,7 @@ public class CommunityController {
     @PostMapping(value = "/leave")
     public ResponseEntity<String> leaveFromCommunity(@RequestParam(name = "communityId") Long communityId) {
         User user = userFacade.getUserFromSecurityContext();
-        int count = communityFacade.communityParticipateCheck(communityId , user.getId());
+        int count = communityFacade.communityParticipateCheck(communityId, user.getId());
         if (count > 0) {
             log.info("Leaving from the community");
             communityFacade.removeUserFromCommunity(communityId, user.getId());

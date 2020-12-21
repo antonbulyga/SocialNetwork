@@ -246,7 +246,7 @@ public class AdminController {
     @Secured("ROLE_ADMIN")
     @DeleteMapping(value = "/posts/delete")
     public ResponseEntity<String> deletePost(@RequestParam(name = "id") long id) {
-        postFacade.getPost(id);
+        postFacade.getPostDto(id);
         postFacade.deletePost(id);
         log.info("Deleting post by id as admin");
         return ResponseEntity.ok()

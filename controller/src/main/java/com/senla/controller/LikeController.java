@@ -2,9 +2,11 @@ package com.senla.controller;
 
 import com.senla.dto.like.LikeDto;
 import com.senla.entity.Like;
+import com.senla.entity.Post;
 import com.senla.entity.User;
 import com.senla.exception.RestError;
 import com.senla.facade.LikeFacade;
+import com.senla.facade.PostFacade;
 import com.senla.facade.UserFacade;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,11 +30,13 @@ public class LikeController {
 
     private final LikeFacade likeFacade;
     private final UserFacade userFacade;
+    private final PostFacade postFacade;
 
     @Autowired
-    public LikeController(LikeFacade likeFacade, UserFacade userFacade) {
+    public LikeController(LikeFacade likeFacade, UserFacade userFacade, PostFacade postFacade) {
         this.likeFacade = likeFacade;
         this.userFacade = userFacade;
+        this.postFacade = postFacade;
     }
 
     /**
@@ -63,11 +67,24 @@ public class LikeController {
     @PostMapping(value = "/add")
     public ResponseEntity<LikeDto> addLike(@Valid @RequestBody LikeDto likeDto) {
         User user = userFacade.getUserFromSecurityContext();
+        Post postFromDto = postFacade.getPost(likeDto.getPost().getId());
         User userFromDto = userFacade.getUser(likeDto.getUser().getId());
+        List<Like> likes = postFromDto.getLikes();
+        int count = 0;
         if (user.getId().equals(userFromDto.getId())) {
-            LikeDto likeDtoWithDetails = likeFacade.addLike(likeDto);
-            log.error("Adding like");
-            return new ResponseEntity<>(likeDtoWithDetails, HttpStatus.OK);
+            for (Like l : likes) {
+                if (l.getUser().getId().equals(likeDto.getUser().getId())) {
+                    count++;
+                }
+            }
+            if (count == 0) {
+                LikeDto likeDtoWithDetails = likeFacade.addLike(likeDto);
+                log.error("Adding like");
+                return new ResponseEntity<>(likeDtoWithDetails, HttpStatus.OK);
+            } else {
+                log.error("The user has already liked this post");
+                throw new RestError("The user has already liked this post");
+            }
         }
         log.error("You are trying to add like from someone else user");
         throw new RestError("You are trying to add like from someone else user");

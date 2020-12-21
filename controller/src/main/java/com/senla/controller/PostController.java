@@ -1,9 +1,11 @@
 package com.senla.controller;
 
 import com.senla.dto.post.PostDto;
+import com.senla.entity.Community;
 import com.senla.entity.Post;
 import com.senla.entity.User;
 import com.senla.exception.RestError;
+import com.senla.facade.CommunityFacade;
 import com.senla.facade.PostFacade;
 import com.senla.facade.UserFacade;
 import lombok.extern.slf4j.Slf4j;
@@ -28,11 +30,13 @@ public class PostController {
 
     private final PostFacade postFacade;
     private final UserFacade userFacade;
+    private final CommunityFacade communityFacade;
 
     @Autowired
-    public PostController(PostFacade postFacade, UserFacade userFacade) {
+    public PostController(PostFacade postFacade, UserFacade userFacade, CommunityFacade communityFacade) {
         this.postFacade = postFacade;
         this.userFacade = userFacade;
+        this.communityFacade = communityFacade;
     }
 
     /**
@@ -62,14 +66,20 @@ public class PostController {
     @PostMapping(value = "/add")
     public ResponseEntity<PostDto> addPost(@Valid @RequestBody PostDto postDto) {
         User user = userFacade.getUserFromSecurityContext();
+        Community communityWherePostFrom = communityFacade.getCommunity(postDto.getCommunity().getId());
+        List<Community> communitiesFromUserFromSecurityContext = user.getCommunities();
         User userFromDto = userFacade.getUser(postDto.getUser().getId());
-        if (user.getId().equals(userFromDto.getId())) {
-            PostDto postDtoWithDate = postFacade.addPost(postDto);
-            log.info("You have added post successfully");
-            return new ResponseEntity<>(postDtoWithDate, HttpStatus.OK);
+        for (Community com : communitiesFromUserFromSecurityContext) {
+            if (com.getId().equals(communityWherePostFrom.getId())) {
+                if (user.getId().equals(userFromDto.getId())) {
+                    PostDto postDtoWithDate = postFacade.addPost(postDto);
+                    log.info("You have added post successfully");
+                    return new ResponseEntity<>(postDtoWithDate, HttpStatus.OK);
+                }
+            }
         }
-        log.error("You are trying to add post from someone else user");
-        throw new RestError("You are trying to add post from someone else user");
+        log.error("Incorrect input data, try again");
+        throw new RestError("Incorrect input data, try again");
     }
 
     /**
@@ -142,7 +152,7 @@ public class PostController {
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @GetMapping(value = "/{id}")
     public ResponseEntity<PostDto> getPostById(@PathVariable(name = "id") Long postId) {
-        PostDto postDto = postFacade.getPost(postId);
+        PostDto postDto = postFacade.getPostDto(postId);
         log.info("You got a post by id");
         return new ResponseEntity<>(postDto, HttpStatus.OK);
     }
