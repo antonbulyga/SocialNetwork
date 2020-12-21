@@ -181,13 +181,27 @@ public class DialogController {
     @PostMapping(value = "/add/user")
     public ResponseEntity<DialogDto> addUserToDialog(@RequestParam(name = "dialogId") Long
                                                              dialogId, @RequestParam(name = "userId") Long userId) {
-        User user = userFacade.getUserFromSecurityContext();
-        List<Dialog> dialogs = user.getDialogs();
-        for (Dialog d : dialogs) {
+        User userFromSecurityContext = userFacade.getUserFromSecurityContext();
+        User userWhoWantToParticipate = userFacade.getUser(userId);
+        List<Dialog> dialogsFromUserWhoWantToParticipate = userWhoWantToParticipate.getDialogs();
+        List<Dialog> dialogsFromCurrentUser = userFromSecurityContext.getDialogs();
+        int count = 0;
+        for (Dialog d : dialogsFromCurrentUser) {
             if (d.getId().equals(dialogId)) {
-                log.error("You are adding user to the dialog");
-                DialogDto dialogDtoWithTime = dialogFacade.addUserToDialog(dialogId, userId);
-                return new ResponseEntity<>(dialogDtoWithTime, HttpStatus.OK);
+                for(Dialog dialog : dialogsFromUserWhoWantToParticipate) {
+                    if(dialog.getId().equals(dialogId)){
+                        count++;
+                    }
+                }
+                if(count == 0) {
+                    log.error("You are adding user to the dialog");
+                    DialogDto dialogDtoWithTime = dialogFacade.addUserToDialog(dialogId, userId);
+                    return new ResponseEntity<>(dialogDtoWithTime, HttpStatus.OK);
+                }
+                else {
+                    log.error("The user is already in this dialogue");
+                    throw new RestError(messageByLocaleService.getMessage("dialog.invalid.user.add.exist"));
+                }
             }
 
         }
