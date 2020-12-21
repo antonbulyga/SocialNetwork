@@ -27,14 +27,12 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final CommunityService communityService;
     private final BCryptPasswordEncoder passwordEncoder;
-    private final ProfileService profileService;
 
     @Autowired
-    public UserServiceImpl(UserRepository userRepository, @Lazy CommunityService communityService, BCryptPasswordEncoder passwordEncoder, ProfileService profileService) {
+    public UserServiceImpl(UserRepository userRepository, @Lazy CommunityService communityService, BCryptPasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.communityService = communityService;
         this.passwordEncoder = passwordEncoder;
-        this.profileService = profileService;
     }
 
     public User getUser(Long id) {
@@ -87,16 +85,17 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteUser(Long userId) {
         log.info("Deleting user by id");
-        List<Community> communities = communityService.getCommunitiesByAdminUserId(userId);
+        User user = getUser(userId);
+        List<Community> communities = user.getCommunitiesWhereUserAdmin();
         if (communities.size() != 0) {
             for (Community community : communities) {
                 community.getUsers().removeAll(community.getUsers());
-                community.getPosts().removeAll(community.getPosts());
+                community.getPosts().forEach(post -> post.setUser(null));
+                community.setAdminUser(null);
                 communityService.deleteCommunity(community.getId());
             }
         }
 
-        User user = getUser(userId);
         user.getPosts().forEach(post -> post.setUser(null));
         user.getMessages().forEach(mess -> mess.setUser(null));
         user.getLikes().forEach(like -> like.setUser(null));

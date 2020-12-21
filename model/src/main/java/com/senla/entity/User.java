@@ -65,7 +65,7 @@ public class User {
 
     @OneToMany(mappedBy = "adminUser",
             fetch = FetchType.LAZY, cascade = {
-            CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH})
+            CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.DETACH,CascadeType.REMOVE})
     private List<Community> communitiesWhereUserAdmin;
 
     @ManyToMany(mappedBy = "userList", fetch = FetchType.LAZY)
