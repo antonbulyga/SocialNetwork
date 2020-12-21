@@ -118,7 +118,7 @@ public class ProfileRepositoryTest {
         entityManager.persist(profile);
         entityManager.flush();
         List<Profile> result = profileRepository.findByFirstNameAndLastName(profile.getFirstName(), profile.getLastName());
-        assertEquals(profile, result);
+        assertEquals(1, result.size());
     }
 
     @Test
