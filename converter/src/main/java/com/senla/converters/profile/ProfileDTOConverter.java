@@ -25,7 +25,6 @@ public class ProfileDTOConverter implements Converter<Profile, ProfileDto> {
             return null;
         }
 
-        UserNestedDto user = null;
         return ProfileDto.builder()
                 .id(profile.getId())
                 .dateOfBirth(profile.getDateOfBirth())
@@ -35,7 +34,7 @@ public class ProfileDTOConverter implements Converter<Profile, ProfileDto> {
                 .lastName(profile.getLastName())
                 .city(profile.getCity())
                 .country(profile.getCountry())
-                .user(profile.getUser() == null ? user : userToUserNestedDtoConverter.convert(profile.getUser()))
+                .user(profile.getUser() == null ? null : userToUserNestedDtoConverter.convert(profile.getUser()))
                 .build();
     }
 }

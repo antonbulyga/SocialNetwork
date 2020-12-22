@@ -47,14 +47,12 @@ public class UserDTOConverter implements Converter<User, UserDto> {
         if (user == null) {
             return null;
         }
-        CommunityForUserDto community = null;
-        ProfileForUserDto profile = null;
         return UserDto.builder()
                 .id(user.getId())
                 .email(user.getEmail())
                 .userName(user.getUserName())
                 .password(user.getPassword())
-                .profile(user.getProfile() == null ? profile : profileToProfileForUserDtoConverter.convert(user.getProfile()))
+                .profile(user.getProfile() == null ? null : profileToProfileForUserDtoConverter.convert(user.getProfile()))
                 .communities(user.getCommunities().stream().map(communityToCommunityForUserDtoConverter::convert).collect(Collectors.toList()))
                 .roles(user.getRoles().stream().map(roleToRoleForProfileDtoConverter::convert).collect(Collectors.toList()))
                 .posts(user.getPosts().stream().map(postToPostForUserAndCommunityDtoConverter::convert).collect(Collectors.toList()))

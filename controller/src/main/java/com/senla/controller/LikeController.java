@@ -2,11 +2,9 @@ package com.senla.controller;
 
 import com.senla.dto.like.LikeDto;
 import com.senla.entity.Like;
-import com.senla.entity.Post;
 import com.senla.entity.User;
 import com.senla.exception.RestError;
 import com.senla.facade.LikeFacade;
-import com.senla.facade.PostFacade;
 import com.senla.facade.UserFacade;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,13 +28,11 @@ public class LikeController {
 
     private final LikeFacade likeFacade;
     private final UserFacade userFacade;
-    private final PostFacade postFacade;
 
     @Autowired
-    public LikeController(LikeFacade likeFacade, UserFacade userFacade, PostFacade postFacade) {
+    public LikeController(LikeFacade likeFacade, UserFacade userFacade) {
         this.likeFacade = likeFacade;
         this.userFacade = userFacade;
-        this.postFacade = postFacade;
     }
 
     /**
@@ -67,16 +63,8 @@ public class LikeController {
     @PostMapping(value = "/add")
     public ResponseEntity<LikeDto> addLike(@Valid @RequestBody LikeDto likeDto) {
         User user = userFacade.getUserFromSecurityContext();
-        Post postFromDto = postFacade.getPost(likeDto.getPost().getId());
-        User userFromDto = userFacade.getUser(likeDto.getUser().getId());
-        List<Like> likes = postFromDto.getLikes();
-        int count = 0;
-        if (user.getId().equals(userFromDto.getId())) {
-            for (Like l : likes) {
-                if (l.getUser().getId().equals(likeDto.getUser().getId())) {
-                    count++;
-                }
-            }
+        if (user.getId().equals(likeDto.getUser().getId())) {
+            int count = likeFacade.likeFromUserUnderPostCheck(likeDto.getPost().getId(), likeDto.getUser().getId());
             if (count == 0) {
                 LikeDto likeDtoWithDetails = likeFacade.addLike(likeDto);
                 log.error("Adding like");
@@ -99,7 +87,7 @@ public class LikeController {
      */
     @Secured({"ROLE_USER", "ROLE_ADMIN"})
     @DeleteMapping(value = "/delete")
-    public ResponseEntity<String> deleteLike(@RequestParam(name = "id") long id) {
+    public ResponseEntity<String> deleteLike(@RequestParam(name = "id") Long id) {
         Like like = likeFacade.getLike(id);
         User user = userFacade.getUserFromSecurityContext();
         List<Like> userLikes = user.getLikes();

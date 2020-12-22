@@ -4,6 +4,7 @@ import com.senla.converters.community.ReverseCommunityDTOConverter;
 import com.senla.converters.community.CommunityDTOConverter;
 import com.senla.dto.community.CommunityDto;
 import com.senla.entity.Community;
+import com.senla.entity.User;
 import com.senla.service.community.CommunityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -84,6 +85,14 @@ public class CommunityFacade {
     }
 
     public int communityParticipateCheck(Long communityId, Long userId) {
-        return communityService.communityParticipateChecker(communityId , userId);
+        Community community = getCommunity(communityId);
+        List<User> users = community.getUsers();
+        int count = 0;
+        for (User u : users) {
+            if (u.getId().equals(userId)) {
+                count++;
+            }
+        }
+        return count;
     }
 }

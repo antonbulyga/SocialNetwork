@@ -21,7 +21,6 @@ public class ReverseProfileDTOConverter implements Converter<ProfileDto, Profile
 
     @Override
     public Profile convert(ProfileDto profileDto) {
-        User user = null;
         return Profile.builder()
                 .id(profileDto.getId())
                 .dateOfBirth(profileDto.getDateOfBirth())
@@ -29,7 +28,7 @@ public class ReverseProfileDTOConverter implements Converter<ProfileDto, Profile
                 .phoneNumber(profileDto.getPhoneNumber())
                 .firstName(profileDto.getFirstName())
                 .lastName(profileDto.getLastName())
-                .user(profileDto.getUser() == null ? user : userService.getUser(profileDto.getUser().getId()))
+                .user(profileDto.getUser() == null ? null : userService.getUser(profileDto.getUser().getId()))
                 .city(profileDto.getCity())
                 .country(profileDto.getCountry())
                 .build();

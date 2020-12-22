@@ -25,11 +25,10 @@ public class PostDTOConverter implements Converter<Post, PostDto> {
 
     @Override
     public PostDto convert(Post post) {
-        CommunityForUserDto community = null;
         return PostDto.builder()
                 .id(post.getId())
                 .text(post.getText())
-                .community(post.getCommunity() == null ? community : communityToCommunityForUserDtoConverter.convert(post.getCommunity()))
+                .community(post.getCommunity() == null ? null : communityToCommunityForUserDtoConverter.convert(post.getCommunity()))
                 .user(userToUserNestedDtoConverter.convert(post.getUser()))
                 .dateOfCreation(post.getDateOfCreation())
                 .countLike(post.getCountLike())

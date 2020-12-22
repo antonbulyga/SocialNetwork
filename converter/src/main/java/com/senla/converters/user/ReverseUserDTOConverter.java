@@ -45,8 +45,6 @@ public class ReverseUserDTOConverter implements Converter<UserDto, User> {
 
     @Override
     public User convert(UserDto userDto) {
-        Community community = null;
-        Profile profile = null;
         return User.builder()
                 .id(userDto.getId())
                 .creationTime(LocalDateTime.now())
@@ -56,7 +54,7 @@ public class ReverseUserDTOConverter implements Converter<UserDto, User> {
                 .communities(userDto.getCommunities().stream().map(c -> communityService.getCommunity(c.getId())).collect(Collectors.toList()))
                 .communitiesWhereUserAdmin(userDto.getCommunitiesWhereUserAdmin().stream().map(c -> communityService.getCommunity(c.getId())).collect(Collectors.toList()))
                 .likes(userDto.getLikes().stream().map(l -> likeService.getLike(l.getId())).collect(Collectors.toList()))
-                .profile(userDto.getProfile() == null ? profile : profileService.getProfile(userDto.getProfile().getId()))
+                .profile(userDto.getProfile() == null ? null : profileService.getProfile(userDto.getProfile().getId()))
                 .messages(userDto.getMessages().stream().map(m -> messageService.getMessage(m.getId())).collect(Collectors.toList()))
                 .posts(userDto.getPosts().stream().map(p -> postService.getPost(p.getId())).collect(Collectors.toList()))
                 .roles(userDto.getRoles().stream().map(r -> roleService.getRoleByName(r.getName())).collect(Collectors.toSet()))

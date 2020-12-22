@@ -26,6 +26,5 @@ public interface CommunityService {
 
     void removeUserFromCommunity(Long communityId, Long userId);
 
-    int communityParticipateChecker(Long communityId , Long userId);
 }
 

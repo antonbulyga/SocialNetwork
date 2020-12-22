@@ -9,7 +9,10 @@ import com.senla.dto.post.PostDto;
 import com.senla.dto.profile.ProfileDto;
 import com.senla.dto.role.RoleDto;
 import com.senla.dto.user.UserDto;
+import com.senla.entity.Community;
 import com.senla.entity.Profile;
+import com.senla.entity.User;
+import com.senla.exception.RestError;
 import com.senla.facade.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -359,9 +362,15 @@ public class AdminController {
     @Secured("ROLE_ADMIN")
     @PostMapping(value = "/likes/add")
     public ResponseEntity<LikeDto> addLike(@Valid @RequestBody LikeDto likeDto) {
-        LikeDto likeDtoWithDetails = likeFacade.addLike(likeDto);
-        log.error("Adding like");
-        return new ResponseEntity<>(likeDtoWithDetails, HttpStatus.OK);
+        int count = likeFacade.likeFromUserUnderPostCheck(likeDto.getPost().getId(), likeDto.getUser().getId());
+        if (count == 0) {
+            LikeDto likeDtoWithDetails = likeFacade.addLike(likeDto);
+            log.error("Adding like");
+            return new ResponseEntity<>(likeDtoWithDetails, HttpStatus.OK);
+        } else {
+            log.error("The user has already liked this post");
+            throw new RestError("The user has already liked this post");
+        }
     }
 
     /**
@@ -475,9 +484,15 @@ public class AdminController {
     @Secured("ROLE_ADMIN")
     @PostMapping(value = "/dialogs/add/user")
     public ResponseEntity<DialogDto> addUserToDialog(@RequestParam(name = "dialogId") Long dialogId, @RequestParam(name = "userId") Long userId) {
-        log.error("You are adding user to the dialog");
-        DialogDto dialogDtoWithTime = dialogFacade.addUserToDialog(dialogId, userId);
-        return new ResponseEntity<>(dialogDtoWithTime, HttpStatus.OK);
+        int count = dialogFacade.userParticipateInDialogCheck(dialogId, userId);
+        if (count == 0) {
+            log.error("You are adding user to the dialog");
+            DialogDto dialogDtoWithTime = dialogFacade.addUserToDialog(dialogId, userId);
+            return new ResponseEntity<>(dialogDtoWithTime, HttpStatus.OK);
+        } else {
+            log.error("The user is already in this dialogue");
+            throw new RestError("The user is already in this dialogue");
+        }
     }
 
     /**
@@ -489,7 +504,8 @@ public class AdminController {
      */
     @Secured("ROLE_ADMIN")
     @DeleteMapping(value = "/dialogs/delete/user")
-    public ResponseEntity<DialogDto> deleteUserFromDialog(@RequestParam(name = "dialogId") Long dialogId, @RequestParam(name = "userId") Long userId) {
+    public ResponseEntity<DialogDto> deleteUserFromDialog(@RequestParam(name = "dialogId") Long
+                                                                  dialogId, @RequestParam(name = "userId") Long userId) {
         log.error("You are deleting user from the dialog");
         DialogDto dialogDtoWithTime = dialogFacade.deleteUserFromDialog(dialogId, userId);
         return new ResponseEntity<>(dialogDtoWithTime, HttpStatus.OK);
@@ -504,9 +520,19 @@ public class AdminController {
     @Secured("ROLE_ADMIN")
     @PostMapping(value = "/communities/add")
     public ResponseEntity<CommunityDto> addCommunity(@Valid @RequestBody CommunityDto communityDto) {
-        CommunityDto communityDtoWithDetails = communityFacade.addCommunity(communityDto);
-        log.info("Adding community");
-        return new ResponseEntity<>(communityDtoWithDetails, HttpStatus.OK);
+        Community community = communityFacade.convertCommunityDtoToCommunity(communityDto);
+        List<User> users = community.getUsers();
+        User adminUser = community.getAdminUser();
+            for (User u : users) {
+                if (u.getId().equals(adminUser.getId())) {
+                    CommunityDto communityDtoWithDetails = communityFacade.addCommunity(communityDto);
+                    log.info("Adding community");
+                    return new ResponseEntity<>(communityDtoWithDetails, HttpStatus.OK);
+                }
+            }
+            log.error("Group admin must participate in the community");
+            throw new RestError("Group admin must participate in the community");
+
     }
 
     /**
@@ -518,7 +544,13 @@ public class AdminController {
      */
     @Secured("ROLE_ADMIN")
     @PostMapping(value = "/communities/add/user")
-    public ResponseEntity<CommunityDto> addUserToCommunity(@RequestParam(name = "userId") Long userId, @RequestParam(name = "communityId") Long communityId) {
+    public ResponseEntity<CommunityDto> addUserToCommunity(@RequestParam(name = "userId") Long
+                                                                   userId, @RequestParam(name = "communityId") Long communityId) {
+        int count = communityFacade.communityParticipateCheck(communityId, userId);
+        if (count > 0) {
+            log.error("The user is already in the group");
+            throw new RestError("The user is already in the group");
+        }
         CommunityDto communityDto = communityFacade.addUserToCommunity(communityId, userId);
         log.info("Adding user to the community");
         return new ResponseEntity<>(communityDto, HttpStatus.OK);
@@ -533,7 +565,8 @@ public class AdminController {
      */
     @Secured("ROLE_ADMIN")
     @DeleteMapping(value = "/communities/delete/user")
-    public ResponseEntity<String> removeUserFromCommunity(@RequestParam(name = "userId") Long userId, @RequestParam(name = "communityId") Long communityId) {
+    public ResponseEntity<String> removeUserFromCommunity(@RequestParam(name = "userId") Long
+                                                                  userId, @RequestParam(name = "communityId") Long communityId) {
         communityFacade.removeUserFromCommunity(communityId, userId);
         log.info("Removing user from the community");
         return ResponseEntity.ok()

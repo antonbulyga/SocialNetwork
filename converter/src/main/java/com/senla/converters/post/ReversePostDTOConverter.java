@@ -25,11 +25,10 @@ public class ReversePostDTOConverter implements Converter<PostDto, Post> {
 
     @Override
     public Post convert(PostDto postDto) {
-        Community community = null;
         return Post.builder()
                 .id(postDto.getId())
                 .text(postDto.getText())
-                .community(postDto.getCommunity() == null ? community : communityService.getCommunity(postDto.getCommunity().getId()))
+                .community(postDto.getCommunity() == null ? null : communityService.getCommunity(postDto.getCommunity().getId()))
                 .user(userService.getUser(postDto.getUser().getId()))
                 .dateOfCreation(LocalDateTime.now())
                 .countLike(postDto.getCountLike())
