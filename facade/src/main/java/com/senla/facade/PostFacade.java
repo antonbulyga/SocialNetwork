@@ -48,10 +48,6 @@ public class PostFacade {
         return postDTOConverter.convert(postService.getPost(id));
     }
 
-    public Post getPost(Long id) {
-        return postService.getPost(id);
-    }
-
     public List<PostDto> getPostsDtoByUser_Id(Long userId) {
         List<Post> posts = postService.getPostsByUser_Id(userId);
         return posts.stream().map(postDTOConverter::convert).collect(Collectors.toList());

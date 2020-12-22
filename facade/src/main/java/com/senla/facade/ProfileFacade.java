@@ -75,10 +75,6 @@ public class ProfileFacade {
         return profileDTOConverter.convert(profileService.getProfile(id));
     }
 
-    public ProfileDto findProfileDtoByUser_Id(Long userId) {
-        return profileDTOConverter.convert(profileService.findProfileByUser_Id(userId));
-    }
-
     public Profile findProfileByUser_Id(Long userId) {
         return profileService.findProfileByUser_Id(userId);
     }
