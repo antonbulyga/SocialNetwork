@@ -54,7 +54,7 @@ public class DialogServiceTest {
     @Test
     public void updateDialogTest() {
         given(dialogRepository.save(dialog)).willReturn(dialog);
-        final Dialog expected = dialogService.updateDialog(dialog);
+        Dialog expected = dialogService.updateDialog(dialog);
         assertThat(expected).isNotNull();
         verify(dialogRepository).save(any(Dialog.class));
     }

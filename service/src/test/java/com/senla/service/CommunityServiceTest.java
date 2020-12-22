@@ -52,7 +52,7 @@ public class CommunityServiceTest {
     @Test
     public void updateCommunityTest() {
         given(communityRepository.save(community)).willReturn(community);
-        final Community expected = communityService.updateCommunity(community);
+        Community expected = communityService.updateCommunity(community);
         assertThat(expected).isNotNull();
         verify(communityRepository).save(any(Community.class));
     }
@@ -60,7 +60,7 @@ public class CommunityServiceTest {
     @Test
     public void findCommunityById() {
         given(communityRepository.findById(community.getId())).willReturn(Optional.of(community));
-        final Optional<Community> expected = communityService.getCommunityById(community.getId());
+        Optional<Community> expected = communityService.getCommunityById(community.getId());
         assertThat(expected).isNotNull();
     }
 
