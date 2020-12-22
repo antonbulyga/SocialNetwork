@@ -209,7 +209,7 @@ public class FriendshipServiceImpl implements FriendshipService {
 
             } if (f.getActionUser().equals(userTwo) & f.getUserOne().equals(userOne)
                     & f.getUserTwo().equals(userTwo)) {
-                friendshipRepository.acceptFriendRequest(userOne, userTwo, userOne);
+                friendshipRepository.declineFriendRequest(userOne, userTwo, userOne);
                 return createFriendship(userOne, userTwo, userOne, FriendshipStatus.DECLINED);
             }
         }

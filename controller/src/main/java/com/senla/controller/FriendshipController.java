@@ -102,7 +102,7 @@ public class FriendshipController {
                                                               @RequestParam(name = "idAction") Long actionUserId) {
         User user = userFacade.getUserFromSecurityContext();
         if (user.getId().equals(actionUserId)) {
-            FriendshipDto friendshipDto = friendshipFacade.addToFriends(userOneId, userTwoId, actionUserId);
+            FriendshipDto friendshipDto = friendshipFacade.declineFriendRequest(userOneId, userTwoId, actionUserId);
             log.info("Decline friend request");
             return ResponseEntity.ok()
                     .body(friendshipDto);
